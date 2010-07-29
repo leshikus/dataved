@@ -179,8 +179,8 @@ Graph.Renderer.Raphael.prototype = {
                 push(this.r.ellipse(point[0], point[1], 30, 20).attr({fill: color, stroke: color, "fill-opacity": .1, "stroke-width": 2})).
                 push(this.r.text(point[0], point[1] + 30, node.label || node.id));
         }
-        shape.attr({"fill-opacity": .6});
-        /* reference to the node an element belongs to, needed for dragging all elements of a node */
+        
+		/* reference to the node an element belongs to, needed for dragging all elements of a node */
         shape.items.forEach(function(item){ item.set = shape; item.node.style.cursor = "move"; });
         shape.mousedown(this.dragger);
         node.shape = shape;
