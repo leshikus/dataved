@@ -1,6 +1,6 @@
 /*
- *  Dracula Graph Layout and Drawing Framework 0.0.3alpha
  *  (c) 2010 Philipp Strathausen <strathausen@gmail.com>, http://blog.ameisenbar.de
+ *  Dracula Graph Layout and Drawing Framework 0.0.3alpha
  *
  *  based on the Graph JavaScript framework, version 0.0.1
  *  (c) 2006 Aslak Hellesoy <aslak.hellesoy@gmail.com>
@@ -181,7 +181,10 @@ Graph.Renderer.Raphael.prototype = {
         }
         
 		/* reference to the node an element belongs to, needed for dragging all elements of a node */
-        shape.items.forEach(function(item){ item.set = shape; item.node.style.cursor = "move"; });
+        for (i in shape.items) {
+			shape.items[i].set = shape;
+			shape.items[i].node.style.cursor = "move";
+        }
         shape.mousedown(this.dragger);
         node.shape = shape;
     },
@@ -324,14 +327,6 @@ Graph.Layout.Spring.prototype = {
                 node1.layoutForceX += attractiveForce * dx / d;
                 node1.layoutForceY += attractiveForce * dy / d;
         }
-};
-
-/*
- * usefull JavaScript extensions, 
- */
-Array.prototype.forEach = function(f) {
-     var l = this.length;
-     for( var i = 0; i < l; i++) f(this[i]);
 };
 
 function log(a) {console.log&&console.log(a);}
