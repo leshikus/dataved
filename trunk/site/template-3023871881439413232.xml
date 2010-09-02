@@ -20,8 +20,11 @@ License:    http://www.gnu.org/licenses/gpl-3.0.html
 
    <Variable name="containerpadding" description="Container Padding"
            type="automatic" default="2ex" value="2ex">
-   <Variable name="minmainwidth" description="Minimal post width"
+
+   <Variable name="minmainwidth" description="Maximal post width"
            type="automatic" default="728px" value="728px">
+   <Variable name="maxmainwidth" description="Maximal post width"
+           type="automatic" default="848px" value="848px">
    <Variable name="sidebarwidth" description="Sidebar Width"
            type="automatic" default="172px" value="172px">
 
@@ -30,19 +33,21 @@ License:    http://www.gnu.org/licenses/gpl-3.0.html
    <Variable name="linkcolor" description="Link Color"
              type="color" default="#58a" value="#5588aa">
    <Variable name="pagetitlecolor" description="Blog Title Color"
-             type="color" default="#666" value="#666666">
+             type="color" default="#169" value="#156998">
    <Variable name="descriptioncolor" description="Blog Description Color"
              type="color" default="#999" value="#999999">
    <Variable name="titlecolor" description="Post Title Color"
+             type="color" default="#666" value="#666666">
+   <Variable name="hovercolor" description="Post Title Color"
              type="color" default="#c60" value="#cc6600">
    <Variable name="bordercolor" description="Border Color"
              type="color" default="#ccc" value="#cccccc">
    <Variable name="sidebarcolor" description="Sidebar Title Color"
              type="color" default="#666" value="#666666">
    <Variable name="sidebartextcolor" description="Sidebar Text Color"
-             type="color" default="#333" value="#333333">
+             type="color" default="#222" value="#222222">
    <Variable name="visitedlinkcolor" description="Visited Link Color"
-             type="color" default="#999" value="#999999">
+             type="color" default="#555" value="#555555">
 
    <Variable name="bodyfont" description="Text Font"
              type="font" default="normal 92% Verdana, sans-serif" value="normal 92% Verdana, sans-serif">
@@ -81,7 +86,7 @@ a:visited {
 }
 
 a:hover {
-  color: $titlecolor;
+  color: $hovercolor;
   text-decoration: underline;
 }
 
@@ -91,10 +96,10 @@ a img {
 
 h1 {
   border-bottom: dotted 1px $bordercolor;
-  margin-bottom: 0px;
+  margin: 16px 0 0 0;
   color: $pagetitlecolor;
   font: $pagetitlefont;
-  font-size: 200%;
+  font-size: 36px;
   text-align: center;
 }
 
@@ -105,7 +110,7 @@ h1 a, h1 a: link, h1 a: visited {
 h2 {
   margin: 0px;
   padding: 0px;
-  color: $pagetitlecolor;
+  color: $titlecolor;
   font: $pagetitlefont;
   font-size: 180%;
 }
@@ -113,13 +118,12 @@ h2 {
 #navbar-iframe { display: none !important; }
 
 #main .widget {
- padding: 0 $containerpadding;
+ padding: 0;
  clear: both;
- min-width: $minmainwidth;
 }
 
 #main {
-  margin: 0 $sidebarwidth;
+  margin: 0;
 }
 
 h2.date-header {
@@ -131,25 +135,25 @@ h2.date-header {
 }
 
 h3.post-title {
-  color: $pagetitlecolor;
+  color: $titlecolor;
   font: $pagetitlefont;
   font-size: 200%;
 }
 
 h3 {
-  color: $pagetitlecolor;
+  color: $titlecolor;
   font: $pagetitlefont;
   font-size: 160%;
 }
 
 h4 {
-  color: $pagetitlecolor;
+  color: $titlecolor;
   font: $pagetitlefont;
   font-size: 140%;
 }
 
 h5 {
-  color: $pagetitlecolor;
+  color: $titlecolor;
   font: $pagetitlefont;
   font-size: 120%;
 }
@@ -191,7 +195,7 @@ h5 {
  
 #blog-pager {   
   text-align: center; 
-  margin: 0 $sidebarwidth;
+  margin: 0 auto;
 }
 
 .clear {
@@ -202,21 +206,16 @@ body#layout {
   margin-top: 0 auto;
 }
 
-/* Enlarge hover images */
-.post a.grow {
-  position: relative;
+/* Replace images with larger copies in the blog pasts */
+.post a#grow288 {
+  display: block;
   float: $endside;
+  border: 0;
+  padding: 0 0 $containerpadding $containerpadding;
 }
 
-.post img.grow {
-//  position: absolute;
-//  top: 0em;
-//  left: 0em;
-  float: $endside;
-}
-
-.post .grow:hover {
-  width: 800px;
+.post a#grow288 img {
+  padding: 0;
 }
 
 /* Accurate tables */
@@ -229,8 +228,10 @@ body#layout {
 
 /* Tooltips */
 a.tooltip {
-  position:relative;
+  display: block;
+  position: relative;
   z-index: 24;
+  width: 100%;
 }
 
 a.tooltip:hover {
@@ -238,22 +239,33 @@ a.tooltip:hover {
   text-decoration: none;
 }
 
-a.tooltip span {
+a.tooltip div {
   display: none;
 }
 
-a.tooltip:hover span { /* the span will display just on :hover state */
-  z-index: 25;
+a.tooltip img {
+  display: inline;
+}
+
+a.tooltip:hover div { /* the span will display just on :hover state */
   display: block;
   position: absolute;
-  top: -2em;
+  top: 0;
   left: 2em;
+  z-index: 25;
+  margin: 0 2em 0 0;
   border: 1px solid #0cf;
   padding: $containerpadding;
   background-color: #cff;
-  color:#000;
+  color: #000;
   text-align: center;
+  word-wrap: normal;
   border-radius: 5px;
+}
+
+/* Epigraph */
+.post p.epi {
+ padding-left: 25%;
 }
 
 /* Transparent tables */
@@ -266,19 +278,48 @@ table.nob tr, table.nob th, table.nob td {
   border: none;
 }
 
-/* Search */
-#header-wrapper {
-  clear: both;
+/* Boxed tables */
+/*
+.post table.boxed {
+  padding: $containerpadding;
+  border: none;
+}
+table.boxed tr, table.boxed th, table.boxed td {
+  padding: $containerpadding;
+  border: none;
+}*/
+table.boxed td, table.boxed th {
+  spacing: $containerpadding;
+  box-shadow: $containerpadding $containerpadding $containerpadding $bordercolor;
+  border-collapse: separate;
 }
 
+/* Ads */
+.inline-ad {
+  text-align: center;
+  margin: $containerpadding 0;
+}
+
+/* Search */
 .titleimage, .titlewrapper {
-  block: inline;
   float: $startside;
+  block: inline;
 }
 
 .titleimage {
   width: $sidebarwidth;
-  text-align: center;
+  margin: 0 $containerpadding;
+}
+
+.titlewrapper {
+  min-width: $minmainwidth;
+  max-width: $maxmainwidth;
+  padding: 0;
+  margin: 0;
+}
+
+#header {
+  clear: both;
 }
 
 #CustomSearch1 {
@@ -287,33 +328,26 @@ table.nob tr, table.nob th, table.nob td {
   padding: $containerpadding 0;
 }
 
+
+#content-wrapper, #header-wrapper {
+  clear: both; 
+}
+
 /* Sidebar style */
 #outer-wrapper {
   padding: 0 $containerpadding;
-  margin: 0;
+  margin: 0 auto;
 }
 
 #main-wrapper {
-  width: 100%;
-  margin: 0 -$sidebarwidth;
+  min-width: $minmainwidth;
+  max-width: $maxmainwidth;
+  margin: 0 auto;
   float: $startside;
   word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
-  overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+//  overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
 }
 
-#left-sidebar-wrapper, #sidebar-wrapper {
-  width: $sidebarwidth;
-  word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
-  overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
-}
-
-#left-sidebar-wrapper {
-  float: $startside;
-}
-
-#sidebar-wrapper {
-  float: $endside;
-}
 
 /* Comments */
 #comments {
@@ -382,8 +416,8 @@ table.nob tr, table.nob th, table.nob td {
 
 .sidebar ul {
   list-style:none;
-  margin: 0 0 0;
-  padding: 0 0 0;
+  margin: 0;
+  padding: 0;
 }
 .sidebar li {
   margin: 0;
@@ -395,11 +429,22 @@ table.nob tr, table.nob th, table.nob td {
   line-height: 1.5em;
 }
 
+.sidebar .cloud-label-widget-content {
+  text-align: left;
+}
+
 .sidebar .widget, .main .widget { 
   border-bottom: 1px dotted $bordercolor;
   margin: 0 0 1.5em;
   padding: 0 0 1.5em;
  }
+
+.sidebar .widget {
+  float: $startside;
+  width: $sidebarwidth;
+  word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+  overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
 
 .main .Blog { 
   border-bottom-width: 0;
@@ -444,11 +489,11 @@ table.nob tr, table.nob th, table.nob td {
 ----------------------------------------------- */
 #footer {
   clear: both;
-  margin:0 auto;
-  padding-top:15px;
+  margin: 0 auto;
+  padding-top: 15px;
   line-height: 1.6em;
-  text-transform:uppercase;
-  letter-spacing:.1em;
+  text-transform: uppercase;
+  letter-spacing: .1em;
   text-align: center;
 }
 
@@ -568,7 +613,6 @@ table.nob tr, table.nob th, table.nob td {
 </b:widget>
 <b:widget id='Header1' locked='true' title='Математическое обеспечение Вашего бизнеса (заголовок)' type='Header'>
 <b:includable id='title'>
-                <div id='header-inner'>
                   <b:if cond='data:useImage'>
                     <div class='titleimage'>
                       <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width'/>
@@ -581,7 +625,6 @@ table.nob tr, table.nob th, table.nob td {
                       </h1>
                     </div>
                   </b:if>
-                </div><!-- div header-inner -->
               </b:includable>
 <b:includable id='description'>
                 <div class='descriptionwrapper'>
@@ -611,34 +654,6 @@ table.nob tr, table.nob th, table.nob td {
 
           <div id='crosscol-wrapper' style='text-align:center'>
             <b:section class='crosscol' id='crosscol'/>
-          </div>
-
-          <div id='left-sidebar-wrapper'>
-            <b:section class='sidebar' id='left-sidebar' preferred='yes'>
-<b:widget id='HTML2' locked='false' title='' type='HTML'>
-<b:includable id='main'>
-                  <!-- only display title if it's non-empty -->
-                  <b:if cond='data:title != &quot;&quot;'>
-                    <h2 class='title'>
-                      <data:title/>
-                    </h2>
-                  </b:if>
-                  <div class='widget-content'>
-                    <data:content/>
-                  </div>
-
-                  <b:include name='quickedit'/>
-                </b:includable>
-</b:widget>
-<b:widget id='AdSense1' locked='false' title='' type='AdSense'>
-<b:includable id='main'>
-                  <div class='widget-content'>
-                    <data:adCode/>
-                    <b:include name='quickedit'/>
-                  </div>
-                </b:includable>
-</b:widget>
-</b:section>
           </div>
 
           <div id='main-wrapper'>
@@ -677,6 +692,20 @@ table.nob tr, table.nob th, table.nob td {
                   </div>
                   <div class='clear'/>
                 </b:includable>
+<b:includable id='shareButtons' var='post'>
+  <b:if cond='data:post.sharePostUrl'>
+      <a class='share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'>
+        <span class='share-button-link-text'><data:top.emailThisMsg/></span></a>
+      <a class='share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'>
+        <span class='share-button-link-text'><data:top.blogThisMsg/></span></a>
+      <a class='share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'>
+        <span class='share-button-link-text'><data:top.shareToTwitterMsg/></span></a>
+      <a class='share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'>
+        <span class='share-button-link-text'><data:top.shareToFacebookMsg/></span></a>
+      <a class='share-button sb-buzz' expr:href='data:post.sharePostUrl + &quot;&amp;target=buzz&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=415,width=690\&quot;); return false;&quot;' expr:title='data:top.shareToBuzzMsg' target='_blank'>
+        <span class='share-button-link-text'><data:top.shareToBuzzMsg/></span></a>
+  </b:if>
+</b:includable>
 <b:includable id='backlinks' var='post'>
                   <a name='links'/>
                   <h4>
@@ -726,12 +755,12 @@ table.nob tr, table.nob th, table.nob td {
                             <data:post.title/>
                           </a>
                           <b:else/>
-                          <b:if cond='data:post.url'>
+                          <b:if cond='data:post.url == data:blog.url'>
+                            <data:post.title/>
+                            <b:else/>
                             <a expr:href='data:post.url'>
                               <data:post.title/>
                             </a>
-                            <b:else/>
-                            <data:post.title/>
                           </b:if>
                         </b:if>
                       </h3>
@@ -741,6 +770,17 @@ table.nob tr, table.nob th, table.nob td {
 
                     <div class='post-body entry-content'>
                       <data:post.body/>
+                      <b:if cond='data:post.url == data:blog.url'>
+                        <script type='text/javascript'>
+                          var e = document.getElementById(&#39;grow288&#39;);
+                          if (e) {
+                            e.innerHTML = e.innerHTML.replace(&#39;/s288/&#39;, &#39;/s800/&#39;);
+                            e.style.styleFloat =
+                              e.style.cssFloat = &#39;none&#39;;
+                            e.style.paddingLeft = &#39;0&#39;;
+                          }
+                        </script>
+                      </b:if>
                       <div style='clear: both;'/> <!-- clear for photos floats -->
                     </div>
 
@@ -1126,9 +1166,36 @@ table.nob tr, table.nob th, table.nob td {
 </b:section>
           </div>
 
-          <div id='sidebar-wrapper'>
-            <b:section class='sidebar' id='sidebar' preferred='yes'>
-<b:widget id='Label1' locked='false' title='Ярлыки' type='Label'>
+          <b:section class='sidebar' id='sidebar' preferred='yes'>
+<b:widget id='HTML2' locked='false' title='' type='HTML'>
+<b:includable id='main'>
+                  <!-- only display title if it's non-empty -->
+                  <b:if cond='data:title != &quot;&quot;'>
+                    <h2 class='title'>
+                      <data:title/>
+                    </h2>
+                  </b:if>
+                  <div class='widget-content'>
+                    <data:content/>
+                  </div>
+
+                  <b:include name='quickedit'/>
+                </b:includable>
+</b:widget>
+<b:widget id='HTML3' locked='false' title='' type='HTML'>
+<b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+</b:widget>
+<b:widget id='Label1' locked='false' title='Темы' type='Label'>
 <b:includable id='main'>
                   <b:if cond='data:title'>
                     <h2>
@@ -1167,9 +1234,7 @@ table.nob tr, table.nob th, table.nob td {
                               <data:label.name/>
                             </span>
                             <b:else/>
-                            <a expr:dir='data:blog.languageDirection' expr:href='data:label.url'>
-                              <data:label.name/>
-                            </a>
+                            <a expr:dir='data:blog.languageDirection' expr:href='data:label.url'><data:label.name/></a>
                           </b:if>
                           <b:if cond='data:showFreqNumbers'>
                             <span class='label-count' dir='ltr'>
@@ -1183,6 +1248,29 @@ table.nob tr, table.nob th, table.nob td {
                     </b:if>
                     <b:include name='quickedit'/>
                   </div>
+                </b:includable>
+</b:widget>
+<b:widget id='AdSense1' locked='false' title='' type='AdSense'>
+<b:includable id='main'>
+                  <div class='widget-content'>
+                    <data:adCode/>
+                    <b:include name='quickedit'/>
+                  </div>
+                </b:includable>
+</b:widget>
+<b:widget id='HTML1' locked='false' title='Партнёры' type='HTML'>
+<b:includable id='main'>
+                  <!-- only display title if it's non-empty -->
+                  <b:if cond='data:title != &quot;&quot;'>
+                    <h2 class='title'>
+                      <data:title/>
+                    </h2>
+                  </b:if>
+                  <div class='widget-content'>
+                    <data:content/>
+                  </div>
+
+                  <b:include name='quickedit'/>
                 </b:includable>
 </b:widget>
 <b:widget id='BlogArchive1' locked='false' title='Архив' type='BlogArchive'>
@@ -1286,154 +1374,7 @@ table.nob tr, table.nob th, table.nob td {
                   </div>
                 </b:includable>
 </b:widget>
-<b:widget id='HTML1' locked='false' title='Партнёры' type='HTML'>
-<b:includable id='main'>
-                  <!-- only display title if it's non-empty -->
-                  <b:if cond='data:title != &quot;&quot;'>
-                    <h2 class='title'>
-                      <data:title/>
-                    </h2>
-                  </b:if>
-                  <div class='widget-content'>
-                    <data:content/>
-                  </div>
-
-                  <b:include name='quickedit'/>
-                </b:includable>
-</b:widget>
-<b:widget id='Profile1' locked='false' title='Команда' type='Profile'>
-<b:includable id='main'>
-                  <b:if cond='data:title != &quot;&quot;'>
-                    <h2>
-                      <data:title/>
-                    </h2>
-                  </b:if>
-                  <div class='widget-content'>
-                    <b:if cond='data:team == &quot;true&quot;'> <!-- team blog profile -->
-                      <ul>
-                        <b:loop values='data:authors' var='i'>
-                          <li>
-                            <a expr:href='data:i.userUrl'>
-                              <data:i.display-name/>
-                            </a>
-                          </li>
-                        </b:loop>
-                      </ul>
-
-                      <b:else/> <!-- normal blog profile -->
-
-                      <b:if cond='data:photo.url != &quot;&quot;'>
-                        <a expr:href='data:userUrl'>
-                          <img class='profile-img' expr:alt='data:photo.alt' expr:height='data:photo.height' expr:src='data:photo.url' expr:width='data:photo.width'/>
-                        </a>
-                      </b:if>
-
-                      <dl class='profile-datablock'>
-                        <dt class='profile-data'>
-                          <data:displayname/>
-                        </dt>
-
-                        <b:if cond='data:showlocation == &quot;true&quot;'>
-                          <dd class='profile-data'>
-                            <data:location/>
-                          </dd>
-                        </b:if>
-
-                        <b:if cond='data:aboutme != &quot;&quot;'>
-                          <dd class='profile-textblock'>
-                            <data:aboutme/>
-                          </dd>
-                        </b:if>
-                      </dl>
-                      <a class='profile-link' expr:href='data:userUrl'>
-                        <data:viewProfileMsg/>
-                      </a>
-                    </b:if>
-
-                    <b:include name='quickedit'/>
-                  </div>
-                </b:includable>
-</b:widget>
-<b:widget id='Followers1' locked='false' title='Постоянные читатели' type='Followers'>
-<b:includable id='main'>
-  <b:if cond='data:title != &quot;&quot;'>
-    <b:if cond='data:codeSnippet != &quot;&quot;'>
-      <h2 class='title'><data:title/></h2>
-    <b:else/>
-      <b:if cond='data:totalFollowerCount != &quot;&quot;'>
-        <h2 class='title'><data:title/> (<data:totalFollowerCount/>)</h2>
-      </b:if>
-    </b:if>  
-  </b:if>
-  <div class='widget-content'>
-    <div expr:id='data:widget.instanceId + &quot;-wrapper&quot;'>
-      <b:if cond='data:codeSnippet != &quot;&quot;'>
-        <div style='margin-right:2px;'>
-          <data:codeSnippet/>
-        </div>
-      <b:else/>
-        <b:if cond='data:totalFollowerCount == &quot;&quot;'>
-          <span class='item-control following-not-admin'>
-            <b><data:failureSnippet/></b>
-          </span>
-          <span class='item-control blog-admin'>
-            <b><data:adminFailureSnippet/></b>
-          </span>
-        <b:else/>
-          <b:if cond='data:followingLinkPresent'>
-            <div class='follow-this profile-link item-control following-follow-this'>
-              <a expr:href='&quot;javascript:_FollowersView._openPopup(\&quot;&quot; + data:followUri + &quot;\&quot;);&quot;'>
-                <data:followThisMessage/>
-              </a>
-            </div>
-            <div class='follow-this profile-link item-control following-stop-following-this'>
-              <a expr:href='&quot;javascript:_FollowersView._openPopup(\&quot;&quot; + data:followUri + &quot;\&quot;);&quot;'>
-                <data:stopFollowingMessage/>
-              </a>
-            </div>
-          </b:if>
-  
-          <div class='followers-grid'>
-            <b:if cond='data:totalFollowerCount == 0'>
-              <div class='profile-link item-control following-follow-this'>
-                <data:emptyFollowersMessage/>
-              </div>
-            </b:if>
-            <!--
-            Relies on the js written out in navbar.gxp
-            -->
-            <b:loop values='data:followers' var='follower'>
-              <div class='follower'>
-                <a expr:href='data:follower.profileUrl' expr:title='data:follower.displayName' rel='nofollow'>
-                <img class='follower-img' expr:alt='data:follower.displayName' expr:height='data:follower.imageHeight' expr:onerror='&quot;this.onerror=null;this.src=\&quot;&quot; + data:anonFollowerImageUrl + &quot;\&quot;;&quot;' expr:onload='&quot;setAttributeOnload(this, \&quot;src\&quot;, \&quot;&quot; + data:follower.imageUrl + &quot;\&quot;)&quot;' expr:width='data:follower.imageWidth' src='http://img1.blogblog.com/img/blank.gif'/>
-                </a>
-              </div>
-            </b:loop>
-            <div class='clear'/>
-          </div>
-  
-          <div class='followers-canvas profile-link'>
-            <data:followersFooterMessage/>
-            <span class='item-control following-not-admin'>
-              <a expr:href='data:followersUri'>
-                <data:viewAllMessage/>
-              </a>
-            </span>
-            <span class='item-control blog-admin'>
-              <a expr:href='data:manageFollowersUri'>
-                <data:manageFollowersMessage/>
-              </a>
-            </span>
-          </div>
-          </b:if>
-      </b:if>
-    </div>
-    <b:include name='quickedit'/>
-  </div>
-</b:includable>
-</b:widget>
 </b:section>
-          </div>
 
           <!--
             spacer for skins that want sidebar and main to be the same
