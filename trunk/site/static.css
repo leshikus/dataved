@@ -19,6 +19,10 @@
   overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
 }
 
+#outer-wrapper {
+  margin: 0 auto;
+}
+
 body {
   margin: 0;
   line-height: 1.5;
@@ -205,11 +209,6 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   clear: both; 
 }
 
-/* Sidebar style */
-#outer-wrapper {
-  margin: 0 auto;
-}
-
 /* Comments */
 #comments {
   padding-top: 30px;
@@ -277,6 +276,7 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   margin: 0;
   padding: 0;
 }
+
 .sidebar li {
   margin: 0;
   padding-top: 0;
