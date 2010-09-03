@@ -297,15 +297,14 @@ a.tooltip:hover div { /* the span will display just on :hover state */
  }
 
 .sidebar .widget {
-  float: left;//comment по русски
+  float: left;
   word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
   overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
-}//по русски
+}
 
 .main .Blog { 
   border-bottom-width: 0;
 }
-
 
 /* Profile */
 .profile-img { 
