@@ -36,6 +36,21 @@ a img {
   border-width: 0;
 }
 
+.post img, .post object {
+  padding: 1ex;
+  margin: 0;
+}
+
+.post img.fleft {
+  float: left;
+  padding: 0 1ex 1ex 0;
+}
+
+.post img.fright {
+  float: right;
+  padding: 0 0 1ex 1ex;
+}
+
 h1 {
   margin: 16px 0 0 0;
   font-size: 36px;
@@ -106,14 +121,14 @@ body#layout {
 }
 
 /* Replace images with larger copies in the blog pasts */
-.post a#grow288 {
+.post a.grow288 {
   padding: 0 0 1ex 1ex;
   display: block;
   float: right;
   border: 0;
 }
 
-.post a#grow288 img {
+.post a.grow288 img {
   padding: 0;
 }
 
@@ -317,7 +332,6 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 .profile-img { 
   float: left;
   margin: 0 1ex 1ex 0;
-  padding: 0;
 }
 
 .profile-data {
