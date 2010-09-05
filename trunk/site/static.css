@@ -197,6 +197,18 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   border-style: outset;
 }
 
+/* Rotated text */
+.box_rotate {
+     -moz-transform: rotate(-90deg);  
+       -o-transform: rotate(-90deg);  
+  -webkit-transform: rotate(-90deg);  
+             filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',  
+                      M11=0, M12=1, M21=-1, M22=0); 
+         -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(
+                      M11=0, M12=1, M21=-1, M22=0, 
+                      sizingMethod='auto expand')"; 
+}
+
 /* Ads */
 .inline-ad {
   text-align: center;
