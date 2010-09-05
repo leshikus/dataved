@@ -37,18 +37,13 @@ a img {
 }
 
 .post img, .post object {
-  padding: 1ex;
+  padding: 0 0 1ex 2ex;
   margin: 0;
 }
 
 .post img.fleft {
   float: left;
   padding: 0 2ex 1ex 0;
-}
-
-.post img.fright {
-  float: right;
-  padding: 0 0 1ex 2ex;
 }
 
 h1 {
