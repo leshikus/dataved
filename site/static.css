@@ -198,7 +198,7 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 }
 
 /* Rotated text */
-.box_rotate {
+.box-rotate {
      -moz-transform: rotate(-90deg);  
        -o-transform: rotate(-90deg);  
   -webkit-transform: rotate(-90deg);  
