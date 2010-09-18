@@ -42,7 +42,7 @@ a img {
 }
 
 /* Inline images */
-p.post img {
+.post p img {
   padding: 0;
 }
 
