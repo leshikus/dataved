@@ -41,6 +41,11 @@ a img {
   margin: 0;
 }
 
+/* Inline images */
+p.post img {
+  padding: 0;
+}
+
 .post img.fleft {
   float: left;
   padding: 0 2ex 1ex 0;
