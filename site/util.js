@@ -1,21 +1,27 @@
 /* APL 2.0 */
 
+blogger_scope = 'http://www.blogger.com/feeds/';
+auth_button = document.getElementById('authButton');
+
+function auth_lock() {}
+function auth_unlock() {}
+
 /**
- * Manages auth process. Requires a button element with id="actionButton".
+ * Manages auth process.
  */
 function auth() {
-  var b = document.getElementById("authButton");
-
-  b.value = 'Авторизоваться';
-  b.onclick = function() {
-    token = google.accounts.user.login(scope);
+  auth_button.value = 'Авторизоваться';
+  auth_button.onclick = function() {
+    token = google.accounts.user.login(blogger_scope);
   }
 
-  if (!google.accounts.user.checkLogin(scope))
+  if (!google.accounts.user.checkLogin(blogger_scope))
     return;
 
-  b.value = 'Выйти';
-  b.onclick = function() {
+  auth_unlock();  
+  auth_button.value = 'Выйти';
+  auth_button.onclick = function() {
+    auth_lock();
     google.accounts.user.logout(auth);
   }
 

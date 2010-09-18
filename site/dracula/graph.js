@@ -331,12 +331,6 @@ Graph.Layout.Spring.prototype = {
 
 function log(a) {console.log&&console.log(a);}
 
-// this will eventually mess up array usage with for-in-loops
-//Array.prototype.onEach = function(f, arg) {
-//     var l = this.length;
-//     for( var i = 0; i < l; i++) this[i][f]( arg );
-//}
-
 /*
  * Raphael Tooltip Plugin
  * - attaches an element as a tooltip to another element
