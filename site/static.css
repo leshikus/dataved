@@ -42,7 +42,7 @@ a img {
 }
 
 /* Inline images */
-.post p img {
+.post p img, .post td img {
   padding: 0;
   vertical-align: middle;
 }
