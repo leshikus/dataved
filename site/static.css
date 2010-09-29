@@ -68,6 +68,10 @@ h2 {
   font-size: 180%;
 }
 
+.Header h1 {
+  border-bottom: dotted 1px #999999;
+}
+
 h2.date-header {
   padding-top: 15px;
   font-size: 90%;
