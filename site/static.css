@@ -36,18 +36,20 @@ a img {
   border-width: 0;
 }
 
-.post img, .post object {
+.post-body img, .Profile img, .Image img,
+.BlogList .item-thumbnail img, .post-body object {
+  float: right;
   padding: 0 0 1ex 2ex;
   margin: 0;
 }
 
 /* Inline images */
-.post p img, .post td img {
+.post-body p img, .post-body td img {
   padding: 0;
   vertical-align: middle;
 }
 
-.post img.fleft {
+.post-body img.fleft {
   float: left;
   padding: 0 2ex 1ex 0;
 }
@@ -87,13 +89,13 @@ h5 {
   font-size: 120%;
 }
 
-.post code, .post pre {
+.post-body code, .post-body pre {
   font: normal 120% monospace;
   color: blue;
 
 }
 
-.post pre {
+.post-body pre {
   margin: 0 0 1em;
   padding: 0.5em 0;
   background-color: #eeeeee;
@@ -159,12 +161,12 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 }
 
 /* Epigraph */
-.post p.epi {
+.post-body p.epi {
  padding-left: 25%;
 }
 
 /* Accurate tables */
-.post table, .post tr, .post th, .post td {
+.post-body table, .post-body tr, .post-body th, .post-body td {
   padding: 1ex;
   border-collapse: collapse;
   border: solid;
@@ -172,18 +174,18 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 }
 
 /* Transparent tables */
-.post table.nob, .post table.nob tr, .post table.nob th, .post table.nob td {
+.post-body table.nob, .post-body table.nob tr, .post-body table.nob th, .post-body table.nob td {
   border: none;
 }
 
 /* Boxed tables */
-.post table.boxed {
+.post-body table.boxed {
   border: dashed;
   border-collapse: separate;
   border-spacing: 1ex;
 }
 
-.post table.boxed td, .post table.boxed th {
+.post-body table.boxed td, .post-body table.boxed th {
   padding: 1ex;
   border-width: .5ex;
   text-align: center;
@@ -235,58 +237,22 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 }
 
 /* Comments */
-#comments {
-  padding-top: 30px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-  font-weight: bold;
+#comments .comment-author {
+  padding-top: 1.5em;
+  background-position: 0 1.5em;
 }
 
-#comments .comment-footer {
-  font-size: 1em;
-  font-weight: normal;
-  margin-right: 10px;
-  display: inline;
+#comments .comment-author:first-child {
+  padding-top: 0;
+  border-top: none;
 }
 
-.comment-author {
-  margin-top: 3%;
-}
-.comment-body {
-  font-size: 1em;
-  font-weight: normal;
-}
-.deleted-comment {
-  font-style: italic;
-  color: gray;
-}
-.comment-link {
-  margin-left: .6em;
-}
-.icon-action {
-  vertical-align: middle;
+.avatar-image-container {
+  margin: .2em 0 0;
 }
 
-.feed-links {
-  clear: both;
-  line-height: 2.5em;
-}
-
-#blog-pager-newer-link {
-  float: left;
- }
- 
-#blog-pager-older-link {
-  float: right;
- }
-
-#blog-pager { 
-  text-align: center;
- }
-
-.feed-links {
-  clear: both;
-  line-height: 2.5em;
+#comments .avatar-image-container img {
+  border: none;
 }
 
 /* Sidebar Content
