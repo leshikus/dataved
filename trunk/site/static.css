@@ -42,7 +42,8 @@ a img {
   margin: 0;
 }
 
-/* Inline images */
+/* Inline images
+----------------------------------------------- */
 .post-body p img, .post-body td img {
   padding: 0;
   vertical-align: middle;
@@ -53,6 +54,8 @@ a img {
   padding: 0 2ex 1ex 0;
 }
 
+/* Headers
+----------------------------------------------- */
 h1 {
   margin: 16px 0 0 0;
   font-size: 36px;
@@ -67,9 +70,8 @@ h2 {
 
 h2.date-header {
   padding-top: 15px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
   font-size: 90%;
+  color: #999999;
 }
 
 h3.post-title {
@@ -88,6 +90,8 @@ h5 {
   font-size: 120%;
 }
 
+/* Code highlight
+----------------------------------------------- */
 .post-body code, .post-body pre {
   font: normal 120% monospace;
   color: blue;
@@ -122,7 +126,8 @@ body#layout {
   margin-top: 0 auto;
 }
 
-/* Tooltips */
+/* Tooltips
+----------------------------------------------- */
 a.tooltip {
   display: block;
   position: relative;
@@ -159,12 +164,14 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   border-radius: 5px;
 }
 
-/* Epigraph */
+/* Epigraph
+----------------------------------------------- */
 .post-body p.epi {
  padding-left: 25%;
 }
 
-/* Accurate tables */
+/* Accurate tables
+----------------------------------------------- */
 .post-body table, .post-body tr, .post-body th, .post-body td {
   padding: 1ex;
   border-collapse: collapse;
@@ -172,12 +179,14 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   border-width: 1px;
 }
 
-/* Transparent tables */
+/* Transparent tables
+----------------------------------------------- */
 .post-body table.nob, .post-body table.nob tr, .post-body table.nob th, .post-body table.nob td {
   border: none;
 }
 
-/* Boxed tables */
+/* Boxed tables
+----------------------------------------------- */
 .post-body table.boxed {
   border: dashed;
   border-collapse: separate;
@@ -192,7 +201,8 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   border-style: outset;
 }
 
-/* Formulae */
+/* Formulae
+----------------------------------------------- */
 .formula {
   position: relative;
   text-align: center;
@@ -206,13 +216,15 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   width: 100%;
 }
 
-/* Ads */
+/* Ads
+----------------------------------------------- */
 .inline-ad {
   text-align: center;
   margin: 1ex 0;
 }
 
-/* Search */
+/* Search
+----------------------------------------------- */
 .titleimage, .titlewrapper {
   float: left;
   block: inline;
@@ -235,7 +247,8 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   clear: both; 
 }
 
-/* Comments */
+/* Comments
+----------------------------------------------- */
 #comments .comment-author {
   padding-top: 1.5em;
   background-position: 0 1.5em;
