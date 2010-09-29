@@ -121,18 +121,6 @@ body#layout {
   margin-top: 0 auto;
 }
 
-/* Replace images with larger copies in the blog pasts */
-.post a#grow288 {
-  padding: 0 0 1ex 2ex;
-  display: block;
-  float: right;
-  border: 0;
-}
-
-.post a#grow288 img {
-  padding: 0;
-}
-
 /* Tooltips */
 a.tooltip {
   display: block;
