@@ -17,6 +17,10 @@ a:link, a:visited , a:hover {
 
 /* Headers
 ----------------------------------------------- */
+h1, h2, h3, h4, h5 {
+  font: #999;
+}
+
 h2 {
   margin: 0;
   padding: 0;
@@ -41,13 +45,13 @@ h5 {
 
 .Header h1 {
   font-size: 160%;
-  border-bottom: dotted 1px #999999;
+  border-bottom: dotted 1px #999;
 }
 
 h2.date-header {
   padding-top: 1ex;
   font-size: 90%;
-  color: #999999;
+  color: #999;
 }
 
 /* Post images
