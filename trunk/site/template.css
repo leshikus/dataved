@@ -1,0 +1,123 @@
+/* Template specific style */
+#main .widget {
+  padding: 0;
+  clear: both;
+}
+
+#main {
+  margin: 0;
+}
+
+#main-wrapper {
+  margin: 0 auto;
+  float: left;
+  word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+  overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+
+#outer-wrapper {
+  margin: 0 auto;
+}
+
+#header {
+  clear: both;
+}
+
+#content-wrapper, #header-wrapper {
+  clear: both; 
+}
+
+#blog-pager-newer-link {
+  float: left;
+}
+
+#blog-pager-older-link {
+  float: right;
+}
+ 
+#blog-pager {
+  text-align: center; 
+  margin: 0 auto;
+}
+
+.clear {
+  clear: both;
+}
+
+body#layout {
+  margin-top: 0 auto;
+}
+
+/* Comments v2
+----------------------------------------------- */
+#comments .comment-author {
+  padding-top: 1.5em;
+  background-position: 0 1.5em;
+}
+
+#comments .comment-author:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.avatar-image-container {
+  margin: .2em 0 0;
+}
+
+#comments .avatar-image-container img {
+  border: none;
+}
+
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar { 
+  line-height: 1.5em;
+  padding: 0;
+}
+
+.sidebar ul {
+  list-style:none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: .25em;
+  padding-left: 15px;
+  text-indent: -15px;
+  line-height: 1.5em;
+}
+
+.sidebar .cloud-label-widget-content {
+  text-align: left;
+}
+
+.sidebar .widget, .main .widget { 
+  margin: 0 0 1.5em;
+  padding: 0 0 1.5em;
+ }
+
+.sidebar .widget {
+  float: left;
+  word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+  overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+
+.main .Blog { 
+  border-bottom-width: 0;
+}
+
+/* Footer
+----------------------------------------------- */
+#footer {
+  clear: both;
+  margin: 0 auto;
+  padding-top: 15px;
+  line-height: 1.6em;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  text-align: center;
+}

@@ -79,7 +79,6 @@ a img {
 .post-body code, .post-body pre {
   font: normal 120% monospace;
   color: blue;
-
 }
 
 .post-body pre {
@@ -171,6 +170,7 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   text-align: center;
   padding-right: 8em;
 }
+
 .formula span {
   text-align: right;
   position: absolute;
@@ -201,4 +201,3 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 #CustomSearch1 {
   float: right;
 }
-
