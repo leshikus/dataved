@@ -86,19 +86,15 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
 
    <Variable name="body.background" description="Body Background" type="background"
        color="$(body.background.color)" default="$(color) none repeat scroll top left" value="$(color) none repeat scroll top left"/>
-   <Variable name="body.background.override" description="Body Background Override" type="string" default="" value=""/>
 
    <Variable name="body.background.gradient.cap" description="Body Gradient Cap" type="url"
        default="url(http://www.blogblog.com/1kt/simple/gradients_light.png)" value="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
    <Variable name="body.background.gradient.tile" description="Body Gradient Tile" type="url"
-       default="url(http://lh3.ggpht.com/_92OKnY0EOfU/TKZET2WNPxI/AAAAAAAAAik/lk1cZRnb1p4/s800/sand.jpg)" value="url(http://lh3.ggpht.com/_92OKnY0EOfU/TKZET2WNPxI/AAAAAAAAAik/lk1cZRnb1p4/s800/sand.jpg)"/>
+       default="url(http://lh3.ggpht.com/_92OKnY0EOfU/TKd_izTkrgI/AAAAAAAAAjs/KcaH0n4vPFI/s800/sand.jpg)" value="url(http://lh3.ggpht.com/_92OKnY0EOfU/TKd_izTkrgI/AAAAAAAAAjs/KcaH0n4vPFI/s800/sand.jpg)"/>
 
    <Variable name="content.background.color.selector" description="Content Background Color Selector" type="string" default=".content-inner" value=".content-inner"/>
    <Variable name="content.padding" description="Content Padding" type="length" default="10px" value="10px"/>
    <Variable name="content.padding.horizontal" description="Content Horizontal Padding" type="length" default="$(content.padding)" value="$(content.padding)"/>
-   <Variable name="content.shadow.spread" description="Content Shadow Spread" type="length" default="40px" value="40px"/>
-   <Variable name="content.shadow.spread.webkit" description="Content Shadow Spread (WebKit)" type="length" default="5px" value="5px"/>
-   <Variable name="content.shadow.spread.ie" description="Content Shadow Spread (IE)" type="length" default="10px" value="10px"/>
 
    <Variable name="main.border.width" description="Main Border Width" type="length" default="0" value="0"/>
 
@@ -145,12 +141,6 @@ body {
   font: $(body.font);
   color: $(body.text.color);
   background: $(body.background);
-  padding: 0 $(content.shadow.spread) $(content.shadow.spread) $(content.shadow.spread);
-  $(body.background.override)
-}
-
-body.mobile {
-  padding: 0 $(content.shadow.spread.webkit) $(content.shadow.spread.webkit);
 }
 
 html body $(page.width.selector) {
@@ -189,15 +179,6 @@ a:hover {
   width: 100%;
   background: transparent $(body.background.gradient.cap) repeat-x scroll top left;
   _background-image: none;
-}
-
-.content-outer {
-  -moz-box-shadow: 0 0 $(content.shadow.spread) rgba(0, 0, 0, .15);
-  -webkit-box-shadow: 0 0 $(content.shadow.spread.webkit) rgba(0, 0, 0, .15);
-  -goog-ms-box-shadow: 0 0 $(content.shadow.spread.ie) #333333;
-  box-shadow: 0 0 $(content.shadow.spread) rgba(0, 0, 0, .15);
-
-  margin-bottom: 1px;
 }
 
 .content-inner {
