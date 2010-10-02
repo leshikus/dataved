@@ -54,40 +54,47 @@ $(content.background.color.selector) {
   padding: 0 $(header.padding);
 }
 */
+
 /* Tabs
 ----------------------------------------------- */
-/*
 .tabs-inner .section:first-child {
-  border-top: $(header.bottom.border.size) solid $(tabs.border.color);
+  border-top: 1px solid #eee;
 }
 
 .tabs-inner .section:first-child ul {
-  margin-top: -$(header.border.size);
-  border-top: $(header.border.size) solid $(tabs.border.color);
-  border-left: $(header.border.horizontalsize) solid $(tabs.border.color);
-  border-right: $(header.border.horizontalsize) solid $(tabs.border.color);
+  margin-top: -1px;
+  border-top: 1px solid #eee;
+  border-left: 0px solid #eee;
+  border-right: 0px solid #eee;
 }
 
 .tabs-inner .widget ul {
-  background: $(tabs.background.color) $(tabs.background.gradient) repeat-x scroll 0 -800px;
   _background-image: none;
-  border-bottom: $(tabs.border.width) solid $(tabs.border.color);
+  border-bottom: 1px solid #eee;
 
-  margin-top: $(tabs.margin.top);
-  margin-left: -$(tabs.margin.side);
-  margin-right: -$(tabs.margin.side);
+  margin-top: 0;
+  margin-left: -2ex;
+  margin-right: -2ex;
 }
 
 .tabs-inner .widget li a {
   display: inline-block;
-
   padding: .6em 1em;
 
-  font: $(tabs.font);
-  color: $(tabs.text.color);
+  color: #999;
 
-  border-$startSide: $(tabs.border.width) solid $(content.background.color);
-  border-$endSide: $(tabs.bevel.border.width) solid $(tabs.border.color);
+  border-left: 1px solid #fff;
+  border-right: 1px solid #eee;
+}
+
+.tabs-inner .widget li:first-child a {
+  border-left: none;
+}
+
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+  color: #000;
+  background-color: #eee;
+  text-decoration: none;
 }
 
 .tabs-inner .widget li:first-child a {
