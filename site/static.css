@@ -189,7 +189,7 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 ----------------------------------------------- */
 .widget {
   padding: 1ex;
-  float: right;
+  float: left;
   border-radius: 1ex;
 }
 
