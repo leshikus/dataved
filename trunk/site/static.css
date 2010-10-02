@@ -74,6 +74,7 @@ a img {
 /* Inline images
 ----------------------------------------------- */
 .post-body p img, .post-body td img {
+  float: none;
   padding: 0;
   vertical-align: middle;
 }
