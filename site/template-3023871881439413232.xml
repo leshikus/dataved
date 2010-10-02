@@ -48,18 +48,6 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
          default="#777777"  value="#777777"/>
    </Group>
 
-   <Group description="Tabs Text" selector=".tabs-outer .PageList">
-     <Variable name="tabs.font" description="Font" type="font"
-         default="normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
-     <Variable name="tabs.text.color" description="Text Color" type="color" default="#999999" value="#999999"/>
-     <Variable name="tabs.selected.text.color" description="Selected Color" type="color" default="#000000" value="#000000"/>
-   </Group>
-
-   <Group description="Tabs Background" selector=".tabs-outer .PageList">
-     <Variable name="tabs.background.color" description="Background Color" type="color" default="#f5f5f5" value="#f5f5f5"/>
-     <Variable name="tabs.selected.background.color" description="Selected Color" type="color" default="#eeeeee" value="#eeeeee"/>
-   </Group>
-
    <Group description="Post Title" selector=".post">
      <Variable name="post.title.font" description="Font" type="font"
          default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
@@ -81,7 +69,6 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
 
    <Group description="Accents" selector=".content-inner">
      <Variable name="body.rule.color" description="Separator Line Color" type="color" default="#eeeeee" value="#eeeeee"/>
-     <Variable name="tabs.border.color" description="Tabs Border Color" type="color" default="$(body.rule.color)" value="$(body.rule.color)"/>
    </Group>
 
    <Variable name="body.background" description="Body Background" type="background"
@@ -101,18 +88,10 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
    <Variable name="header.background.gradient" description="Header Gradient" type="url" default="none" value="none"/>
    <Variable name="header.padding" description="Header Padding" type="length" default="30px" value="30px"/>
 
-   <Variable name="header.border.size" description="Header Border Size" type="length" default="1px" value="1px"/>
-   <Variable name="header.bottom.border.size" description="Header Bottom Border Size" type="length" default="$(header.border.size)" value="$(header.border.size)"/>
-   <Variable name="header.border.horizontalsize" description="Header Horizontal Border Size" type="length" default="0" value="0"/>
-
    <Variable name="description.text.size" description="Description Text Size" type="string" default="140%" value="140%"/>
 
-   <Variable name="tabs.margin.top" description="Tabs Margin Top" type="length" default="0"  value="0"/>
-   <Variable name="tabs.margin.side" description="Tabs Side Margin" type="length" default="30px"  value="30px"/>
    <Variable name="tabs.background.gradient" description="Tabs Background Gradient" type="url"
        default="url(http://www.blogblog.com/1kt/simple/gradients_light.png)" value="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
-   <Variable name="tabs.border.width" description="Tabs Border Width" type="length" default="1px" value="1px"/>
-   <Variable name="tabs.bevel.border.width" description="Tabs Bevel Border Width" type="length" default="1px" value="1px"/>
 
    <Variable name="post.margin.bottom" description="Post Bottom Margin" type="length" default="25px" value="25px"/>
 
@@ -131,8 +110,6 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
 
    <Variable name="footer.bevel" description="Bevel border length of footer" type="length" default="0" value="0"/>
 
-   <Variable name="startSide" description="Side where text starts in blog language" type="automatic" default="left" value="left"/>
-   <Variable name="endSide" description="Side where text ends in blog language" type="automatic" default="right" value="right"/>
 */
 
 /* Content
@@ -199,47 +176,8 @@ $(content.background.color.selector) {
 
 /* Tabs
 ----------------------------------------------- */
-.tabs-inner .section:first-child {
-  border-top: $(header.bottom.border.size) solid $(tabs.border.color);
-}
-
-.tabs-inner .section:first-child ul {
-  margin-top: -$(header.border.size);
-  border-top: $(header.border.size) solid $(tabs.border.color);
-  border-left: $(header.border.horizontalsize) solid $(tabs.border.color);
-  border-right: $(header.border.horizontalsize) solid $(tabs.border.color);
-}
-
 .tabs-inner .widget ul {
-  background: $(tabs.background.color) $(tabs.background.gradient) repeat-x scroll 0 -800px;
-  _background-image: none;
-  border-bottom: $(tabs.border.width) solid $(tabs.border.color);
-
-  margin-top: $(tabs.margin.top);
-  margin-left: -$(tabs.margin.side);
-  margin-right: -$(tabs.margin.side);
-}
-
-.tabs-inner .widget li a {
-  display: inline-block;
-
-  padding: .6em 1em;
-
-  font: $(tabs.font);
-  color: $(tabs.text.color);
-
-  border-$startSide: $(tabs.border.width) solid $(content.background.color);
-  border-$endSide: $(tabs.bevel.border.width) solid $(tabs.border.color);
-}
-
-.tabs-inner .widget li:first-child a {
-  border-$startSide: none;
-}
-
-.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
-  color: $(tabs.selected.text.color);
-  background-color: $(tabs.selected.background.color);
-  text-decoration: none;
+  background: #f5f5f5 $(tabs.background.gradient) repeat-x scroll 0 -800px;
 }
 
 /* Widgets
