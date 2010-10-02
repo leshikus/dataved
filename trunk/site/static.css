@@ -44,8 +44,9 @@ h5 {
 }
 
 .Header h1 {
-  font-size: 160%;
+  font-size: 80%;
   border-bottom: dotted 1px #999;
+  text-decoration: none;
 }
 
 h2.date-header {
@@ -184,6 +185,14 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   width: 100%;
 }
 
+/* Widgets
+----------------------------------------------- */
+.widget {
+  padding: 1ex;
+  float: right;
+  border-radius: 1ex;
+}
+
 /* Ads
 ----------------------------------------------- */
 .inline-ad {
@@ -206,3 +215,4 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 #CustomSearch1 {
   float: right;
 }
+

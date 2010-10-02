@@ -13,26 +13,6 @@ html body $(page.width.selector) {
   width: $(page.width);
 }
 
-.body-fauxcolumn-outer .fauxcolumn-inner {
-  background: transparent $(body.background.gradient.tile) repeat scroll top left;
-  _background-image: none;
-}
-
-.body-fauxcolumn-outer .cap-top {
-  position: absolute;
-  z-index: 1;
-  height: 400px;
-  width: 100%;
-  background: $(body.background);
-  $(body.background.override)
-}
-
-.body-fauxcolumn-outer .cap-top .cap-left {
-  width: 100%;
-  background: transparent $(body.background.gradient.cap) repeat-x scroll top left;
-  _background-image: none;
-}
-
 .content-outer {
   margin: 0;
 }
@@ -127,13 +107,6 @@ $(content.background.color.selector) {
   border-top: $(main.border.width) solid $(body.rule.color);
 }
 
-.fauxcolumn-left-outer .fauxcolumn-inner {
-  border-right: 1px solid $(body.rule.color);
-}
-
-.fauxcolumn-right-outer .fauxcolumn-inner {
-  border-left: 1px solid $(body.rule.color);
-}
 */
 /* Widgets
 ----------------------------------------------- */
@@ -142,11 +115,11 @@ $(content.background.color.selector) {
   color: $(widget.alternate.text.color);
   text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
 }
-
+*/
 .widget .popular-posts ul {
   list-style: none;
 }
-*/
+
 /* Posts
 ----------------------------------------------- */
 /*
@@ -201,7 +174,7 @@ body {
   min-width: $(content.width);
 }
 
-.content-outer, .content-fauxcolumn-outer, .region-inner {
+.content-outer, .region-inner {
   min-width: $(content.width);
   _width: $(content.width);
 }
@@ -210,23 +183,6 @@ body {
   padding-left: $(main.column.left.width);
   padding-right: $(main.column.right.width);
 }
-
-.main-inner .fauxcolumn-center-outer {
-  left: $(main.column.left.width);
-  right: $(main.column.right.width);*/
-    /* IE6 does not respect left and right together */
-/*    _width: expression(this.parentNode.offsetWidth -
-        parseInt("$(main.column.left.width)") -
-        parseInt("$(main.column.right.width)") + 'px');
-  }
-
-  .main-inner .fauxcolumn-left-outer {
-    width: $(main.column.left.width);
-  }
-
-  .main-inner .fauxcolumn-right-outer {
-    width: $(main.column.right.width);
-  }
 
   .main-inner .column-left-outer {
     width: $(main.column.left.width);
