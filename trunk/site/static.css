@@ -33,7 +33,7 @@ a img {
 ----------------------------------------------- */
 .Header .descriptionwrapper {
   padding: 0 !important;
-  margin: 0;
+  margin: 0 !important;
 }
 
 /* Widgets
@@ -46,5 +46,5 @@ a img {
 }
 
 .Header .widget {
-  padding: 2ex;
+  padding: 2ex !important;
 }
