@@ -33,3 +33,12 @@ a img {
 .Header .descriptionwrapper {
   padding: 0 !important;
 }
+
+/* Widgets
+----------------------------------------------- */
+.widget {
+  padding: 1ex;
+  float: left;
+  border-radius: 1ex;
+}
+
