@@ -170,11 +170,17 @@ body {
     min-width: $(content.width);
   }
 
-.sidebar .widget, .Header .widget {
+/* Widgets
+----------------------------------------------- */
+.Header .widget, .sidebar .widget {
   max-width: $(main.column.right.width);
-  min-height: $(main.column.left.width);
+  height: $(main.column.left.width);
   display: table-cell;
   vertical-align:middle;
+}
+
+.Header .widget {
+  height: $(main.column.left.width);
 }
 ]]>
     </b:template-skin>
@@ -269,7 +275,7 @@ body {
   </b:if>
 </b:includable>
 </b:widget>
-<b:widget id='HTML5' locked='false' title='+7 916 562 8095' type='HTML'>
+<b:widget id='HTML5' locked='false' title='' type='HTML'>
 <b:includable id='main'>
   <!-- only display title if it's non-empty -->
   <b:if cond='data:title != &quot;&quot;'>
@@ -1231,6 +1237,5 @@ body {
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-</b:section-contents><b:section-contents id='footer-1'>
-</b:section-contents><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
+</b:section-contents><b:section-contents id='footer-1'/><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
                 
