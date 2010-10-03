@@ -45,6 +45,6 @@ a img {
   border-radius: 15px;
 }
 
-.header-inner  .widget {
-  padding: 15px;
+.header-inner .Header {
+  margin: 15px 30px;
 }
