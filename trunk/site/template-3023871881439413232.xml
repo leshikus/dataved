@@ -302,35 +302,72 @@ body {
     <div class='region-inner header-inner'>
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
 <b:widget id='Header1' locked='false' title='Ваше математическое обеспечение (заголовок)' type='Header'>
-<b:includable id='title'><!-- aaf: simplified -->
+<b:includable id='main'>
+
   <b:if cond='data:useImage'>
-    <div class='titleimage'>
-      <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width'/>
+    <b:if cond='data:imagePlacement == &quot;BEHIND&quot;'>
+      <!--
+      Show image as background to text. You can't really calculate the width
+      reliably in JS because margins are not taken into account by any of
+      clientWidth, offsetWidth or scrollWidth, so we don't force a minimum
+      width if the user is using shrink to fit.
+      This results in a margin-width's worth of pixels being cropped. If the
+      user is not using shrink to fit then we expand the header.
+      -->
+      <b:if cond='data:mobile'>
+          <div id='header-inner'>
+            <div class='titlewrapper' style='background: transparent'>
+              <h1 class='title' style='background: transparent; border-width: 0px'>
+                <b:include name='title'/>
+              </h1>
+            </div>
+            <b:include name='description'/>
+          </div>
+        <b:else/>
+          <div expr:style='&quot;background-image: url(\&quot;&quot; + data:sourceUrl + &quot;\&quot;); &quot;                        + &quot;background-position: &quot;                        + data:backgroundPositionStyleStr + &quot;; &quot;                        + data:widthStyleStr                        + &quot;min-height: &quot; + data:height                        + &quot;_height: &quot; + data:height                        + &quot;background-repeat: no-repeat; &quot;' id='header-inner'>
+            <div class='titlewrapper' style='background: transparent'>
+              <h1 class='title' style='background: transparent; border-width: 0px'>
+                <b:include name='title'/>
+              </h1>
+            </div>
+            <b:include name='description'/>
+          </div>
+        </b:if>
+    <b:else/>
+      <!--Show the image only-->
+      <div id='header-inner'>
+        <a expr:href='data:blog.homepageUrl' style='display: block'>
+          <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width' style='display: block'/>
+        </a>
+        <!--Show the description-->
+        <b:if cond='data:imagePlacement == &quot;BEFORE_DESCRIPTION&quot;'>
+          <b:include name='description'/>
+        </b:if>
+      </div>
+    </b:if>
+  <b:else/>
+    <!--No header image -->
+    <div id='header-inner'>
+      <div class='titlewrapper'>
+        <h1 class='title'>
+          <b:include name='title'/>
+        </h1>
+      </div>
+      <b:include name='description'/>
     </div>
   </b:if>
-  <b:if cond='data:imagePlacement != &quot;REPLACE&quot;'>
-    <div class='titlewrapper'>
-      <h1 class='title'>
-        <data:title/>
-      </h1>
-    </div>
+</b:includable>
+<b:includable id='title'>
+  <b:if cond='data:blog.url == data:blog.homepageUrl'>
+    <data:title/>
+  <b:else/>
+    <a expr:href='data:blog.homepageUrl'><data:title/></a>
   </b:if>
 </b:includable>
 <b:includable id='description'>
   <div class='descriptionwrapper'>
     <p class='description'><span><data:description/></span></p>
   </div>
-</b:includable>
-<b:includable id='main'>
-    <b:if cond='data:blog.url == data:blog.homepageUrl'>
-      <b:include name='title'/>
-      <b:else/>
-      <a expr:href='data:blog.homepageUrl'>
-        <b:include name='title'/>
-      </a>
-    </b:if>
-    <b:include name='description'/>
-    <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
 <b:widget id='CustomSearch1' locked='false' title='' type='CustomSearch'>
