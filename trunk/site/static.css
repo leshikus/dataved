@@ -202,9 +202,8 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 /* Search
 ----------------------------------------------- */
 .titleimage, .titlewrapper {
-  float: left;
-  display: block;
+  float: none;
   padding: 0;
-  margin: 0;
+  margin: 0 1ex 1ex 0;
 }
 
