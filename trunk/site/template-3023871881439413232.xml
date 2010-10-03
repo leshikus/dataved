@@ -375,10 +375,6 @@ body {
       <b:section class='tabs' id='crosscol-overflow' showaddelement='no'/>
     </div>
     </div>
-    <div class='tabs-cap-bottom cap-bottom'>
-      <div class='cap-left'/>
-      <div class='cap-right'/>
-    </div>
 
     <div class='main-outer'>
 

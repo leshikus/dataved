@@ -9,6 +9,10 @@ body, body.mobile, .content-inner, .content-outer, .section {
   margin: 15px;
 }
 
+.content-outer, .header-outer, .tabs-outer, .main-outer, .main-inner, .footer-outer, .post, .comments, .widget, .date-header, .inline-ad {
+  position: static;
+}
+
 /* Tabs
 ----------------------------------------------- */
 .tabs-inner .section:first-child ul {
