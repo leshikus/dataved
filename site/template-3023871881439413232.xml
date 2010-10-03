@@ -65,10 +65,6 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
      <Variable name="widget.alternate.text.color" description="Alternate Color" type="color" default="#999999" value="#999999"/>
    </Group>
 
-   <Group description="Accents" selector=".content-inner">
-     <Variable name="body.rule.color" description="Separator Line Color" type="color" default="#eeeeee" value="#eeeeee"/>
-   </Group>
-
    <Variable name="body.background" description="Body Background" type="background"
        color="$(body.background.color)" default="$(color) none repeat scroll top left" value="$(color) none repeat scroll top left"/>
 
@@ -98,13 +94,6 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
    <Variable name="main.padding" description="Main Padding" type="length" default="15px" value="15px"/>
    <Variable name="main.padding.top" description="Main Padding Top" type="length" default="30px" value="30px"/>
    <Variable name="main.padding.bottom" description="Main Padding Bottom" type="length" default="30px" value="30px"/>
-
-   <Variable name="paging.background"
-       color="$(content.background.color)"
-       description="Background of blog paging area" type="background"
-       default="transparent none no-repeat scroll top center" value="transparent none no-repeat scroll top center"/>
-
-   <Variable name="footer.bevel" description="Bevel border length of footer" type="length" default="0" value="0"/>
 
 */
 
@@ -140,11 +129,6 @@ $(content.background.color.selector) {
 
 /* Header
 ----------------------------------------------- */
-.header-outer {
-  background: $(header.background.color) $(header.background.gradient) repeat-x scroll 0 -400px;
-  _background-image: none;
-}
-
 .Header h1, h1, h2, h3, h4, h5 {
   font: $(header.font);
 }
@@ -210,26 +194,6 @@ h3.post-title, .comments h4 {
   font-size: 90%;
 }
 
-/* Comments */
-#comments .comment-author {
-  border-top: 1px solid $(body.rule.color);
-}
-
-/* Accents
----------------------------------------------- */
-.blog-pager {
-  background: $(paging.background);
-}
-
-.blog-pager-older-link, .home-link,
-.blog-pager-newer-link {
-  background-color: $(content.background.color);
-  padding: 5px;
-}
-
-.footer-outer {
-  border-top: $(footer.bevel) dashed #bbbbbb;
-}
 ]]></b:skin>
 
     <b:template-skin>
@@ -327,9 +291,13 @@ body {
     <b:else/>
       <!--Show the image only-->
       <div id='header-inner'>
+        <b:if cond='data:blog.url == data:blog.homepageUrl'>
+          <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width' style='display: block'/>
+        <b:else/>
         <a expr:href='data:blog.homepageUrl' style='display: block'>
           <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width' style='display: block'/>
         </a>
+        </b:if>
         <!--Show the description-->
         <b:if cond='data:imagePlacement == &quot;BEFORE_DESCRIPTION&quot;'>
           <b:include name='description'/>
