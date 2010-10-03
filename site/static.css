@@ -32,7 +32,7 @@ img.fleft {
 .Header .descriptionwrapper {
   padding: 0 !important;
   margin: 0 !important;
-  font-size: 86%;
+  font-size: 90%;
 }
 
 /* Widgets
@@ -45,16 +45,17 @@ img.fleft {
   -moz-border-radius: 15px;
 }
 
-.widget-content {
+.widget-content, .widget-content img {
   margin: 0 auto;
 }
 
 .header-inner .widget {
   width: 228px;
-  height: 52px;
+  height: 54px;
   text-align: center;
 }
 
 .header-inner .HTML {
   font-size: 140%;
 }
+
