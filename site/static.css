@@ -37,6 +37,7 @@ a img {
 /* Widgets
 ----------------------------------------------- */
 .widget {
+  margin: 1ex;
   padding: 1ex;
   float: left;
   border-radius: 1ex;
