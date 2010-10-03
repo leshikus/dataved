@@ -6,15 +6,16 @@ body {
 body.mobile {
   padding: 0;
 }
+
+.content-outer { /*test*/
+  margin: 1ex;
+}
+
 /*
 html body $(page.width.selector) {
   min-width: 0;
   max-width: 100%;
   width: $(page.width);
-}
-
-.content-outer {
-  margin: 0;
 }
 
 $(content.background.color.selector) {
@@ -25,36 +26,6 @@ $(content.background.color.selector) {
 .content-inner {
   padding: 1ex;
 }
-
-/* Header
------------------------------------------------ */
-/*
-.header-outer {
-  background: $(header.background.color) $(header.background.gradient) repeat-x scroll 0 -400px;
-  _background-image: none;
-}
-
-.Header h1, h1, h2, h3, h4, h5 {
-  font: $(header.font);
-}
-
-.Header h1, .Header h1 a {
-  color: $(header.text.color);
-}
-
-.Header .description {
-  font-size: $(description.text.size);
-  color: $(description.text.color);
-}
-
-.header-inner .Header .titlewrapper {
-  padding: 22px $(header.padding);
-}
-
-.header-inner .Header .descriptionwrapper {
-  padding: 0 $(header.padding);
-}
-*/
 
 /* Tabs
 ----------------------------------------------- */
@@ -224,27 +195,22 @@ body {
     min-width: $(content.width);
   }
 */
+
 /* Accents
 ---------------------------------------------- */
-/*
-.section-columns td.columns-cell {
-  border-$startSide: 1px solid $(body.rule.color);
-}
-
 .blog-pager {
-  background: $(paging.background);
+  background: transparent none no-repeat scroll top center;
 }
 
 .blog-pager-older-link, .home-link,
 .blog-pager-newer-link {
-  background-color: $(content.background.color);
-  padding: 5px;
+  background-color: #fefeff;
+  padding: 1ex;
 }
 
 .footer-outer {
-  border-top: $(footer.bevel) dashed #bbbbbb;
+  border-top: 0 dashed #bbbbbb;
 }
-*/
 
 /* Comments
 ----------------------------------------------- */
@@ -266,3 +232,6 @@ body {
   border: none;
 }
 
+#comments .comment-author {
+  border-top: 1px solid #eee;
+}
