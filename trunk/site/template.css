@@ -1,13 +1,9 @@
 /* Template specific style */
-body, body.mobile, .content-inner, .content-outer {
+body, body.mobile, .content, .content-inner, .content-outer {
   padding: 0;
   margin: 0;
 }
 
-.content {
-  padding: 0;
-  margin: 1ex;
-}
 
 /*
 html body $(page.width.selector) {
