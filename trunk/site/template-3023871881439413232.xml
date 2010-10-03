@@ -175,8 +175,6 @@ body {
 .header-inner .widget, .sidebar .widget {
   max-width: $(main.column.right.width);
   height: $(main.column.left.width);
-  display: table-cell;
-  vertical-align:middle;
 }
 
 .header-inner .widget {
@@ -825,26 +823,26 @@ body {
 </b:includable>
 </b:widget>
 </b:section>
-<!-- aaf
-          <aside>
-          <macro:include id='main-column-left-sections' name='sections'>
-            <macro:param default='0' name='num'/>
-            <macro:param default='sidebar-left' name='idPrefix'/>
-            <macro:param default='sidebar' name='class'/>
-            <macro:param default='true' name='includeBottom'/>
-          </macro:include>
-          </aside>
 
-          <aside>
-          <macro:include id='main-column-right-sections' name='sections'>
-            <macro:param default='2' name='num'/>
-            <macro:param default='sidebar-right' name='idPrefix'/>
-            <macro:param default='sidebar' name='class'/>
-            <macro:param default='true' name='includeBottom'/>
-          </macro:include>
-          </aside>
--->
-        <div style='clear: both'/>
+	  <aside>
+	  <macro:include id='main-column-left-sections' name='sections'>
+		<macro:param default='0' name='num'/>
+		<macro:param default='sidebar-left' name='idPrefix'/>
+		<macro:param default='sidebar' name='class'/>
+		<macro:param default='true' name='includeBottom'/>
+	  </macro:include>
+	  </aside>
+
+	  <aside>
+	  <macro:include id='main-column-right-sections' name='sections'>
+		<macro:param default='2' name='num'/>
+		<macro:param default='sidebar-right' name='idPrefix'/>
+		<macro:param default='sidebar' name='class'/>
+		<macro:param default='true' name='includeBottom'/>
+	  </macro:include>
+	  </aside>
+
+	<div style='clear: both'/>
 
     <!-- main -->
     </div>
