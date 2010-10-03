@@ -174,14 +174,14 @@ body {
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
   </head>
 
-  <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>xxxx1
-  <div class='content'>xxxx2
-  <div class='content-outer'>xxxx3
-  <div class='content-inner'>xxxx4
+  <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
+  <div class='content'>
+  <div class='content-outer'>
+  <div class='content-inner'>
 
     <header>xxxx5
-    <div class='header-outer'>
-    <div class='region-inner header-inner'>
+    <div class='header-outer'>xxxx6
+    <div class='region-inner header-inner'>xxxx7
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
 <b:widget id='Header1' locked='false' title='Математическое обеспечение Вашего бизнеса (заголовок)' type='Header'>
 <b:includable id='title'>
