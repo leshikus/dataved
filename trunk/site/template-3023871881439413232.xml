@@ -40,14 +40,6 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
      <Variable name="link.hover.color" description="Hover Color" type="color" default="#c60" value="#cc6600"/>
    </Group>
 
-   <Group description="Blog Title" selector=".header">
-     <Variable name="header.font" description="Font" type="font"
-         default="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
-     <Variable name="header.text.color" description="Title Color" type="color" default="#3399bb"  value="#3399bb"/>
-     <Variable name="description.text.color" description="Description Color" type="color"
-         default="#777777"  value="#777777"/>
-   </Group>
-
    <Group description="Post Title" selector=".post">
      <Variable name="post.title.font" description="Font" type="font"
          default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
@@ -87,8 +79,6 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
 
    <Variable name="header.background.gradient" description="Header Gradient" type="url" default="none" value="none"/>
    <Variable name="header.padding" description="Header Padding" type="length" default="30px" value="30px"/>
-
-   <Variable name="description.text.size" description="Description Text Size" type="string" default="140%" value="140%"/>
 
    <Variable name="tabs.background.gradient" description="Tabs Background Gradient" type="url"
        default="url(http://www.blogblog.com/1kt/simple/gradients_light.png)" value="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
@@ -155,11 +145,6 @@ $(content.background.color.selector) {
 
 .Header h1, .Header h1 a {
   color: $(header.text.color);
-}
-
-.Header .description {
-  font-size: $(description.text.size);
-  color: $(description.text.color);
 }
 
 /* Tabs
