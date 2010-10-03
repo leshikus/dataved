@@ -1,5 +1,5 @@
 /* Template specific style */
-body, body.mobile, .content-inner, .content-outer, .section {
+body, body.mobile, .content-inner, .content-outer, .tabs-inner, .section {
   padding: 0;
   margin: 0;
 }
