@@ -38,7 +38,7 @@ img.fleft {
 /* Widgets
 ----------------------------------------------- */
 .widget {
-  margin: 15px;
+  margin: 15px !important;
   padding: 15px;
   float: left;
   border-radius: 15px;
@@ -53,7 +53,6 @@ img.fleft {
   width: 224px;
   height: 52px;
   text-align: center;
-  margin: 15px !important;
 }
 
 .header-inner .HTML {
