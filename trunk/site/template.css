@@ -17,14 +17,15 @@ html body $(page.width.selector) {
   margin: 0;
 }
 
-.content-inner {
-  padding: $(content.padding) $(content.padding.horizontal);
-}
-
 $(content.background.color.selector) {
   background-color: $(content.background.color);
 }
 */
+
+.content-inner {
+  padding: 1ex;
+}
+
 /* Header
 ----------------------------------------------- */
 /*

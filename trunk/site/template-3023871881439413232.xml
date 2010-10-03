@@ -138,10 +138,6 @@ a:hover {
   color: $(link.hover.color);
 }
 
-.content-inner {
-  padding: $(content.padding) $(content.padding.horizontal);
-}
-
 $(content.background.color.selector) {
   background-color: $(content.background.color);
 }
@@ -256,7 +252,6 @@ h3.post-title, .comments h4 {
     <b:template-skin>
       <b:variable default='848px' name='content.width' type='length'/>
       <b:variable default='172px' name='main.column.right.width' type='length'/>
-      <b:variable default='2ex' name='padding' type='length'/>
 
       <![CDATA[
 body {
@@ -281,22 +276,14 @@ body {
     width: auto;
   }
 
-  .titleimage {
-    margin: 0 $(padding);
-  }
-  .titlewrapper {
-    min-width: $(content.width);
-  }
   #CustomSearch1 {
-    width: $(sidebar.width);
-    padding: $(padding) 0;
+    width: $(main.column.right.width);
   }
-  #outer-wrapper {
-    padding: 0 $(padding);
-  }
+
   #main-wrapper {
     min-width: $(content.width);
   }
+
   .sidebar .widget {
     min-width: $(main.column.right.width);
   }
@@ -305,7 +292,6 @@ body {
     <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
     <link href='http://dataved.googlecode.com/svn/trunk/site/template.css' rel='stylesheet' type='text/css'/>
     <link href='http://dataved.googlecode.com/svn/trunk/site/favicon.ico' rel='shortcut icon' type='image/ico'/>
-    <!--<meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>-->
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
   </head>
 
