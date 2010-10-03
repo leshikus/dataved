@@ -53,7 +53,7 @@ a img {
   margin: 15px !important;
 }
 
-.header-inner .widget .widget-content {
+.header-inner .widget .widget-content,.header-inner .widget h1 {
   display: table-cell;
   vertical-align: middle;
 }
