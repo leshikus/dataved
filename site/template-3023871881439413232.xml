@@ -140,7 +140,8 @@ h1, h2, h3, h4, h5 {
 
     <b:template-skin>
       <b:variable default='848px' name='content.width' type='length'/>
-      <b:variable default='172px' name='main.column.right.width' type='length'/>
+	  <b:variable default='176px' name='main.column.left.width' type='length'/><!-- Widget height -->
+      <b:variable default='64px' name='main.column.right.width' type='length'/><!-- Widget width -->
 
       <![CDATA[
 body {
@@ -165,18 +166,17 @@ body {
     width: auto;
   }
 
-  #CustomSearch1 {
-    width: $(main.column.right.width);
-  }
-
   #main-wrapper {
     min-width: $(content.width);
   }
 
-  .sidebar .widget {
-    min-width: $(main.column.right.width);
-  }
-  ]]>
+.sidebar .widget, .Header .widget {
+  min-width: $(main.column.right.width);
+  min-height: $(main.column.left.width);
+  display: table-cell;
+  vertical-align:middle;
+}
+]]>
     </b:template-skin>
     <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
     <link href='http://dataved.googlecode.com/svn/trunk/site/template.css' rel='stylesheet' type='text/css'/>
