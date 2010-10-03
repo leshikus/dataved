@@ -226,10 +226,10 @@ body {
       <!--Show the image only-->
       <div id='header-inner'><!-- aaf: fixed image URL -->
         <b:if cond='data:blog.url == data:blog.homepageUrl'>
-          <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width' style='display: block'/>
+          <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width'/>
         <b:else/>
         <a expr:href='data:blog.homepageUrl' style='display: block'>
-          <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width' style='display: block'/>
+          <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width'/>
         </a>
         </b:if>
         <!--Show the description-->
