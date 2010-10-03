@@ -30,8 +30,7 @@ a img {
 
 /* Logo
 ----------------------------------------------- */
-.Header .titleimage, .Header .titlewrapper {
-  float: none;
-  margin: 0;
-  padding: 0 1ex 1ex 0;
+.Header .description {
+  /* font */
+  color: #999;
 }
