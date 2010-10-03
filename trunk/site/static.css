@@ -47,6 +47,8 @@ a img {
 }
 
 .header-inner .widget {
+  display: table-cell;
+  vertical-align: middle;
   text-align: center;
   margin: 15px !important;
 }
