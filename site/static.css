@@ -199,11 +199,11 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   margin: 1ex 0;
 }
 
-/* Search
+/* Logo
 ----------------------------------------------- */
 .titleimage, .titlewrapper {
   float: none;
-  padding: 0;
-  margin: 0 1ex 1ex 0;
+  margin: 0;
+  padding: 0 1ex 1ex 0;
 }
 
