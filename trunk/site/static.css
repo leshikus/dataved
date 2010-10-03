@@ -45,7 +45,13 @@ img.fleft {
   -moz-border-radius: 15px;
 }
 
+.widget-content {
+  margin: 0 auto;
+}
+
 .header-inner .widget {
+  width: 196px;
+  height: 52px;
   text-align: center;
   margin: 15px !important;
 }
