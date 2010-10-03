@@ -181,7 +181,7 @@ body {
 
     <header>
     <div class='header-outer'>
-    <div class='region-inner header-inner'>xxxx7
+    <div class='region-inner header-inner'>
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
 <b:widget id='Header1' locked='false' title='Математическое обеспечение Вашего бизнеса (заголовок)' type='Header'>
 <b:includable id='title'>

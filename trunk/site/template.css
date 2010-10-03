@@ -11,13 +11,9 @@ body, body.mobile, .content-inner, .content-outer, .section {
 
 /* Tabs
 ----------------------------------------------- */
-.tabs-inner .section:first-child {
-  border-top: 1px solid #e00; /* eee */
-}
-
 .tabs-inner .section:first-child ul {
   margin-top: -1px;
-  border-top: 1px solid #e00; /* eee */
+  border-top: 1px solid #eee;
   border-left: 0px solid #eee;
   border-right: 0px solid #eee;
 }
