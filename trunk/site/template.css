@@ -1,22 +1,13 @@
 /* Template specific style */
-body, body.mobile, .content, .content-inner, .content-outer {
+body, body.mobile, .content-inner, .content-outer {
   padding: 0;
   margin: 0;
 }
 
-
-/*
-html body $(page.width.selector) {
-  min-width: 0;
-  max-width: 100%;
-  width: $(page.width);
+.content {
+  padding: 0;
+  margin: 15px;
 }
-
-$(content.background.color.selector) {
-  background-color: $(content.background.color);
-}
-*/
-
 
 /* Tabs
 ----------------------------------------------- */
@@ -70,22 +61,7 @@ $(content.background.color.selector) {
   text-decoration: none;
 }
 */
-/* Columns
------------------------------------------------ */
-/*
-.main-outer {
-  border-top: $(main.border.width) solid $(body.rule.color);
-}
 
-*/
-/* Widgets
------------------------------------------------ */
-/*
-.widget .zippy {
-  color: $(widget.alternate.text.color);
-  text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
-}
-*/
 .widget .popular-posts ul {
   list-style: none;
 }
@@ -115,20 +91,24 @@ body {
     width: $(main.column.right.width);
     margin-right: -$(main.column.right.width);
   }
+*/
 
-  #layout {
-    min-width: 0;
-  }
+/* Layout
+---------------------------------------------- */
+/*
+#layout {
+  min-width: 0;
+}
 
-  #layout .content-outer {
-    min-width: 0;
-    width: 800px;
-  }
+#layout .content-outer {
+  min-width: 0;
+  width: 800px;
+}
 
-  #layout .region-inner {
-    min-width: 0;
-    width: auto;
-  }
+#layout .region-inner {
+  min-width: 0;
+  width: auto;
+}
 */
 
 /* Accents
