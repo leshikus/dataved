@@ -5,6 +5,11 @@
   height: 0 !important;
 }
 
+#navbar {
+  display: none !important;
+  height: 0 !important;
+}
+
 body {
   margin: 0;
   line-height: 1.5;
