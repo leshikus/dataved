@@ -17,8 +17,8 @@ a:link, a:visited , a:hover {
 
 /* Headers
 ----------------------------------------------- */
-.Header h1 {
-  font-size: 90%;
+.header-inner h1 {
+  font-size: 86%;
   text-decoration: none;
   color: #39b;
 }
@@ -34,7 +34,6 @@ a img {
 .Header .descriptionwrapper {
   padding: 0 !important;
   margin: 0 !important;
-  font-size: 90%;
 }
 
 /* Widgets
@@ -44,16 +43,20 @@ a img {
   padding: 15px;
   float: left;
   border-radius: 15px;
+  -moz-border-radius: 15px;
 }
 
 .header-inner .widget {
-  display: table-cell;
-  vertical-align: middle;
   text-align: center;
   margin: 15px !important;
 }
 
-.header-inner .widget .widget-content,.header-inner .widget h1 {
-  display: table-cell;
-  vertical-align: middle;
+.header-inner .HTML {
+  color: #39b;
+}
+
+.header-inner .HTML img.fleft {
+  margin: 0;
+  padding: 0;
+  float: left;
 }
