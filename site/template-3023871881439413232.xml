@@ -29,7 +29,7 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
    </Group>
 
    <Group description="Backgrounds" selector=".body-fauxcolumns-outer">
-     <Variable name="body.background.color" description="Outer Background" type="color" default="#66bbdd" value="#66bbdd"/>
+     <Variable name="body.background.color" description="Outer Background" type="color" default="#fdf5e8" value="#fdf5e8"/>
      <Variable name="content.background.color" description="Main Background" type="color" default="#ffffff" value="#ffffff"/>
      <Variable name="header.background.color" description="Header Background" type="color" default="transparent" value="transparent"/>
    </Group>
@@ -40,15 +40,10 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
      <Variable name="link.hover.color" description="Hover Color" type="color" default="#c60" value="#cc6600"/>
    </Group>
 
-   <Group description="Blog Title" selector=".header">
-     <Variable name="header.font" description="Font" type="font"
-         default="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
-     <Variable name="header.text.color" description="Title Color" type="color" default="#3399bb"  value="#3399bb"/>
-   </Group>
-
    <Group description="Post Title" selector=".post">
-     <Variable name="post.title.font" description="Font" type="font"
+     <Variable name="header.font" description="Font" type="font"
          default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+     <Variable name="header.color" description="Title Color" type="color" default="#999"  value="#999"/>
    </Group>
 
    <Group description="Post Footer" selector=".post-footer">
@@ -66,12 +61,9 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
    </Group>
 
    <Variable name="body.background" description="Body Background" type="background"
-       color="$(body.background.color)" default="$(color) none repeat scroll top left" value="$(color) none repeat scroll top left"/>
-
-   <Variable name="body.background.gradient.cap" description="Body Gradient Cap" type="url"
-       default="url(http://www.blogblog.com/1kt/simple/gradients_light.png)" value="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
-   <Variable name="body.background.gradient.tile" description="Body Gradient Tile" type="url"
-       default="url(http://lh3.ggpht.com/_92OKnY0EOfU/TKd_izTkrgI/AAAAAAAAAjs/KcaH0n4vPFI/s800/sand.jpg)" value="url(http://lh3.ggpht.com/_92OKnY0EOfU/TKd_izTkrgI/AAAAAAAAAjs/KcaH0n4vPFI/s800/sand.jpg)"/>
+       color="$(body.background.color)"
+	   default="$(color) url(http://lh3.ggpht.com/_92OKnY0EOfU/TKd_izTkrgI/AAAAAAAAAjs/KcaH0n4vPFI/s800/sand.jpg) repeat scroll top left"
+	   value="$(color) url(http://lh3.ggpht.com/_92OKnY0EOfU/TKd_izTkrgI/AAAAAAAAAjs/KcaH0n4vPFI/s800/sand.jpg) repeat scroll top left"/>
 
    <Variable name="content.background.color.selector" description="Content Background Color Selector" type="string" default=".content-inner" value=".content-inner"/>
    <Variable name="content.padding" description="Content Padding" type="length" default="10px" value="10px"/>
@@ -85,15 +77,11 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
    <Variable name="tabs.background.gradient" description="Tabs Background Gradient" type="url"
        default="url(http://www.blogblog.com/1kt/simple/gradients_light.png)" value="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
 
-   <Variable name="post.margin.bottom" description="Post Bottom Margin" type="length" default="25px" value="25px"/>
-
    <Variable name="page.width.selector" description="Page Width Selector" type="string" default=".region-inner" value=".region-inner"/>
    <Variable name="page.width" description="Page Width" type="string" default="auto" value="auto"/>
 
    <Variable name="main.section.margin" description="Main Section Margin" type="length" default="15px" value="15px"/>
    <Variable name="main.padding" description="Main Padding" type="length" default="15px" value="15px"/>
-   <Variable name="main.padding.top" description="Main Padding Top" type="length" default="30px" value="30px"/>
-   <Variable name="main.padding.bottom" description="Main Padding Bottom" type="length" default="30px" value="30px"/>
 
 */
 
@@ -129,12 +117,10 @@ $(content.background.color.selector) {
 
 /* Header
 ----------------------------------------------- */
-.Header h1, h1, h2, h3, h4, h5 {
+.Header h1, .Header h1 a,
+h1, h2, h3, h4, h5 {
   font: $(header.font);
-}
-
-.Header h1, .Header h1 a {
-  color: $(header.text.color);
+  color: $(header.color);
 }
 
 /* Tabs
@@ -155,45 +141,11 @@ $(content.background.color.selector) {
 
 /* Posts
 ----------------------------------------------- */
-.main-inner {
-  padding-top: $(main.padding.top);
-  padding-bottom: $(main.padding.bottom);
-}
-
-.post {
-  margin: 0 0 $(post.margin.bottom) 0;
-}
-
-h3.post-title, .comments h4 {
-  font: $(post.title.font);
-  margin: .75em 0 0;
-}
-
-.post-body {
-  font-size: 110%;
-  line-height: 1.4;
-  position: relative;
-}
-
-.post-header {
-  margin: 0 0 1.5em;
-
-  line-height: 1.6;
-  font-size: 90%;
-}
-
 .post-footer {
-  margin: 20px -2px 0;
-  padding: 5px 10px;
-
   color: $(post.footer.text.color);
   background-color: $(post.footer.background.color);
   border-bottom: 1px solid $(post.footer.border.color);
-
-  line-height: 1.6;
-  font-size: 90%;
 }
-
 ]]></b:skin>
 
     <b:template-skin>
@@ -246,9 +198,7 @@ body {
   </head>
 
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
-xxxx
   <div class='content'>
-xxxx
   <div class='content-outer'>
   <div class='content-inner'>
 
@@ -290,7 +240,7 @@ xxxx
         </b:if>
     <b:else/>
       <!--Show the image only-->
-      <div id='header-inner'>
+      <div id='header-inner'><!-- aaf: fixed image URL -->
         <b:if cond='data:blog.url == data:blog.homepageUrl'>
           <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width' style='display: block'/>
         <b:else/>
