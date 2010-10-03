@@ -50,7 +50,7 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
      <Variable name="post.footer.text.color" description="Text Color" type="color" default="#666666" value="#666666"/>
      <Variable name="post.footer.background.color" description="Background Color" type="color"
          default="#f9f9f9" value="#f9f9f9"/>
-     <Variable name="post.footer.border.color" description="Shadow Color" type="color" default="#eeeeee" value="red"/>
+     <Variable name="post.footer.border.color" description="Shadow Color" type="color" default="#eee" value="#eee"/>
    </Group>
 
    <Group description="Gadgets" selector=".sidebar .widget">
