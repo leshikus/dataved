@@ -283,6 +283,9 @@ body {
     </b:template-skin>
     <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
     <link href='http://dataved.googlecode.com/svn/trunk/site/template.css' rel='stylesheet' type='text/css'/>
+	<b:if cond='data:blog.url != data:blog.homepageUrl'>
+    <link href='http://dataved.googlecode.com/svn/trunk/site/post.css' rel='stylesheet' type='text/css'/>
+	</b:if>
     <link href='http://dataved.googlecode.com/svn/trunk/site/favicon.ico' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
   </head>

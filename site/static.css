@@ -23,10 +23,6 @@ h1, h2, h3, h4, h5 {
   color: #999;
 }
 
-h1, h3.post-title {
-  font-size: 200%;
-}
-
 h2 {
   font-size: 180%;
 }
@@ -48,49 +44,10 @@ h5 {
   text-decoration: none;
 }
 
-h2.date-header {
-  padding-top: 1ex;
-  font-size: 90%;
-  color: #999;
-}
-
-/* Post images
+/* Images
 ----------------------------------------------- */
 a img {
   border-width: 0;
-}
-
-.post-body img, .post-body object {
-  float: right;
-  padding: 0 0 1ex 2ex;
-  margin: 0;
-}
-
-.post-body img.fleft {
-  float: left;
-  padding: 0 2ex 1ex 0;
-}
-
-/* Inline images
------------------------------------------------ */
-.post-body p img, .post-body td img {
-  float: none;
-  padding: 0;
-  vertical-align: middle;
-}
-
-/* Code highlight
------------------------------------------------ */
-.post-body code, .post-body pre {
-  font: normal 120% monospace;
-  color: blue;
-}
-
-.post-body pre {
-  margin: 0 0 1em;
-  padding: 0.5em 0;
-  background-color: #eeeeee;
-  border: 1px dashed lightGrey;
 }
 
 /* Tooltips
@@ -129,59 +86,6 @@ a.tooltip:hover div { /* the span will display just on :hover state */
   text-align: center;
   word-wrap: normal;
   border-radius: 5px;
-}
-
-/* Epigraph
------------------------------------------------ */
-.post-body p.epi {
- padding-left: 25%;
-}
-
-/* Accurate tables
------------------------------------------------ */
-.post-body table, .post-body tr, .post-body th, .post-body td {
-  padding: 1ex;
-  border-collapse: collapse;
-  border: solid;
-  border-width: 1px;
-}
-
-/* Transparent tables
------------------------------------------------ */
-.post-body table.nob, .post-body table.nob tr, .post-body table.nob th, .post-body table.nob td {
-  border: none;
-}
-
-/* Boxed tables
------------------------------------------------ */
-.post-body table.boxed {
-  border: dashed;
-  border-collapse: separate;
-  border-spacing: 1ex;
-}
-
-.post-body table.boxed td, .post-body table.boxed th {
-  padding: 1ex;
-  border-width: .5ex;
-  text-align: center;
-  font-weight: normal;
-  border-style: outset;
-}
-
-/* Formulae
------------------------------------------------ */
-.formula {
-  position: relative;
-  text-align: center;
-  padding-right: 8em;
-}
-
-.formula span {
-  text-align: right;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
 }
 
 /* Widgets
