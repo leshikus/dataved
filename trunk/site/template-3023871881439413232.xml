@@ -40,6 +40,12 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
      <Variable name="link.hover.color" description="Hover Color" type="color" default="#c60" value="#cc6600"/>
    </Group>
 
+   <Group description="Blog Title" selector=".header">
+     <Variable name="header.font" description="Font" type="font"
+         default="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+     <Variable name="header.text.color" description="Title Color" type="color" default="#3399bb"  value="#3399bb"/>
+   </Group>
+
    <Group description="Post Title" selector=".post">
      <Variable name="post.title.font" description="Font" type="font"
          default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
