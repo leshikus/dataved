@@ -48,5 +48,5 @@ a img {
 .header-inner .widget {
   display: table-cell;
   vertical-align: middle;
-  margin: 15px 30px !important;
+  margin: 15px !important;
 }
