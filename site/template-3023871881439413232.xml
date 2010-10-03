@@ -825,7 +825,7 @@ body {
 </b:includable>
 </b:widget>
 </b:section>
-
+<!-- aaf
           <aside>
           <macro:include id='main-column-left-sections' name='sections'>
             <macro:param default='0' name='num'/>
@@ -843,7 +843,7 @@ body {
             <macro:param default='true' name='includeBottom'/>
           </macro:include>
           </aside>
-
+-->
         <div style='clear: both'/>
 
     <!-- main -->
