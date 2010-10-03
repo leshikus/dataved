@@ -15,18 +15,16 @@ a:link, a:visited , a:hover {
   text-decoration: underline;
 }
 
-/* Headers
------------------------------------------------ */
-.header-inner h1 {
-  font-size: 86%;
-  text-decoration: none;
-  color: #39b;
-}
-
 /* Images
 ----------------------------------------------- */
 a img {
   border-width: 0;
+}
+
+img.fleft {
+  margin: 0;
+  padding: 0;
+  float: left;
 }
 
 /* Logo
@@ -34,6 +32,7 @@ a img {
 .Header .descriptionwrapper {
   padding: 0 !important;
   margin: 0 !important;
+  font-size: 86%;
 }
 
 /* Widgets
@@ -52,11 +51,5 @@ a img {
 }
 
 .header-inner .HTML {
-  color: #39b;
-}
-
-.header-inner .HTML img.fleft {
-  margin: 0;
-  padding: 0;
-  float: left;
+  font-size: 200%;
 }
