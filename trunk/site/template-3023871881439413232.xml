@@ -141,17 +141,21 @@ h1, h2, h3, h4, h5 {
     <b:template-skin>
       <b:variable default='848px' name='content.width' type='length'/>
 	  <b:variable default='52px' name='main.column.left.width' type='length'/><!-- Widget height -->
-      <b:variable default='226px' name='main.column.right.width' type='length'/><!-- Widget width -->
+      <b:variable default='196px' name='main.column.right.width' type='length'/><!-- Widget width -->
 
       <![CDATA[
 body {
   min-width: $(content.width);
 }
 
+.tabs-outer, .main-outer {
+  max-width: $(content.width);
+}
+
 /* Widgets
 ----------------------------------------------- */
 .header-inner .widget, .sidebar .widget {
-  max-width: $(main.column.right.width);
+  width: $(main.column.right.width);
   height: $(main.column.left.width);
 }
 ]]>
