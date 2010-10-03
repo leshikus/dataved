@@ -30,7 +30,6 @@ a img {
 
 /* Logo
 ----------------------------------------------- */
-.Header .description {
-  /* font */
-  color: #999;
+.Header .descriptionwrapper {
+  padding: 0;
 }
