@@ -44,8 +44,7 @@ h5 {
 }
 
 .Header h1 {
-  font-size: 80%;
-  border-bottom: dotted 1px #999;
+  font-size: 90%;
   text-decoration: none;
 }
 
@@ -205,9 +204,6 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 .titleimage, .titlewrapper {
   float: left;
   block: inline;
-}
-
-.titlewrapper {
   padding: 0;
   margin: 0;
 }
