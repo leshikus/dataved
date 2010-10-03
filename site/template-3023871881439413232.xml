@@ -172,14 +172,14 @@ body {
 
 /* Widgets
 ----------------------------------------------- */
-.Header .widget, .sidebar .widget {
+.header-inner .widget, .sidebar .widget {
   max-width: $(main.column.right.width);
   height: $(main.column.left.width);
   display: table-cell;
   vertical-align:middle;
 }
 
-.Header .widget {
+.header-inner .widget {
   height: $(main.column.left.width);
 }
 ]]>
