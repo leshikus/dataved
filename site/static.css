@@ -31,5 +31,5 @@ a img {
 /* Logo
 ----------------------------------------------- */
 .Header .descriptionwrapper {
-  padding: 0;
+  padding: 0 !important;
 }
