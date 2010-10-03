@@ -43,7 +43,7 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
    <Group description="Post Title" selector=".post">
      <Variable name="header.font" description="Font" type="font"
          default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif" value="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
-     <Variable name="header.color" description="Title Color" type="color" default="#999"  value="#999"/>
+     <Variable name="header.color" description="Title Color" type="color" default="#999"  value="#999999"/>
    </Group>
 
    <Group description="Post Footer" selector=".post-footer">
@@ -65,11 +65,8 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
 	   default="$(color) url(http://lh3.ggpht.com/_92OKnY0EOfU/TKd_izTkrgI/AAAAAAAAAjs/KcaH0n4vPFI/s800/sand.jpg) repeat scroll top left"
 	   value="$(color) url(http://lh3.ggpht.com/_92OKnY0EOfU/TKd_izTkrgI/AAAAAAAAAjs/KcaH0n4vPFI/s800/sand.jpg) repeat scroll top left"/>
 
-   <Variable name="content.background.color.selector" description="Content Background Color Selector" type="string" default=".content-inner" value=".content-inner"/>
    <Variable name="content.padding" description="Content Padding" type="length" default="10px" value="10px"/>
    <Variable name="content.padding.horizontal" description="Content Horizontal Padding" type="length" default="$(content.padding)" value="$(content.padding)"/>
-
-   <Variable name="main.border.width" description="Main Border Width" type="length" default="0" value="0"/>
 
    <Variable name="header.background.gradient" description="Header Gradient" type="url" default="none" value="none"/>
    <Variable name="header.padding" description="Header Padding" type="length" default="30px" value="30px"/>
@@ -79,9 +76,6 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
 
    <Variable name="page.width.selector" description="Page Width Selector" type="string" default=".region-inner" value=".region-inner"/>
    <Variable name="page.width" description="Page Width" type="string" default="auto" value="auto"/>
-
-   <Variable name="main.section.margin" description="Main Section Margin" type="length" default="15px" value="15px"/>
-   <Variable name="main.padding" description="Main Padding" type="length" default="15px" value="15px"/>
 
 */
 
@@ -111,10 +105,6 @@ a:hover {
   color: $(link.hover.color);
 }
 
-$(content.background.color.selector) {
-  background-color: $(content.background.color);
-}
-
 /* Header
 ----------------------------------------------- */
 .Header h1, .Header h1 a,
@@ -132,7 +122,7 @@ h1, h2, h3, h4, h5 {
 /* Widgets
 ----------------------------------------------- */
 .widget {
-  /*background-color: */
+  background-color: $(content.background.color);
 }
 
 .widget .zippy {
@@ -206,7 +196,19 @@ body {
     <div class='header-outer'>
     <div class='region-inner header-inner'>
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
-<b:widget id='Header1' locked='false' title='Ваше математическое обеспечение (заголовок)' type='Header'>
+<b:widget id='Header1' locked='false' title='Математическое обеспечение Вашего бизнеса (заголовок)' type='Header'>
+<b:includable id='title'>
+  <b:if cond='data:blog.url == data:blog.homepageUrl'>
+    <data:title/>
+  <b:else/>
+    <a expr:href='data:blog.homepageUrl'><data:title/></a>
+  </b:if>
+</b:includable>
+<b:includable id='description'>
+  <div class='descriptionwrapper'>
+    <p class='description'><span><data:description/></span></p>
+  </div>
+</b:includable>
 <b:includable id='main'>
 
   <b:if cond='data:useImage'>
@@ -266,17 +268,18 @@ body {
     </div>
   </b:if>
 </b:includable>
-<b:includable id='title'>
-  <b:if cond='data:blog.url == data:blog.homepageUrl'>
-    <data:title/>
-  <b:else/>
-    <a expr:href='data:blog.homepageUrl'><data:title/></a>
+</b:widget>
+<b:widget id='HTML5' locked='false' title='+7 916 562 8095' type='HTML'>
+<b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
   </b:if>
-</b:includable>
-<b:includable id='description'>
-  <div class='descriptionwrapper'>
-    <p class='description'><span><data:description/></span></p>
+  <div class='widget-content'>
+    <data:content/>
   </div>
+
+  <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
 <b:widget id='CustomSearch1' locked='false' title='' type='CustomSearch'>
@@ -358,7 +361,9 @@ body {
     </div>
     </div>
     </header>
-    <b:if cond='data:blog.url != data:blog.homepageUrl'><!-- aaf -->
+
+    <!--<b:if cond='data:blog.url != data:blog.homepageUrl'>--><!-- aaf -->
+    <b:if cond='1 == 1'>
 
     <div class='tabs-outer'>
     <div class='region-inner tabs-inner'>
@@ -849,19 +854,7 @@ body {
         <macro:param default='false' name='includeBottom'/>
       </macro:include>
       <!-- outside of the include in order to lock Attribution widget -->
-      <b:section class='foot' id='footer-3' showaddelement='no'>
-<b:widget id='Attribution1' locked='false' title='' type='Attribution'>
-<b:includable id='main'>
-    <div class='widget-content' style='text-align: center;'>
-      <b:if cond='data:attribution != &quot;&quot;'>
-        <data:attribution/>
-      </b:if> 
-    </div>
-
-    <b:include name='quickedit'/>
-  </b:includable>
-</b:widget>
-</b:section>
+      <b:section class='foot' id='footer-3' showaddelement='no'/>
     </div>
 
     </div>
@@ -930,6 +923,156 @@ body {
 </macro:includable>
 
 <b:section-contents id='sidebar-right-1'>
+<b:widget id='Gadget2' locked='false' title='Sociable' type='Gadget'>
+<b:includable id='main'>  
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:renderingUrl != &quot;&quot;'>
+    <b:if cond='data:title != &quot;&quot;'>
+      <h2 class='title'><data:title/></h2>
+    </b:if>
+    <b:if cond='data:gadgetSnippet != &quot;&quot;'>
+       <data:gadgetSnippet/>
+    <b:else/>
+      <div class='widget-content'>
+        <b:if cond='data:nonSocialFragment != &quot;&quot;'>
+          <data:nonSocialFragment/>
+        </b:if>
+      </div>
+    </b:if>
+  <b:else/>
+    <data:errorMessage/>
+  </b:if>
+
+  <b:include name='quickedit'/>
+</b:includable>
+</b:widget>
+<b:widget id='Subscribe1' locked='false' title='Подпишитесь на Датавед' type='Subscribe'>
+<b:includable id='main'>
+  <b:if cond='data:isPublic'>
+  <div style='white-space:nowrap'>
+
+    <b:if cond='data:title != &quot;&quot;'>
+      <h2 class='title'><data:title/></h2>
+    </b:if>
+  <div class='widget-content'>
+    <b:loop values='data:feeds' var='feed'>
+        <div expr:class='&quot;subscribe-wrapper subscribe-type-&quot; + data:feed.type'>
+
+
+        <div expr:class='&quot;subscribe expanded subscribe-type-&quot; + data:feed.type' expr:id='&quot;SW_READER_LIST_&quot; + data:widgetId + data:feed.type' style='display:none;'>
+
+          <div class='top'>
+            <span class='inner' expr:onclick='&quot;return(_SW_toggleReaderList(event, \&quot;&quot; + data:widgetId +data:feed.type + &quot;\&quot;));&quot;'>
+              <img class='subscribe-dropdown-arrow' expr:src='data:arrowDropdownImg'/>
+              <img align='absmiddle' alt='' border='0' class='feed-icon' expr:src='data:feedIconImg'/>
+              <data:feed.title/>
+            </span>
+
+            <div class='feed-reader-links'>
+              <a class='feed-reader-link' expr:href='&quot;http://www.google.com/ig/add?source=bstp&amp;feedurl=&quot; + data:feed.encodedUrl' target='_blank'>
+                <img expr:src='data:imagePathBase + &quot;subscribe-google.png&quot;'/>
+              </a>
+              <a class='feed-reader-link' expr:href='&quot;http://www.bloglines.com/sub/&quot; + data:feed.url' target='_blank'>
+                <img expr:src='data:imagePathBase + &quot;subscribe-bloglines.png&quot;'/>
+              </a>
+              <a class='feed-reader-link' expr:href='&quot;http://www.netvibes.com/subscribe.php?url=&quot; + data:feed.encodedUrl' target='_blank'>
+                <img expr:src='data:imagePathBase + &quot;subscribe-netvibes.png&quot;'/>
+              </a>
+              <a class='feed-reader-link' expr:href='&quot;http://www.newsgator.com/ngs/subscriber/subext.aspx?url=&quot; + data:feed.encodedUrl' target='_blank'>
+                <img expr:src='data:imagePathBase + &quot;subscribe-newsgator.png&quot;'/>
+              </a>
+              <a class='feed-reader-link' expr:href='&quot;http://add.my.yahoo.com/content?url=&quot; + data:feed.encodedUrl' target='_blank'>
+                <img expr:src='data:imagePathBase + &quot;subscribe-yahoo.png&quot;'/>
+              </a>
+              <a class='feed-reader-link' expr:href='data:feed.url' target='_blank'>
+                <img align='absmiddle' class='feed-icon' expr:src='data:feedIconImg'/>
+                Atom
+              </a>
+            </div>
+
+          </div>
+          <div class='bottom'/>
+        </div>
+        
+        <div class='subscribe' expr:id='&quot;SW_READER_LIST_CLOSED_&quot; + data:widgetId +data:feed.type' expr:onclick='&quot;return(_SW_toggleReaderList(event, \&quot;&quot; + data:widgetId +data:feed.type + &quot;\&quot;));&quot;'>
+          <div class='top'>
+             <span class='inner'>
+               <img class='subscribe-dropdown-arrow' expr:src='data:arrowDropdownImg'/>
+               <span expr:onclick='&quot;return(_SW_toggleReaderList(event, \&quot;&quot; + data:widgetId +data:feed.type + &quot;\&quot;));&quot;'>
+                 <img align='absmiddle' alt='' border='0' class='feed-icon' expr:src='data:feedIconImg'/>
+                 <data:feed.title/>
+               </span>
+             </span>
+           </div>
+          <div class='bottom'/>
+        </div>
+        
+      </div>
+    </b:loop>
+
+    <div style='clear:both'/>
+
+  </div>
+  </div>
+
+  <b:include name='quickedit'/>
+
+ </b:if>
+</b:includable>
+</b:widget>
+<b:widget id='PopularPosts1' locked='false' title='Популярные сообщения' type='PopularPosts'>
+<b:includable id='main'>
+  <b:if cond='data:title'><h2><data:title/></h2></b:if>
+  <div class='widget-content popular-posts'>
+    <ul>
+      <b:loop values='data:posts' var='post'>
+      <li>
+        <b:if cond='data:showThumbnails == &quot;false&quot;'>
+          <b:if cond='data:showSnippets == &quot;false&quot;'>
+            <!-- (1) No snippet/thumbnail -->
+            <a expr:href='data:post.href'><data:post.title/></a>
+          <b:else/>
+            <!-- (2) Show only snippets -->
+            <div class='item-title'><a expr:href='data:post.href'><data:post.title/></a></div>
+            <div class='item-snippet'><data:post.snippet/></div>
+          </b:if>
+        <b:else/>
+          <b:if cond='data:showSnippets == &quot;false&quot;'>
+            <!-- (3) Show only thumbnails -->
+            <div class='item-thumbnail-only'>
+              <b:if cond='data:post.thumbnail'>
+                <div class='item-thumbnail'>
+                  <a expr:href='data:post.href' target='_blank'>
+                    <img alt='' border='0' expr:height='data:thumbnailSize' expr:src='data:post.thumbnail' expr:width='data:thumbnailSize'/>
+                  </a>
+                </div>
+              </b:if>
+              <div class='item-title'><a expr:href='data:post.href'><data:post.title/></a></div>
+            </div>
+            <div style='clear: both;'/>
+          <b:else/>
+            <!-- (4) Show snippets and thumbnails -->
+            <div class='item-content'>
+              <b:if cond='data:post.thumbnail'>
+                <div class='item-thumbnail'>
+                  <a expr:href='data:post.href' target='_blank'>
+                    <img alt='' border='0' expr:height='data:thumbnailSize' expr:src='data:post.thumbnail' expr:width='data:thumbnailSize'/>
+                  </a>
+                </div>
+              </b:if>
+              <div class='item-title'><a expr:href='data:post.href'><data:post.title/></a></div>
+              <div class='item-snippet'><data:post.snippet/></div>
+            </div>
+            <div style='clear: both;'/>
+          </b:if>
+        </b:if>
+      </li>
+      </b:loop>
+    </ul>
+    <b:include name='quickedit'/>
+  </div>
+</b:includable>
+</b:widget>
 <b:widget id='HTML2' locked='false' title='' type='HTML'>
 <b:includable id='main'>
   <!-- only display title if it's non-empty -->
@@ -1022,6 +1165,19 @@ body {
 </b:includable>
 </b:widget>
 </b:section-contents><b:section-contents id='sidebar-right-2-2'>
+<b:widget id='TextList1' locked='false' title='Похожие публикации' type='TextList'>
+<b:includable id='main'>
+ <h2><data:title/></h2>
+ <div class='widget-content'>
+   <ul>
+     <b:loop values='data:items' var='item'>
+       <li><data:item/></li>
+     </b:loop>
+   </ul> 
+   <b:include name='quickedit'/>
+ </div>
+</b:includable>
+</b:widget>
 <b:widget id='Label1' locked='false' title='Темы' type='Label'>
 <b:includable id='main'>
   <b:if cond='data:title'>
@@ -1075,4 +1231,6 @@ body {
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-</b:section-contents><b:section-contents id='footer-1'/><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
+</b:section-contents><b:section-contents id='footer-1'>
+</b:section-contents><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
+                

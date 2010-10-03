@@ -1,14 +1,12 @@
 /* Template specific style */
-body {
+body, body.mobile, .content-inner, .content-outer {
   padding: 0;
-}
-
-body.mobile {
-  padding: 0;
+  margin: 0;
 }
 
 .content {
-  margin: 2ex;
+  padding: 0;
+  margin: 1ex;
 }
 
 /*
@@ -23,9 +21,6 @@ $(content.background.color.selector) {
 }
 */
 
-.content-inner {
-  padding: 1ex;
-}
 
 /* Tabs
 ----------------------------------------------- */
@@ -99,56 +94,7 @@ $(content.background.color.selector) {
   list-style: none;
 }
 
-/* Posts
------------------------------------------------ */
 /*
-.main-inner {
-  padding-top: $(main.padding.top);
-  padding-bottom: $(main.padding.bottom);
-}
-
-.main-inner .column-center-inner {
-  padding: 0 $(main.padding);
-}
-
-.main-inner .column-center-inner .section {
-  margin: 0 $(main.section.margin);
-}
-
-.post {
-  margin: 0 0 $(post.margin.bottom) 0;
-}
-
-h3.post-title, .comments h4 {
-  font: $(post.title.font);
-  margin: .75em 0 0;
-}
-
-.post-body {
-  font-size: 110%;
-  line-height: 1.4;
-  position: relative;
-}
-
-.post-header {
-  margin: 0 0 1.5em;
-
-  line-height: 1.6;
-  font-size: 90%;
-}
-
-.post-footer {
-  margin: 20px -2px 0;
-  padding: 5px 10px;
-
-  color: $(post.footer.text.color);
-  background-color: $(post.footer.background.color);
-  border-bottom: 1px solid $(post.footer.border.color);
-
-  line-height: 1.6;
-  font-size: 90%;
-}
-
 body {
   min-width: $(content.width);
 }
@@ -186,13 +132,6 @@ body {
   #layout .region-inner {
     min-width: 0;
     width: auto;
-  }
-
-  .titleimage {
-    margin: 0 $(padding);
-  }
-  .titlewrapper {
-    min-width: $(content.width);
   }
 */
 
