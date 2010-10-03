@@ -140,7 +140,7 @@ h1, h2, h3, h4, h5 {
 
     <b:template-skin>
       <b:variable default='848px' name='content.width' type='length'/>
-	  <b:variable default='52px' name='main.column.left.width' type='length'/><!-- Widget height -->
+	  <!-- <b:variable default='52px' name='main.column.left.width' type='length'/>Widget height -->
       <b:variable default='196px' name='main.column.right.width' type='length'/><!-- Widget width -->
 
       <![CDATA[
@@ -154,11 +154,6 @@ body {
 
 /* Widgets
 ----------------------------------------------- */
-.header-inner .widget {
-  max-width: $(main.column.right.width);
-  height: $(main.column.left.width);
-}
-
 .sidebar .widget {
   min-width: $(main.column.right.width);
   min-height: $(main.column.left.width);
