@@ -162,14 +162,6 @@ $(content.background.color.selector) {
   color: $(description.text.color);
 }
 
-.header-inner .Header .titlewrapper {
-  padding: 22px $(header.padding);
-}
-
-.header-inner .Header .descriptionwrapper {
-  padding: 0 $(header.padding);
-}
-
 /* Tabs
 ----------------------------------------------- */
 .tabs-inner .widget ul {
@@ -258,7 +250,7 @@ body {
   min-width: $(content.width);
 }
 
-.content-outer, .region-inner {
+.content-inner, .region-inner {
   max-width: $(content.width);
 }
 
