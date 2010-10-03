@@ -246,9 +246,9 @@ body {
   </head>
 
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
-
+xxxx
   <div class='content'>
-
+xxxx
   <div class='content-outer'>
   <div class='content-inner'>
 

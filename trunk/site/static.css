@@ -2,6 +2,7 @@
 ----------------------------------------------- */
 #navbar-iframe {
   display: none !important;
+  height: 0 !important;
 }
 
 body {
