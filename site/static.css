@@ -39,12 +39,12 @@ a img {
 /* Widgets
 ----------------------------------------------- */
 .widget {
-  margin: 2ex;
-  padding: 2ex;
+  margin: 15px 30px;
+  padding: 15px;
   float: left;
-  border-radius: 1ex;
+  border-radius: 15px;
 }
 
 .Header .widget {
-  padding: 2ex !important;
+  padding: 15px;
 }
