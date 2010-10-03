@@ -179,10 +179,10 @@ body {
   <div class='content-outer'>
   <div class='content-inner'>
 
-    <header>xxxx5
-    <div class='header-outer'>xxxx6
+    <header>
+    <div class='header-outer'>
     <div class='region-inner header-inner'>xxxx7
-      <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
+      <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>xxxx8
 <b:widget id='Header1' locked='false' title='Математическое обеспечение Вашего бизнеса (заголовок)' type='Header'>
 <b:includable id='title'>
   <b:if cond='data:blog.url == data:blog.homepageUrl'>
