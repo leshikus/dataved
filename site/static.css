@@ -33,6 +33,7 @@ a img {
 ----------------------------------------------- */
 .Header .descriptionwrapper {
   padding: 0 !important;
+  margin: 0;
 }
 
 /* Widgets
