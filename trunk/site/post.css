@@ -80,10 +80,6 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 
 /* Post layot
 ----------------------------------------------- */
-.main-inner {
-  padding: 2ex 0;
-}
-
 .post {
   margin: 0 0 2ex 0;
 }

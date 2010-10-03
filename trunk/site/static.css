@@ -20,6 +20,7 @@ a:link, a:visited , a:hover {
 .Header h1 {
   font-size: 90%;
   text-decoration: none;
+  color: #39b;
 }
 
 /* Images
@@ -37,9 +38,12 @@ a img {
 /* Widgets
 ----------------------------------------------- */
 .widget {
-  margin: 1ex;
-  padding: 1ex;
+  margin: 2ex;
+  padding: 2ex;
   float: left;
   border-radius: 1ex;
 }
 
+.Header .widget {
+  padding: 2ex;
+}
