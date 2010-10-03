@@ -1,13 +1,7 @@
 ﻿/* Body
 ----------------------------------------------- */
-#navbar-iframe {
-  display: none !important;
-  height: 0 !important;
-}
-
 #navbar {
-  display: none !important;
-  height: 0 !important;
+  display: none;
 }
 
 body {
