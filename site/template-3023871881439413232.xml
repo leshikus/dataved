@@ -154,9 +154,14 @@ body {
 
 /* Widgets
 ----------------------------------------------- */
-.header-inner .widget, .sidebar .widget {
-  width: $(main.column.right.width);
+.header-inner .widget {
+  max-width: $(main.column.right.width);
   height: $(main.column.left.width);
+}
+
+.sidebar .widget {
+  min-width: $(main.column.right.width);
+  min-height: $(main.column.left.width);
 }
 ]]>
     </b:template-skin>
@@ -169,12 +174,12 @@ body {
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
   </head>
 
-  <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
-  <div class='content'>
-  <div class='content-outer'>
-  <div class='content-inner'>
+  <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>xxxx1
+  <div class='content'>xxxx2
+  <div class='content-outer'>xxxx3
+  <div class='content-inner'>xxxx4
 
-    <header>
+    <header>xxxx5
     <div class='header-outer'>
     <div class='region-inner header-inner'>
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
