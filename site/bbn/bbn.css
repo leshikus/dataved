@@ -1,29 +1,24 @@
-body {
-	font-family:Arial;
-	padding-top:30px;
-	background:#FFF9DF url(title.png) no-repeat top center;
-}
 a.back {
-	background:transparent url(back.png) no-repeat 0px 0px;
-	position:absolute;
-	width:150px;
-	height:27px;
-	outline:none;
-	top:2px;
-	right:0px;
+	background: transparent url(back.png) no-repeat 0px 0px;
+	position: absolute;
+	width: 150px;
+	height: 27px;
+	outline: none;
+	top: 2px;
+	right: 0px;
 }
 .reference {
-	margin:20px auto;
-	width:600px;
-	padding:20px;
+	margin: 20px auto;
+	width: 600px;
+	padding: 20px;
 }
 .reference p a {
-	text-transform:uppercase;
-	text-shadow:1px 1px 1px #fff;
-	color:#666;
-	text-decoration:none;
-	font-size:10px;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 1px #fff;
+	color: #666;
+	text-decoration: none;
+	font-size: 10px;
 }
-.reference p a:hover {
-	color:#333;
+.reference p a: hover {
+	color: #333;
 }
