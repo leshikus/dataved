@@ -848,7 +848,12 @@ body {
 
   <b:else/>
     <!-- The JavaScript -->
-    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' type='text/javascript'/>
+    <script type="text/javascript">
+    google.load("jquery", "1.2.x");
+    google.setOnLoadCallback(function() {
+        // Your code goes here.
+    });
+    </script>
     <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js' type='text/javascript'/>
     <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js' type='text/javascript'/>
 <b:section class='main' id='page1' showaddelement='no'>
@@ -1231,6 +1236,5 @@ body {
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-</b:section-contents><b:section-contents id='footer-1'>
-</b:section-contents><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
+</b:section-contents><b:section-contents id='footer-1'/><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
                 
