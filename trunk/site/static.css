@@ -1,8 +1,18 @@
 ﻿/* Discard margins & paddings
 ----------------------------------------------- */
-*{
+* {
 	margin: 0;
 	padding: 0;
+}
+
+/* Widths
+----------------------------------------------- */
+.tabs-outer, .main-outer {
+  width: 852px;
+}
+
+.header-inner .widget {
+  width: 224px;
 }
 
 /* Body
@@ -59,7 +69,6 @@ img.fleft {
 }
 
 .header-inner .widget {
-  width: 224px;
   height: 54px;
   text-align: center;
 }
