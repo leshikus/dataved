@@ -1,11 +1,17 @@
-﻿/* Body
+﻿/* Discard margins & paddings
+----------------------------------------------- */
+*{
+	margin: 0;
+	padding: 0;
+}
+
+/* Body
 ----------------------------------------------- */
 #navbar {
   display: none;
 }
 
 body {
-  margin: 0;
   line-height: 1.5;
 }
 
@@ -22,8 +28,6 @@ a img {
 }
 
 img.fleft {
-  margin: 0;
-  padding: 0;
   float: left;
 }
 

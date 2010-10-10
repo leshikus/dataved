@@ -50,7 +50,7 @@ License:     http://www.gnu.org/licenses/gpl-3.0.html
      <Variable name="post.footer.text.color" description="Text Color" type="color" default="#666666" value="#666666"/>
      <Variable name="post.footer.background.color" description="Background Color" type="color"
          default="#f9f9f9" value="#f9f9f9"/>
-     <Variable name="post.footer.border.color" description="Shadow Color" type="color" default="#eee" value="#eee"/>
+     <Variable name="post.footer.border.color" description="Shadow Color" type="color" default="#eee" value="#eeeeee"/>
    </Group>
 
    <Group description="Gadgets" selector=".sidebar .widget">
@@ -139,9 +139,9 @@ h1, h2, h3, h4, h5 {
 ]]></b:skin>
 
     <b:template-skin>
-      <b:variable default='848px' name='content.width' type='length'/>
+      <b:variable default='852px' name='content.width' type='length'/>
 	  <!-- <b:variable default='52px' name='main.column.left.width' type='length'/>Widget height -->
-      <b:variable default='228px' name='main.column.right.width' type='length'/><!-- Widget width -->
+      <b:variable default='224px' name='main.column.right.width' type='length'/><!-- Widget width -->
 
       <![CDATA[
 body {
@@ -165,6 +165,13 @@ body {
     <link href='http://dataved.googlecode.com/svn/trunk/site/template.css' rel='stylesheet' type='text/css'/>
 	<b:if cond='data:blog.url != data:blog.homepageUrl'>
     <link href='http://dataved.googlecode.com/svn/trunk/site/post.css' rel='stylesheet' type='text/css'/>
+    <b:else/>
+    <link href='http://dataved.googlecode.com/svn/trunk/site/bbn/css/style.css' rel='stylesheet' type='text/css'/>
+    <link href='http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.css' rel='stylesheet' type='text/css'/>
+    <link href='http://dataved.googlecode.com/svn/trunk/site/post.css' rel='stylesheet' type='text/css'/>
+    <!--[if lte IE 6]>
+         <link rel="stylesheet" href="http://dataved.googlecode.com/svn/trunk/site/bbn/css/styleIE6.css" type="text/css" media="screen"/>
+    <![endif]-->
 	</b:if>
     <link href='http://dataved.googlecode.com/svn/trunk/site/favicon.ico' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
@@ -180,19 +187,8 @@ body {
     <div class='region-inner header-inner'>
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
 <b:widget id='Header1' locked='false' title='Математическое обеспечение Вашего бизнеса (заголовок)' type='Header'>
-<b:includable id='title'>
-  <b:if cond='data:blog.url == data:blog.homepageUrl'>
-    <data:title/>
-  <b:else/>
-    <a expr:href='data:blog.homepageUrl'><data:title/></a>
-  </b:if>
-</b:includable>
-<b:includable id='description'>
-  <div class='descriptionwrapper'>
-    <p class='description'><span><data:description/></span></p>
-  </div>
-</b:includable>
 <b:includable id='main'>
+
   <b:if cond='data:useImage'>
     <b:if cond='data:imagePlacement == &quot;BEHIND&quot;'>
       <!--
@@ -224,14 +220,10 @@ body {
         </b:if>
     <b:else/>
       <!--Show the image only-->
-      <div id='header-inner'><!-- aaf: fixed image URL -->
-        <b:if cond='data:blog.url == data:blog.homepageUrl'>
-          <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width'/>
-        <b:else/>
+      <div id='header-inner'>
         <a expr:href='data:blog.homepageUrl' style='display: block'>
-          <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width'/>
+          <img expr:alt='data:title' expr:height='data:height' expr:id='data:widget.instanceId + &quot;_headerimg&quot;' expr:src='data:sourceUrl' expr:width='data:width' style='display: block'/>
         </a>
-        </b:if>
         <!--Show the description-->
         <b:if cond='data:imagePlacement == &quot;BEFORE_DESCRIPTION&quot;'>
           <b:include name='description'/>
@@ -249,6 +241,18 @@ body {
       <b:include name='description'/>
     </div>
   </b:if>
+</b:includable>
+<b:includable id='title'>
+  <b:if cond='data:blog.url == data:blog.homepageUrl'>
+    <data:title/>
+  <b:else/>
+    <a expr:href='data:blog.homepageUrl'><data:title/></a>
+  </b:if>
+</b:includable>
+<b:includable id='description'>
+  <div class='descriptionwrapper'>
+    <p class='description'><span><data:description/></span></p>
+  </div>
 </b:includable>
 </b:widget>
 <b:widget id='HTML5' locked='false' title='' type='HTML'>
@@ -398,18 +402,16 @@ body {
   <div class='clear'/>
 </b:includable>
 <b:includable id='shareButtons' var='post'>
-  <b:if cond='data:post.sharePostUrl'>
-      <a class='share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'>
-        <span class='share-button-link-text'><data:top.emailThisMsg/></span></a>
-      <a class='share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'>
-        <span class='share-button-link-text'><data:top.blogThisMsg/></span></a>
-      <a class='share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'>
-        <span class='share-button-link-text'><data:top.shareToTwitterMsg/></span></a>
-      <a class='share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'>
-        <span class='share-button-link-text'><data:top.shareToFacebookMsg/></span></a>
-      <a class='share-button sb-buzz' expr:href='data:post.sharePostUrl + &quot;&amp;target=buzz&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=415,width=690\&quot;); return false;&quot;' expr:title='data:top.shareToBuzzMsg' target='_blank'>
-        <span class='share-button-link-text'><data:top.shareToBuzzMsg/></span></a>
-  </b:if>
+  <a class='share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'>
+    <span class='share-button-link-text'><data:top.emailThisMsg/></span></a>
+  <a class='share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'>
+    <span class='share-button-link-text'><data:top.blogThisMsg/></span></a>
+  <a class='share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'>
+    <span class='share-button-link-text'><data:top.shareToTwitterMsg/></span></a>
+  <a class='share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'>
+    <span class='share-button-link-text'><data:top.shareToFacebookMsg/></span></a>
+  <a class='share-button sb-buzz' expr:href='data:post.sharePostUrl + &quot;&amp;target=buzz&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=415,width=690\&quot;); return false;&quot;' expr:title='data:top.shareToBuzzMsg' target='_blank'>
+    <span class='share-button-link-text'><data:top.shareToBuzzMsg/></span></a>
 </b:includable>
 <b:includable id='backlinks' var='post'>
   <a name='links'/><h4><data:post.backlinksLabel/></h4>
@@ -442,15 +444,15 @@ body {
     <a expr:name='data:post.id'/>
     <b:if cond='data:post.title'>
       <h3 class='post-title entry-title'>
-      <b:if cond='data:post.link'>
-        <a expr:href='data:post.link'><data:post.title/></a>
-      <b:else/><!-- aaf: fixed URL of the post title -->
-        <b:if cond='data:post.url == data:blog.url'>
-          <data:post.title/>
-        <b:else/>
+     <b:if cond='data:post.link'>
+       <a expr:href='data:post.link'><data:post.title/></a>
+     <b:else/>
+        <b:if cond='data:post.url'>
           <a expr:href='data:post.url'><data:post.title/></a>
+        <b:else/>
+          <data:post.title/>
         </b:if>
-      </b:if>
+     </b:if>
       </h3>
     </b:if>
 
@@ -596,7 +598,7 @@ body {
         &lt;div class=&quot;date-outer&quot;&gt;
       </b:if>
       <b:if cond='data:post.dateHeader'>
-        <h2 class='date-header'><data:post.dateHeader/></h2>
+        <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
       </b:if>
       <b:if cond='data:post.isDateStart'>
         &lt;div class=&quot;date-posts&quot;&gt;
@@ -652,9 +654,15 @@ body {
 </b:includable>
 <b:includable id='commentDeleteIcon' var='comment'>
   <span expr:class='&quot;item-control &quot; + data:comment.adminClass'>
-    <a class='comment-delete' expr:href='data:comment.deleteUrl' expr:title='data:top.deleteCommentMsg'>
-      <img src='//www.blogger.com/img/icon_delete13.gif'/>
-    </a>
+    <b:if cond='data:showCmtPopup'>
+      <div class='goog-toggle-button'>
+        <div class='goog-inline-block delete-comment-icon'/>
+      </div>
+    <b:else/>
+      <a class='comment-delete' expr:href='data:comment.deleteUrl' expr:title='data:top.deleteCommentMsg'>
+        <img src='//www.blogger.com/img/icon_delete13.gif'/>
+      </a>
+    </b:if>
   </span>
 </b:includable>
 <b:includable id='feedLinks'>
@@ -839,9 +847,12 @@ body {
     </footer>
 
   <b:else/>
-    Under construction
- 
-  </b:if><!-- aaf -->
+    <!-- The JavaScript -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js"></script>
+    <script type="text/javascript" src="http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js"></script>
+  
+  </b:if><!-- aaf: first page -->
 
   </div> <!-- content-inner -->
 
@@ -949,9 +960,6 @@ body {
             <div class='feed-reader-links'>
               <a class='feed-reader-link' expr:href='&quot;http://www.google.com/ig/add?source=bstp&amp;feedurl=&quot; + data:feed.encodedUrl' target='_blank'>
                 <img expr:src='data:imagePathBase + &quot;subscribe-google.png&quot;'/>
-              </a>
-              <a class='feed-reader-link' expr:href='&quot;http://www.bloglines.com/sub/&quot; + data:feed.url' target='_blank'>
-                <img expr:src='data:imagePathBase + &quot;subscribe-bloglines.png&quot;'/>
               </a>
               <a class='feed-reader-link' expr:href='&quot;http://www.netvibes.com/subscribe.php?url=&quot; + data:feed.encodedUrl' target='_blank'>
                 <img expr:src='data:imagePathBase + &quot;subscribe-netvibes.png&quot;'/>
@@ -1209,5 +1217,18 @@ body {
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-</b:section-contents><b:section-contents id='footer-1'/><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
+<!--<b:widget id='HTML6' locked='false' title='' type='HTML'>
+<b:includable id='main'>
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+</b:widget>-->
+</b:section-contents><b:section-contents id='footer-1'>
+</b:section-contents><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
                 
