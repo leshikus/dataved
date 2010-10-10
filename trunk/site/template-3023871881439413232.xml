@@ -348,8 +348,8 @@ body {
     </div>
     </header>
 
-    <!--<b:if cond='data:blog.url != data:blog.homepageUrl'>--><!-- aaf -->
-    <b:if cond='1 == 1'>
+    <b:if cond='data:blog.url != data:blog.homepageUrl'>
+    <!--<b:if cond='1 == 1'>--><!-- aaf -->
 
     <div class='tabs-outer'>
     <div class='region-inner tabs-inner'>
@@ -848,11 +848,25 @@ body {
 
   <b:else/>
     <!-- The JavaScript -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js"></script>
-    <script type="text/javascript" src="http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js"></script>
-  
-  </b:if><!-- aaf: first page -->
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' type='text/javascript'/>
+    <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js' type='text/javascript'/>
+    <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js' type='text/javascript'/>
+<b:section class='main' id='page1' showaddelement='no'>
+<b:widget id='HTML6' locked='false' title='' type='HTML'>
+<b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+</b:widget>
+</b:section> 
+  </b:if><!-- aaf: page1 -->
 
   </div> <!-- content-inner -->
 
@@ -1217,18 +1231,6 @@ body {
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-<!--<b:widget id='HTML6' locked='false' title='' type='HTML'>
-<b:includable id='main'>
-  <b:if cond='data:title != &quot;&quot;'>
-    <h2 class='title'><data:title/></h2>
-  </b:if>
-  <div class='widget-content'>
-    <data:content/>
-  </div>
-
-  <b:include name='quickedit'/>
-</b:includable>
-</b:widget>-->
 </b:section-contents><b:section-contents id='footer-1'>
 </b:section-contents><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
                 
