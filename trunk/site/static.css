@@ -1,8 +1,12 @@
-﻿/* Discard margins & paddings
+﻿/* Discard
 ----------------------------------------------- */
 * {
 	margin: 0;
 	padding: 0;
+}
+
+#navbar {
+  display: none;
 }
 
 /* Widths
@@ -17,10 +21,6 @@
 
 /* Body
 ----------------------------------------------- */
-#navbar {
-  display: none;
-}
-
 body {
   line-height: 1.5;
 }
