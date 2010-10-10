@@ -5,7 +5,6 @@
 ----------------------------------------------- */
 h1, h2, h3, h4, h5 {
   margin: 1em 0;
-  padding: 0;
 }
 
 h2 {
@@ -108,7 +107,6 @@ h3.post-title, .comments h4 {
 .post-body img, .post-body object {
   float: right;
   padding: 0 0 1ex 2ex;
-  margin: 0;
 }
 
 .post-body img.fleft {
@@ -119,7 +117,6 @@ h3.post-title, .comments h4 {
 ----------------------------------------------- */
 .post-body p img, .post-body td img {
   float: none;
-  padding: 0;
   vertical-align: middle;
 }
 
