@@ -414,20 +414,23 @@ h1, h2, h3, h4, h5 {
 <b:includable id='post' var='post'>
   <div class='post hentry'>
     <a expr:name='data:post.id'/>
-    <b:if cond='data:post.title'>
-      <h3 class='post-title entry-title'>
-     <b:if cond='data:post.link'>
-       <a expr:href='data:post.link'><data:post.title/></a>
-     <b:else/>
-        <b:if cond='data:post.url'>
-          <a expr:href='data:post.url'><data:post.title/></a>
-        <b:else/>
-          <data:post.title/>
-        </b:if>
-     </b:if>
-      </h3>
-    </b:if>
-
+	<b:if cond='data:post.title'>
+	  <h3 class='post-title entry-title'>
+		<b:if cond='data:post.link'>
+		  <a expr:href='data:post.link'>
+			<data:post.title/>
+		  </a>
+		  <b:else/>
+		  <b:if cond='data:post.url == data:blog.url'><!-- aaf: no href if already here -->
+			<data:post.title/>
+			<b:else/>
+			<a expr:href='data:post.url'>
+			  <data:post.title/>
+			</a>
+		  </b:if>
+		</b:if>
+	  </h3>
+	</b:if>
     <div class='post-header'>
     <div class='post-header-line-1'/>
     </div>
