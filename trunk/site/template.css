@@ -1,11 +1,5 @@
 /* Template specific style */
-body, body.mobile, .content-inner, .content-outer, .tabs-inner, .section {
-  padding: 0;
-  margin: 0;
-}
-
 .content {
-  padding: 0;
   margin: 15px;
 }
 
@@ -26,7 +20,6 @@ body, body.mobile, .content-inner, .content-outer, .tabs-inner, .section {
   _background-image: none;
   border-bottom: 1px solid #eee;
 
-  margin-top: 0;
   margin-left: -2ex;
   margin-right: -2ex;
 }
@@ -60,56 +53,10 @@ body, body.mobile, .content-inner, .content-outer, .tabs-inner, .section {
   background-color: $(tabs.selected.background.color);
   text-decoration: none;
 }
-*/
 
 .widget .popular-posts ul {
   list-style: none;
 }
-
-/*
-body {
-  min-width: $(content.width);
-}
-
-.content-outer, .region-inner {
-  min-width: $(content.width);
-  _width: $(content.width);
-}
-
-.main-inner .columns {
-  padding-left: $(main.column.left.width);
-  padding-right: $(main.column.right.width);
-}
-
-  .main-inner .column-left-outer {
-    width: $(main.column.left.width);
-    right: 100%;
-    margin-left: -$(main.column.left.width);
-  }
-
-  .main-inner .column-right-outer {
-    width: $(main.column.right.width);
-    margin-right: -$(main.column.right.width);
-  }
-*/
-
-/* Layout
----------------------------------------------- */
-/*
-#layout {
-  min-width: 0;
-}
-
-#layout .content-outer {
-  min-width: 0;
-  width: 800px;
-}
-
-#layout .region-inner {
-  min-width: 0;
-  width: auto;
-}
-*/
 
 /* Accents
 ---------------------------------------------- */
@@ -135,12 +82,11 @@ body {
 }
 
 #comments .comment-author:first-child {
-  padding-top: 0;
   border-top: none;
 }
 
 .avatar-image-container {
-  margin: .2em 0 0;
+  margin-top: .2em;
 }
 
 #comments .avatar-image-container img {

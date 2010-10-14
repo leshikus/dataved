@@ -1,8 +1,8 @@
 ﻿/* Discard
 ----------------------------------------------- */
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #navbar {
@@ -12,11 +12,11 @@
 /* Widths
 ----------------------------------------------- */
 .tabs-outer, .main-outer {
-  width: 852px;
+  width: 832px;
 }
 
 .header-inner .widget {
-  width: 234px;
+  width: 224px;
 }
 
 /* Body
@@ -76,4 +76,3 @@ img.fleft {
 .header-inner .HTML {
   font-size: 140%;
 }
-
