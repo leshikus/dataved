@@ -56,6 +56,10 @@ img.fleft {
 
 /* Widgets
 ----------------------------------------------- */
+.sidebar {
+  float: left;
+}
+
 .widget {
   margin: 15px !important;
   padding: 15px;
