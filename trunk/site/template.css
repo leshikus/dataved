@@ -1,11 +1,4 @@
 /* Template specific style */
-.content {
-  margin: 15px;
-}
-
-.content-outer, .header-outer, .tabs-outer, .main-outer, .main-inner, .footer-outer, .post, .comments, .widget, .date-header, .inline-ad {
-  position: static;
-}
 
 /* Tabs
 ----------------------------------------------- */
