@@ -1,10 +1,10 @@
 /* Widths
 ----------------------------------------------- */
 ul.menu, .menuWrapper {
-  width: 851px;
+  width: 830px;
 }
 ul.menu > li, ul.menu > li > a {
-  width: 283px;
+  width: 276px;
 }
 
 /* Beautifications
