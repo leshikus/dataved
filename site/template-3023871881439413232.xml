@@ -778,7 +778,7 @@ h1, h2, h3, h4, h5 {
 
 	  <aside>
 	  <macro:include id='main-column-left-sections' name='sections'>
-		<macro:param default='0' name='num'/>
+		<macro:param default='0' name='num' value='0'/>
 		<macro:param default='sidebar-left' name='idPrefix'/>
 		<macro:param default='sidebar' name='class'/>
 		<macro:param default='true' name='includeBottom'/>
@@ -787,7 +787,7 @@ h1, h2, h3, h4, h5 {
 
 	  <aside>
 	  <macro:include id='main-column-right-sections' name='sections'>
-		<macro:param default='2' name='num'/>
+		<macro:param default='2' name='num' value='2'/>
 		<macro:param default='sidebar-right' name='idPrefix'/>
 		<macro:param default='sidebar' name='class'/>
 		<macro:param default='true' name='includeBottom'/>
