@@ -57,8 +57,10 @@ img.fleft {
 /* Widgets
 ----------------------------------------------- */
 .section {
+}
+
+aside {
   float: left;
-  clear: left;
 }
 
 .widget {
