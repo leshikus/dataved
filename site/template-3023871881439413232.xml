@@ -480,15 +480,9 @@ h1, h2, h3, h4, h5 {
 
         <!-- quickedit pencil -->
         <b:include data='post' name='postQuickEdit'/>
-      </span> <span class='post-backlinks post-comment-link'>
-         <b:if cond='data:blog.pageType != &quot;item&quot;'>
-           <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
-             <b:if cond='data:post.showBacklinks'>
-               <a class='comment-link' expr:href='data:post.url + &quot;#links&quot;'><data:top.backlinkLabel/></a>
-             </b:if>
-           </b:if>
-         </b:if>
-       </span> </div>
+      </span> <div class='post-share-buttons'>
+          <b:include data='post' name='shareButtons'/>
+        </div> </div>
 
       <div class='post-footer-line post-footer-line-2'><span class='post-labels'>
         <b:if cond='data:post.labels'>
