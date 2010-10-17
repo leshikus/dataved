@@ -89,3 +89,95 @@ aside {
 .header-inner .HTML {
   font-size: 140%;
 }
+
+/* Template specific style */
+
+/* Tabs
+----------------------------------------------- */
+.tabs-inner .section:first-child ul {
+  margin-top: -1px;
+  border-top: 1px solid #eee;
+  border-left: 0px solid #eee;
+  border-right: 0px solid #eee;
+}
+
+.tabs-inner .widget ul {
+  _background-image: none;
+  border-bottom: 1px solid #eee;
+
+  margin-left: -2ex;
+  margin-right: -2ex;
+}
+
+.tabs-inner .widget li a {
+  display: inline-block;
+  padding: .6em 1em;
+
+  color: #999;
+
+  border-left: 1px solid #fff;
+  border-right: 1px solid #eee;
+}
+
+.tabs-inner .widget li:first-child a {
+  border-left: none;
+}
+
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+  color: #000;
+  background-color: #eee;
+  text-decoration: none;
+}
+
+.tabs-inner .widget li:first-child a {
+  border-$startSide: none;
+}
+
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+  color: #58a;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.widget .popular-posts ul {
+  list-style: none;
+}
+
+/* Accents
+---------------------------------------------- */
+.blog-pager {
+  background: transparent none no-repeat scroll top center;
+}
+
+.blog-pager-older-link, .home-link,
+.blog-pager-newer-link {
+  background-color: #fefeff;
+  padding: 1ex;
+}
+
+.footer-outer {
+  border-top: 0 dashed #bbbbbb;
+}
+
+/* Comments
+----------------------------------------------- */
+#comments .comment-author {
+  padding-top: 1.5em;
+  background-position: 0 1.5em;
+}
+
+#comments .comment-author:first-child {
+  border-top: none;
+}
+
+.avatar-image-container {
+  margin-top: .2em;
+}
+
+#comments .avatar-image-container img {
+  border: none;
+}
+
+#comments .comment-author {
+  border-top: 1px solid #eee;
+}
