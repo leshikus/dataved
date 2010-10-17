@@ -101,7 +101,7 @@ h3.post-title, .comments h4 {
 
 /* Posting style
 ----------------------------------------------- */
-.post-body p {
+.post-body p, ol {
   margin: 1em 0;
 }
 
