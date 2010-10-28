@@ -141,7 +141,6 @@ function get_git_dist_dir() {
 function git_dist() {
   GIT_DIST="$1"
   CHECK_DIST="$2"
-  sh "$DDIR"/util/get_git.sh
 
   DIST_DIR=`get_git_dist_dir "$GIT_DIST"`
   (
