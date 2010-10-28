@@ -1,0 +1,10 @@
+#!/bin/sh
+
+DDIR=`dirname "$0"`/..
+. "$DDIR"/util.sh
+
+GIT_URL=http://kernel.org/pub/software/scm/git/git-1.7.3.1.tar.bz2
+wget_dist "$GIT_URL"
+
+exec_tool "$@"
+
