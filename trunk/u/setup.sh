@@ -21,7 +21,7 @@ function generate_ssh_keypair() {
 function check_server() {
   cat "$KEY_NAME".pub |
     ssh -p $SSH_PORT $SSH_ID \
-    'read key; grep -Fx "$key" \$HOME/.ssh/authorized_keys2 || echo "$key" >>\$HOME/.ssh/authorized_keys2'
+    'read key; grep -Fx "$key" $HOME/.ssh/authorized_keys2 || echo "$key" >>$HOME/.ssh/authorized_keys2'
 }
 
 function hide_sensitive_data() {
