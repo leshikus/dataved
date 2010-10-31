@@ -6,7 +6,7 @@
   position: static;
 }
 
-#navbar {
+#uds-searchControl .gs-branding, #navbar {
   display: none;
 }
 
