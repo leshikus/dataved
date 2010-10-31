@@ -6,8 +6,12 @@
   position: static;
 }
 
-.gs-branding, #navbar {
+#navbar {
   display: none;
+}
+
+.gs-branding {
+  display: none !important;
 }
 
 /* Widths
