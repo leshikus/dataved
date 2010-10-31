@@ -10,8 +10,13 @@
   display: none;
 }
 
-.gs-branding {
+/* Search
+----------------------------------------------- */
+table .gs-branding {
   display: none !important;
+}
+input .gsc-search-button {
+  background-image: url("http://www.google.com/uds/css/small-logo.png");
 }
 
 /* Widths
