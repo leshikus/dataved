@@ -190,7 +190,10 @@ function add_path() {
 function exec_tool() {
   NAME=`basename "$0"`
   LOC=`which "$NAME"`
-  test "$LOC" == "$DDIR/bin/$NAME" ||
-    exec "$LOC" "$@"
+  if test "$LOC" == "$DDIR/bin/$NAME"
+  then
+    error "Cannot install $NAME - try to reinstal it manually"
+  fi
+  exec "$LOC" "$@"
 }
 
