@@ -1,4 +1,7 @@
 #!/bin/sh
 
-sudo yum install zlib-devel.x86_64 subversion.x86_64 gcc.x86_64 gcc-c++.x86_64 expect.x86_64 automake
+DDIR=`dirname "$0"`
+. "$DDIR"/config.sh
+
+sudo yum install zlib-devel.$ARCH subversion.$ARCH gcc.$ARCH gcc-c++.$ARCH expect.$ARCH gnupg.$ARCH
 

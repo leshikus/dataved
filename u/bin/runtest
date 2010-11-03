@@ -9,8 +9,7 @@ function test_dist() {
   make check
 }
 
-DG_GIT=git://git.sv.gnu.org/dejagnu.git
-git_dist "$DG_GIT"
+git_dist git://git.sv.gnu.org/dejagnu.git
 
 exec_tool "$@"
 
