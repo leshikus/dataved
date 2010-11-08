@@ -70,7 +70,7 @@ function build_dist() {
   test -n "$DIST_DIR" || error "Empty DIST_DIR"
   (
     cd "$DDIR/dist/$DIST_DIR"
-    test -f "configure" && ./configure --prefix="$DDIR"/usr
+    test -f "configure" && ./configure -prefix="$DDIR"/usr
     test -f "Makefile" && {
       make
       make install prefix="$DDIR"/usr
