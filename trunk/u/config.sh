@@ -3,6 +3,7 @@
 # Working Directories
 DDIR=`cd "$DDIR"; pwd -P`
 QDIR=`echo "$DDIR" | sed -e 's/ /\\ /g'`
+mkdir -p "$DDIR"/dist "$DDIR"/timestamp "$DDIR"/tmp "$DDIR"/usr/bin
 
 # Run an upper level config if any
 if test -f "$DDIR"/../config.sh
