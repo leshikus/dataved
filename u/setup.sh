@@ -39,8 +39,6 @@ check_server
 
 hide_sensitive_data
 
-mkdir -p "$DDIR"/dist "$DDIR"/timestamp "$DDIR"/tmp "$DDIR"/usr
-
 # Update Hudson
 wget_dist "$HUDSON_URL"
 
