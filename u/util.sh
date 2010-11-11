@@ -160,23 +160,14 @@ function git_dist() {
   )
 }
 
-function set_ssh_port() {
-  PORT="Port $SSH_PORT"
-  CONFIG="$HOME"/.ssh/config
-
-  add_line "$PORT" "$CONFIG"
-}
-
 function update_dist() {
-  set_ssh_port
-
   DIST="$1"
   DIST_NAME=`basename "$DIST"`
 
-  rsync -lptDzv "$SSH_ID:$DIST" "$DDIR"/timestamp |
+  rsync -lptDzve "$SVN_SSH" "$SSH_ID:$DIST" "$DDIR"/timestamp |
     fgrep "$DIST_NAME" || return 0
 
-  rsync -rLptDzv "$SSH_ID:$DIST" "$DDIR"/dist
+  rsync -rLptDzve "$SVN_SSH" "$SSH_ID:$DIST" "$DDIR"/dist
 }
 
 function add_path() {
