@@ -32,7 +32,7 @@ then
   ARCH_BITS=64 
 fi
   
-PATH="$DDIR/usr/bin:$DDIR/bin:$PATH" # installed tools have a priority
+PATH="$DDIR/usr/bin:$DDIR/bin:/bin:/usr/bin" # installed tools have a priority
 LDFLAGS="-L$QDIR/usr/lib"
 CPPFLAGS="-I$QDIR/usr/include"
 LD_LIBRARY_PATH="$DDIR/usr/lib"
