@@ -3,6 +3,11 @@
 set -evx
 . "$DDIR"/config.sh
 
+echo '+++ Environment'
+set
+echo '+++ System'
+uname -a
+
 #
 # Generic Functions
 #
