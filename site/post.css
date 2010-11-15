@@ -102,8 +102,8 @@ h3.post-title, .comments h4 {
 /* Posting style
 ----------------------------------------------- */
 .post-body p {
-  margin: 1em 0
-  line-height: 1.5 !important;
+  margin: 1em 0;
+  line-height: 1.5;
 }
 
 .post-body ul, ol {
