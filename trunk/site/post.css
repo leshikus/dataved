@@ -103,7 +103,7 @@ h3.post-title, .comments h4 {
 ----------------------------------------------- */
 .post-body p {
   margin: 1em 0
-  line-height: 1.5;
+  line-height: 1.5 !important;
 }
 
 .post-body ul, ol {
