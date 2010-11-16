@@ -177,7 +177,11 @@ function update_dist() {
 
 function add_path() {
   fgrep -x "$1" "$DDIR/tmp/path.txt" || echo "$1" >>"$DDIR/tmp/path.txt"
-  sed -e 's/^/PATH="$PATH":/; s/\n/:/' "$DDIR/tmp/path.txt" >"$DDIR/tmp/set_path.sh"
+  (
+    echo $PATH
+    cat "$DDIR/tmp/path.txt"
+  ) | perl -p -e 's/\n/:' |
+    sed -e 's/^/PATH="/; s/$/"; export PATH/' >"$DDIR/tmp/set_path.sh"
 }
 
 #

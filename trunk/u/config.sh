@@ -1,8 +1,13 @@
 #!/bin/sh
 
-# Working Directories
+# Environment functions
+function quote_space() {
+  sed -e 's/ /\\ /g'
+}
+
+# Working directories
 DDIR=`cd "$DDIR"; pwd -P`
-QDIR=`echo "$DDIR" | sed -e 's/ /\\ /g'`
+QDIR=`echo "$DDIR" | quote_space`
 mkdir -p "$DDIR"/dist "$DDIR"/timestamp "$DDIR"/tmp "$DDIR"/usr/bin
 
 # Run an upper level config if any
