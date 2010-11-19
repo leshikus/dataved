@@ -17,13 +17,13 @@
 
 #include <stdarg.h>
 #include <stdlib.h>
-
-//#define PTRACE(format, value) printf("# trace %s: \n")
+#include <stdio.h>
 
 #define PTRACE(format, value) printf("# trace %s: " format "\n", \
   __func__, value); 
+//#define PTRACE(format, value) value;
 
-int
+static int
 _fscanf(FILE *stream, const char *format, ...) {
   va_list arg;
   int done;
@@ -77,8 +77,9 @@ _fscanf(FILE *stream, const char *format, ...) {
 
   return done;
 }
-/*
-void *_malloc(size_t size) {
+
+static void *
+_malloc(size_t size) {
   void *ptr;
   PTRACE("allocating %li bytes", size);
 
@@ -89,10 +90,11 @@ void *_malloc(size_t size) {
     PTRACE("cannot allocate %li bytes", size);
   }
   return ptr;
-}*/
+}
+
 
 #define fscanf _fscanf
-//#define malloc _malloc
+#define malloc _malloc
 
 #endif  // WRAP_H_
 
