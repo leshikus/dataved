@@ -78,23 +78,36 @@ _fscanf(FILE *stream, const char *format, ...) {
   return done;
 }
 
+
+
 static void *
 _malloc(size_t size) {
+  static malloc_count = 0;
   void *ptr;
   PTRACE("allocating %li bytes", size);
 
   ptr = malloc(size);
   if (ptr) {
     PTRACE("allocated at %p !ignore", ptr);
+    PTRACE("allocated memory %i times", ++malloc_count);
   } else {
     PTRACE("cannot allocate %li bytes", size);
   }
   return ptr;
 }
 
+static void
+_free(void *ptr) {
+  static free_count = 0;
+  PTRACE("freeing at %p !ignore", ptr);
+  free(ptr);
+  PTRACE("freed memory %i times", ++free_count);
+}
+
 
 #define fscanf _fscanf
 #define malloc _malloc
+#define free _free
 
 #endif  // WRAP_H_
 
