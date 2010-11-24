@@ -36,7 +36,7 @@ _fscanf(FILE *stream, const char *format, ...) {
 
   va_start(arg, format);
   const char *f;
-  char *s;
+  const char *s;
 
   for (f = format; *f; f++) {
     if (*f != '%') continue;
@@ -63,7 +63,7 @@ _fscanf(FILE *stream, const char *format, ...) {
         case 's':
           s = va_arg(arg, char*);
           PTRACE("string first word = %i", *s);
-          PTRACE("string length = %i", strlen(s));
+          PTRACE("string length = %lu", strlen(s));
           PTRACE("string content = %s", s);
           break;
         case '*': break;
