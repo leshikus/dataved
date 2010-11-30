@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 	else
 	    failed += 1;
     }
-    if (passed == 0)
+    if (failed == 0)
 	printf("OK, total %d tests\n", passed);
     else
 	printf("FAILED %d, total %d tests\n", failed, failed+passed);
