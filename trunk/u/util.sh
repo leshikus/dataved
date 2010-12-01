@@ -44,11 +44,11 @@ function unpack_dist() {
   FILE_TYPE=`file -b "$DIST"`
   case "$FILE_TYPE" in
   bzip2\ compressed\ data*)
-    DIST_DIR=`tar -jtf "$DIST" | head -1`
+    tar -jtf "$DIST" | head -1
     tar -jxf "$DIST" -C "$DDIR"/dist
     ;;
   gzip\ compressed\ data*)
-    DIST_DIR=`tar -ztf "$DIST" | head -1`
+    tar -ztf "$DIST" | head -1
     tar -zxf "$DIST" -C "$DDIR"/dist
     ;;
   Bourne\ shell\ script\ text\ executable)
