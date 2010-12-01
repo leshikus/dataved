@@ -1,10 +1,7 @@
 #!/bin/sh
 
-set -evx
 . "$DDIR"/config.sh
 
-echo '+++ Environment'
-set
 echo '+++ System'
 uname -a
 
@@ -28,7 +25,6 @@ add_line() {
   grep -Fx "$1" "$2" || echo "$1" >>"$2"
 }
 
-# 0 if the file was not downloaded
 function rm_subdir() {
   test -d "$DDIR/$1" || error "No such dir: $1"
   test -n "$1" || error "Empty subdir: $1"
@@ -42,31 +38,26 @@ function rm_subdir() {
 #
 # Dependence Download & Build Utilities
 #
-function get_dist_dir() {
-  DIST="$DDIR/timestamp/$1"
-
-  case "$DIST" in
-  *.bz2)
-    tar -jtf "$DIST" | head -1
-    ;;
-  *.tgz | *.tar.gz)
-    tar -ztf "$DIST" | head -1
-    ;;
-  *)
-    return 1
-  esac
-}
-
 function unpack_dist() {
   DIST="$DDIR/timestamp/$1"
 
-  case "$DIST" in
-  *.bz2)
+  FILE_TYPE=`file -b "$DIST"`
+  case "$FILE_TYPE" in
+  bzip2\ compressed\ data*)
+    DIST_DIR=`tar -jtf "$DIST" | head -1`
     tar -jxf "$DIST" -C "$DDIR"/dist
     ;;
-  *.tgz | *.tar.gz)
+  gzip\ compressed\ data*)
+    DIST_DIR=`tar -ztf "$DIST" | head -1`
     tar -zxf "$DIST" -C "$DDIR"/dist
     ;;
+  Bourne\ shell\ script\ text\ executable)
+    ln -fs "$DIST" "$DDIR/usr/bin/$DIST_NAME"
+    chmod u+x "$DDIR/usr/bin/$DIST_NAME"
+    return 1;
+    ;;
+  *)
+    return 1;
   esac
 }
 
@@ -90,6 +81,7 @@ function test_dist() {
   )
 }
 
+# 0 if the file was not downloaded
 function wget_newer() {
   set_tmp_file_name wget_dist_err
   (
@@ -126,10 +118,10 @@ function wget_dist() {
     check_sig "$DIST_NAME" "$DIST_SIG"
   )
 
-  DIST_DIR=`get_dist_dir "$DIST_NAME"` || return 0
-  rm_subdir dist "$DIST_DIR"
-  unpack_dist "$DIST_NAME"
-  build_dist "$DIST_DIR"
+  if DIST_DIR=`unpack_dist "$DIST_NAME"`
+  then
+    build_dist "$DIST_DIR"
+  fi
 }
 
 function gnuget_dist() {
