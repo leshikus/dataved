@@ -37,6 +37,10 @@ ul.menu > li {
 }
 ul.menu > li.last {
   border: none;
+  background-position: -554px 0;
+}
+.mid {
+  background-position: -277px 0;
 }
 .bg1 {
   background-image:  url(http://lh3.ggpht.com/_aUeHSbJneFc/TPklTBiFjdI/AAAAAAAADHQ/vexrNHfOBUY/s830/books.jpg);
@@ -47,6 +51,7 @@ ul.menu > li.last {
 .bg3 {
   background-image:  url(../images/3.jpg);
 }
+
 ul.menu > li > a {
   float: left;
   height: 50px;
