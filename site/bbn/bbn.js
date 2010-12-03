@@ -5,7 +5,12 @@ google.setOnLoadCallback(
       var current = 0;
       
       var loaded  = 0;
-      for(var i = 1; i <4; ++i)
+
+      var image_urls = ['http://lh6.ggpht.com/_aUeHSbJneFc/TPlIZSknFOI/AAAAAAAADHo/qZndNWYs-tw/s830/consult1.jpg',
+		'http://lh3.ggpht.com/_aUeHSbJneFc/TPlIY5WactI/AAAAAAAADHk/zlGxggk9yWE/s830/consult2.jpg',
+		'http://lh6.ggpht.com/_aUeHSbJneFc/TPlIYHMgP8I/AAAAAAAADHg/k4ajhekdFQ4/s830/consult3.jpg']
+	  
+      for(var i = 0; i < 3; i++)
         $('<img />').load(function(){
           ++loaded;
           if(loaded == 3){
@@ -26,11 +31,11 @@ google.setOnLoadCallback(
               otherwise right->left
                */
               if(item == 'bg1' || current == 2)
-                $('#menu .sub'+parseInt(current+1)).stop().animate({backgroundPosition:"(-266px 0)"},300,function(){
+                $('#menu .sub'+parseInt(current+1)).stop().animate({backgroundPosition:"(-277px 0)"},300,function(){
                   $(this).find('li').hide();
                 });
               else
-                $('#menu .sub'+parseInt(current+1)).stop().animate({backgroundPosition:"(266px 0)"},300,function(){
+                $('#menu .sub'+parseInt(current+1)).stop().animate({backgroundPosition:"(277px 0)"},300,function(){
                   $(this).find('li').hide();
                 });
 
@@ -51,10 +56,10 @@ google.setOnLoadCallback(
               from left to right or right to left.
                */
               if(current == 2 && item == 'bg1'){
-                $('#menu .sub'+parseInt(current)).stop().animate({backgroundPosition:"(-266px 0)"},300);
+                $('#menu .sub'+parseInt(current)).stop().animate({backgroundPosition:"(-277px 0)"},300);
               }
               if(current == 0 && item == 'bg3'){
-                $('#menu .sub'+parseInt(current+2)).stop().animate({backgroundPosition:"(266px 0)"},300);
+                $('#menu .sub'+parseInt(current+2)).stop().animate({backgroundPosition:"(277px 0)"},300);
               }
 
               
@@ -68,7 +73,7 @@ google.setOnLoadCallback(
               });
             });
           }  
-        }).attr('src', 'images/'+i+'.jpg');
+        }).attr('src', image_urls[i]);
       
             
       /*
