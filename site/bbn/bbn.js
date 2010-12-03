@@ -36,12 +36,12 @@ google.setOnLoadCallback(
 
               if(item == 'bg1' || current == 2){
                 /* if we hover the first <li> or if we come from the last one, then the images should move left -> right */
-                $('#menu > li').animate({backgroundPosition:"(-800px 0)"},0).removeClass('bg1 bg2 bg3').addClass(item);
+                $('#menu > li').animate({backgroundPosition:"(-830px 0)"},0).removeClass('bg1 bg2 bg3').addClass(item);
                 move(1,item);
               }
               else{
                 /* if we hover the first <li> or if we come from the last one, then the images should move right -> left */
-                $('#menu > li').animate({backgroundPosition:"(800px 0)"},0).removeClass('bg1 bg2 bg3').addClass(item);
+                $('#menu > li').animate({backgroundPosition:"(830px 0)"},0).removeClass('bg1 bg2 bg3').addClass(item);
                 move(0,item);
               }
 
@@ -78,8 +78,8 @@ google.setOnLoadCallback(
       function move(dir,item){
         if(dir){
           $('#bg1').parent().stop().animate({backgroundPosition:"(0 0)"},200);
-          $('#bg2').parent().stop().animate({backgroundPosition:"(-266px 0)"},300);
-          $('#bg3').parent().stop().animate({backgroundPosition:"(-532px 0)"},400,function(){
+          $('#bg2').parent().stop().animate({backgroundPosition:"(-277px 0)"},300);
+          $('#bg3').parent().stop().animate({backgroundPosition:"(-554px 0)"},400,function(){
             $('#menuWrapper').removeClass('bg1 bg2 bg3').addClass(item);
           });
         }
@@ -87,10 +87,11 @@ google.setOnLoadCallback(
           $('#bg1').parent().stop().animate({backgroundPosition:"(0 0)"},400,function(){
             $('#menuWrapper').removeClass('bg1 bg2 bg3').addClass(item);
           });
-          $('#bg2').parent().stop().animate({backgroundPosition:"(-266px 0)"},300);
-          $('#bg3').parent().stop().animate({backgroundPosition:"(-532px 0)"},200);
+          $('#bg2').parent().stop().animate({backgroundPosition:"(-277px 0)"},300);
+          $('#bg3').parent().stop().animate({backgroundPosition:"(-554px 0)"},200);
         }
       }
     });
   }
 );
+
