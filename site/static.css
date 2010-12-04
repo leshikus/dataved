@@ -17,6 +17,7 @@ table .gs-branding {
 }
 input .gsc-search-button {
   background-image: url("http://www.google.com/uds/css/small-logo.png");
+  background-color: transparent;
 }
 
 /* Widths
