@@ -15,8 +15,11 @@ google.setOnLoadCallback(
           ++loaded;
           if(loaded == 3){
             $('#bg1,#bg2,#bg3').mouseover(function(e){
-              alert('st1')
+
               var $this = $(this);
+              
+              alert("$this.parent().index() = " + $this.parent().index())
+              alert("current = " + current)
               /* if we hover the current one, then don't do anything */
               if($this.parent().index() == current)
                 return;
