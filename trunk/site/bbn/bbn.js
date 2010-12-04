@@ -6,8 +6,8 @@ google.setOnLoadCallback(
       
       var loaded  = 0;
 
-      var image_urls = ['http://lh3.ggpht.com/_aUeHSbJneFc/TPl9_rC_j9I/AAAAAAAADHs/6easaO1Nwwo/s830/consult1.jpg',
-		'http://lh3.ggpht.com/_aUeHSbJneFc/TPlIY5WactI/AAAAAAAADHk/zlGxggk9yWE/s830/consult2.jpg',
+      var image_urls = ['http://lh3.ggpht.com/_aUeHSbJneFc/TPoxM6AVMGI/AAAAAAAADH0/Kr7iHDTr4E0/s830/consult1.jpg',
+		'http://lh3.ggpht.com/_aUeHSbJneFc/TPoxkm1KgZI/AAAAAAAADIE/9zjoPHL2BXA/s830/consult2.jpg',
 		'http://lh6.ggpht.com/_aUeHSbJneFc/TPlIYHMgP8I/AAAAAAAADHg/k4ajhekdFQ4/s830/consult3.jpg']
 	  
       for(var i = 0; i < 3; i++)
