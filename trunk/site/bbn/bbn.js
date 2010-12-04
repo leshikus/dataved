@@ -15,12 +15,13 @@ google.setOnLoadCallback(
           ++loaded;
           if(loaded == 3){
             $('#bg1,#bg2,#bg3').mouseover(function(e){
-              
+              alert('st1')
               var $this = $(this);
               /* if we hover the current one, then don't do anything */
               if($this.parent().index() == current)
                 return;
 
+              alert('st2')
               /* item is bg1 or bg2 or bg3, depending where we are hovering */
               var item = e.target.id;
 
@@ -30,6 +31,7 @@ google.setOnLoadCallback(
               then the overlay should move left -> right,
               otherwise right->left
                */
+              alert('st3')
               if(item == 'bg1' || current == 2)
                 $('#menu .sub'+parseInt(current+1)).stop().animate({backgroundPosition:"(-277px 0)"},300,function(){
                   $(this).find('li').hide();
@@ -39,6 +41,7 @@ google.setOnLoadCallback(
                   $(this).find('li').hide();
                 });
 
+              alert('st4')
               if(item == 'bg1' || current == 2){
                 /* if we hover the first <li> or if we come from the last one, then the images should move left -> right */
                 $('#menu > li').animate({backgroundPosition:"(-830px 0)"},0).removeClass('bg1 bg2 bg3').addClass(item);
@@ -50,6 +53,7 @@ google.setOnLoadCallback(
                 move(0,item);
               }
 
+              alert('st5')
               /*
               We want that if we go from the first one to the last one (without hovering the middle one),
               or from the last one to the first one, the middle menu's overlay should also slide, either
@@ -63,14 +67,19 @@ google.setOnLoadCallback(
               }
 
               
+              alert('st6')
               /* change the current element */
               current = $this.parent().index();
               
               /* let's make the overlay of the current one appear */
                
+              alert('st7')
               $('#menu .sub'+parseInt(current+1)).stop().animate({backgroundPosition:"(0 0)"},300,function(){
                 $(this).find('li').fadeIn();
               });
+
+              alert('st8')
+              
             });
           }  
         }).attr('src', image_urls[i]);
