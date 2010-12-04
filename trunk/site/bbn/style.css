@@ -106,9 +106,9 @@ ul.menu > li ul li a: hover {
 }
 
 .reference p a {
-  text-transform: uppercase;
   text-shadow: 1px 1px 1px #fff;
   color: #666;
+  text-align: right;
   text-decoration: none;
   font-size: 10px;
 }
