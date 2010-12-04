@@ -320,10 +320,10 @@ h1, h2, h3, h4, h5 {
     </header>
 
 	<!-- aaf: page1 -->
+    <b:if cond='data:blog.url != data:blog.homepageUrl'>
     <!--
     <b:if cond='1 == 1'>
     -->
-    <b:if cond='data:blog.url != data:blog.homepageUrl'>
 
     <div class='tabs-outer'>
     <div class='region-inner tabs-inner'>
@@ -845,7 +845,7 @@ h1, h2, h3, h4, h5 {
   <b:if cond='data:blog.url != data:blog.homepageUrl'><!-- aaf: page1 -->
   <b:else/><!-- Delay library loading -->
   <script type='text/javascript'>
-    google.load(&quot;jquery&quot;, &quot;1.2.6&quot;);
+    google.load(&quot;jquery&quot;, &quot;1&quot;);
   </script>
   <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js' type='text/javascript'/>
   <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js' type='text/javascript'/>
