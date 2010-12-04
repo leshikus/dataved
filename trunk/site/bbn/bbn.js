@@ -10,9 +10,6 @@ google.setOnLoadCallback(
 		'http://lh4.ggpht.com/_aUeHSbJneFc/TPo5CVrIJyI/AAAAAAAADIY/d7AIU5jvf6I/s830/consult2.jpg',
 		'http://lh6.ggpht.com/_aUeHSbJneFc/TPlIYHMgP8I/AAAAAAAADHg/k4ajhekdFQ4/s830/consult3.jpg']
 
-              alert($().jquery)
-              
-        
       for(var i = 0; i < 3; i++)
         $('<img />').load(function(){
           ++loaded;
