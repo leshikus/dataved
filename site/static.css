@@ -182,20 +182,6 @@ a.feed-reader-link{display:block;font-weight:normal;margin:.5em;text-decoration:
 .blog-list-container .show-option{font-size:75%;text-align:right}
 div.gsc-control{width:100%}
 .cse-status{color:#676767;font-size:11px;margin:10px;padding:4px}
-#uds-searchControl{position:relative}
-#uds-searchClearResults{position:absolute;top:15px;right:-3px;display:none;border-width:1px;border-style:solid;padding:0;height:9px;width:9px}
-#uds-searchControl .gsc-results{padding:1em 1em 0 1em;margin:0 0 2em;border-width:1px;border-style:solid;width:auto}
-#uds-searchControl .gsc-resultsHeader{display:none}
-#uds-searchControl .gsc-tabsArea{float:left;position:relative;top:1px;padding-right:10px}
-#uds-searchControl .gsc-tabHeader{float:left;line-height:1.7}
-#uds-searchControl .gsc-tabHeader.gsc-tabhActive{border-width:2px 1px 0 1px;border-style:solid;font-weight:bold}
-#uds-searchControl .gsc-tabHeader.gsc-tabhInactive{border-width:0;border-style:solid;padding-top:2px}
-#uds-searchControl .gsc-resultsbox-visible{clear:left}
-#uds-searchControl .gs-result .gs-title,#uds-searchControl .gsc-results .gsc-trailing-more-results{line-height:1.5em}
-#uds-searchControl .gs-relativePublishedDate,#uds-searchControl .gs-publishedDate{line-height:1.3em}
-#uds-searchControl .gs-result a.gs-visibleUrl,#uds-searchControl .gs-result .gs-visibleUrl{line-height:1.3em;font-size:95%}
-#uds-searchControl .gs-result .gs-snippet{margin:.25em 0;line-height:1.2em}
-#uds-searchControl .gs-no-results-result .gs-snippet,#uds-searchControl .gs-error-result .gs-snippet{border:none;background-color:transparent;font-style:italic}
 .label-size-1{font-size:80%;filter:alpha(80);opacity:.8}
 .label-size-2{font-size:90%;filter:alpha(90);opacity:.9}
 .label-size-3{font-size:100%}
@@ -1576,6 +1562,22 @@ color: #00c;
 #uds-searchControl .gsc-cursor-current-page {
 color: #000;
 }
+
+/* From bundle */
+#uds-searchClearResults{position:absolute;top:15px;right:-3px;display:none;border-width:1px;border-style:solid;padding:0;height:9px;width:9px}
+#uds-searchControl .gsc-results{padding:1em 1em 0 1em;margin:0 0 2em;border-width:1px;border-style:solid;width:auto}
+#uds-searchControl .gsc-resultsHeader{display:none}
+#uds-searchControl .gsc-tabsArea{float:left;position:relative;top:1px;padding-right:10px}
+#uds-searchControl .gsc-tabHeader{float:left;line-height:1.7}
+#uds-searchControl .gsc-tabHeader.gsc-tabhActive{border-width:2px 1px 0 1px;border-style:solid;font-weight:bold}
+#uds-searchControl .gsc-tabHeader.gsc-tabhInactive{border-width:0;border-style:solid;padding-top:2px}
+#uds-searchControl .gsc-resultsbox-visible{clear:left}
+#uds-searchControl .gs-result .gs-title,#uds-searchControl .gsc-results .gsc-trailing-more-results{line-height:1.5em}
+#uds-searchControl .gs-relativePublishedDate,#uds-searchControl .gs-publishedDate{line-height:1.3em}
+#uds-searchControl .gs-result a.gs-visibleUrl,#uds-searchControl .gs-result .gs-visibleUrl{line-height:1.3em;font-size:95%}
+#uds-searchControl .gs-result .gs-snippet{margin:.25em 0;line-height:1.2em}
+#uds-searchControl .gs-no-results-result .gs-snippet,#uds-searchControl .gs-error-result .gs-snippet{border:none;background-color:transparent;font-style:italic}
+
 
 /* The skin ends
 ----------------------------------------------- */
