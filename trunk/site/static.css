@@ -1,4 +1,200 @@
-﻿/* The skin
+﻿/* Default
+----------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  position: static;
+}
+
+#navbar {
+  display: none;
+}
+
+/* Search
+----------------------------------------------- */
+table .gs-branding {
+  display: none !important;
+}
+input .gsc-search-button {
+  background-image: url("http://www.google.com/uds/css/small-logo.png");
+  background-color: transparent;
+}
+
+/* Widths
+----------------------------------------------- */
+.tabs-outer, .main {
+  width: 860px;
+}
+
+.header-inner .widget {
+  width: 226px;
+}
+
+/* Body
+----------------------------------------------- */
+body {
+  line-height: 1.5;
+}
+
+.content {
+  margin: 15px;
+}
+
+/* Links
+----------------------------------------------- */
+a:link, a:visited , a:hover {
+  text-decoration: underline;
+}
+
+/* Images
+----------------------------------------------- */
+a img {
+  border-width: 0;
+}
+
+img.fleft {
+  float: left;
+}
+
+/* Logo
+----------------------------------------------- */
+.Header .descriptionwrapper {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 90%;
+}
+
+/* Widgets
+----------------------------------------------- */
+aside {
+  float: left;
+  width: 320;
+}
+
+.widget {
+  margin: 15px !important;
+  padding: 15px;
+  float: left;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  background-color: #ffffff;
+}
+
+.widget .zippy {
+color: #999999;
+}
+
+.widget-content {
+  margin: 0 auto;
+}
+
+.header-inner img {
+  display: block;
+  margin: 0 auto;
+}
+
+.header-inner .widget {
+  height: 54px;
+  text-align: center;
+}
+
+.header-inner .HTML {
+  font-size: 140%;
+}
+
+/* Template specific style */
+
+/* Tabs
+----------------------------------------------- */
+.tabs-inner .section:first-child ul {
+  margin-top: -1px;
+  border-top: 1px solid #eee;
+  border-left: 0px solid #eee;
+  border-right: 0px solid #eee;
+}
+
+.tabs-inner .widget ul {
+  _background-image: none;
+  border-bottom: 1px solid #eee;
+
+  margin-left: -2ex;
+  margin-right: -2ex;
+}
+
+.tabs-inner .widget li a {
+  display: inline-block;
+  padding: .6em 1em;
+
+  color: #999;
+
+  border-left: 1px solid #fff;
+  border-right: 1px solid #eee;
+}
+
+.tabs-inner .widget li:first-child a {
+  border-left: none;
+}
+
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+  color: #000;
+  background-color: #eee;
+  text-decoration: none;
+}
+
+.tabs-inner .widget li:first-child a {
+  border-left: none;
+}
+
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+  color: #58a;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.widget .popular-posts ul {
+  list-style: none;
+}
+
+/* Accents
+---------------------------------------------- */
+.blog-pager {
+  background: transparent none no-repeat scroll top center;
+}
+
+.blog-pager-older-link, .home-link,
+.blog-pager-newer-link {
+  background-color: #fefeff;
+  padding: 1ex;
+}
+
+.footer-outer {
+  border-top: 0 dashed #bbbbbb;
+}
+
+/* Comments
+----------------------------------------------- */
+#comments .comment-author {
+  padding-top: 1.5em;
+  background-position: 0 1.5em;
+}
+
+#comments .comment-author:first-child {
+  border-top: none;
+}
+
+.avatar-image-container {
+  margin-top: .2em;
+}
+
+#comments .avatar-image-container img {
+  border: none;
+}
+
+#comments .comment-author {
+  border-top: 1px solid #eee;
+}
+
+/* The skin
 ----------------------------------------------- */
 body {
 font: normal normal 14px Verdana, Arial, sans-serif;
@@ -1583,198 +1779,3 @@ color: #000;
 ----------------------------------------------- */
 
 
-/* Default
------------------------------------------------ */
-* {
-  margin: 0;
-  padding: 0;
-  position: static;
-}
-
-#navbar {
-  display: none;
-}
-
-/* Search
------------------------------------------------ */
-table .gs-branding {
-  display: none !important;
-}
-input .gsc-search-button {
-  background-image: url("http://www.google.com/uds/css/small-logo.png");
-  background-color: transparent;
-}
-
-/* Widths
------------------------------------------------ */
-.tabs-outer, .main {
-  width: 860px;
-}
-
-.header-inner .widget {
-  width: 226px;
-}
-
-/* Body
------------------------------------------------ */
-body {
-  line-height: 1.5;
-}
-
-.content {
-  margin: 15px;
-}
-
-/* Links
------------------------------------------------ */
-a:link, a:visited , a:hover {
-  text-decoration: underline;
-}
-
-/* Images
------------------------------------------------ */
-a img {
-  border-width: 0;
-}
-
-img.fleft {
-  float: left;
-}
-
-/* Logo
------------------------------------------------ */
-.Header .descriptionwrapper {
-  padding: 0 !important;
-  margin: 0 !important;
-  font-size: 90%;
-}
-
-/* Widgets
------------------------------------------------ */
-aside {
-  float: left;
-  width: 320;
-}
-
-.widget {
-  margin: 15px !important;
-  padding: 15px;
-  float: left;
-  border-radius: 15px;
-  -moz-border-radius: 15px;
-  background-color: #ffffff;
-}
-
-.widget .zippy {
-color: #999999;
-}
-
-.widget-content {
-  margin: 0 auto;
-}
-
-.header-inner img {
-  display: block;
-  margin: 0 auto;
-}
-
-.header-inner .widget {
-  height: 54px;
-  text-align: center;
-}
-
-.header-inner .HTML {
-  font-size: 140%;
-}
-
-/* Template specific style */
-
-/* Tabs
------------------------------------------------ */
-.tabs-inner .section:first-child ul {
-  margin-top: -1px;
-  border-top: 1px solid #eee;
-  border-left: 0px solid #eee;
-  border-right: 0px solid #eee;
-}
-
-.tabs-inner .widget ul {
-  _background-image: none;
-  border-bottom: 1px solid #eee;
-
-  margin-left: -2ex;
-  margin-right: -2ex;
-}
-
-.tabs-inner .widget li a {
-  display: inline-block;
-  padding: .6em 1em;
-
-  color: #999;
-
-  border-left: 1px solid #fff;
-  border-right: 1px solid #eee;
-}
-
-.tabs-inner .widget li:first-child a {
-  border-left: none;
-}
-
-.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
-  color: #000;
-  background-color: #eee;
-  text-decoration: none;
-}
-
-.tabs-inner .widget li:first-child a {
-  border-left: none;
-}
-
-.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
-  color: #58a;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-.widget .popular-posts ul {
-  list-style: none;
-}
-
-/* Accents
----------------------------------------------- */
-.blog-pager {
-  background: transparent none no-repeat scroll top center;
-}
-
-.blog-pager-older-link, .home-link,
-.blog-pager-newer-link {
-  background-color: #fefeff;
-  padding: 1ex;
-}
-
-.footer-outer {
-  border-top: 0 dashed #bbbbbb;
-}
-
-/* Comments
------------------------------------------------ */
-#comments .comment-author {
-  padding-top: 1.5em;
-  background-position: 0 1.5em;
-}
-
-#comments .comment-author:first-child {
-  border-top: none;
-}
-
-.avatar-image-container {
-  margin-top: .2em;
-}
-
-#comments .avatar-image-container img {
-  border: none;
-}
-
-#comments .comment-author {
-  border-top: 1px solid #eee;
-}
