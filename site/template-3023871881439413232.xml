@@ -11,7 +11,7 @@
     <b:include data='blog' name='all-head-content'/>
     <title><data:blog.pageTitle/></title>
 
-    <noscript><b:skin></b:skin></noscript><!-- ignore skins -->
+    <noscript><b:skin><![CDATA[]]></b:skin></noscript><!-- ignore skins -->
 
     <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
 	<b:if cond='data:blog.url != data:blog.homepageUrl'>
@@ -126,66 +126,6 @@
         <span class='cse-status'><data:loadingMsg/></span>
       </div>
     </div>
-
-    <!-- override gsearch.css -->
-    <style type='text/css'>
-      #uds-searchControl .gs-result .gs-title,
-      #uds-searchControl .gs-result .gs-title *,
-      #uds-searchControl .gsc-results .gsc-trailing-more-results,
-      #uds-searchControl .gsc-results .gsc-trailing-more-results * {
-        color:<data:linkColor/>;
-      }
-
-      #uds-searchControl .gs-result .gs-title a:visited,
-      #uds-searchControl .gs-result .gs-title a:visited * {
-        color:<data:visitedLinkColor/>;
-      }
-
-      #uds-searchControl .gs-relativePublishedDate,
-      #uds-searchControl .gs-publishedDate {
-        color: <data:dateColor/>;
-      }
-
-      #uds-searchControl .gs-result a.gs-visibleUrl,
-      #uds-searchControl .gs-result .gs-visibleUrl {
-        color: <data:urlColor/>;
-      }
-
-      #uds-searchControl .gsc-results {
-        border-color: <data:borderColor/>;
-        background-color: <data:backgroundColor/>;
-      }
-
-      #uds-searchControl .gsc-tabhActive {
-        border-color: <data:borderColor/>;
-        border-top-color: <data:activeBorderColor/>;
-        background-color: <data:backgroundColor/>;
-        color: <data:textColor/>;
-      }
-
-      #uds-searchControl .gsc-tabhInactive {
-        border-color: <data:borderColor/>;
-        background-color: transparent;
-        color: <data:linkColor/>;
-      }
-
-      #uds-searchClearResults {
-        border-color: <data:borderColor/>;
-      }
-
-      #uds-searchClearResults:hover {
-        border-color: <data:activeBorderColor/>;
-      }
-
-      #uds-searchControl .gsc-cursor-page {
-        color: <data:linkColor/>;
-      }
-
-      #uds-searchControl .gsc-cursor-current-page {
-        color: <data:textColor/>;
-      }
-    </style>
-
     <b:include name='quickedit'/>
   </b:includable>
 </b:widget>
