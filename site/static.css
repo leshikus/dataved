@@ -51,44 +51,1492 @@ border-bottom: 1px solid #eeeeee;
 ----------------------------------------------- */
 
 section,nav,article,aside,hgroup,header,footer{display:block}
-time,mark{display:inline}#ArchiveList .toggle{cursor:pointer;font-family:Arial,sans-serif}#ArchiveList .toggle-open{_font-size:1.7em;line-height:.6em}#ArchiveList{text-align:left}#ArchiveList a.post-count-link,#ArchiveList a.post-count-link:link,#ArchiveList a.post-count-link:visited{text-decoration:none}#ArchiveList a.toggle,#ArchiveList a.toggle:link,#ArchiveList a.toggle:visited,#ArchiveList a.toggle:hover{color:inherit;text-decoration:none}.BlogArchive #ArchiveList ul li{background:none;list-style:none;list-style-image:none;list-style-position:outside;border-width:0;padding-left:15px;text-indent:-15px;margin:.25em 0;background-image:none}.BlogArchive #ArchiveList ul ul li{padding-left:1.2em}.BlogArchive #ArchiveList ul{margin:0;padding:0;list-style:none;list-style-image:none;border-width:0}.BlogArchive #ArchiveList ul.posts li{padding-left:1.3em}#ArchiveList .collapsed ul{display:none}.post-footer abbr{border:none}#blog-pager-newer-link{float:left}#blog-pager-older-link{float:right}#blog-pager{margin:1em 0;text-align:center;overflow:hidden}.backlink-toggle-zippy{padding-right:11px;margin-right:.1em;cursor:pointer;cursor:hand;background:url(//www.blogger.com/img/triangle_ltr.gif) no-repeat left center}.expanded-backlink .backlink-toggle-zippy{background-image:url("//www.blogger.com/img/triangle_open.gif")}.collapsed-backlink .collapseable{display:none}.status-msg-wrap{font-size:110%;width:90%;margin:10px auto;position:relative}.status-msg-border{border:1px solid #000;filter:alpha(opacity=40);-moz-opacity:.4;opacity:.4;width:100%;position:relative}.status-msg-bg{background-color:#ccc;opacity:.8;filter:alpha(opacity=30);-moz-opacity:.8;width:100%;position:relative;z-index:1}.status-msg-body{text-align:center;padding:.3em 0;width:100%;position:absolute;z-index:4}.status-msg-hidden{visibility:hidden;padding:.3em 0}.status-msg-wrap a{padding-left:.4em;text-decoration:underline}.reactions-label{margin:3px 0 0 0}.reactions-label-cell{line-height:2.3em}.reactions-iframe{background:transparent;height:2.3em;width:100%;border:0}#comments .blogger-comment-icon,.blogger-comment-icon{line-height:16px;background:url(/img/b16-rounded.gif) left no-repeat;padding-left:20px}#comments .openid-comment-icon,.openid-comment-icon{line-height:16px;background:url(/img/openid16-rounded.gif) left no-repeat;padding-left:20px}#comments .anon-comment-icon,.anon-comment-icon{line-height:16px;background:url(/img/anon16-rounded.gif) left no-repeat;padding-left:20px}.comment-form{max-width:425px;_width:410px;clear:both}.comment-link{white-space:nowrap}.paging-control-container{float:right;margin:0 6px 0 0;font-size:80%}.unneeded-paging-control{visibility:hidden}#comments-block .avatar-image-container img{-ms-interpolation-mode:bicubic;border:1px solid #ccc;float:right}#comments-block .avatar-image-container.avatar-stock img{border-width:0;padding:1px}#comments-block .avatar-image-container{height:37px;left:-45px;position:absolute;width:37px}#comments-block.avatar-comment-indent{margin-left:45px;position:relative}#comments-block.avatar-comment-indent dd{margin-left:0}
+time,mark{display:inline}
+#ArchiveList .toggle{cursor:pointer;font-family:Arial,sans-serif}
+#ArchiveList .toggle-open{_font-size:1.7em;line-height:.6em}
+#ArchiveList{text-align:left}
+#ArchiveList a.post-count-link,#ArchiveList a.post-count-link:link,#ArchiveList a.post-count-link:visited{text-decoration:none}
+#ArchiveList a.toggle,#ArchiveList a.toggle:link,#ArchiveList a.toggle:visited,#ArchiveList a.toggle:hover{color:inherit;text-decoration:none}
+.BlogArchive #ArchiveList ul li{background:none;list-style:none;list-style-image:none;list-style-position:outside;border-width:0;padding-left:15px;text-indent:-15px;margin:.25em 0;background-image:none}
+.BlogArchive #ArchiveList ul ul li{padding-left:1.2em}
+.BlogArchive #ArchiveList ul{margin:0;padding:0;list-style:none;list-style-image:none;border-width:0}
+.BlogArchive #ArchiveList ul.posts li{padding-left:1.3em}
+#ArchiveList .collapsed ul{display:none}
+.post-footer abbr{border:none}
+#blog-pager-newer-link{float:left}
+#blog-pager-older-link{float:right}
+#blog-pager{margin:1em 0;text-align:center;overflow:hidden}
+.backlink-toggle-zippy{padding-right:11px;margin-right:.1em;cursor:pointer;cursor:hand;background:url(//www.blogger.com/img/triangle_ltr.gif) no-repeat left center}
+.expanded-backlink .backlink-toggle-zippy{background-image:url("//www.blogger.com/img/triangle_open.gif")}
+.collapsed-backlink .collapseable{display:none}
+.status-msg-wrap{font-size:110%;width:90%;margin:10px auto;position:relative}
+.status-msg-border{border:1px solid #000;filter:alpha(opacity=40);-moz-opacity:.4;opacity:.4;width:100%;position:relative}
+.status-msg-bg{background-color:#ccc;opacity:.8;filter:alpha(opacity=30);-moz-opacity:.8;width:100%;position:relative;z-index:1}
+.status-msg-body{text-align:center;padding:.3em 0;width:100%;position:absolute;z-index:4}
+.status-msg-hidden{visibility:hidden;padding:.3em 0}
+.status-msg-wrap a{padding-left:.4em;text-decoration:underline}
+.reactions-label{margin:3px 0 0 0}
+.reactions-label-cell{line-height:2.3em}
+.reactions-iframe{background:transparent;height:2.3em;width:100%;border:0}
+#comments .blogger-comment-icon,.blogger-comment-icon{line-height:16px;background:url(/img/b16-rounded.gif) left no-repeat;padding-left:20px}
+#comments .openid-comment-icon,.openid-comment-icon{line-height:16px;background:url(/img/openid16-rounded.gif) left no-repeat;padding-left:20px}
+#comments .anon-comment-icon,.anon-comment-icon{line-height:16px;background:url(/img/anon16-rounded.gif) left no-repeat;padding-left:20px}
+.comment-form{max-width:425px;_width:410px;clear:both}
+.comment-link{white-space:nowrap}
+.paging-control-container{float:right;margin:0 6px 0 0;font-size:80%}
+.unneeded-paging-control{visibility:hidden}
+#comments-block .avatar-image-container img{-ms-interpolation-mode:bicubic;border:1px solid #ccc;float:right}
+#comments-block .avatar-image-container.avatar-stock img{border-width:0;padding:1px}
+#comments-block .avatar-image-container{height:37px;left:-45px;position:absolute;width:37px}
+#comments-block.avatar-comment-indent{margin-left:45px;position:relative}
+#comments-block.avatar-comment-indent dd{margin-left:0}
 iframe.avatar-hovercard-iframe{border:0 none;padding:0;width:25em;height:9.4em;margin:.5em}
 table.tr-caption-container{padding:4px;margin-bottom:.5em}
-td.tr-caption{font-size:80%}.item-control{display:none}.item-control a,.item-action a{text-decoration:none !important}.widget-item-control{float:right;height:20px;margin-top:-20px;position:relative;z-index:10}.widget-item-control a{opacity:.5}.widget-item-control a:hover{opacity:1}.widget .widget-item-control a img{border:none;padding:none;background:none;-moz-box-shadow:none;-webkit-box-shadow:none;-ie-box-shadow:none;box-shadow:none}.icon-action{border-style:none !important;margin:0 0 0 .5em !important;vertical-align:middle}.comment-action-icon{width:13px;height:13px;margin-top:3px}.delete-comment-icon{background:url("/img/icon_delete13.gif") no-repeat left;padding:7px}#comment-popup{position:absolute;visibility:hidden}@media all{.BLOG_mobile_video_class{display:none}}@media handheld{.BLOG_mobile_video_class{display:inline}.BLOG_video_class{display:none}}.post-share-buttons{display:-moz-inline-stack;display:inline-block;zoom:1;*display:inline;margin:0 .5em 0 .5em !important;width:106px;vertical-align:middle}.share-button{display:block;width:21px;height:22px;float:left;background:url("/img/share_buttons.png") no-repeat left !important;overflow:hidden}
-a:hover.share-button{text-decoration:none}.share-button-link-text{position:absolute;left:-999px}.sb-email{background-position:0 0 !important}
+td.tr-caption{font-size:80%}
+.item-control{display:none}
+.item-control a,.item-action a{text-decoration:none !important}
+.widget-item-control{float:right;height:20px;margin-top:-20px;position:relative;z-index:10}
+.widget-item-control a{opacity:.5}
+.widget-item-control a:hover{opacity:1}
+.widget .widget-item-control a img{border:none;padding:none;background:none;-moz-box-shadow:none;-webkit-box-shadow:none;-ie-box-shadow:none;box-shadow:none}
+.icon-action{border-style:none !important;margin:0 0 0 .5em !important;vertical-align:middle}
+.comment-action-icon{width:13px;height:13px;margin-top:3px}
+.delete-comment-icon{background:url("/img/icon_delete13.gif") no-repeat left;padding:7px}
+#comment-popup{position:absolute;visibility:hidden}
+@media all{.BLOG_mobile_video_class{display:none}
+}
+@media handheld{.BLOG_mobile_video_class{display:inline}
+.BLOG_video_class{display:none}
+}
+.post-share-buttons{display:-moz-inline-stack;display:inline-block;zoom:1;*display:inline;margin:0 .5em 0 .5em !important;width:106px;vertical-align:middle}
+.share-button{display:block;width:21px;height:22px;float:left;background:url("/img/share_buttons.png") no-repeat left !important;overflow:hidden}
+a:hover.share-button{text-decoration:none}
+.share-button-link-text{position:absolute;left:-999px}
+.sb-email{background-position:0 0 !important}
 a:hover.sb-email{background-position:0 -22px !important}
-a:active.sb-email{background-position:0 -44px !important}.sb-blog{background-position:-21px 0 !important}
+a:active.sb-email{background-position:0 -44px !important}
+.sb-blog{background-position:-21px 0 !important}
 a:hover.sb-blog{background-position:-21px -22px !important}
-a:active.sb-blog{background-position:-21px -44px !important}.sb-twitter{background-position:-42px 0 !important}
+a:active.sb-blog{background-position:-21px -44px !important}
+.sb-twitter{background-position:-42px 0 !important}
 a:hover.sb-twitter{background-position:-42px -22px !important}
-a:active.sb-twitter{background-position:-42px -44px !important}.sb-facebook{background-position:-63px 0 !important}
+a:active.sb-twitter{background-position:-42px -44px !important}
+.sb-facebook{background-position:-63px 0 !important}
 a:hover.sb-facebook{background-position:-63px -22px !important}
-a:active.sb-facebook{background-position:-63px -44px !important}.sb-buzz{background-position:-84px 0 !important;width:22px}
+a:active.sb-facebook{background-position:-63px -44px !important}
+.sb-buzz{background-position:-84px 0 !important;width:22px}
 a:hover.sb-buzz{background-position:-84px -22px !important}
-a:active.sb-buzz{background-position:-84px -44px !important}.goog-inline-block{position:relative;display:-moz-inline-box;display:inline-block}* html .goog-inline-block{display:inline}*:first-child+html .goog-inline-block{display:inline}.goog-custom-button{margin:2px;border:0;padding:0;font-family:Arial,sans-serif;color:#000;text-decoration:none;list-style:none;vertical-align:middle;cursor:default;outline:none}.goog-custom-button-outer-box,.goog-custom-button-inner-box{border-style:solid;border-color:transparent;vertical-align:top}.goog-custom-button-checked .goog-custom-button-outer-box,.goog-custom-button-checked .goog-custom-button-inner-box{border-color:#cdcdcd}.goog-custom-button-outer-box{margin:0;border-width:1px 0;padding:0}.goog-custom-button-inner-box{-moz-box-orient:vertical;margin:0 -1px;border-width:0 1px;padding:1px 4px;white-space:nowrap}* html .goog-custom-button-inner-box{left:-1px}*:first-child+html .goog-custom-button-inner-box{left:-1px}::root .goog-custom-button,::root .goog-custom-button-outer-box{line-height:0}::root .goog-custom-button-inner-box{line-height:normal}.goog-custom-button-active,.goog-custom-button-checked{background-color:#faf6bc;background-position:bottom left}.blog-mobile-link{padding:15px}.follower-grid{width:150px}.follower{width:32px;height:32px;float:left;margin:2px}.follower-img{float:left;margin:2px}.follow-this{margin:.5em .5em .5em 0;font-weight:bold}.followers-canvas{margin:.5em .5em .5em 0;font-weight:bold}.clear{clear:both}.crosscol .PageList UL,.footer .PageList UL{list-style:none;margin:0;padding:0}.crosscol .PageList LI,.footer .PageList LI{list-style:none;float:left;padding-right:.75em;margin:.75em;background:none}.crosscol .PageList H2{display:none}.PageList LI A{font-weight:normal}.PageList LI.selected A{font-weight:bold;text-decoration:none}.profile-img{float:left;margin:0 5px 5px}.profile-data{margin:0}.profile-datablock{margin:.5em 0}.profile-textblock{margin:.5em 0}.widget.Subscribe{position:static}.widget.Subscribe .widget-content{zoom:1}.subscribe-feed-title{float:left}.subscribe{cursor:pointer;color:#999}.subscribe a{color:#999}.subscribe-wrapper{margin:.5em;padding:0;position:relative;zoom:1}
+a:active.sb-buzz{background-position:-84px -44px !important}
+.goog-inline-block{position:relative;display:-moz-inline-box;display:inline-block}
+* html .goog-inline-block{display:inline}
+*:first-child+html .goog-inline-block{display:inline}
+.goog-custom-button{margin:2px;border:0;padding:0;font-family:Arial,sans-serif;color:#000;text-decoration:none;list-style:none;vertical-align:middle;cursor:default;outline:none}
+.goog-custom-button-outer-box,.goog-custom-button-inner-box{border-style:solid;border-color:transparent;vertical-align:top}
+.goog-custom-button-checked .goog-custom-button-outer-box,.goog-custom-button-checked .goog-custom-button-inner-box{border-color:#cdcdcd}
+.goog-custom-button-outer-box{margin:0;border-width:1px 0;padding:0}
+.goog-custom-button-inner-box{-moz-box-orient:vertical;margin:0 -1px;border-width:0 1px;padding:1px 4px;white-space:nowrap}
+* html .goog-custom-button-inner-box{left:-1px}
+*:first-child+html .goog-custom-button-inner-box{left:-1px}
+::root .goog-custom-button,::root .goog-custom-button-outer-box{line-height:0}
+::root .goog-custom-button-inner-box{line-height:normal}
+.goog-custom-button-active,.goog-custom-button-checked{background-color:#faf6bc;background-position:bottom left}
+.blog-mobile-link{padding:15px}
+.follower-grid{width:150px}
+.follower{width:32px;height:32px;float:left;margin:2px}
+.follower-img{float:left;margin:2px}
+.follow-this{margin:.5em .5em .5em 0;font-weight:bold}
+.followers-canvas{margin:.5em .5em .5em 0;font-weight:bold}
+.clear{clear:both}
+.crosscol .PageList UL,.footer .PageList UL{list-style:none;margin:0;padding:0}
+.crosscol .PageList LI,.footer .PageList LI{list-style:none;float:left;padding-right:.75em;margin:.75em;background:none}
+.crosscol .PageList H2{display:none}
+.PageList LI A{font-weight:normal}
+.PageList LI.selected A{font-weight:bold;text-decoration:none}
+.profile-img{float:left;margin:0 5px 5px}
+.profile-data{margin:0}
+.profile-datablock{margin:.5em 0}
+.profile-textblock{margin:.5em 0}
+.widget.Subscribe{position:static}
+.widget.Subscribe .widget-content{zoom:1}
+.subscribe-feed-title{float:left}
+.subscribe{cursor:pointer;color:#999}
+.subscribe a{color:#999}
+.subscribe-wrapper{margin:.5em;padding:0;position:relative;zoom:1}
 div.subscribe{cursor:pointer;margin:0;padding:0;text-align:left;width:144px}
 div.subscribe div.top{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://www.blogger.com/img/widgets/s_top.png',sizingMethod='crop');font-size:1em;padding:4px 0 1px;width:144px}
 html>body div.subscribe div.top{background:url(//www.blogger.com/img/widgets/s_top.png) top left no-repeat}
 span.inner{margin:0;padding:0}
-div.subscribe div.top span.inner{margin:0 5px}.feed-icon{vertical-align:baseline;display:inline}
-div.subscribe div.bottom{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://www.blogger.com/img/widgets/s_bottom.png',sizingMethod='crop');font-size:3px;height:3px;line-height:0}.subscribe-wrapper .expanded{position:absolute;top:0;z-index:20}
-html>body div.subscribe div.bottom{background:url(//www.blogger.com/img/widgets/s_bottom.png) bottom left no-repeat;margin-bottom:0;padding-bottom:0;width:144px}.feed-reader-links{list-style:none;margin:10px 20px;padding:0;position:relative}.subscribe-dropdown-arrow{float:right;margin-right:6px;margin-top:4px}.feed-reader-links{list-style:none;margin:0;padding:0}
-a.feed-reader-link{display:block;font-weight:normal;margin:.5em;text-decoration:none;z-index:1000}.feed-reader-link img{border:0;display:inline}.blog-list-container ul{padding-left:0}.blog-list-container ul li{padding-left:0;list-style:none;list-style-image:none;clear:left}.blog-list-container a{text-decoration:none}.blog-list-container a:hover{text-decoration:underline}.blog-list-container .blog-content{float:left;margin:0 0 5px 5px;text-indent:0;width:85%}.blog-list-container .blog-title{font-weight:bold;line-height:16px;margin:2px 0 0 0}.blog-list-container .blog-icon{float:left;margin-top:2px;vertical-align:top;text-indent:0;width:16px}.blog-list-container .item-content{font-size:95%;line-height:1.3em}.blog-list-container .item-thumbnail{float:left;margin:2px 5px 5px 0}.blog-list-container .item-time{font-size:95%;font-style:italic;clear:left}.blog-list-title{font-weight:bold}.blog-list-container .show-option{font-size:75%;text-align:right}
-div.gsc-control{width:100%}.cse-status{color:#676767;font-size:11px;margin:10px;padding:4px}#uds-searchControl{position:relative}#uds-searchClearResults{position:absolute;top:15px;right:-3px;display:none;border-width:1px;border-style:solid;padding:0;height:9px;width:9px}#uds-searchControl .gsc-results{padding:1em 1em 0 1em;margin:0 0 2em;border-width:1px;border-style:solid;width:auto}#uds-searchControl .gsc-resultsHeader{display:none}#uds-searchControl .gsc-tabsArea{float:left;position:relative;top:1px;padding-right:10px}#uds-searchControl .gsc-tabHeader{float:left;line-height:1.7}#uds-searchControl .gsc-tabHeader.gsc-tabhActive{border-width:2px 1px 0 1px;border-style:solid;font-weight:bold}#uds-searchControl .gsc-tabHeader.gsc-tabhInactive{border-width:0;border-style:solid;padding-top:2px}#uds-searchControl .gsc-resultsbox-visible{clear:left}#uds-searchControl .gs-result .gs-title,#uds-searchControl .gsc-results .gsc-trailing-more-results{line-height:1.5em}#uds-searchControl .gs-relativePublishedDate,#uds-searchControl .gs-publishedDate{line-height:1.3em}#uds-searchControl .gs-result a.gs-visibleUrl,#uds-searchControl .gs-result .gs-visibleUrl{line-height:1.3em;font-size:95%}#uds-searchControl .gs-result .gs-snippet{margin:.25em 0;line-height:1.2em}#uds-searchControl .gs-no-results-result .gs-snippet,#uds-searchControl .gs-error-result .gs-snippet{border:none;background-color:transparent;font-style:italic}.label-size-1{font-size:80%;filter:alpha(80);opacity:.8}.label-size-2{font-size:90%;filter:alpha(90);opacity:.9}.label-size-3{font-size:100%}.label-size-4{font-size:120%}.label-size-5{font-size:160%}.cloud-label-widget-content{text-align:justify}.label-count{white-space:nowrap}.label-size{line-height:1.2}.quickedit{cursor:pointer}#staticMap .loading{position:relative;clear:left;background:#fff url(//www.blogger.com/img/spinner_white_tiny.gif) no-repeat 50%;_height:100%}#requestUrl{display:none}.Navbar iframe{display:block}.newsBar-status{color:#676767;font-size:11px;margin:10px;padding:4px}
-img.gsc-branding-img-noclear{display:inline}.PopularPosts .item-thumbnail{float:left;margin:0 5px 5px 0}.PopularPosts .widget-content ul li{padding:.7em 0}.PopularPosts img{padding-right:.4em}.PopularPosts .item-title{padding-bottom:.2em}.related-posts-container{border-style:solid;border-width:1px;float:left;margin-bottom:20px;padding:10px}.related-posts-ad{height:125px;width:125px;margin-bottom:10px}.related-posts-results{padding-top:5px}.related-posts-message{margin-bottom:5px}.slideshow-status{color:#676767;font-size:11px;margin:10px;padding:4px}.slideshow-container{margin:auto;text-transform:none;font-family:Arial,sans-serif;letter-spacing:normal;word-spacing:normal;width:150px;height:150px;clear:both}
-img.gsc-branding-img-noclear{display:inline}.slideshow-container img{display:inline}.Stats .counter-wrapper{display:inline-block;font-size:24px;font-weight:bold;height:30px;line-height:30px;vertical-align:top}.Stats img{margin-right:10px;vertical-align:top}.Stats .graph-counter-wrapper{color:#fff}.Stats .digit{background:url("/img/widgets/stats-flipper.png") no-repeat left !important;border:1px solid #fff;display:inline-block;height:28px;line-height:28px;margin-left:-1px;position:relative;text-align:center;width:22px}.Stats .blind-plate{border-bottom:1px solid #fff;border-top:1px solid #000;filter:alpha(opacity=65);height:0;left:0;opacity:.65;position:absolute;top:13px;width:22px}.Stats .stage-0{background-position:0 0 !important}.Stats .stage-1{background-position:-22px 0 !important}.Stats .stage-2{background-position:-44px 0 !important}.Stats .stage-3{background-position:-66px 0 !important}
-div.floatingPlayer_gsvb div.playerInnerBox_gsvb .player_gsvb{width:320px;height:260px}.videoBar-status{color:#676767;font-size:11px;margin:10px;padding:4px}.videoBar-container{margin:auto;text-transform:none;font-family:Arial,sans-serif;letter-spacing:normal;word-spacing:normal;clear:both}
-body{margin:0;padding:0 0 1px}.content-outer,.header-outer,.tabs-outer,.main-outer,.main-inner,.footer-outer,.post,.comments,.widget,.date-header,.inline-ad{position:relative;min-height:0;_position:static;_height:1%}.footer-outer{margin-bottom:-1px}.content-inner{padding:10px}.tabs-inner{padding:0 15px}.main-inner{padding:30px 0}.main-inner .column-center-inner,.main-inner .column-left-inner,.main-inner .column-right-inner{padding:0 15px}.footer-inner{padding:30px 15px}.section{margin:0 15px}.widget{margin:30px 0;_margin:0 0 10px}.section:first-child .widget:first-child{margin-top:0}.section:first-child #uds-searchControl+.widget{margin-top:0}.section:last-child .widget:last-child{margin-bottom:0}.tabs:first-child .widget{margin-bottom:0}
+div.subscribe div.top span.inner{margin:0 5px}
+.feed-icon{vertical-align:baseline;display:inline}
+div.subscribe div.bottom{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://www.blogger.com/img/widgets/s_bottom.png',sizingMethod='crop');font-size:3px;height:3px;line-height:0}
+.subscribe-wrapper .expanded{position:absolute;top:0;z-index:20}
+html>body div.subscribe div.bottom{background:url(//www.blogger.com/img/widgets/s_bottom.png) bottom left no-repeat;margin-bottom:0;padding-bottom:0;width:144px}
+.feed-reader-links{list-style:none;margin:10px 20px;padding:0;position:relative}
+.subscribe-dropdown-arrow{float:right;margin-right:6px;margin-top:4px}
+.feed-reader-links{list-style:none;margin:0;padding:0}
+a.feed-reader-link{display:block;font-weight:normal;margin:.5em;text-decoration:none;z-index:1000}
+.feed-reader-link img{border:0;display:inline}
+.blog-list-container ul{padding-left:0}
+.blog-list-container ul li{padding-left:0;list-style:none;list-style-image:none;clear:left}
+.blog-list-container a{text-decoration:none}
+.blog-list-container a:hover{text-decoration:underline}
+.blog-list-container .blog-content{float:left;margin:0 0 5px 5px;text-indent:0;width:85%}
+.blog-list-container .blog-title{font-weight:bold;line-height:16px;margin:2px 0 0 0}
+.blog-list-container .blog-icon{float:left;margin-top:2px;vertical-align:top;text-indent:0;width:16px}
+.blog-list-container .item-content{font-size:95%;line-height:1.3em}
+.blog-list-container .item-thumbnail{float:left;margin:2px 5px 5px 0}
+.blog-list-container .item-time{font-size:95%;font-style:italic;clear:left}
+.blog-list-title{font-weight:bold}
+.blog-list-container .show-option{font-size:75%;text-align:right}
+div.gsc-control{width:100%}
+.cse-status{color:#676767;font-size:11px;margin:10px;padding:4px}
+#uds-searchControl{position:relative}
+#uds-searchClearResults{position:absolute;top:15px;right:-3px;display:none;border-width:1px;border-style:solid;padding:0;height:9px;width:9px}
+#uds-searchControl .gsc-results{padding:1em 1em 0 1em;margin:0 0 2em;border-width:1px;border-style:solid;width:auto}
+#uds-searchControl .gsc-resultsHeader{display:none}
+#uds-searchControl .gsc-tabsArea{float:left;position:relative;top:1px;padding-right:10px}
+#uds-searchControl .gsc-tabHeader{float:left;line-height:1.7}
+#uds-searchControl .gsc-tabHeader.gsc-tabhActive{border-width:2px 1px 0 1px;border-style:solid;font-weight:bold}
+#uds-searchControl .gsc-tabHeader.gsc-tabhInactive{border-width:0;border-style:solid;padding-top:2px}
+#uds-searchControl .gsc-resultsbox-visible{clear:left}
+#uds-searchControl .gs-result .gs-title,#uds-searchControl .gsc-results .gsc-trailing-more-results{line-height:1.5em}
+#uds-searchControl .gs-relativePublishedDate,#uds-searchControl .gs-publishedDate{line-height:1.3em}
+#uds-searchControl .gs-result a.gs-visibleUrl,#uds-searchControl .gs-result .gs-visibleUrl{line-height:1.3em;font-size:95%}
+#uds-searchControl .gs-result .gs-snippet{margin:.25em 0;line-height:1.2em}
+#uds-searchControl .gs-no-results-result .gs-snippet,#uds-searchControl .gs-error-result .gs-snippet{border:none;background-color:transparent;font-style:italic}
+.label-size-1{font-size:80%;filter:alpha(80);opacity:.8}
+.label-size-2{font-size:90%;filter:alpha(90);opacity:.9}
+.label-size-3{font-size:100%}
+.label-size-4{font-size:120%}
+.label-size-5{font-size:160%}
+.cloud-label-widget-content{text-align:justify}
+.label-count{white-space:nowrap}
+.label-size{line-height:1.2}
+.quickedit{cursor:pointer}
+#staticMap .loading{position:relative;clear:left;background:#fff url(//www.blogger.com/img/spinner_white_tiny.gif) no-repeat 50%;_height:100%}
+#requestUrl{display:none}
+.Navbar iframe{display:block}
+.newsBar-status{color:#676767;font-size:11px;margin:10px;padding:4px}
+img.gsc-branding-img-noclear{display:inline}
+.PopularPosts .item-thumbnail{float:left;margin:0 5px 5px 0}
+.PopularPosts .widget-content ul li{padding:.7em 0}
+.PopularPosts img{padding-right:.4em}
+.PopularPosts .item-title{padding-bottom:.2em}
+.related-posts-container{border-style:solid;border-width:1px;float:left;margin-bottom:20px;padding:10px}
+.related-posts-ad{height:125px;width:125px;margin-bottom:10px}
+.related-posts-results{padding-top:5px}
+.related-posts-message{margin-bottom:5px}
+.slideshow-status{color:#676767;font-size:11px;margin:10px;padding:4px}
+.slideshow-container{margin:auto;text-transform:none;font-family:Arial,sans-serif;letter-spacing:normal;word-spacing:normal;width:150px;height:150px;clear:both}
+img.gsc-branding-img-noclear{display:inline}
+.slideshow-container img{display:inline}
+.Stats .counter-wrapper{display:inline-block;font-size:24px;font-weight:bold;height:30px;line-height:30px;vertical-align:top}
+.Stats img{margin-right:10px;vertical-align:top}
+.Stats .graph-counter-wrapper{color:#fff}
+.Stats .digit{background:url("/img/widgets/stats-flipper.png") no-repeat left !important;border:1px solid #fff;display:inline-block;height:28px;line-height:28px;margin-left:-1px;position:relative;text-align:center;width:22px}
+.Stats .blind-plate{border-bottom:1px solid #fff;border-top:1px solid #000;filter:alpha(opacity=65);height:0;left:0;opacity:.65;position:absolute;top:13px;width:22px}
+.Stats .stage-0{background-position:0 0 !important}
+.Stats .stage-1{background-position:-22px 0 !important}
+.Stats .stage-2{background-position:-44px 0 !important}
+.Stats .stage-3{background-position:-66px 0 !important}
+div.floatingPlayer_gsvb div.playerInnerBox_gsvb .player_gsvb{width:320px;height:260px}
+.videoBar-status{color:#676767;font-size:11px;margin:10px;padding:4px}
+.videoBar-container{margin:auto;text-transform:none;font-family:Arial,sans-serif;letter-spacing:normal;word-spacing:normal;clear:both}
+body{margin:0;padding:0 0 1px}
+.content-outer,.header-outer,.tabs-outer,.main-outer,.main-inner,.footer-outer,.post,.comments,.widget,.date-header,.inline-ad{position:relative;min-height:0;_position:static;_height:1%}
+.footer-outer{margin-bottom:-1px}
+.content-inner{padding:10px}
+.tabs-inner{padding:0 15px}
+.main-inner{padding:30px 0}
+.main-inner .column-center-inner,.main-inner .column-left-inner,.main-inner .column-right-inner{padding:0 15px}
+.footer-inner{padding:30px 15px}
+.section{margin:0 15px}
+.widget{margin:30px 0;_margin:0 0 10px}
+.section:first-child .widget:first-child{margin-top:0}
+.section:first-child #uds-searchControl+.widget{margin-top:0}
+.section:last-child .widget:last-child{margin-bottom:0}
+.tabs:first-child .widget{margin-bottom:0}
 body .navbar{height:30px;padding:0;margin:0}
-body .navbar .Navbar{position:absolute;z-index:10;left:0;width:100%;margin:0;padding:0;background:none;border:none}.header-inner .section{margin:0}.header-inner .widget{margin-left:30px;margin-right:30px}.header-inner .Header{margin:0}.header-inner .Header #header-inner{overflow:hidden}.header-inner .Header .titlewrapper{padding:22px 30px 0}.header-inner .Header .descriptionwrapper{padding:0 30px;margin-bottom:25px}.Header h1{margin-bottom:10px}.Header .description{margin:.5em 0 10px;padding:0 2px}
+body .navbar .Navbar{position:absolute;z-index:10;left:0;width:100%;margin:0;padding:0;background:none;border:none}
+.header-inner .section{margin:0}
+.header-inner .widget{margin-left:30px;margin-right:30px}
+.header-inner .Header{margin:0}
+.header-inner .Header #header-inner{overflow:hidden}
+.header-inner .Header .titlewrapper{padding:22px 30px 0}
+.header-inner .Header .descriptionwrapper{padding:0 30px;margin-bottom:25px}
+.Header h1{margin-bottom:10px}
+.Header .description{margin:.5em 0 10px;padding:0 2px}
 a img{border:none;position:relative}
 h1,h2,h3,h4{margin:0;position:relative}
 h1 a:hover{text-decoration:none}
-h3 a:hover{text-decoration:none}.tabs .widget h2{display:none}.tabs .widget ul,.tabs .widget ul{margin:0;padding:0;overflow:hidden;list-style:none}.tabs .widget li,.tabs .widget li{margin:0;padding:0;float:left}.tabs .widget li a:hover{text-decoration:none}.widget{line-height:1.4}.widget ul{padding:0 0 0 1.25em;margin:0;line-height:1.2}.BlogList ul{padding:0}.BlogList li .blog-content{position:relative}.widget li,.BlogArchive #ArchiveList ul.flat li{padding:.25em 0;margin:0;text-indent:0}.widget .post-body ul{padding:0 2.5em;margin:.5em 0;line-height:1.4}.widget .post-body li{margin-bottom:.25em;padding-top:0;padding-bottom:0}.post-body{width:100%;_overflow:hidden}.post-header,.post-footer{line-height:1.6}.post .post-comment-link{padding-left:1em}.post .post-comment-link:first-child{padding-left:0}.post .tr-caption-container{position:relative}.inline-ad{margin:2em 0;text-align:center;line-height:0}#comments .comment-author{padding-left:25px}.comment-body{margin:.5em 25px}.comment-footer{margin:.5em 25px 1.5em}.comment-body p{margin:0}#comments .avatar-comment-indent .comment-author{margin-left:-45px;padding-left:45px}.deleted-comment{font-style:italic;opacity:.5}.Profile img{margin:0 .75em .5em 0}.Profile .profile-datablock{margin:0 0 .5em}
+h3 a:hover{text-decoration:none}
+.tabs .widget h2{display:none}
+.tabs .widget ul,.tabs .widget ul{margin:0;padding:0;overflow:hidden;list-style:none}
+.tabs .widget li,.tabs .widget li{margin:0;padding:0;float:left}
+.tabs .widget li a:hover{text-decoration:none}
+.widget{line-height:1.4}
+.widget ul{padding:0 0 0 1.25em;margin:0;line-height:1.2}
+.BlogList ul{padding:0}
+.BlogList li .blog-content{position:relative}
+.widget li,.BlogArchive #ArchiveList ul.flat li{padding:.25em 0;margin:0;text-indent:0}
+.widget .post-body ul{padding:0 2.5em;margin:.5em 0;line-height:1.4}
+.widget .post-body li{margin-bottom:.25em;padding-top:0;padding-bottom:0}
+.post-body{width:100%;_overflow:hidden}
+.post-header,.post-footer{line-height:1.6}
+.post .post-comment-link{padding-left:1em}
+.post .post-comment-link:first-child{padding-left:0}
+.post .tr-caption-container{position:relative}
+.inline-ad{margin:2em 0;text-align:center;line-height:0}
+#comments .comment-author{padding-left:25px}
+.comment-body{margin:.5em 25px}
+.comment-footer{margin:.5em 25px 1.5em}
+.comment-body p{margin:0}
+#comments .avatar-comment-indent .comment-author{margin-left:-45px;padding-left:45px}
+.deleted-comment{font-style:italic;opacity:.5}
+.Profile img{margin:0 .75em .5em 0}
+.Profile .profile-datablock{margin:0 0 .5em}
 dt{font-weight:bold}
-table.section-columns td.first.columns-cell{border-left:none}#layout .header-outer,#layout .tabs-outer,#layout .main-outer,#layout .footer-outer{margin:5px 0}#layout .cap-top,#layout .cap-bottom{display:none}#layout .region-inner{padding:0 10px;margin:0}#layout .main-inner .column-center-inner,#layout .main-inner .column-left-inner,#layout .main-inner .column-right-inner{padding:0 5px}
-html{height:100%}body{min-height:100%;_height:100%;position:relative}.content{position:relative;word-wrap:break-word}.content-outer,.region-inner{min-height:0;margin:0 auto}.columns{zoom:1}.loading .columns{overflow:hidden}.columns-inner{_height:1%;min-height:0}.column-center-outer,.column-left-outer,.column-right-outer{position:relative;float:left;_display:inline;_overflow:hidden}.column-center-outer{width:100%}.column-left-outer{margin-left:-100%}.fauxcolumns{position:relative;_height:1%}.fauxcolumn-outer{position:absolute;top:0;bottom:0;height:expression(this.parentNode.offsetHeight+'px');overflow:hidden}.fauxcolumn-outer .fauxborder-left,.fauxcolumn-outer .fauxborder-right,.fauxcolumn-inner{height:100%}.fauxcolumn-left-outer{left:0}.fauxcolumn-right-outer{right:0}.cap-top,.cap-bottom{position:relative;height:0;background-repeat:repeat-x}.cap-top .cap-left,.cap-top .cap-right,.cap-bottom .cap-left,.cap-bottom .cap-right{height:100%;background-repeat:no-repeat}.cap-top,.cap-top .cap-left{background-position:top left}.cap-bottom,.cap-bottom .cap-left{background-position:bottom left}.cap-top .cap-left,.cap-bottom .cap-left{float:left}.cap-top .cap-right{background-position:top right;float:right}.cap-bottom .cap-right{background-position:bottom right;float:right}.fauxborder-left{background-position:top left;background-repeat:repeat-y;position:relative;_height:1%}.fauxborder-right{background-position:top right;background-repeat:repeat-y;position:absolute;right:0;height:100%;_height:expression(this.parentNode.offsetHeight+'px')}table.section-columns{border:none;table-layout:fixed;width:100%;position:relative}
-table.columns-2 td.columns-cell{width:50%}table.columns-3 td.columns-cell{width:33.33%}table.columns-4 td.columns-cell{width:25%}table.section-columns td.columns-cell{vertical-align:top}.body-fauxcolumns,.content-fauxcolumns{position:absolute;top:0;left:0;z-index:-1;height:100%;_height:expression(this.parentNode.offsetHeight+'px');width:100%;overflow:hidden}.body-fauxcolumns .fauxcolumn-outer{width:100%}.content-fauxcolumns .fauxcolumn-outer{position:relative;overflow:visible;height:100%;margin:0 auto}.content-fauxcolumns .fauxcolumn-left{width:100%}
+table.section-columns td.first.columns-cell{border-left:none}
+#layout .header-outer,#layout .tabs-outer,#layout .main-outer,#layout .footer-outer{margin:5px 0}
+#layout .cap-top,#layout .cap-bottom{display:none}
+#layout .region-inner{padding:0 10px;margin:0}
+#layout .main-inner .column-center-inner,#layout .main-inner .column-left-inner,#layout .main-inner .column-right-inner{padding:0 5px}
+html{height:100%}
+body{min-height:100%;_height:100%;position:relative}
+.content{position:relative;word-wrap:break-word}
+.content-outer,.region-inner{min-height:0;margin:0 auto}
+.columns{zoom:1}
+.loading .columns{overflow:hidden}
+.columns-inner{_height:1%;min-height:0}
+.column-center-outer,.column-left-outer,.column-right-outer{position:relative;float:left;_display:inline;_overflow:hidden}
+.column-center-outer{width:100%}
+.column-left-outer{margin-left:-100%}
+.cap-top,.cap-bottom{position:relative;height:0;background-repeat:repeat-x}
+.cap-top .cap-left,.cap-top .cap-right,.cap-bottom .cap-left,.cap-bottom .cap-right{height:100%;background-repeat:no-repeat}
+.cap-top,.cap-top .cap-left{background-position:top left}
+.cap-bottom,.cap-bottom .cap-left{background-position:bottom left}
+.cap-top .cap-left,.cap-bottom .cap-left{float:left}
+.cap-top .cap-right{background-position:top right;float:right}
+.cap-bottom .cap-right{background-position:bottom right;float:right}
+table.section-columns{border:none;table-layout:fixed;width:100%;position:relative}
+table.columns-2 td.columns-cell{width:50%}
+table.columns-3 td.columns-cell{width:33.33%}
+table.columns-4 td.columns-cell{width:25%}
+table.section-columns td.columns-cell{vertical-align:top}
+
+/** Copyright 2005 Google Inc. All rights reserved. */
+
+/* the GSearchControl CSS Classes
+ * .gsc-control : the primary class of the control
+ */
+.gsc-control {
+  width: 300px;
+}
+
+.gsc-control div {
+  position: static;
+}
+
+.gsc-control-cse {
+  width: 100%;
+  font-family: Arial, sans-serif;
+  font-size : 13px;
+}
+
+.gsc-control-cse div {
+  position: static;
+}
+
+/* control inputs
+ * .gsc-search-box : the container that hosts the text input area
+ * .gsc-input : the text input area
+ * .gsc-keeper : the save link below savable results
+ */
+form.gsc-search-box {
+  font-size: 13px;
+  margin-top : 0;
+  margin-right : 0;
+  margin-bottom : 4px;
+  margin-left : 0;
+  width: 100%;
+}
+
+/*
+ * This table contains the input element as well as the search button
+ * Note that the search button column is fixed width, designed to hold the
+ * button div's background image
+ */
+table.gsc-search-box {
+  border-style : none;
+  border-width : 0;
+  border-spacing : 0 0;
+  width : 100%;
+  margin-bottom : 2px;
+}
+
+table.gsc-search-box td {
+  vertical-align : middle;
+}
+
+table.gsc-search-box td.gsc-input {
+  padding-right : 2px;
+}
+
+td.gsc-search-button {
+  width : 1%;
+}
+
+td.gsc-clear-button {
+  width : 14px;
+}
+
+/**
+ * undo common generic table rules
+ * that tend to impact branding
+ */
+table.gsc-branding td,
+table.gsc-branding {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  border : none;
+}
+
+table.gsc-branding {
+  border-style : none;
+  border-width : 0;
+  border-spacing : 0 0;
+  width : 100%;
+}
+
+.gsc-branding-text {
+  color : #676767;
+}
+
+td.gsc-branding-text {
+  vertical-align : top;
+}
+
+td.gsc-branding-text div.gsc-branding-text {
+  padding-bottom : 2px;
+  text-align : right;
+  font-size : 11px;
+  margin-right : 2px;
+}
+
+div.gsc-branding-youtube td.gsc-branding-text {
+  vertical-align : middle;
+}
+
+td.gsc-branding-img-noclear {
+  width : 51px;
+  vertical-align : bottom;
+}
+
+td.gsc-branding-img {
+  width : 65px;
+  vertical-align : bottom;
+}
+
+div.gsc-branding-youtube td.gsc-branding-img-noclear {
+  width : 55px;
+}
+
+div.gsc-branding-youtube td.gsc-branding-img {
+  width : 69px;
+}
+
+table.gsc-branding-vertical td.gsc-branding-text div.gsc-branding-text {
+  margin-right : 0;
+  text-align : center;
+}
+
+table.gsc-branding-vertical td.gsc-branding-img-noclear {
+  text-align : center;
+}
+
+div.gsc-branding-img,
+div.gsc-branding-img-noclear,
+img.gsc-branding-img,
+img.gsc-branding-img-noclear {
+  padding-top : 1px;
+}
+
+img.gsc-branding-img,
+img.gsc-branding-img-noclear {
+  margin : 0 0 0 0;
+  padding-right : 0;
+  padding-left : 0;
+  padding-bottom : 0;
+  border : none;
+  display : inline;
+}
+
+a.gsc-branding-clickable {
+  cursor : pointer;
+}
+
+input.gsc-search-button {
+  margin-left : 2px;
+}
+
+div.gsc-clear-button {
+  display : inline;
+  text-align : right;
+  margin-left : 4px;
+  margin-right : 4px;
+  padding-left : 10px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('//www.google.com/uds/css/clear.gif');
+  cursor : pointer;
+}
+
+/*
+ * Given that this is sitting in a variable width tabel cell, the idea is
+ * for it to consume the entire cell. The adjacent cell contains the search
+ * button and that is a fixed width cell.
+ */
+input.gsc-input {
+  padding-left : 2px;
+  border-style : solid;
+  border-width : 1px;
+  border-color : #BCCDF0;
+  width : 99%;
+}
+
+.gsc-keeper {
+  color: #3366cc;
+  text-decoration: underline;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: normal;
+
+  padding-left: 16px;
+  background-repeat: no-repeat;
+  background-position: 1px 3px;
+  background-image: url('//www.google.com/uds/css/blue_check.gif');
+}
+
+/* each section of results has a results header table
+ * .gsc-resultsHeader : the header itseld
+ * td.twiddleRegionCell : the section that controls twiddleing of the section to expand/collapse
+ * td.configLabelCell : the twiddler that controls active configuration of a searcher (used in GlocalSearch)
+ * .gsc-twiddle : the twiddle image, note, this is a div that wraps gsc-title so that standard image replacement is feasible
+ * .gsc-twiddle-closed : class added to gsc-twiddle when the twiddler is in the closed state
+ * .gsc-twiddle-opened : class added to gsc-twiddle when the twiddler is in the opened state
+ * .gsc-title : the section's title (e.g., Web Results, etc.)
+ * .gsc-stats : contains the result counts
+ * .gsc-stats
+ */
+.gsc-resultsHeader {
+  width : 100%;
+  border-bottom : 1px solid #e9e9e9;
+  margin-bottom : 4px;
+  clear : both;
+}
+
+.gsc-resultsHeader td.gsc-twiddleRegionCell{
+  width: 75%;
+}
+
+.gsc-resultsHeader td.gsc-configLabelCell{
+  text-align: right;
+  width: 75%;
+}
+
+/*
+ * note that the next three classes are all joined together
+ * to implement the twiddle image. apps can substitute in their
+ * own images but will need to account for the image size here
+ * as well as in the left padding of the title element
+ *
+ * Note: uds provides the following images that work with the geometry/padding defined below
+ *  to use these images simply over-ride the.gsc-twiddle-opened/-closed class and specify an alternate image
+ *  or use an image of your own design
+ */
+.gsc-resultsHeader .gsc-twiddle{
+  margin-top: 4px;
+  display: inline;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: 0 2px;
+}
+.gsc-resultsHeader td.gsc-twiddle-closed div.gsc-twiddle{
+  background-image: url('//www.google.com/uds/css/arrow_close.gif');
+}
+.gsc-resultsHeader td.gsc-twiddle-opened div.gsc-twiddle{
+  background-image: url('//www.google.com/uds/css/arrow_open.gif');
+}
+
+.gsc-resultsHeader .gsc-title{
+  color: #676767;
+  margin-right: 10px;
+  padding-left: 14px;
+  display: inline;
+}
+
+.gsc-resultsHeader .gsc-stats {
+  color: #676767;
+  font-size: 11px;
+  font-weight: normal;
+  display : inline;
+}
+
+.gsc-resultsHeader td.gsc-twiddle-opened .gsc-stats {
+  display : none;
+}
+
+/*
+ * .gsc-results-selector : box surrounding individual selectors for 1, more, or all results
+ * .gsc-result-selector : an individual selector
+ * .gsc-one-result : single result selector
+ * .gsc-more-results : more (4) results selector
+ * .gsc-all-results : all results (8) selector
+ */
+.gsc-results-selector {
+  display : inline;
+}
+
+.gsc-resultsHeader td.gsc-twiddle-closed .gsc-results-selector {
+  display : none;
+}
+
+.gsc-result-selector {
+  cursor : pointer;
+  display : inline;
+  font-size : 13px;
+  padding-left : 13px;
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+
+/* default mode is dark */
+.gsc-one-result {
+  background-image: url('//www.google.com/uds/css/one-complex-dark.gif');
+}
+
+.gsc-more-results {
+  background-image: url('//www.google.com/uds/css/more-complex-dark.gif');
+}
+
+.gsc-all-results {
+  background-image: url('//www.google.com/uds/css/all-complex-dark.gif');
+  padding-right : 1px;
+}
+
+/* active mode is light */
+.gsc-one-result-active .gsc-one-result {
+  background-image: url('//www.google.com/uds/css/one-complex-light-blue.gif');
+}
+
+.gsc-more-results-active .gsc-more-results {
+  background-image: url('//www.google.com/uds/css/more-complex-light-blue.gif');
+}
+
+.gsc-all-results-active .gsc-all-results {
+  background-image: url('//www.google.com/uds/css/all-complex-light-blue.gif');
+}
+
+.gsc-resultsHeader .gsc-configLabel{
+  color: #676767;
+  display: inline;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.gsc-resultsHeader td.gsc-configLabelCell span.gsc-twiddle-closed {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('//www.google.com/uds/css/settings.gif');
+}
+
+
+/* tabbed mode of search control
+ * .gsc-tabsArea : the box containing all of the tabs
+ * .gsc-tabsAreaInvisible : same as above, but this is the state when search has been cleared
+ * .gsc-tabHeader : an individual tab
+ * .gsc-tabHeader.gsc-tabhActive : the active tab
+ * .gsc-tabHeader.gsc-tabhInactive : an inactive tab
+ * .gsc-tabData : the data area/box containg results and header data for each tab
+ * .gsc-tabData.gsc-tabdActive : the data area for the active tab
+ * .gsc-tabData.gsc-tabdInactive : the data area for inactive tabs
+ */
+.gsc-tabsArea {
+  clear: both;
+  margin-top: 6px;
+  }
+
+.gsc-tabsArea .gs-spacer {
+  font-size : 1px;
+  margin-right : 0;
+  overflow : hidden;
+}
+
+.gsc-tabsArea .gs-spacer-opera {
+  margin-right : 0;
+}
+
+.gsc-tabsAreaInvisible {
+  display : none;
+  }
+
+.gsc-tabHeader {
+  display: inline;
+  cursor: pointer;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-right: 2px;
+  }
+
+.gsc-tabHeader.gsc-tabhActive {
+  border-left: 1px solid #e9e9e9;
+  border-right: 1px solid #e9e9e9;
+  border-top: 2px solid #ff9900;
+  color: black;
+  }
+
+.gsc-tabHeader.gsc-tabhInactive {
+  border-left: 1px solid #e9e9e9;
+  border-right: 1px solid #e9e9e9;
+  border-top: 2px solid #e9e9e9;
+  background: #e9e9e9;
+  color: #676767;
+  }
+
+.gsc-tabData.gsc-tabdActive {
+  display: block;
+  }
+
+.gsc-tabData.gsc-tabdInactive {
+  display: none;
+  }
+
+/* tab specific results header supression
+ * - no twiddle, tabbed mode runs in full expand mode
+ * - no title
+ * - no stats
+ */
+.gsc-tabData .gsc-resultsHeader .gsc-title {
+  display: none;
+  }
+
+.gsc-tabData .gsc-resultsHeader .gsc-stats {
+  display: none;
+  }
+
+.gsc-tabData .gsc-resultsHeader .gsc-results-selector {
+  display : none;
+}
+
+/* style for auto-completion table
+ * .gsc-completion-selected : styling for a suggested query which the user has moused-over
+ * .gsc-completion-container : styling for the table which contains the completions
+ */
+.gsc-completion-selected {
+  background : #D5E2FF;
+}
+
+.gsc-completion-container {
+  font-family: Arial, sans-serif;
+  font-size : 13px;
+  position : absolute;
+  background : white;
+  border : 1px solid #666666;
+  margin-left : 0;
+  margin-right : 0;
+  /* The top, left, and width are set in JavaScript */
+}
+
+/* the results for each section
+ * .gsc-resultsbox-{visible,invisible} : a complete-collection of results including headers
+ * .gsc-results : the collection of results for a given searcher
+ * .gsc-result : a generic result within the control. each result has this class, as well as .gsc-xxxResult where xxx is web, image, local, blog, etc.
+ */
+.gsc-resultsbox-visible {
+  display : block;
+}
+
+.gsc-resultsbox-invisible {
+  display : none;
+}
+
+.gsc-results {
+  padding-bottom: 2px;
+  width : 99%;
+}
+
+.gsc-result {
+  margin-bottom: 10px;
+}
+
+.gsc-result .gs-title {
+  height: 1.4em;
+  overflow: hidden;
+}
+
+/* specialized, result type specific, fine grained controls */
+.gsc-result div.gs-watermark {
+  display: none;
+}
+
+/* Ads
+ */
+.gsc-results .gsc-result img.gs-ad-marker {
+  display: none;
+}
+
+.gsc-wrapper {
+  position : relative;
+  display : block;
+}
+
+.gsc-adBlock {
+  position : relative;
+  display : block;
+}
+
+.gsc-adBlock h2 {
+  float : right;
+  margin : 3px 5px 0;
+  font-weight : normal;
+  font-size : .9em;
+  color : #676767;
+}
+
+.gsc-adBlock .gsc-ad {
+  padding-left : 8px;
+  padding-top : 5px;
+  padding-right : 3px;
+}
+
+.gsc-adBlock .gsc-ad a {
+  font-weight : bolder;
+  color : #0000CC;
+  line-height : 1.4em;
+}
+
+.gsc-adBlock .gsc-ad cite {
+  font-style : normal;
+  color : green;
+}
+
+.gsc-adBlock .gsc-ad span {
+  padding-left : 8px;
+}
+
+.gsc-adBlockNoHeight {
+    height : 0;
+}
+
+.gsc-adBlockInvisible {
+  display : none;
+}
+
+.gsc-adBlockVertical {
+  position : relative;
+  display : block;
+  float : right;
+  width : 30%;
+}
+
+.gsc-thinWrapper {
+  width : 69%;
+  float : left;
+  overflow : hidden;
+}
+
+.gsc-adBlockVertical h2 {
+  text-align : center;
+  font-weight : normal;
+  font-size : .9em;
+  color : #676767;
+  margin-top : 6px;
+}
+
+.gsc-adBlockVertical .gsc-ad {
+  padding-left : 8px;
+  padding-top : 5px;
+}
+
+.gsc-adBlockVertical .gsc-ad a {
+  font-weight : bolder;
+  color : #0000CC;
+  line-height : 1.4em;
+}
+
+.gsc-adBlockVertical .gsc-ad cite {
+  font-style : normal;
+  color : green;
+  display : block;
+}
+
+.gsc-adBlockVertical .gsc-ad span {
+}
+
+/* Standard configuration div/form */
+div.gsc-config {
+  border: 1px solid #e9e9e9;
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-top : 2px;
+  padding-left : 6px;
+  padding-right : 6px;
+  padding-bottom : 6px;
+}
+
+form.gsc-config {
+  margin-bottom : 0;
+}
+
+.gsc-configSetting {
+  margin-top : 6px;
+  }
+
+.gsc-configSetting_Label {
+  color: #676767;
+  }
+
+.gsc-configSettingInput {
+  color: #676767;
+  border: 1px solid #e9e9e9;
+  width: 75%;
+  }
+
+.gsc-configSettingCheckbox {
+  color: #676767;
+  margin-right: 6px;
+  }
+
+.gsc-configSettingCheckboxLabel {
+  display : inline;
+  color: #676767;
+  }
+
+div.gsc-configSettingSubmit {
+  margin-top : 8px;
+  text-align : right;
+}
+
+input.gsc-configSettingSubmit {
+  display: inline;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* Added so elements inside a result are properly cleared by the container. */
+.gsc-webResult:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.gsc-webResult {
+  zoom: 1;  /* IE-specific hack to get the layout clearing right. */
+}
+
+.gs-web-image-box {
+  float: left;
+  padding: 3px;
+  margin-right: 5px;
+  margin-left: 8px;
+  border: 1px solid #BBBBBB;
+}
+
+.gs-web-image-box img.gs-image {
+  border: 1px solid #999999;
+}
+
+div.gs-action {
+  display: inline;
+  margin-right: 0.6em;
+}
+div.gs-action a.gs-action {
+  color: #7777CC;
+}
+div.gs-action.cart a.gs-action,
+div.gs-action.star a.gs-action,
+div.gs-action.rss a.gs-action,
+div.gs-action.download a.gs-action,
+div.gs-action.email a.gs-action,
+div.gs-action.mobile a.gs-action,
+div.gs-action.share a.gs-action,
+div.gs-action.fullscreen a.gs-action,
+div.gs-action.generic a.gs-action,
+div.gs-action.link a.gs-action {
+  padding-left: 18px;
+  background:transparent url('//www.google.com/cse/images/action_icons_sprite.gif') no-repeat;
+}
+div.gs-action.cart a.gs-action {
+  background-position: 0 0;
+}
+div.gs-action.star a.gs-action {
+  background-position: -16px -34px;
+}
+div.gs-action.rss a.gs-action {
+  background-position: -48px -98px;
+}
+div.gs-action.download a.gs-action {
+  background-position: -64px -128px;
+}
+div.gs-action.email a.gs-action {
+  background-position: -112px -224px;
+}
+div.gs-action.mobile a.gs-action {
+  background-position: -131px -257px;
+}
+div.gs-action.share a.gs-action {
+  background-position: -32px -64px;
+}
+div.gs-action.fullscreen a.gs-action {
+  background-position: -79px -162px;
+}
+div.gs-action.generic a.gs-action {
+  background-position: -144px -290px;
+}
+div.gs-action.link a.gs-action {
+  background-position: -159px -321px;
+}
+
+/* Image Search
+ */
+.gsc-imageResult {
+  float: left;
+  margin-bottom: 1em;
+  margin-right: 20px;
+}
+
+.gs-imageResult {
+  width: 114px; /* default width + 1px border */
+  overflow : hidden;
+}
+
+.gs-imageResult .gs-image-box {
+  height: 86px; /* default height + 1px border */
+  position : relative;
+}
+
+/* note, left edge is auto-set by search control */
+.gs-imageResult .gs-image-box img.gs-image {
+  position : absolute;
+  bottom : 0;
+}
+
+.gs-imageResult .gs-text-box {
+  text-align: center;
+  overflow : hidden;
+  height: 4em;
+}
+
+.gs-imageResult .gs-snippet {
+  overflow : hidden;
+  line-height: 1em;
+  cursor : pointer;
+  white-space : nowrap;
+}
+.gs-imageResult .gs-visibleUrl {
+  cursor : pointer;
+  overflow : hidden;
+  line-height: 1.3em;
+  height: 1.3em;
+}
+.gs-imageResult .gs-size {
+  color: #6f6f6f;
+}
+
+/* Video Search
+ * - single line title
+ */
+
+.gsc-videoResult .gs-videoResult .gs-title {
+  line-height: 1.3em;
+  height: 1.3em;
+  overflow: hidden;
+  }
+
+.gsc-videoResult .gs-videoResult .gs-snippet {
+  line-height: 1.3em;
+  max-height: 2.6em;
+  overflow: hidden;
+  }
+
+/* trailing more link at the bottom of
+ * a collection of results
+ */
+.gsc-imageResult .gsc-trailing-more-results {
+  clear : both;
+}
+
+.gsc-results .gsc-trailing-more-results {
+  margin-bottom : 10px;
+}
+
+.gsc-results .gsc-trailing-more-results,
+.gsc-results .gsc-trailing-more-results * {
+  color: #0000cc;
+  text-decoration: underline;
+}
+
+/* trailing cursor section
+ */
+.gsc-imageResult .gsc-cursor-box {
+  clear : both;
+}
+
+.gsc-results .gsc-cursor-box .gsc-trailing-more-results {
+  margin-bottom : 0;
+  display : inline;
+}
+
+.gsc-results .gsc-cursor {
+  display : inline;
+}
+
+.gsc-results .gsc-cursor-box {
+  margin-bottom : 10px;
+}
+
+.gsc-results .gsc-cursor-box .gsc-cursor-page {
+  cursor : pointer;
+  color : #000000;
+  text-decoration: underline;
+  margin-right : 8px;
+  display : inline;
+}
+
+.gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+  color : #A90A08;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+
+
+/*** End of Control, Begin Results ***/
+
+/* generic, cross cutting result style
+ * - in the form of .gs-result .gs-xxx where xxx is the generic style
+ * .gs-title : typically the first line of a result, typically a link, image results over ride this, since for image results, the image is the link
+ * .gs-divider : typically seperates results from ads
+ * .gs-visibleUrl : typically the last line of a result, displayed in green. sometimes a link (like in blog search)
+ * .gs-clusterUrl : for news, and other similar services, this is a cluster of additional results
+ * img.gs-image : an actial image in a result
+ * .gs-phone : a phone number
+ * .gs-address : an address (includes street, city, region, country)
+ * .gs-streetAddress : a street (including #)
+ * .gs-city : a city
+ * .gs-region : a region (zip code, area, etc.)
+ * .gs-country : a country
+ * .gs-snippet : snippetized content
+ * .gs-watermark : indicator that user selected this result
+ * .gs-metadata : generic metadata, e.g.,
+ * .gs-image-box : generic container for a result's image (within a table)
+ * .gs-text-box : generic container for a result's text content (within a table). Note that this class, and image-box are only used in video
+ */
+.gs-result .gs-title,
+.gs-result .gs-title * {
+  color: #0000cc;
+  text-decoration: underline;
+}
+
+.gs-divider {
+  padding-bottom: 8px;
+  text-align: center;
+  color: #676767;
+}
+
+.gs-result a.gs-visibleUrl,
+.gs-result .gs-visibleUrl {
+  color: #008000;
+  text-decoration: none;
+}
+
+/* relative and absolute dates, note, news/books inlines these */
+.gs-relativePublishedDate,
+.gs-publishedDate {
+  color: #6f6f6f;
+  text-decoration: none;
+}
+.gs-result a.gs-clusterUrl,
+.gs-result .gs-clusterUrl {
+  color: #008000;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.gs-newsResult .gs-publisher {
+  color: #6f6f6f;
+  display : inline;
+  text-decoration: none;
+}
+
+/*
+ * For news results there are two dates...
+ * The relative date is visible while in the
+ * search control and the published date
+ * is visible when clipped. Why? It doesn't
+ * make sense to say 4 hours ago for a clipped
+ * result...
+ */
+
+/* establish the base style */
+.gs-newsResult .gs-relativePublishedDate,
+.gs-newsResult .gs-publishedDate {
+  display : inline;
+  margin-left : 4px;
+}
+
+/* base styling for relative date is none */
+.gs-blogResult .gs-relativePublishedDate,
+.gs-newsResult .gs-relativePublishedDate {
+  display : none;
+}
+
+/* suppress publishedDate while in the control */
+.gsc-blogResult .gs-blogResult .gs-publishedDate,
+.gsc-newsResult .gs-newsResult .gs-publishedDate {
+  display : none;
+}
+
+/* enable relativePublishedDate while in the control */
+.gsc-blogResult .gs-blogResult .gs-relativePublishedDate,
+.gsc-newsResult .gs-newsResult .gs-relativePublishedDate {
+  display : inline;
+}
+
+.gs-newsResult .gs-location {
+  color: #6f6f6f;
+  display : inline;
+  text-decoration: none;
+}
+
+.gs-promotion {
+  padding-top : 5px;
+}
+
+.gs-promotion a {
+  font-weight : bold;
+  font-size: 14px;
+}
+
+.gs-promotion-image {
+  margin-right : 10px;
+}
+
+.gs-promotion-image-td {
+  vertical-align : top;
+}
+
+.gs-promotion table {
+  border : none;
+  border-style : none;
+  border-width : 0;
+  border-spacing : 0 0;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+.gs-promotion table a {
+  font-weight : normal;
+  font-size: 13px;
+  padding-right : 5px;
+}
+
+.gs-result img.gs-image {
+  vertical-align : middle;
+  border : 1px solid #0000cc;
+}
+
+.gs-result div.gs-phone {}
+
+.gs-result .gs-directions,
+.gs-result .gs-directions * {
+  color: #7777cc;
+  font-weight: normal;
+  text-decoration : underline;
+  cursor : pointer;
+}
+
+.gs-secondary-link,
+.gs-secondary-link * {
+  color: #7777cc;
+  font-weight: normal;
+  text-decoration : underline;
+  cursor : pointer;
+}
+
+/* wrapper around user supplied to/from mode directions
+ * normally this is disabled by default, and gs-directions is enabled
+ * apps can easily switch this by setting display:block on the rule below,
+ * and display:none on the rule above
+ * e.g., add these two rules to switch local results into
+ * alternate style driving directions
+ * .gs-localResult .gs-directions-to-from { display : block; }
+ * .gs-localResult .gs-directions { display : none; }
+ */
+.gs-result .gs-directions-to-from {
+  display : none;
+  margin-top : 4px;
+}
+.gs-result .gs-directions-to-from .gs-label {
+  display : inline;
+  margin-right : 4px;
+}
+
+.gs-result .gs-directions-to-from div.gs-secondary-link {
+  display : inline;
+}
+
+.gs-result .gs-directions-to-from .gs-spacer {
+  display : inline;
+  margin-right : 3px;
+  margin-left : 3px;
+}
+
+.gs-videoResult a.gs-publisher,
+.gs-videoResult .gs-publisher {
+  color: #008000;
+  text-decoration: none;
+}
+
+.gs-result a {
+  cursor: pointer;
+}
+
+.gs-result .gs-address {
+}
+
+.gs-result .gs-snippet {
+}
+
+.gs-no-results-result .gs-snippet,
+.gs-error-result .gs-snippet {
+  padding : 5px;
+  margin : 5px;
+  border : 1px solid rgb(255,204,51);
+  background-color : rgb(255,244,194);
+}
+
+.gs-result .gs-watermark{
+  font-size: 10px;
+  color: #7777cc;
+}
+
+div.gs-results-attribution {
+  text-align : center;
+  margin-bottom : 4px;
+}
+
+div.gs-results-attribution,
+div.gs-results-attribution * {
+  font-size : 10px;
+  color : #676767;
+  text-decoration : none;
+}
+
+div.gs-results-attribution a {
+  color: #0000cc;
+  cursor : pointer;
+}
+
+div.gs-results-attribution a:hover {
+  text-decoration : underline;
+}
+
+.gs-result .gs-metadata{
+  color: #676767;
+}
+
+/* searcher specific styling for
+ * - web ad
+ * - web
+ * - local
+ * - image (none)
+ * - blog (none)
+ * - video (none)
+ */
+
+/* webAd search specific over rides
+ * .gs-ad-marker : disabled in control, but on in green to indicate clipped result is an ad
+ */
+.gs-localAd img.gs-ad-marker,
+.gs-webAd img.gs-ad-marker {
+  padding-left: 4px;
+}
+
+/* default is to not show long mode visible urls
+ * apps should selectively enable this while disabling
+ * div.gs-visibleUrl-short
+ */
+.gs-webResult div.gs-visibleUrl-long {
+  width : 100%;
+  overflow : hidden;
+  display : none;
+}
+
+/* local search specific over rides
+ * - city, region displayed inline
+ * - country supressed
+ * - small font size for info window's
+ */
+
+.gs-localAd div.gs-address * {
+  color : #676767;
+}
+
+.gs-localAd div.gs-street {
+  display: inline;
+}
+
+div.gs-city {
+  display: inline;
+}
+
+div.gs-region {
+  display: inline;
+}
+
+div.gs-country {
+  display: none;
+}
+
+div.gs-infoWindow * {
+  font-size: 11px;
+  }
+
+/* video search specific over rides
+ * - align the table data
+ * - default image width garuntee
+ * - appropriate cell seperation
+ */
+
+/* todo(markl): workaround until gre in gmail fixes his styles */
+.gs-videoResult * {
+  font-size: 13px;
+  }
+
+/*
+.gs-videoResult td .gs-image {
+  vertical-align : middle;
+}
+
+.gs-videoResult td.gs-image-box {
+  background-color : #000000;
+}*/
+
+.gs-videoResult td div.gs-image-box {
+  width : 110px;
+  height : 78px;
+}
+
+.gs-videoResult td div.gs-text-box {
+  vertical-align: top;
+  margin-left: 4px;
+  }
+
+
+/* book search specific over rides
+ * - default image width garuntee
+ * - appropriate cell seperation
+ */
+
+div.gs-book-image-box td,
+.gs-bookResult td {
+  vertical-align : top;
+}
+
+div.gs-book-image-box,
+div.gs-book-image-box div {
+  position : static;
+  text-align : start;
+}
+
+div.gs-book-image-box {
+  width : 75px;
+  height : 90px;
+}
+
+.gs-bookResult td div.gs-text-box {
+  vertical-align: top;
+  margin-left: 4px;
+  }
+
+div.gs-book-image-box img {
+  border-spacing : 0 0;
+  border : none;
+}
+
+div.gs-book-image-box div.gs-row-1 {
+  line-height : 7px;
+}
+
+div.gs-book-image-box img.gs-pages {
+  height : 7px;
+  width : 45px;
+}
+
+div.gs-book-image-box img.gs-page-edge {
+  height : 7px;
+  width : 11px;
+}
+
+div.gs-book-image-box div.gs-row-2 {
+}
+
+div.gs-book-image-box img.gs-image {
+  height : 80px;
+  border : 1px solid #a0a0a0;
+}
+
+.gs-bookResult .gs-author {
+  display : inline;
+  color: #6f6f6f;
+}
+.gs-bookResult .gs-publishedDate {
+  display : inline;
+}
+
+.gs-bookResult .gs-pageCount {
+  display : inline;
+  color: #6f6f6f;
+  margin-left : 4px;
+}
+
+.gs-bookResult .gs-id {}
+
+
+
+/* book search specific over rides
+ * - default image width garuntee
+ * - appropriate cell seperation
+ */
+
+.gs-patentResult td {
+  vertical-align : top;
+}
+.gs-patentResult .gs-patent-number,
+.gs-patentResult .gs-publishedDate,
+.gs-patentResult .gs-author {
+  display:inline;
+}
+
+.gs-patentResult .gs-image-box {
+  padding-right : 8px;
+}
+
+.gs-patentResult img.gs-image {
+  border : 1px solid #7777cc;
+}
+
+.gsc-control-cse:after {
+  content:".";
+  display:block;
+  clear:both;
+  height:0;
+  visibility: hidden;
+}
 
 /* The skin ends
 ----------------------------------------------- */
