@@ -31,14 +31,6 @@ color: #999999;
 .tabs-inner .widget ul {
 background: #f5f5f5 url(http://www.blogblog.com/1kt/simple/gradients_light.png) repeat-x scroll 0 -800px;
 }
-/* Widgets
------------------------------------------------ */
-.widget {
-background-color: #ffffff;
-}
-.widget .zippy {
-color: #999999;
-}
 /* Posts
 ----------------------------------------------- */
 .post-footer {
@@ -246,11 +238,9 @@ body{margin:0;padding:0 0 1px}
 .footer-outer{margin-bottom:-1px}
 .content-inner{padding:10px}
 .tabs-inner{padding:0 15px}
-.main-inner{padding:30px 0}
 .main-inner .column-center-inner,.main-inner .column-left-inner,.main-inner .column-right-inner{padding:0 15px}
 .footer-inner{padding:30px 15px}
 .section{margin:0 15px}
-.widget{margin:30px 0;_margin:0 0 10px}
 .section:first-child .widget:first-child{margin-top:0}
 .section:first-child #uds-searchControl+.widget{margin-top:0}
 .section:last-child .widget:last-child{margin-bottom:0}
@@ -1111,8 +1101,6 @@ div.gs-action.link a.gs-action {
   text-decoration: none;
 }
 
-
-
 /*** End of Control, Begin Results ***/
 
 /* generic, cross cutting result style
@@ -1665,20 +1653,22 @@ img.fleft {
 
 /* Widgets
 ----------------------------------------------- */
-.section {
-}
-
 aside {
   float: left;
   width: 320;
 }
 
 .widget {
-  margin: 15px !important;
+  margin: 15px;
   padding: 15px;
   float: left;
   border-radius: 15px;
   -moz-border-radius: 15px;
+  background-color: #ffffff;
+}
+
+.widget .zippy {
+color: #999999;
 }
 
 .widget-content {
