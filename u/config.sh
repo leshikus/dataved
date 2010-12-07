@@ -35,7 +35,7 @@ fi
 # Setting PATH so installed tools have a priority
 test "$CLEAN_ENV" = true || exec env -i CLEAN_ENV=true \
   USER=${USER:-hudson} \
-  HOME="/home/$USER" \
+  HOME=${HOME:-/home/hudson} \
   LANG='' \
   PATH="$DDIR/usr/bin:$DDIR/bin:/bin:/usr/bin" \
   LDFLAGS="-L$QDIR/usr/lib" \
