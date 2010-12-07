@@ -14,6 +14,8 @@ KEY_NAME="$HOME"/.ssh/id_rsa
 # Functions
 #
 function generate_ssh_keypair() {
+env
+
   test -f "$KEY_NAME" ||
     ssh-keygen -N "" -f "$KEY_NAME"
 }
