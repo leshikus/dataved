@@ -101,18 +101,22 @@ h3.post-title, .comments h4 {
 
 /* Posting style
 ----------------------------------------------- */
-.post-body p {
+.post-body p, dl {
   margin: 1em 0;
-  line-height: 1.5;
 }
 
-.post-body ul, ol, dl {
+.post-body ul, ol {
+  margin: 0.5em 0px;
+  padding: 0px 2.5em;
+}
+
+.post-body ul, ol {
   margin: 0.5em 0px;
   padding: 0px 2.5em;
 }
 
 .post-body dd {
-  margin-left: 1ex;
+  padding-left: 2.5em;
 }
 
 /* Images
