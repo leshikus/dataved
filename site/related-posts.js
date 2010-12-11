@@ -3,7 +3,7 @@ alert(jQuery.fn.jquery)
 (function (c) {
   c.fn.relatedPostsWidget = function (s) {
     if (!this.size()) return this;
-    s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
+s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
     return this.each(function () {
       var k = c(this),
           z = 0,
@@ -216,7 +216,10 @@ alert(jQuery.fn.jquery)
     animate_loop: 1
   }
 })(jQuery);
+alert(jQuery.fn.jquery)
+
 jQuery(document).ready(function () {
   jQuery("div.related-posts-widget").relatedPostsWidget()
 });
+alert(jQuery.fn.jquery)
 })
