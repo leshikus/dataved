@@ -214,8 +214,8 @@ google.setOnLoadCallback( function() {
     animate: "opacity",
     animate_loop: 1
   }
-})($);
-$(document).ready(function () {
-  $("div.related-posts-widget").relatedPostsWidget()
+})(jQuery);
+jQuery(document).ready(function () {
+  jQuery("div.related-posts-widget").relatedPostsWidget()
 });
 })
