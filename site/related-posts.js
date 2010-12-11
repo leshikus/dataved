@@ -1,11 +1,9 @@
 google.setOnLoadCallback( function() {
-alert(jQuery.fn.jquery)
-(function (c) {
-  c.fn.relatedPostsWidget = function (s) {
+  $.fn.relatedPostsWidget = function (s) {
     if (!this.size()) return this;
-s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
+    s = $.extend({}, $.fn.relatedPostsWidget.defaults, s);
     return this.each(function () {
-      var k = c(this),
+      var k = $(this),
           z = 0,
           g = null,
           p = null,
@@ -21,8 +19,8 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
           b = s,
           F = function () {
           if (!((l + 1) * b.show_n >= q && !b.animate_loop)) if (!v) {
-            c("li", g).eq(n).fadeOut(b.exit_time, B);
-            b.show_n > 1 && c("li", g).slice(n + 1, u).fadeOut(b.exit_time)
+            $("li", g).eq(n).fadeOut(b.exit_time, B);
+            b.show_n > 1 && $("li", g).slice(n + 1, u).fadeOut(b.exit_time)
           }
           },
           B = function () {
@@ -31,8 +29,8 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
             if (l * b.show_n >= q) l = 0;
             n = l * b.show_n;
             u = (l + 1) * b.show_n;
-            c("li", g).eq(n).animate(r, b.enter_time, "linear", C);
-            b.show_n > 1 && c("li", g).slice(n + 1, u).animate(r, b.enter_time)
+            $("li", g).eq(n).animate(r, b.enter_time, "linear", C);
+            b.show_n > 1 && $("li", g).slice(n + 1, u).animate(r, b.enter_time)
           }
           },
           C = function () {
@@ -53,13 +51,13 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
           x = function () {
           if (!(t || !g)) {
             b.loading_class && g.removeClass(b.loading_class);
-            b.max_posts && b.tags.length && c("li:gt(" + (b.max_posts - 1) + ")", g).remove();
-            q = c("li", g).size();
-            b.tags.length && b.timeout && b.max_posts && c("img", g).each(function () {
-              var d = c(this);
+            b.max_posts && b.tags.length && $("li:gt(" + (b.max_posts - 1) + ")", g).remove();
+            q = $("li", g).size();
+            b.tags.length && b.timeout && b.max_posts && $("img", g).each(function () {
+              var d = $(this);
               d.attr("rel") && d.attr("src", d.attr("rel"))
             });
-            if (b.show_n == 0) c("li", g).show();
+            if (b.show_n == 0) $("li", g).show();
             else q && G();
             t = 1
           }
@@ -70,9 +68,9 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
             if (d.feed.entry) {
               if (!g) {
                 k.html("");
-                if (b.tags.length == 0) b.recent_title && c("<h2>" + b.recent_title + "</h2>").appendTo(k);
-                else b.related_title && c("<h2>" + b.related_title + "</h2>").appendTo(k);
-                g = c('<ul class="rpw ' + b.loading_class + '"></ul>').appendTo(k)
+                if (b.tags.length == 0) b.recent_title && $("<h2>" + b.recent_title + "</h2>").appendTo(k);
+                else b.related_title && $("<h2>" + b.related_title + "</h2>").appendTo(k);
+                g = $('<ul class="rpw ' + b.loading_class + '"></ul>').appendTo(k)
               }
               for (var i = 0, o = d.feed.entry.length; i < o; i++) {
                 var e = d.feed.entry[i],
@@ -91,10 +89,10 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
                       m = f,
                       H = e;
                   if (b.tags.length > 0) {
-                    e = c("li", g);
+                    e = $("li", g);
                     f = 0;
                     for (var I = e.length; f < I; f++) {
-                      var y = c("a", e.eq(f));
+                      var y = $("a", e.eq(f));
                       h = D(y);
                       if (y.attr("href") == j) {
                         j = y;
@@ -102,7 +100,7 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
                         j.attr("score", m);
                         b.post_score_class && j.attr("class", b.post_score_class + m);
                         for (j = f - 1; j >= 0; j--) {
-                          m = c("a", e.eq(j));
+                          m = $("a", e.eq(j));
                           if (D(m) > h) {
                             f - j > 1 && e.eq(j).after(e.eq(f));
                             break a
@@ -116,7 +114,7 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
                   e = j;
                   f = m;
                   h = H;
-                  if (b.thumb_size != "s72-c") h = h.replace("/s72-c/", "/" + b.thumb_size + "/");
+                  if (b.thumb_size != "s72-$") h = h.replace("/s72-$/", "/" + b.thumb_size + "/");
                   j = b.tags.length && b.timeout && b.max_posts ? "rel" : "src";
                   g.append('<li style="display:none"><a href="' + e + '">' + (b.thumbs && h ? "<span><img " + j + '="' + h + '" title="' + (b.titles ? "" : f) + '" border="0"/></span>' : "") + (b.titles ? "<strong>" + f + "</strong>" : "") + "</a></li>")
                 }
@@ -135,15 +133,15 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
           J = function () {
           if (!b.tags) {
             b.tags = [];
-            c('a[rel="tag"]:lt(' + b.max_tags + ")").each(function () {
-              var e = c.trim(c(this).text().replace(/\n/g, ""));
-              if (c.inArray(e, b.tags) == -1) b.tags[b.tags.length] = e
+            $('a[rel="tag"]:lt(' + b.max_tags + ")").each(function () {
+              var e = $.trim($(this).text().replace(/\n/g, ""));
+              if ($.inArray(e, b.tags) == -1) b.tags[b.tags.length] = e
             })
           }
           var d = b.blog_url + "/feeds/posts/summary/";
           if (b.tags.length == 0) {
             if (b.timeout) p = setTimeout(x, b.timeout);
-            c.ajax({
+            $.ajax({
               url: d,
               data: {
                 "max-results": b.max_posts,
@@ -155,7 +153,7 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
             })
           } else {
             if (b.timeout) p = setTimeout(x, b.timeout * b.tags.length);
-            for (var i = 0, o = b.tags.length; i < o; i++) c.ajax({
+            for (var i = 0, o = b.tags.length; i < o; i++) $.ajax({
               url: d,
               data: {
                 category: b.tags[i],
@@ -182,7 +180,7 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
             a.html('<b style="color:red">' + o + "</b>");
             return null
           }
-          b = c.extend({}, c.fn.relatedPostsWidget.defaults, b)
+          b = $.extend({}, $.fn.relatedPostsWidget.defaults, b)
         }
         if (b.post_page_only ? location.pathname.match(/^\/\d{4}\/\d\d\/[\w\-\_]+\.html/) : true) {
           A = location.protocol + "//" + location.host + location.pathname + (b.url_querystring ? location.search : "");
@@ -191,19 +189,20 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
       })()
     })
   };
-  c.fn.relatedPostsWidget.defaults = {
+  
+  jQuery.fn.relatedPostsWidget.defaults = {
     blog_url: "http://www.dataved.ru/",
     max_posts: 5,
     max_tags: 5,
     posts_per_tag: 5,
     tags: false,
     loading_class: "rpw-loading",
-    related_title: "Related Posts",
-    recent_title: "Recent Posts",
+    related_title: "Похожие публикации",
+    recent_title: "Недавние публикации",
     post_score_class: "",
     post_page_only: 0,
     thumb_default: "",
-    thumb_size: "s72-c",
+    thumb_size: "s72-$",
     thumbs: 1,
     titles: 1,
     url_querystring: 0,
@@ -215,11 +214,6 @@ s = c.extend({}, c.fn.relatedPostsWidget.defaults, s);
     animate: "opacity",
     animate_loop: 1
   }
-})(jQuery);
-alert(jQuery.fn.jquery)
 
-jQuery(document).ready(function () {
-  jQuery("div.related-posts-widget").relatedPostsWidget()
-});
-alert(jQuery.fn.jquery)
+  $("div.related-posts-widget").relatedPostsWidget()
 })
