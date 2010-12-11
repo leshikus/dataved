@@ -1,33 +1,9 @@
 google.setOnLoadCallback( function() {
-  $.fn.relatedPostsWidget = function () {
+  $.fn.relatedPostsWidget = function (b) {
     if (!this.size()) return this;
-
-    defaults = {
-      blog_url: "http://www.dataved.ru/",
-      max_posts: 5,
-      max_tags: 5,
-      posts_per_tag: 5,
-      tags: false,
-      loading_class: "rpw-loading",
-      related_title: "Похожие публикации",
-      recent_title: "Недавние публикации",
-      post_score_class: "",
-      post_page_only: 0,
-      thumb_default: "",
-      thumb_size: "s72-$",
-      thumbs: 1,
-      titles: 1,
-      url_querystring: 0,
-      timeout: 1500,
-      show_n: 0,
-      stay_time: 5E3,
-      enter_time: 200,
-      exit_time: 200,
-      animate: "opacity",
-      animate_loop: 1
-    }
     
     return this.each(function () {
+    alert('this.each(')
       var k = $(this),
           z = 0,
           g = null,
@@ -41,7 +17,6 @@ google.setOnLoadCallback( function() {
           v = 0,
           w = null,
           A = "",
-          b = defaults,
           F = function () {
           if (!((l + 1) * b.show_n >= q && !b.animate_loop)) if (!v) {
             $("li", g).eq(n).fadeOut(b.exit_time, B);
@@ -166,6 +141,10 @@ google.setOnLoadCallback( function() {
           var d = b.blog_url + "/feeds/posts/summary/";
           if (b.tags.length == 0) {
             if (b.timeout) p = setTimeout(x, b.timeout);
+            alert(d)
+            alert(b.tags.length)
+            alert(max-results" + b.max_posts)
+            alert(E)
             $.ajax({
               url: d,
               data: {
@@ -178,6 +157,7 @@ google.setOnLoadCallback( function() {
             })
           } else {
             if (b.timeout) p = setTimeout(x, b.timeout * b.tags.length);
+            alert('tags = ' + b.tags)
             for (var i = 0, o = b.tags.length; i < o; i++) $.ajax({
               url: d,
               data: {
@@ -198,7 +178,31 @@ google.setOnLoadCallback( function() {
         }
       })()
     })
+    alert('end: return this.each(')
   };
   
-  $("div.related-posts-widget").relatedPostsWidget()
+  $("div.related-posts-widget").relatedPostsWidget({
+    blog_url: "",
+    max_posts: 5,
+    max_tags: 5,
+    posts_per_tag: 5,
+    tags: false,
+    loading_class: "rpw-loading",
+    related_title: "Похожие публикации",
+    recent_title: "Недавние публикации",
+    post_score_class: "",
+    post_page_only: 0,
+    thumb_default: "",
+    thumb_size: "s72-$",
+    thumbs: 1,
+    titles: 1,
+    url_querystring: 0,
+    timeout: 1500,
+    show_n: 0,
+    stay_time: 5E3,
+    enter_time: 200,
+    exit_time: 200,
+    animate: "opacity",
+    animate_loop: 1
+  })
 })
