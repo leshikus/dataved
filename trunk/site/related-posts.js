@@ -172,6 +172,7 @@ google.setOnLoadCallback( function() {
         }
       })()
     })
+    alert('end: return this.each(')
   };
   
   $("div.related-posts-widget").relatedPostsWidget({
@@ -181,8 +182,8 @@ google.setOnLoadCallback( function() {
     posts_per_tag: 5,
     tags: false,
     loading_class: "rpw-loading",
-    related_title: "Похожие публикации",
-    recent_title: "Недавние публикации",
+    related_title: "РџРѕС…РѕР¶РёРµ РїСѓР±Р»РёРєР°С†РёРё",
+    recent_title: "РќРµРґР°РІРЅРёРµ РїСѓР±Р»РёРєР°С†РёРё",
     post_score_class: "",
     post_page_only: 0,
     thumb_default: "",
