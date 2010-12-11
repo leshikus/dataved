@@ -708,7 +708,7 @@
 
 	  <aside>
 	  <macro:include id='main-column-right-sections' name='sections'>
-		<macro:param default='2' name='num' value='2'/>
+		<macro:param default='1' name='num' value='1'/>
 		<macro:param default='sidebar-right' name='idPrefix'/>
 		<macro:param default='sidebar' name='class'/>
 		<macro:param default='true' name='includeBottom'/>
@@ -768,42 +768,7 @@
 </body>
 
 <macro:includable id='sections' var='col'>
-  <macro:if cond='data:col.num == 0'>
-  <macro:else/>
     <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-1&quot;' preferred='yes' showaddelement='yes'/>
-
-    <macro:if cond='data:col.num &gt;= 2'>
-      <table border='0' cellpadding='0' cellspacing='0' mexpr:class='&quot;section-columns columns-&quot; + data:col.num'>
-      <tbody>
-      <tr>
-        <td class='first columns-cell'>
-          <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-2-1&quot;'/>
-        </td>
-
-        <td class='columns-cell'>
-          <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-2-2&quot;'/>
-        </td>
-
-        <macro:if cond='data:col.num &gt;= 3'>
-          <td class='columns-cell'>
-            <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-2-3&quot;'/>
-          </td>
-        </macro:if>
-
-        <macro:if cond='data:col.num &gt;= 4'>
-          <td class='columns-cell'>
-            <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-2-4&quot;'/>
-          </td>
-        </macro:if>
-      </tr>
-      </tbody>
-      </table>
-
-      <macro:if cond='data:col.includeBottom'>
-        <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-3&quot;' showaddelement='no'/>
-      </macro:if>
-    </macro:if>
-  </macro:if>
 </macro:includable>
 
 <b:section-contents id='sidebar-right-1'>
@@ -935,7 +900,6 @@
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-</b:section-contents><b:section-contents id='sidebar-right-2-1'>
 <b:widget id='HTML2' locked='false' title='' type='HTML'>
 <b:includable id='main'>
   <!-- only display title if it's non-empty -->
@@ -970,7 +934,6 @@
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-</b:section-contents><b:section-contents id='sidebar-right-2-2'>
 <b:widget id='Subscribe1' locked='false' title='Подпишитесь на Датавед' type='Subscribe'>
 <b:includable id='main'>
   <b:if cond='data:isPublic'>
