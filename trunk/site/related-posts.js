@@ -1,4 +1,5 @@
 google.setOnLoadCallback( function() {
+alert(jQuery.fn.jquery)
 (function (c) {
   c.fn.relatedPostsWidget = function (s) {
     if (!this.size()) return this;
