@@ -12,6 +12,7 @@
     <title><data:blog.pageTitle/></title>
 
     <noscript><b:skin><![CDATA[]]></b:skin></noscript><!-- ignore skins -->
+     <link rel="stylesheet" type="text/css" href="http://www.blogger.com/dyn-css/authorization.css?targetBlogID=3023871881439413232&amp;zx=947805cc-7f10-4e75-8bb6-d4534b03fa29"/>
 
     <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
 	<b:if cond='data:blog.url != data:blog.homepageUrl'>
@@ -186,6 +187,12 @@
 
     <a class='home-link' expr:href='data:blog.homepageUrl'><data:homeMsg/></a>
 
+    <b:if cond='data:mobileLinkUrl'>
+      <div class='blog-mobile-link'>
+        <a expr:href='data:mobileLinkUrl'><data:mobileLinkMsg/></a>
+      </div>
+    </b:if>
+
   </div>
   <div class='clear'/>
 </b:includable>
@@ -330,15 +337,27 @@
 <b:includable id='comment-form' var='post'>
   <div class='comment-form'>
     <a name='comment-form'/>
-    <h4 id='comment-post-message'><data:postCommentMsg/></h4>
-    <p><data:blogCommentMessage/></p>
-    <data:blogTeamBlogMessage/>
-    <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
-    <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    <b:if cond='data:mobile'>
+      <h4 id='comment-post-message'>
+        <a expr:id='data:widget.instanceId + &quot;_comment-editor-toggle-link&quot;' href='javascript:void(0)'><data:postCommentMsg/></a></h4>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410' id='comment-editor' name='comment-editor' src='' style='display: none' width='100%'/>
+    <b:else/>
+      <h4 id='comment-post-message'><data:postCommentMsg/></h4>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    </b:if>
     <data:post.friendConnectJs/>
     <data:post.cmtfpIframe/>
     <b:if cond='data:showCmtPopup'>
-      <div id='comment-popup' style='width:100px;height:20px;'/>
+      <div id='comment-popup' style='width:100px;height:20px;'>
+        <iframe allowtransparency='true' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
+        </iframe>
+      </div>
     </b:if>
     <script type='text/javascript'>
       BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;, &#39;<data:post.communityId/>&#39;);
@@ -352,6 +371,31 @@
     </a>
   </span>
 </b:includable>
+<b:includable id='mobile-nextprev'>
+  <div class='blog-pager' id='blog-pager'>
+    <b:if cond='data:newerPageUrl'>
+      <div class='mobile-link-button' id='blog-pager-newer-link'>
+      <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:newerPageTitle'><data:newerPageTitle/></a>
+      </div>
+    </b:if>
+
+    <b:if cond='data:olderPageUrl'>
+      <div class='mobile-link-button' id='blog-pager-older-link'>
+      <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:olderPageTitle'><data:olderPageTitle/></a>
+      </div>
+    </b:if>
+
+    <div class='mobile-link-button' id='blog-pager-home-link'>
+    <a class='home-link' expr:href='data:blog.homepageUrl'><data:homeMsg/></a>
+    </div>
+
+    <div class='mobile-desktop-link'>
+      <a class='home-link' expr:href='data:desktopLinkUrl'><data:desktopLinkMsg/></a>
+    </div>
+
+  </div>
+  <div class='clear'/>
+</b:includable>
 <b:includable id='postQuickEdit' var='post'>
   <b:if cond='data:post.editUrl'>
     <span expr:class='&quot;item-control &quot; + data:post.adminClass'>
@@ -363,66 +407,94 @@
 </b:includable>
 <b:includable id='main' var='top'>
 
-  <b:if cond='data:top.showPlusOne'>
-    <script expr:src='data:top.plusOneJsUrl'/>
+  <b:if cond='data:top.showDummy'>
+    <script expr:src='data:top.dummyUrl'/>
   </b:if>
 
-  <!-- posts -->
-  <div class='blog-posts hfeed'>
-
-    <b:include data='top' name='status-message'/>
-
-    <data:defaultAdStart/>
-    <b:loop values='data:posts' var='post'>
-      <b:if cond='data:post.isDateStart'>
+  <b:if cond='data:mobileindex'>
+    <!-- mobile index -->
+    <div class='blog-posts hfeed'>
+      <b:loop values='data:posts' var='post'>
         <b:if cond='data:post.isFirstPost == &quot;false&quot;'>
-          &lt;/div&gt;&lt;/div&gt;
+          &lt;/div&gt;
         </b:if>
-      </b:if>
-      <b:if cond='data:post.isDateStart'>
-        &lt;div class=&quot;date-outer&quot;&gt;
-      </b:if>
-      <b:if cond='data:post.dateHeader'>
-        <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
-      </b:if>
-      <b:if cond='data:post.isDateStart'>
-        &lt;div class=&quot;date-posts&quot;&gt;
-      </b:if>
-      <div class='post-outer'>
-      <b:include data='post' name='post'/>
-      <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
-        <b:include data='post' name='comments'/>
-      </b:if>
-      <b:if cond='data:blog.pageType == &quot;item&quot;'>
-        <b:include data='post' name='comments'/>
-      </b:if>
-      </div>
-      <b:if cond='data:post.includeAd'>
-        <b:if cond='data:post.isFirstPost'>
-          <data:defaultAdEnd/>
-        <b:else/>
-          <data:adEnd/>
-        </b:if>
-        <div class='inline-ad'>
-          <data:adCode/>
+        &lt;div class=&quot;mobile-date-outer date-outer&quot;&gt;
+        <div expr:onclick='data:post.indexOnclick'>
+          <b:include data='post' name='mobile-index-post'/>
         </div>
-        <data:adStart/>
+        <b:if cond='data:post.trackLatency'>
+          <data:post.latencyJs/>
+        </b:if>
+      </b:loop>
+      <b:if cond='data:numPosts != 0'>
+        &lt;/div&gt;
       </b:if>
-      <b:if cond='data:post.trackLatency'>
-        <data:post.latencyJs/>
+    </div>
+  <b:else/>
+
+    <!-- posts -->
+    <div class='blog-posts hfeed'>
+
+      <b:include data='top' name='status-message'/>
+
+      <data:defaultAdStart/>
+      <b:loop values='data:posts' var='post'>
+        <b:if cond='data:post.isDateStart'>
+          <b:if cond='data:post.isFirstPost == &quot;false&quot;'>
+            &lt;/div&gt;&lt;/div&gt;
+          </b:if>
+        </b:if>
+        <b:if cond='data:post.isDateStart'>
+          &lt;div class=&quot;date-outer&quot;&gt;
+        </b:if>
+        <b:if cond='data:post.dateHeader'>
+          <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
+        </b:if>
+        <b:if cond='data:post.isDateStart'>
+          &lt;div class=&quot;date-posts&quot;&gt;
+        </b:if>
+        <div class='post-outer'>
+        <b:include data='post' name='post'/>
+        <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
+          <b:include data='post' name='comments'/>
+        </b:if>
+        <b:if cond='data:blog.pageType == &quot;item&quot;'>
+          <b:include data='post' name='comments'/>
+        </b:if>
+        </div>
+        <b:if cond='data:post.includeAd'>
+          <b:if cond='data:post.isFirstPost'>
+            <data:defaultAdEnd/>
+          <b:else/>
+            <data:adEnd/>
+          </b:if>
+          <b:if cond='data:mobile == &quot;false&quot;'>
+            <div class='inline-ad'>
+              <data:adCode/>
+            </div>
+          </b:if>
+          <data:adStart/>
+        </b:if>
+        <b:if cond='data:post.trackLatency'>
+          <data:post.latencyJs/>
+        </b:if>
+      </b:loop>
+      <b:if cond='data:numPosts != 0'>
+        &lt;/div&gt;&lt;/div&gt;
       </b:if>
-    </b:loop>
-    <b:if cond='data:numPosts != 0'>
-      &lt;/div&gt;&lt;/div&gt;
-    </b:if>
-    <data:adEnd/>
-  </div>
+      <data:adEnd/>
+    </div>
+  </b:if>
 
   <!-- navigation -->
-  <b:include name='nextprev'/>
+  <b:if cond='data:mobile'>
+    <b:include name='mobile-nextprev'/>
+  <b:else/>
+    <b:include name='nextprev'/>
 
-  <!-- feed links -->
-  <b:include name='feedLinks'/>
+    <!-- feed links -->
+    <b:include name='feedLinks'/>
+  </b:if>
 
   <b:if cond='data:top.showStars'>
     <script src='//www.google.com/jsapi' type='text/javascript'/>
@@ -469,6 +541,56 @@
       </b:loop>
     </div>
   </b:if>
+</b:includable>
+<b:includable id='mobile-index-post' var='post'>
+  <b:if cond='data:post.dateHeader'>
+    <div class='mobile-index-date'>
+      <div class='date-header'>
+        <span><data:post.dateHeader/></span>
+      </div>
+    </div>
+  </b:if>
+
+  <div class='mobile-post-outer'>
+    <div class='mobile-index-title-outer'>
+      <h3 class='mobile-index-title entry-title'>
+        <a href='javascript:void(0)'><data:post.title/></a>
+      </h3>
+    </div>
+
+    <div>
+      <div class='mobile-index-arrow'>
+        <a href='javascript:void(0)'>&amp;rsaquo;</a>
+      </div>
+
+      <div class='mobile-post-contents'>
+        <b:if cond='data:post.thumbnailUrl'>
+          <div class='mobile-index-thumbnail'>
+            <div class='Image'>
+              <img expr:src='data:post.thumbnailUrl'/>
+            </div>
+          </div>
+        </b:if>
+
+        <div class='post-body'>
+          <b:if cond='data:post.snippet'><data:post.snippet/></b:if>
+        </div>
+      </div>
+      <div style='clear: both;'/>
+    </div>
+
+    <div class='mobile-index-comment'>
+      <b:if cond='data:blog.pageType != &quot;item&quot;'>
+        <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
+          <b:if cond='data:post.allowComments'>
+            <b:if cond='data:post.numComments != 0'>
+              <a class='comment-link' expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'><b:if cond='data:post.numComments == 1'>1 <data:top.commentLabel/><b:else/><data:post.numComments/> <data:top.commentLabelPlural/></b:if></a>
+            </b:if>
+          </b:if>
+        </b:if>
+      </b:if>
+    </div>
+  </div>
 </b:includable>
 <b:includable id='feedLinksBody' var='links'>
   <div class='feed-links'>
@@ -882,19 +1004,6 @@
 </b:includable>
 </b:widget>
 </b:section-contents><b:section-contents id='sidebar-right-2-2'>
-<b:widget id='HTML3' locked='false' title='' type='HTML'>
-<b:includable id='main'>
-  <!-- only display title if it's non-empty -->
-  <b:if cond='data:title != &quot;&quot;'>
-    <h2 class='title'><data:title/></h2>
-  </b:if>
-  <div class='widget-content'>
-    <data:content/>
-  </div>
-
-  <b:include name='quickedit'/>
-</b:includable>
-</b:widget>
 <b:widget id='Subscribe1' locked='false' title='Подпишитесь на Датавед' type='Subscribe'>
 <b:includable id='main'>
   <b:if cond='data:isPublic'>
