@@ -68,6 +68,7 @@ img.fleft {
 ----------------------------------------------- */
 aside {
   float: left;
+  width: 200px;
 }
 
 .section {
