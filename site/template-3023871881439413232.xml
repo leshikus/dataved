@@ -12,7 +12,7 @@
     <title><data:blog.pageTitle/></title>
 
     <noscript><b:skin><![CDATA[]]></b:skin></noscript><!-- ignore skins -->
-     <link rel="stylesheet" type="text/css" href="http://www.blogger.com/dyn-css/authorization.css?targetBlogID=3023871881439413232&amp;zx=947805cc-7f10-4e75-8bb6-d4534b03fa29"/>
+     <link href='http://www.blogger.com/dyn-css/authorization.css?targetBlogID=3023871881439413232&amp;zx=947805cc-7f10-4e75-8bb6-d4534b03fa29' rel='stylesheet' type='text/css'/>
 
     <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
 	<b:if cond='data:blog.url != data:blog.homepageUrl'>
@@ -26,11 +26,8 @@
 
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
   <div class='content'>
-  <div class='content-outer'>
-  <div class='content-inner'>
 
     <header>
-    <div class='header-outer'>
     <div class='region-inner header-inner'>
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
 <b:widget id='Header1' locked='false' title='Математическое обеспечение Вашего бизнеса (заголовок)' type='Header'>
@@ -132,7 +129,6 @@
 </b:widget>
 </b:section>
     </div>
-    </div>
     </header>
 
 	<!-- aaf: page1 -->
@@ -166,7 +162,6 @@
     </div>
     </div>
 
-    <div class='main-outer'>
     <div class='region-inner main-inner'>
 
           <b:section class='main' id='main' showaddelement='no'>
@@ -453,7 +448,6 @@
         <b:if cond='data:post.isDateStart'>
           &lt;div class=&quot;date-posts&quot;&gt;
         </b:if>
-        <div class='post-outer'>
         <b:include data='post' name='post'/>
         <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
           <b:include data='post' name='comments'/>
@@ -461,7 +455,6 @@
         <b:if cond='data:blog.pageType == &quot;item&quot;'>
           <b:include data='post' name='comments'/>
         </b:if>
-        </div>
         <b:if cond='data:post.includeAd'>
           <b:if cond='data:post.isFirstPost'>
             <data:defaultAdEnd/>
@@ -735,10 +728,8 @@
 
     <!-- main -->
     </div>
-    </div>
 
     <footer>
-    <div class='footer-outer'>
     <div class='region-inner footer-inner'>
       <macro:include id='footer-sections' name='sections'>
         <macro:param default='2' name='num' value='3'/>
@@ -748,8 +739,6 @@
       </macro:include>
       <!-- outside of the include in order to lock Attribution widget -->
       <b:section class='foot' id='footer-3' showaddelement='no'/>
-    </div>
-
     </div>
     </footer>
 
@@ -772,9 +761,6 @@
 </b:section> 
   </b:if><!-- aaf: page1 -->
 
-  </div> <!-- content-inner -->
-
-  </div>
   </div>
 
   <script src='//www.google.com/jsapi' type='text/javascript'/>
