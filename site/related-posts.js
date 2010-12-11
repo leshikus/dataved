@@ -1,9 +1,11 @@
 google.setOnLoadCallback( function() {
-  alert($.fn.jquery)
   $.fn.relatedPostsWidget = function (s) {
+      alert('1' + s);
     if (!this.size()) return this;
     s = $.extend({}, $.fn.relatedPostsWidget.defaults, s);
+      alert('2' + s);
     return this.each(function () {
+      alert('3' + s);
       var k = $(this),
           z = 0,
           g = null,
@@ -190,7 +192,6 @@ google.setOnLoadCallback( function() {
       })()
     })
   };
-  alert($.fn.jquery)
   
   jQuery.fn.relatedPostsWidget.defaults = {
     blog_url: "http://www.dataved.ru/",
@@ -216,7 +217,6 @@ google.setOnLoadCallback( function() {
     animate: "opacity",
     animate_loop: 1
   }
-  alert($.fn.jquery)
 
   $("div.related-posts-widget").relatedPostsWidget()
 })
