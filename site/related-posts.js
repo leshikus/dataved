@@ -1,4 +1,5 @@
 google.setOnLoadCallback( function() {
+  alert($.fn.jquery)
   $.fn.relatedPostsWidget = function (s) {
     if (!this.size()) return this;
     s = $.extend({}, $.fn.relatedPostsWidget.defaults, s);
@@ -189,6 +190,7 @@ google.setOnLoadCallback( function() {
       })()
     })
   };
+  alert($.fn.jquery)
   
   jQuery.fn.relatedPostsWidget.defaults = {
     blog_url: "http://www.dataved.ru/",
@@ -214,6 +216,7 @@ google.setOnLoadCallback( function() {
     animate: "opacity",
     animate_loop: 1
   }
+  alert($.fn.jquery)
 
   $("div.related-posts-widget").relatedPostsWidget()
 })
