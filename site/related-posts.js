@@ -3,7 +3,6 @@ google.setOnLoadCallback( function() {
     if (!this.size()) return this;
     
     return this.each(function () {
-    alert('this.each(')
       var k = $(this),
           z = 0,
           g = null,
@@ -141,10 +140,6 @@ google.setOnLoadCallback( function() {
           var d = b.blog_url + "/feeds/posts/summary/";
           if (b.tags.length == 0) {
             if (b.timeout) p = setTimeout(x, b.timeout);
-            alert(d)
-            alert(b.tags.length)
-            alert(max-results" + b.max_posts)
-            alert(E)
             $.ajax({
               url: d,
               data: {
@@ -157,7 +152,6 @@ google.setOnLoadCallback( function() {
             })
           } else {
             if (b.timeout) p = setTimeout(x, b.timeout * b.tags.length);
-            alert('tags = ' + b.tags)
             for (var i = 0, o = b.tags.length; i < o; i++) $.ajax({
               url: d,
               data: {
@@ -178,7 +172,6 @@ google.setOnLoadCallback( function() {
         }
       })()
     })
-    alert('end: return this.each(')
   };
   
   $("div.related-posts-widget").relatedPostsWidget({
