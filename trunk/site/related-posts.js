@@ -1,4 +1,6 @@
+alert(jquery)
 google.setOnLoadCallback( function() {
+alert(jquery)
 (function (c) {
   c.fn.relatedPostsWidget = function (s) {
     if (!this.size()) return this;
@@ -191,7 +193,7 @@ google.setOnLoadCallback( function() {
     })
   };
   c.fn.relatedPostsWidget.defaults = {
-    blog_url: "",
+    blog_url: "http://www.dataved.ru/",
     max_posts: 5,
     max_tags: 5,
     posts_per_tag: 5,
