@@ -707,15 +707,6 @@
 </b:section>
 
 	  <aside>
-	  <macro:include id='main-column-left-sections' name='sections'>
-		<macro:param default='0' name='num' value='0'/>
-		<macro:param default='sidebar-left' name='idPrefix'/>
-		<macro:param default='sidebar' name='class'/>
-		<macro:param default='true' name='includeBottom'/>
-	  </macro:include>
-	  </aside>
-
-	  <aside>
 	  <macro:include id='main-column-right-sections' name='sections'>
 		<macro:param default='2' name='num' value='2'/>
 		<macro:param default='sidebar-right' name='idPrefix'/>
@@ -730,16 +721,6 @@
     </div>
 
     <footer>
-    <div class='region-inner footer-inner'>
-      <macro:include id='footer-sections' name='sections'>
-        <macro:param default='2' name='num' value='3'/>
-        <macro:param default='footer' name='idPrefix'/>
-        <macro:param default='foot' name='class'/>
-        <macro:param default='false' name='includeBottom'/>
-      </macro:include>
-      <!-- outside of the include in order to lock Attribution widget -->
-      <b:section class='foot' id='footer-3' showaddelement='no'/>
-    </div>
     </footer>
 
   <b:else/>
@@ -1074,5 +1055,4 @@
  </div>
 </b:includable>
 </b:widget>
-</b:section-contents><b:section-contents id='sidebar-right-3'/><b:section-contents id='footer-1'/><b:section-contents id='footer-2-1'/><b:section-contents id='footer-2-2'/><b:section-contents id='footer-2-3'/></html>
-                
+</b:section-contents></html>
