@@ -137,31 +137,6 @@
     <b:if cond='1 == 1'>
     -->
 
-    <div class='tabs-outer'>
-    <div class='region-inner tabs-inner'>
-      <b:section class='tabs' id='crosscol' maxwidgets='1' showaddelement='yes'>
-<b:widget id='PageList1' locked='false' title='Страницы' type='PageList'>
-<b:includable id='main'>
-  <b:if cond='data:title'><h2><data:title/></h2></b:if>
-  <div class='widget-content'>
-    <ul>
-      <b:loop values='data:links' var='link'>
-        <b:if cond='data:link.isCurrentPage'>
-          <li class='selected'><a expr:href='data:link.href'><data:link.title/></a></li>
-        <b:else/>
-          <li><a expr:href='data:link.href'><data:link.title/></a></li>
-        </b:if>
-      </b:loop>
-    </ul>
-    <b:include name='quickedit'/>
-  </div>
-</b:includable>
-</b:widget>
-</b:section>
-      <b:section class='tabs' id='crosscol-overflow' showaddelement='no'/>
-    </div>
-    </div>
-
     <div class='region-inner main-inner'>
 
           <b:section class='main' id='main' showaddelement='no'>
@@ -1003,19 +978,6 @@
   <b:include name='quickedit'/>
 
  </b:if>
-</b:includable>
-</b:widget>
-<b:widget id='TextList1' locked='false' title='Похожие публикации' type='TextList'>
-<b:includable id='main'>
- <h2><data:title/></h2>
- <div class='widget-content'>
-   <ul>
-     <b:loop values='data:items' var='item'>
-       <li><data:item/></li>
-     </b:loop>
-   </ul> 
-   <b:include name='quickedit'/>
- </div>
 </b:includable>
 </b:widget>
 </b:section-contents></html>
