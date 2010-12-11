@@ -1,4 +1,3 @@
-alert(jquery)
 google.setOnLoadCallback( function() {
 alert(jquery)
 (function (c) {
