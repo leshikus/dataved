@@ -6,7 +6,7 @@
     <b:if cond='data:blog.isMobile'>
       <meta content='width=device-width,minimum-scale=1.0,maximum-scale=1.0' name='viewport'/>
     <b:else/>
-      <meta content='width=1100' name='viewport'/>
+      <meta content='device-width=830' name='viewport'/>
     </b:if>
     <b:include data='blog' name='all-head-content'/>
     <title><data:blog.pageTitle/></title>
@@ -778,11 +778,11 @@
   </div>
 
   <script src='//www.google.com/jsapi' type='text/javascript'/>
-  <b:if cond='data:blog.url != data:blog.homepageUrl'><!-- aaf: page1 -->
-  <b:else/><!-- Delay library loading -->
   <script type='text/javascript'>
     google.load(&quot;jquery&quot;, &quot;1&quot;);
   </script>
+  <b:if cond='data:blog.url != data:blog.homepageUrl'><!-- aaf: page1 -->
+  <b:else/><!-- Delay library loading -->
   <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js' type='text/javascript'/>
   <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js' type='text/javascript'/>
   </b:if>
