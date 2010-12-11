@@ -116,7 +116,7 @@ h3.post-title, .comments h4 {
 }
 
 .post-body dd {
-  padding-left: 2.5em;
+  padding: 0 0 1ex 2.5em;
 }
 
 /* Images
