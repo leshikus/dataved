@@ -1,12 +1,33 @@
 google.setOnLoadCallback( function() {
-  $.fn.relatedPostsWidget = function (s) {
-      alert('1' + s);
+  $.fn.relatedPostsWidget = function () {
     if (!this.size()) return this;
-    s = $.extend({}, $.fn.relatedPostsWidget.defaults, s);
-      alert('2' + s);
-      for (i in s) alert(i + '->' + s[i])
+
+    defaults = {
+      blog_url: "http://www.dataved.ru/",
+      max_posts: 5,
+      max_tags: 5,
+      posts_per_tag: 5,
+      tags: false,
+      loading_class: "rpw-loading",
+      related_title: "Похожие публикации",
+      recent_title: "Недавние публикации",
+      post_score_class: "",
+      post_page_only: 0,
+      thumb_default: "",
+      thumb_size: "s72-$",
+      thumbs: 1,
+      titles: 1,
+      url_querystring: 0,
+      timeout: 1500,
+      show_n: 0,
+      stay_time: 5E3,
+      enter_time: 200,
+      exit_time: 200,
+      animate: "opacity",
+      animate_loop: 1
+    }
+    
     return this.each(function () {
-      alert('3' + s);
       var k = $(this),
           z = 0,
           g = null,
@@ -20,7 +41,7 @@ google.setOnLoadCallback( function() {
           v = 0,
           w = null,
           A = "",
-          b = s,
+          b = defaults,
           F = function () {
           if (!((l + 1) * b.show_n >= q && !b.animate_loop)) if (!v) {
             $("li", g).eq(n).fadeOut(b.exit_time, B);
@@ -171,21 +192,6 @@ google.setOnLoadCallback( function() {
           }
           };
       (function () {
-        var d = k.attr("data-options");
-        if (!d) {
-          var i = k.html().replace(/\n|\r\n/g, "");
-          if (i) if ((i = i.match(/<!--\s*(\{.+\});?\s*--\>/)) && i.length == 2) d = i[1]
-        }
-        if (d) {
-          if (d.indexOf("{") < 0) d = "{" + d + "}";
-          try {
-            b = eval("(" + d + ")")
-          } catch (o) {
-            a.html('<b style="color:red">' + o + "</b>");
-            return null
-          }
-          b = $.extend({}, $.fn.relatedPostsWidget.defaults, b)
-        }
         if (b.post_page_only ? location.pathname.match(/^\/\d{4}\/\d\d\/[\w\-\_]+\.html/) : true) {
           A = location.protocol + "//" + location.host + location.pathname + (b.url_querystring ? location.search : "");
           J()
@@ -194,30 +200,5 @@ google.setOnLoadCallback( function() {
     })
   };
   
-  jQuery.fn.relatedPostsWidget.defaults = {
-    blog_url: "http://www.dataved.ru/",
-    max_posts: 5,
-    max_tags: 5,
-    posts_per_tag: 5,
-    tags: false,
-    loading_class: "rpw-loading",
-    related_title: "Похожие публикации",
-    recent_title: "Недавние публикации",
-    post_score_class: "",
-    post_page_only: 0,
-    thumb_default: "",
-    thumb_size: "s72-$",
-    thumbs: 1,
-    titles: 1,
-    url_querystring: 0,
-    timeout: 1500,
-    show_n: 0,
-    stay_time: 5E3,
-    enter_time: 200,
-    exit_time: 200,
-    animate: "opacity",
-    animate_loop: 1
-  }
-
   $("div.related-posts-widget").relatedPostsWidget()
 })
