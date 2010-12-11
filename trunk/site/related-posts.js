@@ -4,6 +4,7 @@ google.setOnLoadCallback( function() {
     if (!this.size()) return this;
     s = $.extend({}, $.fn.relatedPostsWidget.defaults, s);
       alert('2' + s);
+      for (i in s) alert(i + '->' + s[i])
     return this.each(function () {
       alert('3' + s);
       var k = $(this),
