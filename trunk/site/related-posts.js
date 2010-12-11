@@ -177,7 +177,7 @@ google.setOnLoadCallback( function() {
   
   $("div.related-posts-widget").relatedPostsWidget({
     blog_url: "",
-    max_posts: 5,
+    max_posts: 10,
     max_tags: 5,
     posts_per_tag: 5,
     tags: false,
