@@ -159,12 +159,12 @@ function git_dist() {
 
 function update_dist() {
   DIST="$1"
-  DIST_NAME=`basename "$DIST"`
+  DIST_NAME=`echo $DIST | sed  -e 's/^.*://; s/^.*\///g'`
 
-  rsync -lptDzve "$SVN_SSH" "$SSH_ID:$DIST" "$DDIR"/timestamp |
+  rsync -lptDzve "$SVN_SSH" "$DIST" "$DDIR"/timestamp |
     fgrep "$DIST_NAME" || return 0
 
-  rsync -rLptDzve "$SVN_SSH" "$SSH_ID:$DIST" "$DDIR"/dist
+  rsync -rLptDzve "$SVN_SSH" "$DIST" "$DDIR"/dist
 }
 
 function add_path() {
