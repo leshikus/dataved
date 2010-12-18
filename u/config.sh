@@ -44,5 +44,7 @@ test "$CLEAN_ENV" = true || exec env -i CLEAN_ENV=true \
   SVN_SSH="ssh -p $SSH_PORT" \
   SHARED_FS="$SHARED_FS" \
   SHARED_GCC="$SHARED_GCC" \
+  SSH_AUTH_SOCK="$SSH_AUTH_SOCK" \
+  SSH_AGENT_PID="$SSH_AGENT_PID" \
   sh -evx "$0" "$@"
 
