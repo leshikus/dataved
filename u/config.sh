@@ -42,5 +42,7 @@ test "$CLEAN_ENV" = true || exec env -i CLEAN_ENV=true \
   CPPFLAGS="-I$QDIR/usr/include" \
   LD_LIBRARY_PATH="$DDIR/usr/lib" \
   SVN_SSH="ssh -p $SSH_PORT" \
+  SHARED_FS="$SHARED_FS" \
+  SHARED_GCC="$SHARED_GCC" \
   sh -evx "$0" "$@"
 
