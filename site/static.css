@@ -107,7 +107,7 @@ color: #999999;
 }
 
 .header-inner {
-  clear: left;
+  clear: right;
 }
 
 /*.header-inner .section {  margin:0}
