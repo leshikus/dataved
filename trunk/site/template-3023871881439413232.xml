@@ -167,16 +167,19 @@
   <div class='clear'/>
 </b:includable>
 <b:includable id='shareButtons' var='post'>
-  <a class='share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'>
+  <a class='goog-inline-block share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'>
     <span class='share-button-link-text'><data:top.emailThisMsg/></span></a>
-  <a class='share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'>
+  <a class='goog-inline-block share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'>
     <span class='share-button-link-text'><data:top.blogThisMsg/></span></a>
-  <a class='share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'>
+  <a class='goog-inline-block share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'>
     <span class='share-button-link-text'><data:top.shareToTwitterMsg/></span></a>
-  <a class='share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'>
+  <a class='goog-inline-block share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'>
     <span class='share-button-link-text'><data:top.shareToFacebookMsg/></span></a>
-  <a class='share-button sb-buzz' expr:href='data:post.sharePostUrl + &quot;&amp;target=buzz&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=415,width=690\&quot;); return false;&quot;' expr:title='data:top.shareToBuzzMsg' target='_blank'>
+  <a class='goog-inline-block share-button sb-buzz' expr:href='data:post.sharePostUrl + &quot;&amp;target=buzz&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=415,width=690\&quot;); return false;&quot;' expr:title='data:top.shareToBuzzMsg' target='_blank'>
     <span class='share-button-link-text'><data:top.shareToBuzzMsg/></span></a>
+  <b:if cond='data:top.showDummy'>
+    <div class='goog-inline-block dummy-container'><data:post.dummyTag/></div>
+  </b:if>
 </b:includable>
 <b:includable id='backlinks' var='post'>
   <a name='links'/><h4><data:post.backlinksLabel/></h4>
@@ -323,12 +326,6 @@
     </b:if>
     <data:post.friendConnectJs/>
     <data:post.cmtfpIframe/>
-    <b:if cond='data:showCmtPopup'>
-      <div id='comment-popup' style='width:100px;height:20px;'>
-        <iframe allowtransparency='true' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
-        </iframe>
-      </div>
-    </b:if>
     <script type='text/javascript'>
       BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;, &#39;<data:post.communityId/>&#39;);
     </script>
@@ -520,32 +517,34 @@
   </b:if>
 
   <div class='mobile-post-outer'>
-    <div class='mobile-index-title-outer'>
-      <h3 class='mobile-index-title entry-title'>
-        <a href='javascript:void(0)'><data:post.title/></a>
-      </h3>
-    </div>
-
-    <div>
-      <div class='mobile-index-arrow'>
-        <a href='javascript:void(0)'>&amp;rsaquo;</a>
+    <a expr:href='data:post.url'>
+      <div class='mobile-index-title-outer'>
+        <h3 class='mobile-index-title entry-title'>
+          <data:post.title/>
+        </h3>
       </div>
 
-      <div class='mobile-post-contents'>
-        <b:if cond='data:post.thumbnailUrl'>
-          <div class='mobile-index-thumbnail'>
-            <div class='Image'>
-              <img expr:src='data:post.thumbnailUrl'/>
-            </div>
-          </div>
-        </b:if>
-
-        <div class='post-body'>
-          <b:if cond='data:post.snippet'><data:post.snippet/></b:if>
+      <div>
+        <div class='mobile-index-arrow'>
+          &amp;rsaquo;
         </div>
+
+        <div class='mobile-index-contents'>
+          <b:if cond='data:post.thumbnailUrl'>
+            <div class='mobile-index-thumbnail'>
+              <div class='Image'>
+                <img expr:src='data:post.thumbnailUrl'/>
+              </div>
+            </div>
+          </b:if>
+
+          <div class='post-body'>
+            <b:if cond='data:post.snippet'><data:post.snippet/></b:if>
+          </div>
+        </div>
+        <div style='clear: both;'/>
       </div>
-      <div style='clear: both;'/>
-    </div>
+    </a>
 
     <div class='mobile-index-comment'>
       <b:if cond='data:blog.pageType != &quot;item&quot;'>
@@ -667,6 +666,12 @@
         </b:if>
 
       </p>
+    </b:if>
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='true' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
+        </iframe>
+      </div>
     </b:if>
 
     <div id='backlinks-container'>
@@ -800,7 +805,7 @@
   </div>
 </b:includable>
 </b:widget>
-<b:widget id='HTML4' locked='false' title='Похожее' type='HTML'>
+<b:widget id='HTML4' locked='false' title='' type='HTML'>
 <b:includable id='main'>
   <!-- only display title if it's non-empty -->
   <b:if cond='data:title != &quot;&quot;'>
