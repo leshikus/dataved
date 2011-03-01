@@ -106,16 +106,9 @@ color: #999999;
   font-size: 140%;
 }
 
-.header-inner .section {
+.content header {
   clear: right;
 }
-
-/*.header-inner .section {  margin:0}
-.header-inner .widget{margin-left:30px;margin-right:30px}
-.header-inner .Header{margin:0}
-.header-inner .Header #header-inner{overflow:hidden}
-.header-inner .Header .titlewrapper{padding:22px 30px 0}
-.header-inner .Header .descriptionwrapper{padding:0 30px;margin-bottom:25px}*/
 
 
 /* Template specific style */
