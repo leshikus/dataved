@@ -126,7 +126,7 @@ h3.post-title, .comments h4 {
   padding: 0 0 1ex 2ex;
 }
 
-.post-body img.fleft {
+.post-body img.fleft, .post-body object.fleft {
   padding: 0 2ex 1ex 0;
 }
 
