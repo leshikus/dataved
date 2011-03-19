@@ -12,20 +12,14 @@
     <title><data:blog.pageTitle/></title>
 
     <noscript><b:skin><![CDATA[]]></b:skin></noscript><!-- ignore skins -->
-     <link href='http://www.blogger.com/dyn-css/authorization.css?targetBlogID=3023871881439413232&amp;zx=947805cc-7f10-4e75-8bb6-d4534b03fa29' rel='stylesheet' type='text/css'/>
+    <link href='http://www.blogger.com/dyn-css/authorization.css?targetBlogID=3023871881439413232&amp;zx=947805cc-7f10-4e75-8bb6-d4534b03fa29' rel='stylesheet' type='text/css'/>
 
     <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
-	<b:if cond='data:blog.url != data:blog.homepageUrl'>
-    <link href='http://dataved.googlecode.com/svn/trunk/site/post.css' rel='stylesheet' type='text/css'/>
-    <b:else/>
-    <link href='http://dataved.googlecode.com/svn/trunk/site/bbn/style.css' rel='stylesheet' type='text/css'/>
-	</b:if>
     <link href='http://dataved.googlecode.com/svn/trunk/site/favicon.ico' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
   </head>
 
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
-  <div class='content'>
 
     <header>
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
@@ -100,8 +94,6 @@
 </b:widget>
 </b:section>
     </header>
-
-    <div class='region-inner main-inner'>
 
           <b:section class='main' id='main' showaddelement='no'>
 <b:widget id='Blog1' locked='false' title='Сообщения блога' type='Blog'>
@@ -638,46 +630,31 @@
       </div>
     </b:if>
 
-    <div id='backlinks-container'>
     <div expr:id='data:widget.instanceId + &quot;_backlinks-container&quot;'>
        <b:if cond='data:post.showBacklinks'>
          <b:include data='post' name='backlinks'/>
        </b:if>
-    </div>
     </div>
   </div>
 </b:includable>
 </b:widget>
 </b:section>
 
-	  <aside>
-	  <macro:include id='main-column-right-sections' name='sections'>
-		<macro:param default='1' name='num' value='1'/>
-		<macro:param default='sidebar-right' name='idPrefix'/>
-		<macro:param default='sidebar' name='class'/>
-		<macro:param default='true' name='includeBottom'/>
-	  </macro:include>
-	  </aside>
+<macro:include id='main-column-right-sections' name='sections'>
+<macro:param default='1' name='num' value='1'/>
+<macro:param default='sidebar-right' name='idPrefix'/>
+<macro:param default='sidebar' name='class'/>
+<macro:param default='true' name='includeBottom'/>
+</macro:include>
+<macro:includable id='sections' var='col'>
+<b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-1&quot;' preferred='yes' showaddelement='yes'/>
+</macro:includable>
 
-	<div style='clear: both'/>
-
-    <!-- main -->
-    </div>
-
-    <footer>
-    </footer>
-
-  </div>
 
   <script src='//www.google.com/jsapi' type='text/javascript'/>
   <script type='text/javascript'>
     google.load(&quot;jquery&quot;, &quot;1&quot;);
   </script>
-  <b:if cond='data:blog.url != data:blog.homepageUrl'><!-- aaf: page1 -->
-  <b:else/><!-- Delay library loading -->
-  <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js' type='text/javascript'/>
-  <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js' type='text/javascript'/>
-  </b:if>
   
   <script src='http://www.google-analytics.com/ga.js' type='text/javascript'/>
   <script type='text/javascript'>
@@ -692,9 +669,6 @@
   </script>
 </body>
 
-<macro:includable id='sections' var='col'>
-    <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-1&quot;' preferred='yes' showaddelement='yes'/>
-</macro:includable>
 
 <b:section-contents id='sidebar-right-1'/></html>
                 
