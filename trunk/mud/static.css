@@ -1,0 +1,12 @@
+﻿/* Default
+----------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  position: static;
+}
+
+#navbar {
+  display: none;
+}
+
