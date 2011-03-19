@@ -10,3 +10,24 @@
   display: none;
 }
 
+/* Google style */
+
+.post-share-buttons{display:-moz-inline-stack;display:inline-block;zoom:1;*display:inline;margin:0 .5em 0 .5em !important;width:106px;vertical-align:middle}
+.share-button{display:block;width:21px;height:22px;float:left;background:url("//www.blogger.com/img/share_buttons.png") no-repeat left !important;overflow:hidden}
+a:hover.share-button{text-decoration:none}
+.share-button-link-text{position:absolute;left:-999px}
+.sb-email{background-position:0 0 !important}
+a:hover.sb-email{background-position:0 -22px !important}
+a:active.sb-email{background-position:0 -44px !important}
+.sb-blog{background-position:-21px 0 !important}
+a:hover.sb-blog{background-position:-21px -22px !important}
+a:active.sb-blog{background-position:-21px -44px !important}
+.sb-twitter{background-position:-42px 0 !important}
+a:hover.sb-twitter{background-position:-42px -22px !important}
+a:active.sb-twitter{background-position:-42px -44px !important}
+.sb-facebook{background-position:-63px 0 !important}
+a:hover.sb-facebook{background-position:-63px -22px !important}
+a:active.sb-facebook{background-position:-63px -44px !important}
+.sb-buzz{background-position:-84px 0 !important;width:22px}
+a:hover.sb-buzz{background-position:-84px -22px !important}
+a:active.sb-buzz{background-position:-84px -44px !important}
