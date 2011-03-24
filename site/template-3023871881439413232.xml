@@ -753,6 +753,21 @@
 </macro:includable>
 
 <b:section-contents id='sidebar-right-1'>
+<b:widget id='VideoChart' locked='false' title='Видео чат' type='Gadget'>
+<b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+	<embed align='middle' allowscriptaccess='always' height='200' 
+		src='http://dataved.googlecode.com/svn/trunk/site/swf/P2PVideo.swf' 
+		type='application/x-shockwave-flash' width='350'/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+</b:widget>
 <b:widget id='PopularPosts1' locked='false' title='Популярные сообщения' type='PopularPosts'>
 <b:includable id='main'>
   <b:if cond='data:title'><h2><data:title/></h2></b:if>
