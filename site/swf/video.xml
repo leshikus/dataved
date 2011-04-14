@@ -1,0 +1,18 @@
+  
+    <div>
+
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="480" height="170">
+<param name="menu" value="false" />
+        <param name="movie" value="https://sites.google.com/site/p2pvideoexample/home/P2PVideo.swf" />
+        <!--[if !IE]>-->
+        <object type="application/x-shockwave-flash" data="https://sites.google.com/site/p2pvideoexample/home/P2PVideo.swf" width="350" height="171"
+menu="false">
+        <!--<![endif]-->
+          <p>Alternative content</p>
+        <!--[if !IE]>-->
+        </object>
+        <!--<![endif]-->
+      </object>
+
+    </div>
+  
