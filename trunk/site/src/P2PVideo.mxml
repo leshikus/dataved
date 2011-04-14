@@ -2,12 +2,13 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 	xmlns:s="library://ns.adobe.com/flex/spark" 
 	xmlns:mx="library://ns.adobe.com/flex/mx"
-	width="350" height="171"
-	creationComplete="onCreationComplete(event)">
+	width="480" height="170"
+	creationComplete="onCreationComplete(event)" >
 	
 	<fx:Script>
 		<![CDATA[
 			import flash.events.StatusEvent;
+			import flash.utils.getTimer;
 			
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
@@ -21,12 +22,11 @@
 			
 			// Stratus connect info
 			private const SERVER:String = "rtmfp://p2p.rtmfp.net/";
-			private const DEVKEY:String = "6aaebfb9835d7450a37814e4-f335eb8d3105";			
-			
+			private const DEVKEY:String = "6aaebfb9835d7450a37814e4-f335eb8d3105";
 			// Aplication constants
 			private const MAX_USER_PER_TALK:Number = 3;
-			private const DELAY_LENGTH:int = 15000;
-			private const POUSE_LENGTH:int = 3000;
+			private const SPEAK_LENGTH:int = 15000;
+			private const POUSE_LENGTH:int = 1500;
 			private const DISPLAY_WIDTH:Number = 115;
 			private const DISPLAY_HEIGHT:Number = 120;
 			
@@ -38,13 +38,15 @@
 			private const _groupName:String = "dataved_group";
 			
 			// We need an outgoing and incoming stream
-			private var _outgoingStream:NetStream;
-			private var _timer:Timer;
+			private var _outgoingStream:CustomNetStream;
+			private var _incomingStream:CustomNetStream;
+			private var _publishedStream:CustomNetStream;
+			private var _timerDelay:Timer;
+			private var _timerPouse:Timer;
 			private var _mic:Microphone;
-
-			[Bindable]
-			private var _videoItems:ArrayCollection;
-			[Bindable]
+			private var _camera:Camera;
+			private var _startTime:Number = 0;
+			private var _responseID:String;
 			private var _incomingStreams:ArrayCollection;
 			
 			// We'll need a NetGroup
@@ -62,32 +64,11 @@
 			[Bindable]
 			private var _groupSpec:String;			
 
-			// We want to keep track if the NetGroup is connected or not.
-			[Bindable]
-			private var _netGroupConnected:Boolean;
-			// We're going to track estimated P2P members
-			[Bindable]
-			private var _estimatedP2PMembers:Number;
-			
-			[Embed(source="../sounds/beep-9.mp3")]
-			
-			[Bindable]
-			
-			public var soundcls:Class;
-			
-			public var soundmp3:Sound = new soundcls() as Sound;
-			
-			public var soundchannel:SoundChannel;
-			
-			public function play():void {
-				
-				soundchannel=soundmp3.play();
-				
-			}
+			private var _beep : Beep = new Beep();
+
 			///////////////////////////////////////////////////
 			// METHODS/HANDLERS
 			///////////////////////////////////////////////////
-			
 			
 			
 			// On creation complete we'll connect to the stratus service
@@ -147,10 +128,6 @@
 						
 						break;
 					}
-					case "NetStream.Publish.Start":
-					{
-						break;
-					}
 					case "NetStream.Play.Start":
 					case "NetStream.Connect.Success":
 					case "NetStream.Connect.Rejected":
@@ -164,17 +141,7 @@
 					// NetGroup Connection Events fire from NetConnection
 					case "NetGroup.Connect.Success":
 					{
-						
-						//_logMsg( "Connected - Group ID: " + _groupSpec );
-						
-						// Let's update the estimated member count
-						_estimatedP2PMembers = _netGroup.estimatedMemberCount;						
-						_netGroupConnected = false;
-						if (_estimatedP2PMembers <= MAX_USER_PER_TALK)
-						{
-							// let's let the app know the NetGroup is connected
-							_netGroupConnected = true;
-						}
+						// Publish local video and audio
 						_attachLocalVideoAndAudio();
 						break;
 					}		
@@ -195,39 +162,59 @@
 				switch(event.info.code)
 				{									
 					case "NetStream.Publish.Start":
-					{
-						break;
-					}
 					case "NetStream.Play.Start":
+					case "NetStream.Play.Failed":
 					case "NetGroup.Posting.Notify": 
+					case "NetGroup.LocalCoverage.Notify":
 					{
 						break;
 					}																		
 					case "NetGroup.Neighbor.Connect":
 					{
-						// Don't show this in the app that connected
 						// We have to convert the Stratus ID to a Group ID to compare it to the Group ID of the neighbor
-						_estimatedP2PMembers = _netGroup.estimatedMemberCount;
-						if( event.info.neighbor != _netGroup.convertPeerIDToGroupAddress( _nearID ) )
+						if( event.info.neighbor != _netGroup.convertPeerIDToGroupAddress(_nearID))
 						{
-							//_logMsg( 'К группе присоеденился еще один участник ' + event.info.neighbor );
 							_attachPeerVideoAndAudio(event.info.neighbor);
-							_displayPeerVideoAndAudio();
 						}
 						break;
 					}
 					case "NetGroup.Neighbor.Disconnect":
 					{					
-						//_logMsg( 'Участник ' + event.info.neighbor + ' вышел из группы' );	
-						// Let's update the estimated member count
-						_estimatedP2PMembers = _netGroup.estimatedMemberCount;						
+						if(_netGroup.neighborCount == 0)
+						{
+							_outgoingStream.Published = false;
+							_timerPouse.stop();
+							videoDisplayIn.visible = false;
+							if (_publishedStream)
+							{
+								try
+								{
+									publish_gr.removeElement(_publishedStream.VideoDisplay);
+								}
+								catch(errObject:Error) {
+								}
+								_publishedStream.close();
+								_publishedStream = null;
+							}	
+						}
 						_detachPeerVideoAndAudio(event.info.neighbor);
 						break;
 					}
-					case "NetGroup.LocalCoverage.Notify":
 					case "NetGroup.SendTo.Notify": // event.info.message, event.info.from, event.info.fromLocal
+					{
+						//Alert.show(event.info.message, "NetGroup.SendTo.Notify");
+						_receiveMessage(event.info.message);
+						break;
+					}
 					case "NetGroup.MulticastStream.PublishNotify": // event.info.name
+					{
+						_sendPublishNotify();
+						break;
+					}
 					case "NetGroup.MulticastStream.UnpublishNotify": // event.info.name
+					{
+						//Alert.show(event.info.name, "NetGroup.MulticastStream.UnpublishNotify");
+					}
 					case "NetGroup.Replication.Fetch.SendNotify": // event.info.index
 					case "NetGroup.Replication.Fetch.Failed": // event.info.index
 					case "NetGroup.Replication.Fetch.Result": // event.info.index, event.info.object
@@ -239,42 +226,40 @@
 				}									
 			}
 
-			protected function onSetup():void
-			{
-				Security.showSettings();
-			}
 			// For outbound stream
 			protected function startOutgoingStream():void
 			{			
 				// We create a stream in our net connection for P2P outgoing
-				_outgoingStream = new NetStream( _netConnection, _groupSpec );	
+				_outgoingStream = new CustomNetStream( _netConnection, _groupSpec );	
 				// We add a net status listener to the NetStream
 				_outgoingStream.addEventListener( NetStatusEvent.NET_STATUS, onNetStatus );
+				_outgoingStream.NeighborID = _netGroup.convertPeerIDToGroupAddress( _nearID );
 			}
 
 			// For inbound stream
-			protected function startIncomingStream():NetStream
+			protected function startIncomingStream(neighborID:String):CustomNetStream
 			{					
 				// Create an incoming stream with the GroupSpec
-				var incomingStream:NetStream = new NetStream( _netConnection, _groupSpec ); 
-				
-				// For some reason NetStream events are being dispatched from NetConnection.  so this listener is pointless
-				incomingStream.addEventListener( NetStatusEvent.NET_STATUS, onNetGroupStatus );
-				incomingStream.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler); 
-				
-				// We set a client for callbacks
-				var streamListener:Object = {
-					onMetaData: function(info:Object):void
-					{ 
-						if( info.title != _netGroup.convertPeerIDToGroupAddress( _nearID ) )
-						{
-							//_logMsg("Новый участник присоеденился к группе : " + info.title);
-							_hidePeerVideoAndAudio(info.title);
-							_displayNextPeerVideoAndAudio();
-						}
-					}
-				};
-				incomingStream.client = streamListener;
+				var incomingStream:CustomNetStream = new CustomNetStream( _netConnection, _groupSpec );
+				incomingStream.VideoDisplay = new mx.controls.VideoDisplay();
+				var transform:SoundTransform = new SoundTransform(0, 0);
+				transform.volume = 0;
+				incomingStream.soundTransform = transform;
+				if( neighborID != _netGroup.convertPeerIDToGroupAddress( _nearID ))
+				{
+					var _video:flash.media.Video;
+					_video = new Video();
+					_video.width = DISPLAY_WIDTH;
+					_video.height = DISPLAY_HEIGHT;
+					_video.attachNetStream(incomingStream);
+					incomingStream.VideoDisplay.addChild(_video);
+					incomingStream.NeighborID = neighborID;
+
+					// Add listener to handel async errors
+					incomingStream.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
+					
+					_incomingStreams.addItem(incomingStream);
+				}
 				return incomingStream;
 			}
 
@@ -283,6 +268,7 @@
 			{
 				// Creating a NetGroup instance
 				_netGroup = new NetGroup( _netConnection, _groupSpec );
+				
 				// Adding a net status listener
 				_netGroup.addEventListener( NetStatusEvent.NET_STATUS, onNetGroupStatus );
 			}
@@ -290,7 +276,6 @@
 			protected function clearNetGroup():void
 			{
 				_netGroup.close();
-				_netGroupConnected = false;
 				_netGroup.removeEventListener( NetStatusEvent.NET_STATUS, onNetGroupStatus );
 				_netGroup = null;
 			}
@@ -299,11 +284,10 @@
 			{
 				if (_incomingStreams != null)
 				{
-					var i:int;
-					var incomingStream:NetStream;
-					for (i = 0; i < _incomingStreams.length; i++ )
+					var incomingStream:CustomNetStream;
+					for (var i:int = 0; i < _incomingStreams.length; i++ )
 					{
-						incomingStream = _incomingStreams.getItemAt(i) as NetStream;
+						incomingStream = _incomingStreams.getItemAt(i) as CustomNetStream;
 						incomingStream.close();
 						incomingStream = null;
 					}
@@ -324,9 +308,8 @@
 				_netConnection.addEventListener (NetStatusEvent.NET_STATUS, onNetStatus );
 				
 				// When we connect we are connecting to stratus using our unique URI
-				_netConnection.connect( SERVER + DEVKEY );						
+				_netConnection.connect( SERVER + DEVKEY );
 
-				_videoItems = new ArrayCollection();
 				_incomingStreams = new ArrayCollection();
 			}
 
@@ -358,51 +341,35 @@
 				_mic.setUseEchoSuppression(true);
 				_mic.setSilenceLevel(5, POUSE_LENGTH);
 				_mic.addEventListener(StatusEvent.STATUS, statusHandler);
-				_mic.addEventListener(ActivityEvent.ACTIVITY, activityHandler);
+				_mic.addEventListener(ActivityEvent.ACTIVITY, micActivityHandler);
 				
 				// Let's attach the mic to the outgoing stream
 				_outgoingStream.attachAudio(_mic);
 				
-				_timer = new Timer(DELAY_LENGTH);
-				_timer.addEventListener(TimerEvent.TIMER, timerHandler);
-				_timer.start();
+				_timerDelay = new Timer(POUSE_LENGTH);
+				//_timerDelay.addEventListener(TimerEvent.TIMER, delayTimerHandler);
+				_timerPouse = new Timer(POUSE_LENGTH);
+				_timerPouse.addEventListener(TimerEvent.TIMER, pouseTimerHandler);
 				
-				// Open the stream and wait for clients
-				_outgoingStream.publish(_netGroup.convertPeerIDToGroupAddress( _nearID ));
-				
-				var camera:Camera = Camera.getCamera();
-				if(camera == null)
+				_camera = Camera.getCamera();
+				if(_camera == null)
 				{
 					Alert.show('Для веб конференции желательно подключить камеру.','Подключите камеру');
 				}
 				else
 				{
-					// Let's monitor the video locally	
-					videoDisplayOut.width = DISPLAY_WIDTH;
-					videoDisplayOut.height = DISPLAY_HEIGHT;
-					videoDisplayOut.attachCamera(camera);
-					videoDisplayOut.visible = true;
-					// Let's attach the camera to the outgoing stream
-					_outgoingStream.attachCamera(camera);
+					// Let's monitor the video locally
+					_outgoingStream.VideoDisplay = videoDisplayOut;
+					_outgoingStream.VideoDisplay.attachCamera(_camera);
+					_outgoingStream.VideoDisplay.visible = true;
+					_outgoingStream.attachCamera(_camera);
 				}
-			}
-
-			private function activityHandler(event:ActivityEvent):void 
-			{
-				//_logMsg("activityHandler: " + event);
-				if (event.activating)
-				{
-					_timer.start();
-				}
-				else
-				{
-					_timer.stop();
-				}
+				_outgoingStream.NeighborID = _netGroup.convertPeerIDToGroupAddress( _nearID );
+				_outgoingStream.publish(_netGroup.convertPeerIDToGroupAddress( _nearID ));
 			}
 			
 			private function asyncErrorHandler(event:AsyncErrorEvent):void 
 			{
-				//_logMsg("asyncErrorHandler: " + event);
 			}
 			
 			// check microphone status
@@ -416,203 +383,335 @@
 
 			}
 
-			private function timerHandler(event:TimerEvent):void
-			{        
-				//_logMsg("timerHandler: " + event);
-				play();
-				_sendNeighborID();
+			/**
+			 *  Hendler send request to publish stream
+			 *  that microphone of current user is active.
+			 *  or 
+			 */
+			private function micActivityHandler(event:ActivityEvent):void 
+			{
+				if (event.activating)
+				{
+					if (!_outgoingStream.Published) //_netGroup.neighborCount > 0 &&   
+					{
+						_sendRequest(_netGroup.convertPeerIDToGroupAddress(_nearID));
+					}
+					/*else if (_timerDelay.running)
+					{
+						_timerDelay.stop();	
+					}*/
+				}
+				/*else if (_outgoingStream.Published && !_timerDelay.running)
+				{
+					_timerDelay.start();
+				}*/
+			}
+
+			/**
+			 *  This handler send signal and swicth publish stream 
+			 *  from himself to another new published stream.
+			 */
+			private function pouseTimerHandler(event:TimerEvent):void
+			{   
+				if ( _netGroup.neighborCount > 0 && _outgoingStream.Published && (getTimer() - _startTime > SPEAK_LENGTH) && _responseID )
+				{
+					_timerPouse.stop();
+					_switchPublishStream();
+					//_timerPouse.start();
+				}
 			}
 			
+			private function delayTimerHandler(event:TimerEvent):void
+			{
+				if (_outgoingStream.Published && _responseID)
+				{
+					_timerDelay.stop();	
+					_switchPublishStream();
+				}
+			}
+			
+			// attached neighbor and play video stream
 			private function _attachPeerVideoAndAudio(neighborID:String):void
 			{
 				// Create the incoming video from the stream
-				var remoteVideo:Video;
-				var videoDisplay:mx.controls.VideoDisplay;
-				var incomingStream:NetStream;
-				videoDisplay = new mx.controls.VideoDisplay();
-				videoDisplay.id = neighborID;
-				_videoItems.addItem(videoDisplay);
-				incomingStream = startIncomingStream(); 
-				remoteVideo = new Video();
-				remoteVideo.width = DISPLAY_WIDTH;
-				remoteVideo.height = DISPLAY_HEIGHT;
-				remoteVideo.attachNetStream(incomingStream );
-				
-				// Add the video to the display
-				videoDisplay.width = DISPLAY_WIDTH;
-				videoDisplay.height = DISPLAY_HEIGHT;
-				videoDisplay.addChild(remoteVideo);
-				neighbor_gr.addElement(videoDisplay);
-				
-				// Start playing the stream
-				if (_incomingStreams.length >= MAX_USER_PER_TALK)
-				{
-					var transform:SoundTransform = new SoundTransform(0, 0);
-					transform.volume = 0;
-					incomingStream.soundTransform = transform;
-				}
-				_incomingStreams.addItem(incomingStream);
-				if (_incomingStreams.length > MAX_USER_PER_TALK)
-				{
-					videoDisplay.visible = false;
-				}
-				else
-				{
-					incomingStream.play(neighborID);
-				}
+				startIncomingStream(neighborID);
+				_displayPeerVideoAndAudio();
 			}		
 			
 			private function _displayPeerVideoAndAudio():void
 			{
-				if (_videoItems != null)
+				if (_incomingStreams != null)
 				{
-					var i:int;
-					var videoDisplay:mx.controls.VideoDisplay;
-					for (i = 0; i < _videoItems.length; i++ )
+					var incomingStream:CustomNetStream;
+					for (var i:int = 0; i < _incomingStreams.length; i++ )
 					{
-						videoDisplay = _videoItems.getItemAt(i) as mx.controls.VideoDisplay;
-						if (videoDisplay != null  && videoDisplay.visible)
+						incomingStream = _incomingStreams.getItemAt(i) as CustomNetStream;
+						if (incomingStream != null && i < MAX_USER_PER_TALK - 1)
 						{
-							var incomingStream:NetStream = _incomingStreams.getItemAt(i) as NetStream;
-							incomingStream.play(videoDisplay.id);
-							break;
+							incomingStream.VideoDisplay.visible = true;
+							try
+							{
+								neighbor_gr.getElementIndex(incomingStream.VideoDisplay);
+								continue;
+							}
+							catch (errorObj:Error)
+							{									
+								var transform:SoundTransform = new SoundTransform(0, 0);
+								transform.volume = 0;
+								incomingStream.soundTransform = transform;
+								neighbor_gr.addElement(incomingStream.VideoDisplay);
+							}
+							incomingStream.play(incomingStream.NeighborID);
 						}
 					}
 				}
 			}
 
-			private function _displayNextPeerVideoAndAudio():void
+
+			/**
+			 * Display publish stream.
+			 * @streamID - id of published stream
+			 */
+			private function _displayPublishVideoAndAudio(streamID:String):void
 			{
-				if (_videoItems != null)
+				var isDisplayed:Boolean = false;
+				var incomingStream:CustomNetStream
+				if (_publishedStream)
 				{
-					var i:int;
-					var videoDisplay:mx.controls.VideoDisplay;
-					var incomingStream:NetStream
-					for (i = 0; i < _videoItems.length; i++ )
+					try
 					{
-						incomingStream = _incomingStreams.getItemAt(i) as NetStream;
-						if (incomingStream != null)
-						{
-							videoDisplay = _videoItems.getItemAt(i) as mx.controls.VideoDisplay;
-							if (videoDisplay.visible)
-							{
-								var transform:SoundTransform = new SoundTransform(0, 0);
-								transform.volume = 1;
-								incomingStream.soundTransform = transform;
-							}
-							else
-							{
-								videoDisplay.visible = true;
-								incomingStream.play(videoDisplay.id);
-								break;
-							}
-						}
+						publish_gr.removeElement(_publishedStream.VideoDisplay);
+						isDisplayed = true;
 					}
-				}
-			}
-			
-			private function _detachPeerVideoAndAudio(neighborID:String):void
-			{
-				if (_videoItems != null)
+					catch(errObject:Error) {
+					}
+					_publishedStream.close();
+					_publishedStream = null;
+				}	
+				var _video:flash.media.Video;
+				if (_outgoingStream.NeighborID != streamID)
 				{
-					var i:int;
-					var videoDisplay:mx.controls.VideoDisplay;
-					var incomingStream:NetStream;
-					var isActive:Boolean;
-					for (i = 0; i < _videoItems.length; i++ )
+					for (var i:int = 0; i < _incomingStreams.length; i++ )
 					{
-						videoDisplay = _videoItems.getItemAt(i) as mx.controls.VideoDisplay;
-						incomingStream = _incomingStreams.getItemAt(i) as NetStream;
-						if (incomingStream && videoDisplay && videoDisplay.id == neighborID)
+						incomingStream = _incomingStreams.getItemAt(i) as CustomNetStream;
+						if (incomingStream != null && incomingStream.NeighborID == streamID)
 						{
+							if (incomingStream.VideoDisplay.visible)
+							{
+								try
+								{
+									neighbor_gr.removeElement(incomingStream.VideoDisplay);
+									incomingStream.VideoDisplay.visible = false;
+									isDisplayed = true;
+								}
+								catch(errObject:Error) {
+								}
+							}
 							_incomingStreams.removeItemAt(i);
-							incomingStream.close();
-							incomingStream = null;
-							neighbor_gr.removeElement(videoDisplay);
-							_videoItems.removeItemAt(i);
-							videoDisplay.close();
-							isActive = videoDisplay.visible;
-							videoDisplay = null;
 							break;
 						}
 					}
-					// if active use is detached then we should add next user
-					if ( isActive )
+					if (incomingStream != null)
 					{
-						_displayNextPeerVideoAndAudio();
+						videoDisplayIn.width = 0;
+						videoDisplayIn.height = 0;
+						videoDisplayIn.visible = false;
+						videoDisplayIn.validateNow();
+						
+						var transform:SoundTransform = new SoundTransform(0, 0);
+						transform.volume = 1;
+						_publishedStream = new CustomNetStream( _netConnection, _groupSpec );
+						_publishedStream.NeighborID = streamID;
+						_publishedStream.soundTransform = transform;
+						_publishedStream.VideoDisplay = new mx.controls.VideoDisplay();
+						_publishedStream.VideoDisplay.visible = true;
+						_video = new Video();
+						_video.width = DISPLAY_WIDTH;
+						_video.height = DISPLAY_HEIGHT;
+						_video.attachNetStream(_publishedStream);
+						_publishedStream.VideoDisplay.addChild(_video);
+						publish_gr.addElement(_publishedStream.VideoDisplay);
+						_publishedStream.VideoDisplay.validateNow();
+						_publishedStream.play(streamID);
 					}
-					else
+				}
+				else
+				{
+					// if current user is publisched display himself in published window.
+					if (!_incomingStream)
+					{
+						_incomingStream = new CustomNetStream( _netConnection, _groupSpec );
+						_incomingStream.NeighborID = streamID;
+						videoDisplayIn.attachCamera(_camera);
+					}
+					videoDisplayIn.width = DISPLAY_WIDTH;
+					videoDisplayIn.height = DISPLAY_HEIGHT;
+					videoDisplayIn.visible = true;
+					videoDisplayIn.validateNow();
+					_incomingStream.play(_incomingStream.NeighborID);
+				}
+				if (isDisplayed && _netGroup.neighborCount < MAX_USER_PER_TALK)
+				{
+					_displayPeerVideoAndAudio();
+				}
+				if (incomingStream)
+				{
+					_incomingStreams.addItem(incomingStream);
+				}
+			}
+
+			/**
+			 *  detach and close stream when user is disconnected.
+			 * @ streamID - ID of plaing stream
+			 */
+			private function _detachPeerVideoAndAudio(streamID:String):void
+			{
+				if (_incomingStreams != null)
+				{
+					var incomingStream:CustomNetStream;
+					var isDisplayed:Boolean;
+					for (var i:int = 0; i < _incomingStreams.length; i++ )
+					{
+						incomingStream = _incomingStreams.getItemAt(i) as CustomNetStream;
+						if (incomingStream  != null && incomingStream.NeighborID == streamID)
+						{
+							try
+							{
+								neighbor_gr.removeElement(incomingStream.VideoDisplay);
+								isDisplayed = true;
+							}
+							catch(errObject:Error) {
+							}
+								
+							_incomingStreams.removeItemAt(i);
+							incomingStream.close();
+							incomingStream = null;
+							break;
+						}
+					}
+					if ( isDisplayed && _netGroup.neighborCount > i)
 					{
 						_displayPeerVideoAndAudio();
 					}
 				}
 			}
-
-			private function _hidePeerVideoAndAudio(neighborID:String):void
+			/**
+			 * send notification to all Neighbors that  published stream is played.
+			 */ 
+			private function _sendPublishNotify(): void
 			{
-				if (_videoItems != null)
+				var message:Object = new Object();
+				message.sender = _netGroup.convertPeerIDToGroupAddress(_nearID);
+				// send time parameter to define properly published stream when two user connected.
+				message.time = getTimer(); 
+				message.action = "notify";
+				_netGroup.sendToAllNeighbors(message);
+			}
+			
+			private function _sendResponse(neighborID:String):void
+			{
+				var message:Object = new Object();
+				message.sender = _netGroup.convertPeerIDToGroupAddress( _nearID );
+				message.action = "response";
+				message.name = neighborID;
+				_netGroup.sendToAllNeighbors(message);
+			}
+			
+			private function _sendRequest(neighborID:String):void
+			{
+				var message:Object = new Object();
+				message.sender = _netGroup.convertPeerIDToGroupAddress( _nearID );
+				message.action = "request";
+				message.name = neighborID;
+				_netGroup.sendToAllNeighbors(message);
+			}
+			
+			
+			private function _receiveMessage(message:Object):void
+			{
+				if (message.action != null && message.sender != null) 
 				{
-					var i:int;
-					var videoDisplay:mx.controls.VideoDisplay;
-					var incomingStream:NetStream;
-					for (i = 0; i < _videoItems.length; i++ )
+					switch (message.action)
 					{
-						incomingStream = _incomingStreams.getItemAt(i) as NetStream;
-						videoDisplay = _videoItems.getItemAt(i) as mx.controls.VideoDisplay;
-						if (videoDisplay  != null && videoDisplay.visible && videoDisplay.id == neighborID)
+						case "notify" :
 						{
-							_incomingStreams.removeItemAt(i);
-							incomingStream.close();
-							neighbor_gr.removeElement(videoDisplay);
-							_videoItems.removeItemAt(i);
-							videoDisplay.close();
-							videoDisplay.visible = false;
-							_incomingStreams.addItem(_incomingStreams);
-							_videoItems.addItem(videoDisplay);
+							if(_netGroup.neighborCount == 1 && message.time < getTimer())
+							{
+								_displayPublishVideoAndAudio(_outgoingStream.NeighborID); 	//event.info.name
+								_outgoingStream.Published = true;
+								_startTime = getTimer();
+								_timerPouse.start();
+							}
+							break;
+						}
+						case "request" :
+						{
+							if (_outgoingStream.Published && _responseID == null)
+							{
+								_responseID = message.name;
+							}
+							break;
+						}
+						case "response" :
+						{
+							if (message.name)
+							{
+								_displayPublishVideoAndAudio(message.name);
+								if( message.name == _netGroup.convertPeerIDToGroupAddress( _nearID ))  
+								{
+									_outgoingStream.Published = true;
+									_responseID = null;
+									_startTime = getTimer();
+									_timerPouse.start();
+								}
+								
+							}
 							break;
 						}
 					}
 				}
 			}
-			
-			private function _sendNeighborID(): void
+
+			private function _switchPublishStream(): void
 			{
-				var metaData:Object = new Object();
-				metaData.title = _netGroup.convertPeerIDToGroupAddress(_nearID);
-				_outgoingStream.send("onMetaData", metaData);
-				_outgoingStream.close();
+				//Alert.show("Переключение микрофона", "Переключение");
+				_beep.play();
+				_sendResponse(_responseID);
+				_outgoingStream.Published = false;
+				_displayPublishVideoAndAudio(_responseID);
+				_setTimeout(2);
+				_responseID = null;
+			}
+			
+			private function _setTimeout(seconds:int):void
+			{
+				var starttime:int = Math.floor(getTimer()/1000);
+				var endtime:int = Math.floor(getTimer()/1000);
+				while (endtime<starttime + seconds) {
+					endtime = Math.floor(getTimer()/1000);
+				}							
 			}
 
-			
-			private function _logMsg( p_msg:String):void
-			{
-				// Let's output our message or data to the console.
-				console_ta.text = "=================\n" 
-					+ p_msg + "\n"
-					+ console_ta.text;
-			}
-			
 		]]>
 	</fx:Script>
 
+	<s:BorderContainer cornerRadius="5" backgroundColor="0x909090" borderStyle="solid" width="100%" height="100%" borderColor="#696969">
 	<s:layout>
 		<s:VerticalLayout horizontalAlign="center" paddingTop="10"/>
 	</s:layout>
-	<s:HGroup>
-		<s:Button label="Настройка видео и аудио устройств" click="onSetup()" 
-				  toolTip="С помощью данной кнопки можно выбрать и настроить видео и аудио устройства для работы с приложением"/>
+	<s:VGroup>
+		<s:Button label="Настройка видео и аудио устройств" click="onSetupClick(event)" 
+				  toolTip="С помощью данной кнопки можно выбрать и настроить видео и аудио устройства для работы с приложением" />
+	</s:VGroup>
+		<s:HGroup id="group_id" enabled="true" width="100%" height="100%">
+		<s:HGroup id="main_gr" horizontalAlign="left">
+			<mx:VideoDisplay id="videoDisplayOut" visible="false"/>
+		</s:HGroup>
+		<s:HGroup id="publish_gr" horizontalAlign="center">
+			<mx:VideoDisplay id="videoDisplayIn" width="0" height="0" visible="false"/>
+		</s:HGroup>
+		<s:HGroup id="neighbor_gr" horizontalAlign="right">
+		</s:HGroup>
 	</s:HGroup>
-	<s:HGroup id="group_id" enabled="true" width="100%" height="100%">
-		<s:VGroup horizontalAlign="left">
-			<mx:VideoDisplay id="videoDisplayOut" width="100" height="100" visible="false"/>
-		</s:VGroup>
-		<s:VGroup>
-			<s:HGroup id="neighbor_gr" width="100%" height="100%">
-			</s:HGroup>
-		</s:VGroup>
-	</s:HGroup>
-	<s:HGroup width="100%" height="100%">
-		<s:TextArea width="100%" height="100%" id="console_ta" visible="true" />
-	</s:HGroup>
-	
+	</s:BorderContainer>
 </s:Application>
