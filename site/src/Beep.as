@@ -5,7 +5,7 @@ package
 	
 	public class Beep extends Object
 	{
-		[Embed(source="../sounds/beep-9.mp3")]
+		[Embed(source="sounds/beep-9.mp3")]
 		
 		[Bindable]
 		
