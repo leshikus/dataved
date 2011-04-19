@@ -2,10 +2,10 @@
 
       <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="320" height="170">
 <param name="menu" value="false" />
-        <param name="movie" value="https://dataved.googlecode.com/svn/trunk/site/swf/P2PVideo.swf" />
+        <param name="movie" value="http://dataved.googlecode.com/svn/trunk/site/swf/P2PVideo.swf" />
         <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="https://dataved.googlecode.com/svn/trunk/site/swf/P2PVideo.swf" width="320" height="170"
-menu="false">
+        <object type="application/x-shockwave-flash" data="http://dataved.googlecode.com/svn/trunk/site/swf/P2PVideo.swf" width="320" height="170"
+menu="false" >
         <!--<![endif]-->
           <p>Alternative content</p>
         <!--[if !IE]>-->
