@@ -240,9 +240,12 @@ background-color: #f9f9f9;
 border-bottom: 1px solid #eeeeee;
 }
 
+/* Google skin: share buttons
+----------------------------------------------- */
+.post-share-buttons{margin:0 .5em 0 .5em !important;vertical-align:middle}.share-button{width:20px;height:20px;background:url(/img/share_buttons_20.png) no-repeat left !important;overflow:hidden;margin-left:-1px;position:relative}.dummy-container{vertical-align:top}a:hover.share-button{text-decoration:none;z-index:1}.share-button-link-text{display:block;text-indent:-9999px}.sb-email{background-position:0 0 !important}a:hover.sb-email{background-position:0 -20px !important}a:active.sb-email{background-position:0 -40px !important}.sb-blog{background-position:-20px 0 !important}a:hover.sb-blog{background-position:-20px -20px !important}a:active.sb-blog{background-position:-20px -40px !important}.sb-twitter{background-position:-40px 0 !important}a:hover.sb-twitter{background-position:-40px -20px !important}a:active.sb-twitter{background-position:-40px -40px !important}.sb-facebook{background-position:-60px 0 !important}a:hover.sb-facebook{background-position:-60px -20px !important}a:active.sb-facebook{background-position:-60px -40px !important}.sb-buzz{background-position:-100px 0 !important}a:hover.sb-buzz{background-position:-100px -20px !important}a:active.sb-buzz{background-position:-100px -40px !important}.sb-orkut{background-position:-80px 0 !important}a:hover.sb-orkut{background-position:-80px -20px !important}a:active.sb-orkut{background-position:-80px -40px !important}.goog-inline-block{position:relative;display:-moz-inline-box;display:inline-block}* html .goog-inline-block{display:inline}*:first-child+html .goog-inline-block{display:inline}
+
 /* Google skin
 ----------------------------------------------- */
-
 section,nav,article,aside,hgroup,header,footer{display:block}
 time,mark{display:inline}
 #ArchiveList .toggle{cursor:pointer;font-family:Arial,sans-serif}
@@ -301,28 +304,6 @@ td.tr-caption{font-size:80%}
 @media handheld{.BLOG_mobile_video_class{display:inline}
 .BLOG_video_class{display:none}
 }
-.post-share-buttons{display:-moz-inline-stack;display:inline-block;zoom:1;*display:inline;margin:0 .5em 0 .5em !important;width:106px;vertical-align:middle}
-.share-button{display:block;width:21px;height:22px;float:left;background:url("//www.blogger.com/img/share_buttons.png") no-repeat left !important;overflow:hidden}
-a:hover.share-button{text-decoration:none}
-.share-button-link-text{position:absolute;left:-999px}
-.sb-email{background-position:0 0 !important}
-a:hover.sb-email{background-position:0 -22px !important}
-a:active.sb-email{background-position:0 -44px !important}
-.sb-blog{background-position:-21px 0 !important}
-a:hover.sb-blog{background-position:-21px -22px !important}
-a:active.sb-blog{background-position:-21px -44px !important}
-.sb-twitter{background-position:-42px 0 !important}
-a:hover.sb-twitter{background-position:-42px -22px !important}
-a:active.sb-twitter{background-position:-42px -44px !important}
-.sb-facebook{background-position:-63px 0 !important}
-a:hover.sb-facebook{background-position:-63px -22px !important}
-a:active.sb-facebook{background-position:-63px -44px !important}
-.sb-buzz{background-position:-84px 0 !important;width:22px}
-a:hover.sb-buzz{background-position:-84px -22px !important}
-a:active.sb-buzz{background-position:-84px -44px !important}
-.goog-inline-block{position:relative;display:-moz-inline-box;display:inline-block}
-* html .goog-inline-block{display:inline}
-*:first-child+html .goog-inline-block{display:inline}
 .goog-custom-button{margin:2px;border:0;padding:0;font-family:Arial,sans-serif;color:#000;text-decoration:none;list-style:none;vertical-align:middle;cursor:default;outline:none}
 .goog-custom-button-outer-box,.goog-custom-button-inner-box{border-style:solid;border-color:transparent;vertical-align:top}
 .goog-custom-button-checked .goog-custom-button-outer-box,.goog-custom-button-checked .goog-custom-button-inner-box{border-color:#cdcdcd}
