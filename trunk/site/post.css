@@ -121,7 +121,7 @@ h3.post-title, .comments h4 {
 
 /* Images
 ----------------------------------------------- */
-.post-body img, .post-body object {
+.post-body img, .post-body object, .post-body iframe.fright {
   float: right;
   padding: 0 0 1ex 2ex;
 }
