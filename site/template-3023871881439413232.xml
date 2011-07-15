@@ -15,12 +15,9 @@
      <link href='http://www.blogger.com/dyn-css/authorization.css?targetBlogID=3023871881439413232&amp;zx=947805cc-7f10-4e75-8bb6-d4534b03fa29' rel='stylesheet' type='text/css'/>
 
     <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
-	<b:if cond='data:blog.url != data:blog.homepageUrl'>
     <link href='http://dataved.googlecode.com/svn/trunk/site/post.css' rel='stylesheet' type='text/css'/>
-    <b:else/>
     <link href='http://dataved.googlecode.com/svn/trunk/site/bbn/style.css' rel='stylesheet' type='text/css'/>
-	</b:if>
-    <link href='http://dataved.googlecode.com/svn/trunk/site/favicon.ico' rel='shortcut icon' type='image/ico'/>
+    <link href='http://www.blogger.com/favicon-image.g?blogID=3023871881439413232' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
     <meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
   </head>
@@ -133,8 +130,19 @@
     </div>
     </header>
 
+    <b:if cond='data:blog.url == data:blog.homepageUrl'>
+<script type='text/javascript'>
+  if (document.cookie.indexOf(&#39;dataved;&#39;) == -1) {
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate() + 14);
+    document.cookie=&#39;dataved; expires=&#39; + exdate.toUTCString();
+	//self.location.replace(&#39;/welcome&#39;)
+  }
+</script>
+    </b:if>	
+	
 	<!-- aaf: page1 -->
-    <b:if cond='data:blog.url != data:blog.homepageUrl'>
+    <b:if cond='data:blog.url != data:blog.homepageUrl/welcome'>
     <!--
     <b:if cond='1 == 1'>
     -->
@@ -299,9 +307,9 @@
 <b:includable id='status-message'>
   <b:if cond='data:navMessage'>
   <div class='status-msg-wrap'>
-    <div class='status-msg-body'>
+    <!--<div class='status-msg-body'>
       <data:navMessage/>
-    </div>
+    </div>-->
     <div class='status-msg-border'>
       <div class='status-msg-bg'>
         <div class='status-msg-hidden'><data:navMessage/></div>
@@ -467,6 +475,7 @@
 
   <b:if cond='data:top.showStars'>
     <script src='//www.google.com/jsapi' type='text/javascript'/>
+	<script src='http://apis.google.com/js/plusone.js' type='text/javascript'/>
     <script type='text/javascript'>
       google.load(&quot;annotations&quot;, &quot;1&quot;, {&quot;locale&quot;: &quot;<data:top.languageCode/>&quot;});
       function initialize() {
@@ -720,7 +729,7 @@
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-</b:section> 
+</b:section>
   </b:if><!-- aaf: page1 -->
 
   </div>
@@ -999,4 +1008,36 @@
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
+<b:widget id='PageList1' locked='false' title='Страницы' type='PageList'>
+<b:includable id='main'>
+  <b:if cond='data:title'><h2><data:title/></h2></b:if>
+  <div class='widget-content'>
+    <b:if cond='data:mobile'>
+      <select expr:id='data:widget.instanceId + &quot;_select&quot;'>
+        <b:loop values='data:links' var='link'>
+          <b:if cond='data:link.isCurrentPage'>
+            <option expr:value='data:link.href' selected='selected'><data:link.title/></option>
+          <b:else/>
+            <option expr:value='data:link.href'><data:link.title/></option>
+          </b:if>
+        </b:loop>
+      </select>
+      <span class='pagelist-arrow'>&amp;#9660;</span>
+
+    <b:else/>
+      <ul>
+        <b:loop values='data:links' var='link'>
+          <b:if cond='data:link.isCurrentPage'>
+            <li class='selected'><a expr:href='data:link.href'><data:link.title/></a></li>
+          <b:else/>
+            <li><a expr:href='data:link.href'><data:link.title/></a></li>
+          </b:if>
+        </b:loop>
+      </ul>
+    </b:if>
+    <b:include name='quickedit'/>
+  </div>
+</b:includable>
+</b:widget>
 </b:section-contents></html>
+                
