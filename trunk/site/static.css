@@ -52,7 +52,7 @@ a img {
   border-width: 0;
 }
 
-img.fleft, iframe.fleft {
+img.fleft {
   float: left;
 }
 
