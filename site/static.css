@@ -68,6 +68,7 @@ img.fleft {
 ----------------------------------------------- */
 aside {
   float: left;
+  width: 380px;
 }
 
 .section {
@@ -75,7 +76,6 @@ aside {
 }
 
 .widget {
-  width: 320px;
   margin: 15px !important;
   padding: 15px;
   float: left;
