@@ -22,6 +22,7 @@
 	</b:if>
     <link href='http://dataved.googlecode.com/svn/trunk/site/favicon.ico' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
+    <meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
   </head>
 
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
@@ -345,13 +346,13 @@
   <div class='blog-pager' id='blog-pager'>
     <b:if cond='data:newerPageUrl'>
       <div class='mobile-link-button' id='blog-pager-newer-link'>
-      <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:newerPageTitle'>&amp;laquo;</a>
+      <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:newerPageTitle'>&amp;lsaquo;</a>
       </div>
     </b:if>
 
     <b:if cond='data:olderPageUrl'>
       <div class='mobile-link-button' id='blog-pager-older-link'>
-      <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:olderPageTitle'>&amp;raquo;</a>
+      <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:olderPageTitle'>&amp;rsaquo;</a>
       </div>
     </b:if>
 
@@ -511,26 +512,20 @@
   </b:if>
 </b:includable>
 <b:includable id='mobile-index-post' var='post'>
-  <b:if cond='data:post.dateHeader'>
-    <div class='mobile-index-date'>
+  <div class='mobile-date-outer date-outer'>
+    <b:if cond='data:post.dateHeader'>
       <div class='date-header'>
         <span><data:post.dateHeader/></span>
       </div>
-    </div>
-  </b:if>
+    </b:if>
 
-  <div class='mobile-post-outer'>
-    <a expr:href='data:post.url'>
-      <div class='mobile-index-title-outer'>
+    <div class='mobile-post-outer'>
+      <a expr:href='data:post.url'>
         <h3 class='mobile-index-title entry-title'>
           <data:post.title/>
         </h3>
-      </div>
 
-      <div>
-        <div class='mobile-index-arrow'>
-          &amp;rsaquo;
-        </div>
+        <div class='mobile-index-arrow'>&amp;rsaquo;</div>
 
         <div class='mobile-index-contents'>
           <b:if cond='data:post.thumbnailUrl'>
@@ -545,12 +540,11 @@
             <b:if cond='data:post.snippet'><data:post.snippet/></b:if>
           </div>
         </div>
-        <div style='clear: both;'/>
-      </div>
-    </a>
 
-    <div class='mobile-index-comment'>
-      <b:if cond='data:blog.pageType != &quot;item&quot;'>
+        <div style='clear: both;'/>
+      </a>
+
+      <div class='mobile-index-comment'>
         <b:if cond='data:blog.pageType != &quot;static_page&quot;'>
           <b:if cond='data:post.allowComments'>
             <b:if cond='data:post.numComments != 0'>
@@ -558,8 +552,12 @@
             </b:if>
           </b:if>
         </b:if>
-      </b:if>
+      </div>
     </div>
+
+    <b:if cond='data:post.trackLatency'>
+      <data:post.latencyJs/>
+    </b:if>
   </div>
 </b:includable>
 <b:includable id='feedLinksBody' var='links'>
@@ -917,7 +915,7 @@
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-<b:widget id='Subscribe1' locked='false' title='Подпишитесь на Датавед' type='Subscribe'>
+<b:widget id='Subscribe1' locked='false' title='Подпишитесь' type='Subscribe'>
 <b:includable id='main'>
   <b:if cond='data:isPublic'>
   <div style='white-space:nowrap'>
@@ -1002,4 +1000,3 @@
 </b:includable>
 </b:widget>
 </b:section-contents></html>
-                
