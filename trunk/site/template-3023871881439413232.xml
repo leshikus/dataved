@@ -312,7 +312,7 @@
     </div>-->
     <div class='status-msg-border'>
       <div class='status-msg-bg'>
-        <div class='status-msg-hidden'><data:navMessage/></div>
+        <!--<div class='status-msg-hidden'><data:navMessage/></div>-->
       </div>
     </div>
   </div>
