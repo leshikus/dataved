@@ -1,4 +1,8 @@
-<div>
+<style type="text/css">
+#HTML3 {
+  padding: 15px 0 15px 0
+}
+</style>
 
       <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="320" height="170">
 <param name="menu" value="false" />
@@ -12,5 +16,3 @@ menu="false" >
         </object>
         <!--<![endif]-->
       </object>
-
-</div>
