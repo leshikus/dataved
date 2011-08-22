@@ -304,7 +304,7 @@
 
         <!-- quickedit pencil -->
         <b:include data='post' name='postQuickEdit'/>
-      </span> <div class='post-share-buttons'>
+      </span> <div class='post-share-buttons goog-inline-block'>
           <b:include data='post' name='shareButtons'/>
         </div> </div>
 
