@@ -128,21 +128,26 @@
 </b:section>
     <div class='clear'/>    
     </div>
+    <script src='//www.google.com/jsapi' type='text/javascript'/>
+    <script type='text/javascript'>
+      google.load(&quot;jquery&quot;, &quot;1.4&quot;);
+    </script>	
     </header>
 
     <b:if cond='data:blog.url == data:blog.homepageUrl'>
-<script type='text/javascript'>
-  if (document.cookie.indexOf(&#39;dataved;&#39;) == -1) {
-    var exdate=new Date();
-    exdate.setDate(exdate.getDate() + 14);
-    document.cookie=&#39;dataved; expires=&#39; + exdate.toUTCString();
-	//self.location.replace(&#39;/welcome&#39;)
-  }
-</script>
+	<srcipt src='http://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js' type='text/javascript'/>
+    <script type='text/javascript'>
+	  var url = $.cookie(&#39;dataved;&#39;)
+      if (!url) {
+	    $.cookie(&#39;dataved;&#39;, &#39;/&#39;)
+	    url = &#39;/p/welcome.html&#39;
+	  }
+	  self.location.replace(url)
+    </script>
     </b:if>	
 	
 	<!-- aaf: page1 -->
-    <b:if cond='data:blog.url != data:blog.homepageUrl/welcome'>
+    <b:if cond='data:blog.url != "http://www.dataved.ru/p/welcome.html"'>
     <!--
     <b:if cond='1 == 1'>
     -->
@@ -581,7 +586,6 @@
   </b:if>
 
   <b:if cond='data:top.showStars'>
-    <script src='//www.google.com/jsapi' type='text/javascript'/>
 	<script src='http://apis.google.com/js/plusone.js' type='text/javascript'/>
     <script type='text/javascript'>
       google.load(&quot;annotations&quot;, &quot;1&quot;, {&quot;locale&quot;: &quot;<data:top.languageCode/>&quot;});
@@ -816,7 +820,7 @@
     <footer>
     </footer>
 
-  <b:else/>
+  <b:else/><!-- aaf: page1 -->
     <!-- The JavaScript -->
 <b:section class='main' id='page1' showaddelement='no'>
 <b:widget id='HTML6' locked='false' title='' type='HTML'>
@@ -827,6 +831,8 @@
   </b:if>
   <div class='widget-content'>
     <data:content/>
+  <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js' type='text/javascript'/><!-- move into page widget -->
+  <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js' type='text/javascript'/>
   </div>
 
   <b:include name='quickedit'/>
@@ -837,16 +843,6 @@
 
   </div>
 
-  <script src='//www.google.com/jsapi' type='text/javascript'/>
-  <script type='text/javascript'>
-    google.load(&quot;jquery&quot;, &quot;1.4&quot;);
-  </script>
-  <b:if cond='data:blog.url != data:blog.homepageUrl'><!-- aaf: page1 -->
-  <b:else/><!-- Delay library loading -->
-  <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js' type='text/javascript'/>
-  <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js' type='text/javascript'/>
-  </b:if>
-  
   <script src='http://www.google-analytics.com/ga.js' type='text/javascript'/>
   <script type='text/javascript'>
     window.setTimeout(function() {
@@ -1109,37 +1105,6 @@
   </div>
 
   <b:include name='quickedit'/>
-</b:includable>
-</b:widget>
-<b:widget id='PageList1' locked='false' title='Страницы' type='PageList'>
-<b:includable id='main'>
-  <b:if cond='data:title'><h2><data:title/></h2></b:if>
-  <div class='widget-content'>
-    <b:if cond='data:mobile'>
-      <select expr:id='data:widget.instanceId + &quot;_select&quot;'>
-        <b:loop values='data:links' var='link'>
-          <b:if cond='data:link.isCurrentPage'>
-            <option expr:value='data:link.href' selected='selected'><data:link.title/></option>
-          <b:else/>
-            <option expr:value='data:link.href'><data:link.title/></option>
-          </b:if>
-        </b:loop>
-      </select>
-      <span class='pagelist-arrow'>&amp;#9660;</span>
-
-    <b:else/>
-      <ul>
-        <b:loop values='data:links' var='link'>
-          <b:if cond='data:link.isCurrentPage'>
-            <li class='selected'><a expr:href='data:link.href'><data:link.title/></a></li>
-          <b:else/>
-            <li><a expr:href='data:link.href'><data:link.title/></a></li>
-          </b:if>
-        </b:loop>
-      </ul>
-    </b:if>
-    <b:include name='quickedit'/>
-  </div>
 </b:includable>
 </b:widget>
 </b:section-contents></html>
