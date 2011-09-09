@@ -46,7 +46,7 @@ a.tooltip:hover {
   text-decoration: none;
 }
 
-a.tooltip div {
+a.tooltip span {
   display: none;
 }
 
@@ -54,7 +54,7 @@ a.tooltip img {
   display: inline;
 }
 
-a.tooltip:hover div { /* the span will display just on :hover state */
+a.tooltip:hover span { /* the span will display just on :hover state */
   display: block;
   position: absolute;
   padding: 1ex;
