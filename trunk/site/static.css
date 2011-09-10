@@ -71,6 +71,10 @@ aside {
   width: 350px;
 }
 
+.sidebar .widget {
+  width: 290px;
+}
+
 .section {
   float: left;
 }
