@@ -101,22 +101,22 @@ h3.post-title, .comments h4 {
 /* Related posts widget
 ----------------------------------------------- */
 ul.rpw {
-	list-style-type:none;
-	margin:0;
-	padding:0;
+  list-style-type:none;
+  margin:0;
+  padding:0;
 }
 ul.rpw li{
-	float:left;
-	margin:0 0 4px 4px;
+  float:left;
+  margin:0 0 4px 4px;
 }
 ul.rpw a{
-	text-decoration:none;
-	outline:none;
+  text-decoration:none;
+  outline:none;
 }
 /** image **/
 ul.rpw img{
-	border:silver 1px solid;
-	float:left;
+  padding: 0 2ex 1ex 0;
+  float:left;
 }
 
 /* Posting style
