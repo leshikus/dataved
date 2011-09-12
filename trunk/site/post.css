@@ -98,6 +98,27 @@ h3.post-title, .comments h4 {
   font-size: 90%;
 }
 
+/* Related posts widget
+----------------------------------------------- */
+ul.rpw {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+ul.rpw li{
+	float:left;
+	margin:0 0 4px 4px;
+}
+ul.rpw a{
+	text-decoration:none;
+	outline:none;
+}
+/** image **/
+ul.rpw img{
+	border:silver 1px solid;
+	float:left;
+}
+
 /* Posting style
 ----------------------------------------------- */
 .post-body p, dl {
