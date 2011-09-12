@@ -109,6 +109,9 @@ ul.rpw li{
   float:left;
   margin:0 0 4px 4px;
 }
+ul.rpw strong{
+  font-weight: normal;
+}
 ul.rpw a{
   text-decoration:none;
   outline:none;
