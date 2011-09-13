@@ -144,7 +144,7 @@ ul.rpw img{
 
 /* Images
 ----------------------------------------------- */
-.post-body img, .post-body object, .post-body iframe.fright {
+.post-body img, .post-body object, .post-body embed, .post-body iframe.fright {
   float: right;
   padding: 0 0 1ex 2ex;
 }
