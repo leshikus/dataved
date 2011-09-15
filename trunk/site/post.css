@@ -119,6 +119,7 @@ ul.rpw a {
 ul.rpw img {
   padding: 0 2ex 1ex 0;
   float: left;
+  clear: left;
 }
 
 /* Posting style
