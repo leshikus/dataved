@@ -89,7 +89,7 @@ function rank(list) {
 
     function myCallbackBlank()
 	{ 
-		alert("loaded search");
+		//alert("loaded search");
 	}
 
 
