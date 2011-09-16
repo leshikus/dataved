@@ -88,16 +88,11 @@ function rank(list) {
 google.load('search', '1')
 
 google.setOnLoadCallback(function() {
-alert("call back loaded");
-//var myList = document.getElementById("ranking");
-
-  //rank(myList);
+var myList = document.getElementById("ranking");
+rank(myList);
 })
 
 toggleFlags = []
 function toggle(checkbox, type) {
 }
 
-var myList = document.getElementById("ranking");
-
-  rank(myList);
