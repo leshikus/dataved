@@ -85,7 +85,13 @@ function rank(list) {
   searchControl.execute("www")
 }
 
-//google.load('search', '1')
+    google.load("search","1",{'nooldnames': true, "callback":myCallbackBlank});
+
+    function myCallbackBlank()
+	{ 
+		alert("loaded search");
+	}
+
 
 google.setOnLoadCallback(function() {
 var myList = document.getElementById("ranking");
