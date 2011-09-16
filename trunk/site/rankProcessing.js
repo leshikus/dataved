@@ -88,6 +88,7 @@ function rank(list) {
 google.load('search', '1')
 
 google.setOnLoadCallback(function() {
+alert("Call Back Loaded");
 var myList = document.getElementById("ranking");
 
   rank(myList);
@@ -96,3 +97,5 @@ var myList = document.getElementById("ranking");
 toggleFlags = []
 function toggle(checkbox, type) {
 }
+
+alert("Loaded");
