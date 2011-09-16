@@ -13,8 +13,7 @@ function modifyListItem(html, res) {
     '<span class="' + html.substr(flagpos).replace(/ /g, '"></span><span class="') +
       '"></span>' + res + ' ' + html.substr(0, flagpos) : res + ' ' + html
 
-  return '<hr width="' + (Math.log(res) * 60) + '" />
- ' + html
+  return '<hr width="' + (Math.log(res) * 60) + '" /> ' + html
 }
 
 Glob.prototype.rank = function(searchControl, searcher) {
