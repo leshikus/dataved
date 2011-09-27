@@ -157,7 +157,7 @@ ul.rpw img {
 /* Inline images
 ----------------------------------------------- */
 .post-body p img, .post-body td img,
-.post-body p object, .post-body td object  {
+.post-body p object, .post-body p embed, .post-body td object  {
   float: none;
   vertical-align: middle;
   padding: 0;
