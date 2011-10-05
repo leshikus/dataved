@@ -82,8 +82,7 @@ function monitor() {
   //var sekondClean = clean();
   //alert(sekondClean);
   alert(doc.body.innerHTML);
-  result = '<pre>' + trim(cleanit(doc.body)) + '</pre>
-';
+  result = '<pre>' + trim(cleanit(doc.body)) + '</pre>';
   //result = trim(cleanit(doc.body));
   doc.body.innerHTML = result;
   clean();
