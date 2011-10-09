@@ -81,11 +81,11 @@ function monitor() {
   //alert(preclean);
   //var sekondClean = clean();
   //alert(sekondClean);
-  alert(doc.body.innerHTML);
-  result = '<pre>' + trim(cleanit(doc.body)) + '</pre>';
-  //result = trim(cleanit(doc.body));
+  //alert(doc.body.innerHTML);
+  //result = '<pre>' + trim(cleanit(doc.body)) + '</pre>';
+  result = '<pre>' + trim(cleanit(doc.body.innerHTML)) + '</pre>';
   doc.body.innerHTML = result;
-  clean();
+//  clean();
 //  doc.designMode = 'on';
 }
 
@@ -117,8 +117,6 @@ function cleanit_onload() {
 
   setInterval(monitor, 1000);
 }
-
-google.setOnLoadCallback(cleanit_onload);
 
 //-------------
 // хорошие теги
