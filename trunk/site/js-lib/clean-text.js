@@ -87,3 +87,30 @@ function monitor() {
 //  doc.designMode = 'on';
 }
 
+function clean_onload(iframe, allowed-tags) {
+  var win = iframe.contentWindow
+
+  // Globals
+  doc = win.document
+  result = ''
+  attr = new Array()
+
+  var allowed_tags = allowed-tags.innerHTML
+  var re_tag = /&lt;(\w+(?:\s+\w+)*)&gt;/g
+  var element
+  while ((element = re_tag.exec(allowed_tags)) != null) {
+    element = element[1].split(/\s+/)
+    var tag = element.shift()
+    attr[tag] = element
+  }
+
+  doc.open()
+  spandots = '<span id="cleanit-spandots"></span>'
+  doc.write('<html><head><meta http-equiv="Content-type" content="text/html; charset=utf-8"></head>'
+    + '<body>Чтобы перевести текст в HTML без лишних тэгов и атрибутов, cкопируйте текст в эту форму'
+    + spandots + '</body></html>')
+  doc.close()
+  doc.designMode = 'on'
+
+  setInterval(monitor, 1000);
+}
