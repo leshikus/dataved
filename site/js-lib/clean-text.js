@@ -83,7 +83,7 @@ function monitor() {
   //alert(sekondClean);
   //alert(doc.body.innerHTML);
   //result = '<pre>' + trim(cleanit(doc.body)) + '</pre>';
-  result = '<pre>' + trim(cleanit(doc.body.innerHTML)) + '</pre>';
+  result = '<pre>' + trim(esc(doc.body.innerHTML)) + '</pre>';
   doc.body.innerHTML = result;
 //  clean();
 //  doc.designMode = 'on';
