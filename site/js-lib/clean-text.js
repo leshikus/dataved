@@ -72,17 +72,10 @@ function monitor() {
   }
 
   doc.designMode = 'off';
-  //alert("pasted");
-  //var preclean = trim(cleanit(doc.body));
-  //alert(preclean);
-  //var sekondClean = clean();
-  //alert(sekondClean);
-  //alert(doc.body.innerHTML);
-  result = '<pre>' + trim(cleanit(doc.body)) + '</pre>';
-  //result = '<pre>' + trim(esc(doc.body.innerHTML)) + '</pre>'; // used to check the initial HTML
+  result = '<pre>' + esc(cleanit(doc.body)) + '</pre>';
+  //result = '<pre>' + esc(doc.body.innerHTML) + '</pre>'; // used to check the initial HTML
   doc.body.innerHTML = result;
-//  clean();
-//  doc.designMode = 'on';
+  doc.designMode = 'on';
 }
 
 function clean_onload(iframe, allowed_tags) {
