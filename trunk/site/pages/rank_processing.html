@@ -310,7 +310,9 @@ function modifyListItem(html, res) {
   if (flagpos == -1) flagpos = html.indexOf('</A>')
 
   html = (flagpos >= 0) ?
-    '<span class="' + html.substr(flagpos + 4).replace(/ /g, '"></span><span class="') +
+    '<span class="' + html.substr(flagpos + 4).
+	  replace(/^\s*|\s*$/, '').
+	  replace(/ /g, '"></span><span class="') +
       '"></span>' + res + ' ' + html.substr(0, flagpos + 4) : res + ' ' + html
 
   return '<hr width="' + (Math.log(res) * 60) + '" /> ' + html
@@ -348,7 +350,9 @@ Glob.prototype.rank = function(searchControl, searcher) {
 
 function processChild(child) {
   for (j in toggleFlags) {
-    if (!toggleFlags[j] || child.innerHTML.indexOf('<span class="' + j + '">') >= 0) continue
+    if (!toggleFlags[j] ||
+		child.innerHTML.indexOf('<span class="' + j + '">') >= 0 ||
+		child.innerHTML.indexOf('<SPAN class=' + j + '>') >= 0) continue
 
      child.style.display = 'none'
      return
