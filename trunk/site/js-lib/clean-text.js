@@ -1,7 +1,3 @@
-function gebid(id) {
-  return document.getElementById('cleanit-' + id);
-}
-
 function esc(str) {
   if (str && str.replace) return str.replace(/>/g, '&gt;').replace(/</g, '&lt;');
   return str;
@@ -83,14 +79,13 @@ function monitor() {
   //alert(sekondClean);
   //alert(doc.body.innerHTML);
   //result = '<pre>' + trim(cleanit(doc.body)) + '</pre>';
-  result = '<pre>' + trim(esc(doc.body.innerHTML)) + '</pre>';
+  result = '<pre>' + trim(esc(doc.body.innerHTML)) + '</pre>'; // used to check the initial HTML
   doc.body.innerHTML = result;
 //  clean();
 //  doc.designMode = 'on';
 }
 
-function cleanit_onload() {
-  var iframe = gebid('word-input');
+function clean_onload(iframe, allowed-tags) {
   var win = iframe.contentWindow;
 
   // Globals
@@ -98,7 +93,7 @@ function cleanit_onload() {
   result = '';
   attr = new Array();
 
-  var allowed_tags = gebid('allowed-tags').innerHTML;
+  var allowed_tags = allowed-tags.innerHTML;
   var re_tag = /&lt;(\w+(?:\s+\w+)*)&gt;/g;
   var element;
   while ((element = re_tag.exec(allowed_tags)) != null) {
@@ -124,7 +119,6 @@ function cleanit_onload() {
 goodTags0=["a","p","br","strong","b","em","i","tt","code","pre","ul","ol","li","img","table","tbody","thead","tfoot","caption","tr","td","th","col","colgroup","h1","h2","h3","h4","h5","h6","small","big","sub","sup","div"]
 
 
-
 // inline теги, которые удалять, если они пустые внутри
 
 emptyInlineTags0=["strong","b","em","i","tt","code","small","big","sub","sup","span"];
@@ -134,11 +128,9 @@ emptyInlineTags0=["strong","b","em","i","tt","code","small","big","sub","sup","s
 emptyBlockTags0=["p","strong","pre","div"];
 
 
-
 // теги, которые canHaveHTML() и могут быть пустыми.
 
 canEmptyTags0=["td","th"]
-
 
 
 goodAttributes0=[]
@@ -146,7 +138,6 @@ goodAttributes0=[]
 // хорошие атрибуты (допустимы у всех тегов)
 
 goodAttributes0[""] = ["href", "target", "name", "title", "alt", "src", "id", "bgColor", "color"]
-
 
 
 // дополнительные допустимые атрибуты для отдельных тегов
@@ -164,17 +155,14 @@ goodAttributes0["a area"] = ["href", "name"]
 goodAttributes0["br"] = ["clear"]
 
 
-
 // однозначно убиваемые псевдо-атрибуты (отсутствуют в коллекции attributes)
 
 mustDieAttributes=["x:str","x:num","x:fmla"] // внимание - в 6-ом MSIE убийство несуществующих атрибутов у тега TABLE ведет к краху браузера
 
 
-
 // хорошие классы (не убиваем)
 
 goodClasses0=["important","noindent","note","h1","h2","h3","h4","h5","h6"]
-
 
 
 goodTags=[]
@@ -194,7 +182,6 @@ for(i in canEmptyTags0){
 }
 
 
-
 emptyInlineTags=[]
 
 for(i in emptyInlineTags0){
@@ -210,7 +197,6 @@ for(i in emptyBlockTags0){
  emptyBlockTags[emptyBlockTags0[i]]=true
 
 }
-
 
 
 goodAttributes=[]
@@ -232,7 +218,6 @@ for(i in goodAttributes0){
  }
 
 }
-
 
 
 goodClasses=[]
@@ -268,11 +253,9 @@ if (o.outerHTML != null)
  var tag=o.tagName.toLowerCase()
 
 
-
  // удаляем пустые строчные теги
 
  
-
 
 
  // удаляем плохие, заказные и пустые теги
@@ -300,9 +283,7 @@ if (o.outerHTML != null)
  }
 
 
-
 //emptyInlineTags
-
 
 
  // удаляем пустые инлайны
@@ -326,11 +307,9 @@ if (o.outerHTML != null)
  }
 
 
-
  var a=o.attributes
 
  if(!a) return
-
 
 
  for(i in a){ // хм...
@@ -429,8 +408,6 @@ if (o.outerHTML != null)
 
 
 
-
-
 function cleanTree(o,mustClean){
 
  var c=o.children
@@ -454,13 +431,11 @@ function cleanTree(o,mustClean){
 }
 
 
-
 if(!self.editor) var editor=document.getElementById("editor")
 
 if(!self.buffer) var buffer=document.getElementById("buffer")
 
 if(!self.output) var output=document.getElementById("output")
-
 
 
 function clean(){
@@ -508,13 +483,11 @@ buffer.innerHTML = doc.body.innerHTML;
 }
 
 
-
 function viewSource(){
 
  output.value=editor.innerHTML
 
 }
-
 
 
 function fromSource(){
@@ -524,11 +497,9 @@ function fromSource(){
 }
 
 
-
 function copyDocument(){
 
 }
-
 
 
 function copySource(){
@@ -536,13 +507,9 @@ function copySource(){
 }
 
 
-
 function reset(){
 
  editor.innerHTML=""
 
  output.value=""
-
-
-
 }
