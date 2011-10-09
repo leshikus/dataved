@@ -1,3 +1,5 @@
+alert('hrtr')
+
 function esc(str) {
   if (str && str.replace) return str.replace(/>/g, '&gt;').replace(/</g, '&lt;');
   return str;
@@ -84,7 +86,7 @@ function monitor() {
 //  clean();
 //  doc.designMode = 'on';
 }
-alert('hrtr')
+
 function clean_onload(iframe, allowed-tags) {
   var win = iframe.contentWindow;
 
