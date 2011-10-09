@@ -1,5 +1,3 @@
-alert('hrtr')
-
 function esc(str) {
   if (str && str.replace) return str.replace(/>/g, '&gt;').replace(/</g, '&lt;');
   return str;
@@ -80,8 +78,8 @@ function monitor() {
   //var sekondClean = clean();
   //alert(sekondClean);
   //alert(doc.body.innerHTML);
-  //result = '<pre>' + trim(cleanit(doc.body)) + '</pre>';
-  result = '<pre>' + trim(esc(doc.body.innerHTML)) + '</pre>'; // used to check the initial HTML
+  result = '<pre>' + trim(cleanit(doc.body)) + '</pre>';
+  //result = '<pre>' + trim(esc(doc.body.innerHTML)) + '</pre>'; // used to check the initial HTML
   doc.body.innerHTML = result;
 //  clean();
 //  doc.designMode = 'on';
