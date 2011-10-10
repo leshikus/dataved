@@ -7,12 +7,12 @@ function trim(str) {
   return str.replace(/\s*$/, '').replace(/^\s*/, '');
 }
 
-function clean_tree(o, must_clean){
-  var c=o.children
+function clean_tree(o, must_clean) {
+  var c = o.children
   
   if (c) {
     var i
-    for (i = 0; i < c.length; i++) clean_tree(c[i],true)
+    for (i = 0; i < c.length; i++) clean_tree(c[i], true)
   }
   if (must_clean) clean_object(o)
 }
