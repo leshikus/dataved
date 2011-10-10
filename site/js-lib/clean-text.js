@@ -7,50 +7,14 @@ function trim(str) {
   return str.replace(/\s*$/, '').replace(/^\s*/, '');
 }
 
-function cleanit(node) {
-  var out = '';
-  var n = node.childNodes;
-
-  for (var i = 0; i < n.length; i++) {
-    switch (n[i].nodeType) {
-      case node.ELEMENT_NODE:
-        var tag = node.tagName.toLowerCase();
-//alert(tag);
-        var a = attr[tag];
-//alert(a);
-        if (!a) {
-          // remove tag
-          out += cleanit(n[i]);
-          break;
-        }
-
-        if (!n[i].hasChildNodes()) {
-          out += '<' + tag + '/>';
-          break;
-        }
-
-        var content = '<' + tag + '>' + trim(cleanit(n[i])) + '</' + tag + '>';
-
-        if (node.style.display = 'block')
-          content = '\n' + content + '\n';
-
-        out += content;
-        break;
-
-      case node.TEXT_NODE:
-        out += n[i].textContent.replace(/\s+/g, ' ');
-        break;
-
-      case node.COMMENT_NODE:
-        // skip comments
-        break;
-
-      default:
-        out += "#" + n[i].nodeType + ": " + esc(n[i]) + '\n';
-        break;
-    }
+function clean_tree(o, must_clean){
+  var c=o.children
+  
+  if (c) {
+    var i
+    for (i = 0; i < c.length; i++) clean_tree(c[i],true)
   }
-  return out;
+  if (must_clean) clean_object(o)
 }
 
 function monitor() {
@@ -72,10 +36,9 @@ function monitor() {
   }
 
   doc.designMode = 'off';
-  result = '<pre>' + esc(cleanit(doc.body)) + '</pre>';
+  result = '<pre>' + esc(clean_tree(doc.body)) + '</pre>';
   //result = '<pre>' + esc(doc.body.innerHTML) + '</pre>'; // used to check the initial HTML
   doc.body.innerHTML = result;
-  doc.designMode = 'on';
 }
 
 function clean_onload(iframe, allowed_tags) {
@@ -98,7 +61,7 @@ function clean_onload(iframe, allowed_tags) {
   doc.open()
   spandots = '<span id="cleanit-spandots"></span>'
   doc.write('<html><head><meta http-equiv="Content-type" content="text/html; charset=utf-8"></head>'
-    + '<body>Чтобы перевести текст в HTML без лишних тэгов и атрибутов, cкопируйте текст в эту форму'
+    + '<body>Чтобы очистить текст в HTML от лишних тэгов и атрибутов, cкопируйте его в эту форму'
     + spandots + '</body></html>')
   doc.close()
   doc.designMode = 'on'
@@ -221,7 +184,7 @@ for(i in goodClasses0){
 
 }
 
-function cleanObject(o){
+function clean_object(o) {
 
  var s=""
 
@@ -401,108 +364,3 @@ if (o.outerHTML != null)
 
 
 
-function cleanTree(o,mustClean){
-
- var c=o.children
-//var c=o.childNodes
- var i
-
- if(c){
-
-  for(i=c.length-1;i>=0;i--){
-
-   cleanTree(c[i],true)
-
-  }
-
- }
-
- 
-
- if(mustClean) cleanObject(o)
-
-}
-
-
-if(!self.editor) var editor=document.getElementById("editor")
-
-if(!self.buffer) var buffer=document.getElementById("buffer")
-
-if(!self.output) var output=document.getElementById("output")
-
-
-function clean(){
-
- 
-
- clean_emptytags=true; //document.getElementById("delete_emptytags").checked
-
- clean_a=true; //document.getElementById("delete_a").checked
-
- clean_img=true; //document.getElementById("delete_img").checked
-
- clean_colors=true; //document.getElementById("delete_colors").checked
-
- clean_aligns=true; //document.getElementById("delete_aligns").checked
-
- 
-
- if(editor.innerHTML==""){
-
-  buffer.innerHTML=output.value
-
- }else{
-
-  buffer.innerHTML=editor.innerHTML
-
- }
-buffer.innerHTML = doc.body.innerHTML;
- cleanTree(doc.body,false)
-
- 
-
- if(buffer.innerHTML.substr(0,6)=="&nbsp;"){
-
-  buffer.innerHTML=buffer.innerHTML.substr(6)
-
- }
-
- 
-
- editor.innerHTML=buffer.innerHTML
-
- viewSource()
-
-}
-
-
-function viewSource(){
-
- output.value=editor.innerHTML
-
-}
-
-
-function fromSource(){
-
- editor.innerHTML=output.value
-
-}
-
-
-function copyDocument(){
-
-}
-
-
-function copySource(){
-
-}
-
-
-function reset(){
-
- editor.innerHTML=""
-
- output.value=""
-}
