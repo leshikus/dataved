@@ -1,0 +1,3 @@
+<?
+echo "From PHP";
+?>
