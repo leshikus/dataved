@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html b:version='2' class='v2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
-    <meta content='IE=EmulateIE7' http-equiv='X-UA-Compatible'/>
+    <meta content='IE=EmulateIE9' http-equiv='X-UA-Compatible'/>
     <b:if cond='data:blog.isMobile'>
       <meta content='width=device-width,minimum-scale=1.0,maximum-scale=1.0' name='viewport'/>
     <b:else/>
@@ -358,7 +358,7 @@
       <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
       <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410' id='comment-editor' name='comment-editor' src='' width='100%'/>
     </b:if>
-    <data:post.friendConnectJs/>
+    <!--<data:post.friendConnectJs/>-->
     <data:post.cmtfpIframe/>
     <script type='text/javascript'>
       BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;, &#39;<data:post.communityId/>&#39;);
@@ -466,7 +466,7 @@
             <div class='post-footer-line post-footer-line-2'>
               <b:if cond='data:top.showMobileShare'>
                 <div class='mobile-link-button goog-inline-block' id='mobile-share-button'>
-                  <a href='javascript:void();'><data:shareMsg/></a>
+                  <a href='javascript:void(0);'><data:shareMsg/></a>
                 </div>
               </b:if>
               <b:if cond='data:top.showDummy'>
