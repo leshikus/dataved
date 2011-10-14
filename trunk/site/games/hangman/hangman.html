@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Hangman Game</title>
+	</head>
+	<body>
+				<style>
+					BODY {
+						margin: 2px;
+						background-color: white;
+						font: normal 10pt Arial
+					}
+					INPUT {
+						background-color: transparent;
+					}
+					#tfd_hm_tbl {
+						position: absolute;
+						height: 105px;
+						width: 100px
+					}
+					#tfd_hm_tbl TD {
+						background-color: transparent;
+						padding: 0
+					}
+					.tfd_hm_ro {
+						border: none
+					}
+					FORM {
+						display: inline
+					}
+					#tfd_hm_a1, #tfd_hm_a2 {
+						white-space: nowrap
+					}
+					SPAN.hmimg {
+						background-image: url(./images/hangman.png);
+						background-repeat: no-repeat;
+						text-decoration: none;
+						display: inline-block;
+						margin: 0;
+						vertical-align: middle;
+						font-size: 0;
+						text-align: left;
+						color: white;
+						width: 100px;
+						height: 105px
+					}
+				</style>
+				<div style="height:105px;width:100px;float:left;margin-right:3pt">
+					<table cellpadding=0 cellspacing=0 id=tfd_hm_tbl>
+						<tr>
+							<td id=tfd_hm_td1 width=100 height=3 colspan=5></td>
+						</tr>
+						<tr>
+							<td id=tfd_hm_td0 width=14 height=99 rowspan=4></td><td id=tfd_hm_td2 width=23 height=99 rowspan=4></td><td id=tfd_hm_td3 width=63 height=15 colspan=3></td>
+						</tr>
+						<tr>
+							<td id=tfd_hm_td4 width=63 height=19 colspan=3></td>
+						</tr>
+						<tr>
+							<td id=tfd_hm_td6 width=20 height=33></td><td id=tfd_hm_td5 width=3 height=65 rowspan=2></td><td id=tfd_hm_td7 width=40 height=33></td>
+						</tr>
+						<tr>
+							<td id=tfd_hm_td8 width=20 height=32></td><td id=tfd_hm_td9 width=40 height=32></td>
+						</tr>
+						<tr>
+							<td style=background-color:transparent width=100 height=3 colspan=5></td>
+						</tr>
+					</table>
+					<span id=tfd_hm_span class="hmimg"></span>
+				</div>
+				<form name=tfd_hm_form id=tfd_hm_form>
+					<input class=tfd_hm_ro name=word  id=tfd_hm_i_word readonly style="width:200px;LETTER-SPACING:6px;font:normal 16px 'Courier New'">
+					<br>
+					Ваша буква:
+					<input style="border:1px black solid;width:16pt;text-align:center;font:normal 16px 'Courier New';margin-top:5px" name=input id=tfd_hm_input onkeypress="setTimeout('tfd_hm_init(0);tfd_hm_update()',10)" onclick="tfd_hm_init(0)" size=2>
+					&nbsp;<a href="#help" target="_top" style="font:bold 10px Verdana;padding:1px 2px 1px 3px;text-decoration:none;color:#B4CBDC;border:1px #B4CBDC solid;margin-left: 8px;vertical-align:absbottom">?</a>
+					<br>
+					<span class="hmimg" style="width:18px;height:24px;background-position:0 -327px"></span>
+					<input class=tfd_hm_ro name=wrong id=tfd_hm_wrong readonly style="width:125px;LETTER-SPACING:2px;font:normal 16px 'Courier New';vertical-align:bottom">
+					<br>
+					<input class=tfd_hm_ro name=result  id=tfd_hm_result readonly style="width:200pt;font-weight:bold">
+					<div id=tfd_hm_a style="visibility:hidden">
+						<a  id=tfd_hm_a1 href="#" onclick="StartGame();return false;">Новая игра</a>
+					</div>
+					<script language="JavaScript">
+						// global
+						var tfd_hm_word;
+						var tfd_hm_guess;
+						var tfd_hm_cnt;
+						var myArray = ['МИР', 'КАРАКАТИЦА', 'ИМПЕРИЯ', 'ВОЛЯ'];
+						window.onLoad = StartGame();
+						function StartGame() {
+							var currentWordIndex = Math.floor(Math.random() * myArray.length) 
+							tfd_hm_guess = '';
+							tfd_hm_word = SetWord(currentWordIndex);
+							tfd_hm_init(1);
+							tfd_hm_cnt = 0;
+							window.setTimeout('tfd_hm_refresh()', 100);
+						}
+
+						// lib
+						function Style(name) {
+							return document.getElementById(name).style;
+						}
+
+						function tfd_hm_update() {
+							var frm = document.tfd_hm_form;
+							var c = '';
+							for(var i = 0; i < frm.input.value.length; i++) {
+								c = frm.input.value.substr(i, 1).toUpperCase();
+								if(tfd_hm_guess.indexOf(c) < 0) {
+									tfd_hm_guess += c;
+									if(tfd_hm_word.indexOf(c) < 0)
+										frm.wrong.value += c
+									break;
+								}
+							}
+							frm.input.value = c;
+							for(var i = 0; i < frm.wrong.value.length; i++)
+							document.getElementById('tfd_hm_td' + i).style.backgroundColor = 'transparent';
+							frm.word.value = '';
+							var gamelost = document.getElementById('tfd_hm_td9').style.backgroundColor == 'transparent';
+							for(var i = 0; i < tfd_hm_word.length; i++)
+							frm.word.value += (tfd_hm_guess.indexOf(tfd_hm_word.substr(i, 1)) >= 0 || gamelost ? tfd_hm_word.substr(i, 1) : '_');
+							if(frm.word.value.indexOf('_') < 0) {
+								if(gamelost) {
+									document.getElementById('tfd_hm_span').style.backgroundPosition = '0 -220px';
+									frm.result.value = 'Очень жаль, но вы проиграли';
+								} else {
+									document.getElementById('tfd_hm_span').style.backgroundPosition = '0 0';
+									frm.result.value = 'Вы выиграли!';
+									for(var i = 0; i <= 9; i++)
+									document.getElementById('tfd_hm_td' + i).style.backgroundColor = 'transparent';
+								}
+								frm.input.disabled = true;
+								document.getElementById('tfd_hm_a').style.visibility = '';
+							}
+						}
+
+						function tfd_hm_init(c) {
+							document.getElementById('tfd_hm_span').style.backgroundPosition = '0 -110px';
+							if(c || tfd_hm_cnt == 1)
+								for(var i = 0; i <= 9; i++)
+								document.getElementById('tfd_hm_td' + i).style.backgroundColor = "white";
+							//document.body.style.backgroundColor;
+							tfd_hm_cnt += 1;
+						}
+
+						function tfd_hm_refresh() {
+							tfd_hm_guess = '';
+							document.getElementById('tfd_hm_a').style.visibility = 'hidden';
+							if(tfd_hm_cnt)
+								tfd_hm_init(1);
+							tfd_hm_cnt += 1;
+							var frm = document.tfd_hm_form;
+							frm.input.disabled = false;
+							frm.result.value = '';
+							frm.input.value = '';
+							frm.wrong.value = '';
+							tfd_hm_guess = '';
+							tfd_hm_update();
+						}
+
+						function SetWord(i) {
+	
+							return myArray[i];
+						}
+
+						//}
+					</script>
+				</form>
+			</body>
+		</html>
