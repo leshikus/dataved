@@ -1,0 +1,173 @@
+<p>Cleaning up old blogger posts.</p><!-- more -->
+
+<a id="authenticationLink" href="#more" onclick="signIn()">Sign in</a>
+<div id="actions"><img src="dataved.svg" height="1" width="1"/>
+<a href="#more" onclick="next()">Next</a>
+<a href="#more" onclick="update()">Update</a>
+<a href="#more" onclick="delete()">Delete</a>
+<div id="log"></div>
+</div>
+
+
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+google.load("gdata", "2.x", {packages: ['blogger']})
+google.setOnLoadCallback(function() {
+  bc.init()
+})
+
+var bc = {
+  AUTH_URL: 'http://www.blogger.com/feeds',
+  BLOG_LIST_URL: 'http://www.blogger.com/feeds/default/blogs',
+
+  init: function() {
+    this.service = new google.gdata.blogger.BloggerService('Dataved-BloggerCleanup-1')
+    this.authLink = document.getElementById('authenticationLink')
+    this.actions = document.getElementById('actions')
+    this.elog = document.getElementById('log')
+    this.blogs = null
+    this.postQuery = null
+    this.initUI()
+  },
+
+  initUI: function() {
+    if (google.accounts.user.checkLogin(this.AUTH_URL)) {
+      var q = new google.gdata.blogger.BlogQuery(this.BLOG_LIST_URL)
+      this.service.getBlogFeed(q, getBlogFeedHandler, errorHandler)
+      showElement(this.actions)
+      this.elog.innerHTML= ''
+      this.authLink.innerHTML = 'Sign out'
+      this.authLink.onclick = signOut
+    } else {
+      hideElement(this.actions)
+      this.authLink.innerHTML = 'Sign in'
+      this.authLink.onclick = signIn
+    }
+  },
+
+  log: function(str) {
+//    this.elog.innerHTML += '<pre>' + str.substr(0,255).replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</pre>'
+    this.elog.innerHTML += str.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '<br/>'
+  },
+
+  getFirstBlogPost: function() {
+    if (!(this.blogs && this.blogs.length)) return
+    var entry = this.blogs.shift()
+    bc.log('href = ' + entry.getEntryPostLink().getHref())
+    this.postQuery = new google.gdata.blogger.BlogPostQuery(entry.getEntryPostLink().getHref())
+    //this.postQuery.setParam('author')
+    this.postQuery.setMaxResults(1)
+    this.postQuery.setStartIndex(2)
+  
+    this.service.getBlogPostFeed(this.postQuery, getBlogPostFeedHandler, this.getFirstBlogPost)
+  }
+}
+
+function getBlogFeedHandler(blogFeedRoot) {
+  bc.blogs = blogFeedRoot.feed.getEntries()
+  bc.getFirstBlogPost()
+}
+
+function getBlogPostFeedHandler(blogPostFeedRoot) {
+  var postArr = blogPostFeedRoot.feed.getEntries()
+
+  var entry = postArr[0]
+  logEntry(entry)
+  var post = entry.getContent().getText()
+  filteredPost = filterPost(post)
+
+  if (filteredPost != post) {
+    entry.setContent(post)
+  }
+
+  bc.log('=== filtered post === ' + filteredPost)
+  bc.elog.innerHTML += '=== filtered post === <br/>' + filteredPost
+
+
+}
+
+function update() {
+  advanceIndex()
+  nextPost()
+}
+
+function delete() {
+  next()
+}
+
+function next() {
+  advanceIndex()
+  nextPost()
+}
+
+function advanceIndex() {
+  var index = bc.postQuery.getStartIndex()
+  bc.log('index = ' + index)
+  bc.postQuery.setStartIndex(index + 1)
+}
+
+function nextPost() {
+  setTimeout(function() {
+    bc.service.getBlogPostFeed(bc.postQuery, getBlogPostFeedHandler, bc.getFirstBlogPost)
+  }, 10)
+}
+
+function logEntry(entry) {
+  bc.log('post title = ' + entry.getTitle().getText())
+  bc.log('post date = ' + google.gdata.DateTime.toIso8601(entry.getUpdated().getValue()))
+  bc.log('post author[0] = ' + entry.getAuthors()[0].getName().getValue())
+  bc.log('post content = ' + entry.getContent().getText())
+}
+
+function filterPost(post) {
+  post = post.replace(/<font size="-1">Совет\..*/, '')
+  post = post.replace(/.*Если выпуск отображается некорректно, Вы можете <a href="[^"]*">посмотреть его на сайте<\/a>/, '')
+  post = post.replace(/<a href="http:\/\/content.mail.ru\/ctx1\/.*/, '')
+  post = post.replace(/--\s*<br[^>]*>\s*You received this message because you are subscribed to.*/, '')
+
+  // tags
+  post = post.replace(/<\/?(tr|br|div)[^>]*>/g, '<p>')
+  post = post.replace(/<\/?[^p][^>]*>/g, ' ')
+
+  // case rules
+  var lowerCase = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяa-z'
+  var upperCase = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯA-Z' 
+  post = post.replace(/\s*,,\s*/g, ',')
+  post = post.replace(new RegExp('\s*([.,:;])([' + lowerCase + upperCase + '])', 'g'), '$1 $2')
+
+  // whitespace & punctuation
+  post = post.replace(/\s*\(\s*/g, ' (')
+  post = post.replace(/\s*\)\s*/g, ') ')
+  post = post.replace(/\s+/g, ' ')
+
+  // p tags
+  post = post.replace(/(\s*<[^>]*>)+\s*/g, '</p><p>')
+  post = post.replace(new RegExp('(\s*<\/?p>)+\s*([^0-9' + upperCase + '])', 'g'), ' $2')
+  post = '<p>' + post + '</p>'
+  post = post.replace(/\s*<p>\s*<\/p>\s*/g, '')
+  return post
+}
+
+function signIn() {
+  var token = google.accounts.user.login(this.AUTH_URL)
+}
+
+function signOut() {
+  google.accounts.user.logout()
+  bc.initUI()
+}
+
+function errorHandler(e) {
+  bc.log('error status = ' + e.cause.status)
+  bc.log('error message = ' + e.message)
+}
+
+function showElement(element) {
+  element.style.display = 'block'
+}
+
+function hideElement(element) {
+  element.style.display = 'none'
+}
+
+</script>
