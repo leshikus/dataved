@@ -107,12 +107,14 @@
 	<div id=tfd_hm_a style="visibility:hidden">
 	<a  id=tfd_hm_a1 href="#" onclick="StartGame();return false;">Новая игра</a>
 	</div>
+	<script type='text/javascript' src='cookies_lib.js'></script> 
 	<script language="JavaScript">
 		  // global
 		  var tfd_hm_word;
 		  var tfd_hm_guess;
 		  var tfd_hm_cnt;
 		  var myArray = {'1052 1048 1056': 'Самое мирное слово', '1050 1040 1056 1040 1050 1040 1058 1048 1062 1040' : 'Головоногий моллюск', '1048 1052 1055 1045 1056 1048 1071' : 'Общее политическое пространство', '1041 1045 1047 1042 1045 1058 1056 1048 1045': 'Выражается формулой: в-3*е'};
+		  var fullDictionary = Array();
 		  window.onLoad = StartGame();
 		  function StartGame() { 
 		   tfd_hm_guess = '';
@@ -184,8 +186,53 @@
 		   tfd_hm_guess = '';
 		   tfd_hm_update();
 		  }
-
+		  function DictionaryInit(mode) {
+			var i = 0;
+			var stringWords;
+			var wordArrayFromCookies = GetCookie("words");
+			if (wordArrayFromCookies == null)
+			{
+				for (var word in myArray)
+				{
+					fullDictionary[i] = word;
+					i++;
+				}
+				stringWords = fullDictionary.join("-");
+				SetCookie("words", stringWords);
+			} else
+			{
+				stringWords = wordArrayFromCookies.split("-");
+				fullDictionary = stringWords;
+			}
+		  }
+		function GetWordBySeries(mode) {
+			var word = "";
+			var currentWordIndex = Math.floor(Math.random() * fullDictionary.length);
+			word = fullDictionary[currentWordIndex];
+			fullDictionary.splice(currentWordIndex,1);
+			if (mode == 1)
+			{
+				if (fullDictionary.length == 0)
+				{
+					DeleteCookie("words");
+				} else
+				{
+					SetCookie("words", fullDictionary.join("-"));
+				}
+			}
+			return word;
+		}
 		  function SetWord() {
+		  var mode = 0;
+			if (IsCookieEnabled())
+			{
+				mode = 1;
+			}
+			DictionaryInit(mode);
+		  var word = GetWordBySeries(mode);
+			tfd_hm_word = NormilizeWord(word);
+			 document.getElementById('hint').innerHTML = myArray[word];
+		  /*
 		   var n = 0;
 		   var encodedString = "";
 		   EncodeWord('word');
@@ -207,6 +254,7 @@
 			}
 			currentWordIndex--;
 		   }
+		   */
 		  }
 		  function EncodeWord(word)
 		  {
