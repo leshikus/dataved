@@ -20,6 +20,7 @@
     <link href='http://www.blogger.com/favicon-image.g?blogID=3023871881439413232' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
     <meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
+<meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
   </head>
 
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
@@ -438,8 +439,15 @@
             <div class='post-footer-line post-footer-line-1'>
               <span class='post-author vcard'>
                 <b:if cond='data:top.showAuthor'>
-                  <data:top.authorLabel/>
-                  <span class='fn'><data:post.author/></span>
+                  <b:if cond='data:post.authorProfileUrl'>
+                    <span class='fn'>
+                      <a expr:href='data:post.authorProfileUrl' rel='author' title='author profile'>
+                        <data:post.author/>
+                      </a>
+                    </span>
+                  <b:else/>
+                    <span class='fn'><data:post.author/></span>
+                  </b:if>
                 </b:if>
               </span>
 
@@ -882,6 +890,19 @@
 </b:includable>
 </b:widget>
 </b:section-contents><b:section-contents id='sidebar-right-collection'>
+<b:widget id='HTML2' locked='false' title='Продукты' type='HTML'>
+<b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+</b:widget>
 <b:widget id='Label1' locked='false' title='Темы' type='Label'>
 <b:includable id='main'>
   <b:if cond='data:title'>
