@@ -86,7 +86,7 @@
 				 }
 			</style>
 	<div class="game_board">
-	<div style="height:105px;width:100px;float:left;margin-right:3pt">
+	<div style="height:105px;width:100px;float:left;margin-right:3pt;margin-bottom:100px">
 	<table cellpadding=0 cellspacing=0 id=tfd_hm_tbl>
 	<tr>        <td id=tfd_hm_td1 width=100 height=3 colspan=5></td>       </tr>
 	<tr>        <td id=tfd_hm_td0 width=14 height=99 rowspan=4></td><td id=tfd_hm_td2 width=23 height=99 rowspan=4></td><td id=tfd_hm_td3 width=63 height=15 colspan=3></td>       </tr>
@@ -113,12 +113,13 @@
 		  var tfd_hm_word;
 		  var tfd_hm_guess;
 		  var tfd_hm_cnt;
-		  var myArray = {'1052 1048 1056': 'Самое мирное слово', '1050 1040 1056 1040 1050 1040 1058 1048 1062 1040' : 'Головоногий моллюск', '1048 1052 1055 1045 1056 1048 1071' : 'Общее политическое пространство', '1041 1045 1047 1042 1045 1058 1056 1048 1045': 'Выражается формулой: в-3*е'};
-		  var fullDictionary = Array();
+		  var wordDictionaryTemp = {'1058 1056 1048 1050 1054 1058 1040 1046': '<p>Разгадайте слово, зашифрованное на картинке:</p><img src="./images/tasks/10.jpg" alt="Задание с картинкой" />'};
+		  var wordDictionary = {'1040 1055 1054 1060 1045 1052 1040': '<p>Отрезок, выделенный на картинке красной линией</p><img src="./images/tasks/task21.jpg" alt="Задание с картинкой" />', '1041 1045 1047 1042 1045 1058 1056 1048 1045': '<p>Это слово загадано формулой: 3*Е - В</p>', '1050 1040 1053 1040 1044 1040': '<p>Разгадайте слово, зашифрованное на картинке:</p><img src="./images/tasks/task13.jpg" alt="Задание с картинкой" />', '1042 1045 1056 1048 1060 1048 1050 1040 1062 1048 1071': 'Процесс доказательства того, что продукт делается правильно', '1042 1040 1051 1048 1044 1040 1062 1048 1071' : 'Процесс доказательства того, что сделан правильный продукт', '1060 1040 1051 1068 1057 1048 1060 1048 1050 1040 1062 1048 1071' : 'Процесс доказательства того, что продукт делается неправильно','1057 1045 1052 1068 1071': '<p>Разгадайте слово, зашифрованное на картинке:</p><img src="./images/tasks/task11.jpg" alt="Задание с картинкой" />', '1053 1045 1054 1055 1056 1045 1044 1045 1051 1045 1053 1053 1054 1057 1058 1068' : '<p>Разгадайте слово, зашифрованное на картинке:</p><img src="./images/tasks/task31.jpg" alt="Задание с картинкой" />', '1058 1056 1048 1050 1054 1058 1040 1046': '<p>Разгадайте слово, зашифрованное на картинке:</p><img src="./images/tasks/10.jpg" alt="Задание с картинкой" />'};
+		  var userDictionary = Array();
 		  window.onLoad = StartGame();
 		  function StartGame() { 
 		   tfd_hm_guess = '';
-		   SetWord();
+		   setWord();
 		   tfd_hm_init(1);
 		   tfd_hm_cnt = 0;
 		   window.setTimeout('tfd_hm_refresh()', 100);
@@ -186,77 +187,88 @@
 		   tfd_hm_guess = '';
 		   tfd_hm_update();
 		  }
-		  function DictionaryInit(mode) {
+		  function initDictionary() {
 			var i = 0;
-			var stringWords;
+			var wordsFromUserString;
 			var wordArrayFromCookies = GetCookie("words");
 			if (wordArrayFromCookies == null)
 			{
-				for (var word in myArray)
+				for (var word in wordDictionary)
 				{
-					fullDictionary[i] = word;
+					userDictionary[i] = word;
 					i++;
 				}
-				stringWords = fullDictionary.join("-");
-				SetCookie("words", stringWords);
+				wordsFromUserString = userDictionary.join("-");
+				SetCookie("words", wordsFromUserString);
 			} else
 			{
-				stringWords = wordArrayFromCookies.split("-");
-				fullDictionary = stringWords;
+				wordsFromUserString = wordArrayFromCookies.split("-");
+				userDictionary = wordsFromUserString;
 			}
 		  }
-		function GetWordBySeries(mode) {
+		function getRandomWord() {
 			var word = "";
-			var currentWordIndex = Math.floor(Math.random() * fullDictionary.length);
-			word = fullDictionary[currentWordIndex];
-			fullDictionary.splice(currentWordIndex,1);
-			if (mode == 1)
+			var currentWordIndex = Math.floor(Math.random() * userDictionary.length);
+			word = userDictionary[currentWordIndex];
+			userDictionary.splice(currentWordIndex,1);
+			return word;
+		}
+		function updateUserDictionary()
+		{
+			if (IsCookieEnabled())
 			{
-				if (fullDictionary.length == 0)
+				if (userDictionary.length == 0)
 				{
 					DeleteCookie("words");
 				} else
 				{
-					SetCookie("words", fullDictionary.join("-"));
+					SetCookie("words", userDictionary.join("-"));
 				}
 			}
-			return word;
 		}
-		  function SetWord() {
-		  var mode = 0;
-			if (IsCookieEnabled())
-			{
-				mode = 1;
-			}
-			DictionaryInit(mode);
-		  var word = GetWordBySeries(mode);
-			tfd_hm_word = NormilizeWord(word);
-			 document.getElementById('hint').innerHTML = myArray[word];
+		  function setWord() 
+		  {
 		  /*
-		   var n = 0;
-		   var encodedString = "";
-		   EncodeWord('word');
-		   for (var word in myArray)
+		  var encodedString = "";
+		  var n = 0;
+		  for (var word in wordDictionaryTemp)
 		   {
 			n++;
 			// Способ зашифровать слова, которые нужно угадывать.
-			//encodedString+= word + "=" + EncodeWord(word);
+			encodedString+= word + "=" + encodeWord(word);
+		   }
+		   alert (encodedString);
+		   */
+			initDictionary();
+			var word = getRandomWord();
+			updateUserDictionary();
+			tfd_hm_word = normilizeWord(word);
+			document.getElementById('hint').innerHTML = wordDictionary[word];
+		  /*
+		   var n = 0;
+		   var encodedString = "";
+		   encodeWord('word');
+		   for (var word in wordDictionary)
+		   {
+			n++;
+			// Способ зашифровать слова, которые нужно угадывать.
+			//encodedString+= word + "=" + encodeWord(word);
 		   }
 		   //alert (encodedString);
 		   var currentWordIndex = Math.floor(Math.random() * n);
-		   for (var word in myArray)
+		   for (var word in wordDictionary)
 		   {
 			if (currentWordIndex == 0)
 			{
-			 tfd_hm_word = NormilizeWord(word);
-			 document.getElementById('hint').innerHTML = myArray[word];
+			 tfd_hm_word = normilizeWord(word);
+			 document.getElementById('hint').innerHTML = wordDictionary[word];
 			 return;
 			}
 			currentWordIndex--;
 		   }
 		   */
 		  }
-		  function EncodeWord(word)
+		  function encodeWord(word)
 		  {
 		   var encodedWord = "";
 		   for (i = 0; i <= word.length - 1; i++)
@@ -265,7 +277,7 @@
 		   }
 		   return encodedWord;
 		  }
-		  function NormilizeWord(encodedString)
+		  function normilizeWord(encodedString)
 		  {
 		   var normalWord = "";
 		   var stringToBeProceed = encodedString.split(' ');
