@@ -5,7 +5,7 @@
 <title>Страница опроса</title>
 <style type="text/css">
 .sprites { 
-    background-image: url(images/icons.png); 
+    background-image: url(http://dataved.googlecode.com/svn/trunk/site/games/hangman/images/icons.png); 
     background-color: transparent; 
     background-repeat: no-repeat; 
 	float: left;
@@ -35,7 +35,7 @@
  }
 .stepFileds {
 border:1px solid grey;
-width: 600px;
+width: 500px;
 height: 250px;
 display:none;
 }
@@ -45,7 +45,7 @@ display:block !important;
 .progress {
 border:1px solid grey;
 border-bottom:none;
-width: 600px;
+width: 500px;
 height: 30px;
 }
       div.game_board {
@@ -410,7 +410,7 @@ if (checkUserResult == -33)
 
 function loadStep(nextStepNumber)
 {
-	var type = getSurveyType();
+	var type = "";
 	nextStepNumber--;
 	if(nextStepNumber <=2)
 	{
@@ -424,6 +424,7 @@ function loadStep(nextStepNumber)
 	{
 		type = "programmer";
 	}
+	type = getSurveyType();
 	$("#"+type+"_"+nextStepNumber).addClass('currentField');
 }
 function stepFailed(currentStepNumber)
