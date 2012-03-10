@@ -119,21 +119,35 @@ function logEntry(entry) {
   bc.log('post content = ' + entry.getContent().getText())
 }
 
+var lowerCase = 'אבגדהו¸זחטיךכלםמןנסעףפץצקרשתûü‎‏ÿa-z'
+var upperCase = 'ÀÁÂÃÄÅ¨ÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞ‗A-Z' 
+var pWebSiteInPlainText = new RegExp('<p>[^<]*[' + lowerCase + '0-9\-\.]+\.(com|org|net|mil|edu|ru|נפ)[^<]*', 'ig')
+var pAllCaps = new RegExp('<p>[^<]*[' + upperCase + ']{2}\s+[' + upperCase + ']{2}', 'g')
+var pStartsFromLowerCase = new RegExp('<p>\s*[' + lowerCase + '][^<]*', 'g')
+var pEndsWithLetter = new RegExp('[^>]*[' + lowerCase + ']\s*<p>', 'gi')
+
 function filterPost(post) {
   post = post.replace(/<font size="-1">Ñמגוע\..*/, '')
   post = post.replace(/.*Åסכט גûןףסך מעמבנאזאועסÿ םוךמננוךעםמ, Âû למזועו <a href="[^"]*">ןמסלמענועü ודמ םא סאיעו<\/a>/, '')
   post = post.replace(/<a href="http:\/\/content.mail.ru\/ctx1\/.*/, '')
   post = post.replace(/--\s*<br[^>]*>\s*You received this message because you are subscribed to.*/, '')
+  post = post.replace(/\s*<b>...<\/b>/, '...')
 
   // tags
   post = post.replace(/<\/?(tr|br|div)[^>]*>/g, '<p>')
   post = post.replace(/<\/?[^p][^>]*>/g, ' ')
 
+  // remove bad quality paragraphs
+  post = post.replace(pWebSiteInPlainText, '')
+  post = post.replace(pAllCaps, '')
+  post = post.replace(pStartsFromLowerCase, '')
+  bc.log('p1 = ' + post)
+  post = post.replace(pEndsWithLetter, '')
+  bc.log('p2 = ' + post)
+  
   // case rules
-  var lowerCase = 'אבגדהו¸זחטיךכלםמןנסעףפץצקרשתûü‎‏ÿa-z'
-  var upperCase = 'ÀÁÂÃÄÅ¨ÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞ‗A-Z' 
   post = post.replace(/\s*,,\s*/g, ',')
-  post = post.replace(new RegExp('\s*([.,:;])([' + lowerCase + upperCase + '])', 'g'), '$1 $2')
+  post = post.replace(new RegExp('\s*([,:;])([' + lowerCase + upperCase + '])', 'g'), '$1 $2')
 
   // whitespace & punctuation
   post = post.replace(/\s*\(\s*/g, ' (')
@@ -142,7 +156,6 @@ function filterPost(post) {
 
   // p tags
   post = post.replace(/(\s*<[^>]*>)+\s*/g, '</p><p>')
-  post = post.replace(new RegExp('(\s*<\/?p>)+\s*([^0-9' + upperCase + '])', 'g'), ' $2')
   post = '<p>' + post + '</p>'
   post = post.replace(/\s*<p>\s*<\/p>\s*/g, '')
   return post
