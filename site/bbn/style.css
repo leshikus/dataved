@@ -1,6 +1,6 @@
 /* Widths
 ----------------------------------------------- */
-ul.menu, .menuWrapper {
+ul.menu, .menuWrapper, HTML {
   width: 830px;
 }
 ul.menu > li, ul.menu > li > a {
