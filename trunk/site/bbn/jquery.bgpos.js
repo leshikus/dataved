@@ -1,21 +1,21 @@
 /**
  * @author Alexander Farkas
- * v. 1.21
+ * @modified
  */
 
 
 (function($) {
-	if(!document.defaultView || !document.defaultView.getComputedStyle){ // IE6-IE8
+	if(!document.defaultView || !document.defaultView.getComputedStyle) { // IE6-IE8
 		var oldCurCSS = jQuery.curCSS;
-		jQuery.curCSS = function(elem, name, force){
-			if(name === 'background-position'){
+		jQuery.curCSS = function(elem, name, force) {
+			if(name === 'background-position') {
 				name = 'backgroundPosition';
 			}
-			if(name !== 'backgroundPosition' || !elem.currentStyle || elem.currentStyle[ name ]){
+			if(name !== 'backgroundPosition' || !elem.currentStyle || elem.currentStyle[ name ]) {
 				return oldCurCSS.apply(this, arguments);
 			}
 			var style = elem.style;
-			if ( !force && style && style[ name ] ){
+			if ( !force && style && style[ name ] ) {
 				return style[ name ];
 			}
 			return oldCurCSS(elem, 'backgroundPositionX', force) +' '+ oldCurCSS(elem, 'backgroundPositionY', force);
@@ -23,18 +23,18 @@
 	}
 
 	var oldAnim = $.fn.animate;
-	$.fn.animate = function(prop){
-		if('background-position' in prop){
+	$.fn.animate = function(prop) {
+		if('background-position' in prop) {
 			prop.backgroundPosition = prop['background-position'];
 			delete prop['background-position'];
 		}
-		if('backgroundPosition' in prop){
+		if('backgroundPosition' in prop) {
 			prop.backgroundPosition = '('+ prop.backgroundPosition;
 		}
 		return oldAnim.apply(this, arguments);
 	};
 
-	function toArray(strg){
+	function toArray(strg) {
 		strg = strg.replace(/left|top/g,'0px');
 		strg = strg.replace(/right|bottom/g,'100%');
 		strg = strg.replace(/([0-9\.]+)(\s|\)|$)/g,"$1px$2");
@@ -42,11 +42,13 @@
 		return [parseFloat(res[1],10),res[2],parseFloat(res[3],10),res[4]];
 	}
 
-	$.fx.step. backgroundPosition = function(fx) {
+	$.fx.step.backgroundPosition = function(fx) {
+		console.log("fx.elem.textContent = " + fx.elem.textContent);
+	    console.log("fx.elem.style.backgroundPosition = " + fx.elem.style.backgroundPosition);
 		if (!fx.bgPosReady) {
 			var start = $.curCSS(fx.elem,'backgroundPosition');
 
-			if(!start){//FF2 no inline-style fallback
+			if(!start) {//FF2 no inline-style fallback
 				start = '0px 0px';
 			}
 
