@@ -1,6 +1,6 @@
 /* Widths
 ----------------------------------------------- */
-ul.menu, .menuWrapper, HTML {
+ul.menu, .menuWrapper {
   width: 830px;
 }
 ul.menu > li, ul.menu > li > a {
@@ -119,7 +119,7 @@ ul.menu > li ul li a: hover {
 /* Corrections
 ----------------------------------------------- */
 #HTML6 {
-  padding: 0;
+  padding: 15px !important;
 }
 
 ul.menu{
