@@ -43,8 +43,6 @@
 	}
 
 	$.fx.step.backgroundPosition = function(fx) {
-		console.log("fx.elem.textContent = " + fx.elem.textContent);
-	    console.log("fx.elem.style.backgroundPosition = " + fx.elem.style.backgroundPosition);
 		if (!fx.bgPosReady) {
 			var start = $.curCSS(fx.elem,'backgroundPosition');
 
