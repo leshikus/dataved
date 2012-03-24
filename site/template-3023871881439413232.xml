@@ -8,6 +8,40 @@
     <b:else/>
       <meta content='device-width=830' name='viewport'/>
     </b:if>
+
+<script type='text/javascript'>
+  function getCookie(key) {
+    var pairs = document.cookie.split(&#39;; &#39;);
+    for (var i = 0, pair; pair = pairs[i] &amp;&amp; pairs[i].split(&#39;=&#39;); i++) {
+      if (decodeURIComponent(pair[0]) === key) return decodeURIComponent(pair[1] || &#39;&#39;); // IE saves cookies with empty string as &quot;c; &quot;, e.g. without &quot;=&quot; as opposed to EOMB, thus pair[1] may be undefined
+      }
+      return null;
+    }
+
+  function setCookie(key, value) {
+    var d = new Date();
+    d.setDate(d.getDate() + 365);
+
+    var c = encodeURIComponent(key) + &#39;=&#39; + encodeURIComponent(value)
+      + &#39;; path=/; expires=&#39; + d.toUTCString() 
+    return (document.cookie = c);
+  }
+</script>
+
+    <b:if cond='data:blog.url == data:blog.homepageUrl'>
+<script type='text/javascript'>
+  var url = getCookie(&#39;dataved&#39;)
+  if (!url) {
+    url = &#39;/p/welcome.html&#39;
+  }
+  self.location.replace(url)
+</script>
+    <b:else/>
+<script type='text/javascript'>
+      setCookie(&#39;dataved&#39;, self.location.href)
+</script>
+    </b:if>
+
     <b:include data='blog' name='all-head-content'/>
     <title><data:blog.pageTitle/></title>
 
@@ -43,10 +77,10 @@
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
 <b:widget id='Header1' locked='false' title='Математическое обеспечение Вашего бизнеса (заголовок)' type='Header'>
 <b:includable id='title'>
-  <b:if cond='data:blog.url == data:blog.homepageUrl'>
-    <data:title/>
-  <b:else/>
+  <b:if cond='data:blog.url == data:blog.homepageUrl/p/welcome.html'>
     <a expr:href='data:blog.homepageUrl'><data:title/></a>
+  <b:else/>
+    <a expr:href='data:blog.homepageUrl/p/welcome.html'><data:title/></a>
   </b:if>
 </b:includable>
 <b:includable id='description'>
@@ -146,18 +180,6 @@
       google.load(&quot;jquery&quot;, &quot;1.7&quot;);
     </script>	
     </header>
-
-    <b:if cond='data:blog.url == data:blog.homepageUrl'>
-	<srcipt src='http://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js' type='text/javascript'/>
-    <script type='text/javascript'>
-	  var url = $.cookie(&#39;dataved;&#39;)
-      if (!url) {
-	    $.cookie(&#39;dataved;&#39;, &#39;/&#39;)
-	    url = &#39;/p/welcome.html&#39;
-	  }
-	  self.location.replace(url)
-    </script>
-    </b:if>	
 	
 	<!-- aaf: page1 -->
     <b:if cond='data:blog.url != &quot;http://www.dataved.ru/p/welcome.html&quot;'>
