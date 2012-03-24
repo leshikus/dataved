@@ -119,7 +119,8 @@ ul.menu > li ul li a: hover {
 /* Corrections
 ----------------------------------------------- */
 #HTML6 {
-  padding: 15px !important;
+  padding: 0;
+  width: 830px !important;
 }
 
 ul.menu{
