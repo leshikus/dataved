@@ -67,6 +67,7 @@
 		nowPosX[0] = ((fx.end[0] - fx.start[0]) * fx.pos) + fx.start[0] + fx.unit[0];
 		nowPosX[1] = ((fx.end[1] - fx.start[1]) * fx.pos) + fx.start[1] + fx.unit[1];
 		fx.elem.style.backgroundPosition = nowPosX[0]+' '+nowPosX[1];
+	    console.log("fx.elem.style.backgroundPosition becomes " + fx.elem.style.backgroundPosition);
 
 	};
 })(jQuery);
