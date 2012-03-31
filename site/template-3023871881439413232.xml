@@ -54,19 +54,9 @@
     <link href='http://www.blogger.com/favicon-image.g?blogID=3023871881439413232' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
     <meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
-    <meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
-    <script type='text/javascript'>
-      var _gaq = _gaq || [];
-      _gaq.push([&#39;_setAccount&#39;, &#39;UA-13024987-1&#39;]);
-      _gaq.push([&#39;_trackPageview&#39;]);
-      (function() {
-        var ga = document.createElement(&#39;script&#39;);
-        ga.type = &#39;text/javascript&#39;;
-        ga.async = true;
-        ga.src =  &#39;http://www.google-analytics.com/ga.js&#39;;
-        var s = document.getElementsByTagName(&#39;script&#39;)[0];
-        s.parentNode.insertBefore(ga, s);  })();
-    </script>
+    <script async='true' src='//www.google.com/jsapi' type='text/javascript'/>
+	<script async='true' src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' type='text/javascript'/>
+    <script async='true' src='//dataved.googlecode.com/svn/trunk/site/common.js' type='text/javascript'/>
   </head>
 
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
@@ -134,7 +124,6 @@
 </b:section>
     <div class='clear'/>    
     </div>
-    <script src='//www.google.com/jsapi' type='text/javascript'/>
     <script type='text/javascript'>
       google.load(&quot;jquery&quot;, &quot;1.7&quot;);
     </script>	
@@ -175,20 +164,7 @@
   <div class='clear'/>
 </b:includable>
 <b:includable id='shareButtons' var='post'>
-  <b:if cond='data:top.showEmailButton'><a class='goog-inline-block share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'>
-      <span class='share-button-link-text'><data:top.emailThisMsg/></span>
-  </a></b:if><b:if cond='data:top.showBlogThisButton'><a class='goog-inline-block share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'>
-      <span class='share-button-link-text'><data:top.blogThisMsg/></span>
-  </a></b:if><b:if cond='data:top.showTwitterButton'><a class='goog-inline-block share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'>
-      <span class='share-button-link-text'><data:top.shareToTwitterMsg/></span>
-  </a></b:if><b:if cond='data:top.showFacebookButton'><a class='goog-inline-block share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'>
-      <span class='share-button-link-text'><data:top.shareToFacebookMsg/></span>
-  </a></b:if><b:if cond='data:top.showOrkutButton'><a class='goog-inline-block share-button sb-orkut' expr:href='data:post.sharePostUrl + &quot;&amp;target=orkut&quot;' expr:title='data:top.shareToOrkutMsg' target='_blank'>
-      <span class='share-button-link-text'><data:top.shareToOrkutMsg/></span>
-  </a></b:if><b:if cond='data:top.showBuzzButton'><a class='goog-inline-block share-button sb-buzz' expr:href='data:post.sharePostUrl + &quot;&amp;target=buzz&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=415,width=690\&quot;); return false;&quot;' expr:title='data:top.shareToBuzzMsg' target='_blank'>
-      <span class='share-button-link-text'><data:top.shareToBuzzMsg/></span>
-  </a></b:if><b:if cond='data:top.showDummy'><div class='goog-inline-block dummy-container'><data:post.dummyTag/></div>
-  </b:if>
+  <b:if cond='data:top.showEmailButton'><a class='goog-inline-block share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'><span class='share-button-link-text'><data:top.emailThisMsg/></span></a></b:if><b:if cond='data:top.showBlogThisButton'><a class='goog-inline-block share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'><span class='share-button-link-text'><data:top.blogThisMsg/></span></a></b:if><b:if cond='data:top.showTwitterButton'><a class='goog-inline-block share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToTwitterMsg/></span></a></b:if><b:if cond='data:top.showFacebookButton'><a class='goog-inline-block share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToFacebookMsg/></span></a></b:if><b:if cond='data:top.showOrkutButton'><a class='goog-inline-block share-button sb-orkut' expr:href='data:post.sharePostUrl + &quot;&amp;target=orkut&quot;' expr:title='data:top.shareToOrkutMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToOrkutMsg/></span></a></b:if><b:if cond='data:top.showDummy'><div class='goog-inline-block dummy-container'><data:post.dummyTag/></div></b:if>
 </b:includable>
 <b:includable id='threaded_comment_js' var='post'>
   <script async='async' expr:src='data:post.commentSrc' type='text/javascript'/>
@@ -482,9 +458,7 @@
 
         <!-- quickedit pencil -->
         <b:include data='post' name='postQuickEdit'/>
-      </span> <div class='post-share-buttons goog-inline-block'>
-          <b:include data='post' name='shareButtons'/>
-        </div> </div>
+      </span></div>
 
       <div class='post-footer-line post-footer-line-2'><span class='post-labels'>
         <b:if cond='data:post.labels'>
@@ -817,18 +791,6 @@
     <b:include name='feedLinks'/>
   </b:if>
 
-  <b:if cond='data:top.showStars'>
-	<script src='http://apis.google.com/js/plusone.js' type='text/javascript'/>
-    <script type='text/javascript'>
-      google.load(&quot;annotations&quot;, &quot;1&quot;, {&quot;locale&quot;: &quot;<data:top.languageCode/>&quot;});
-      function initialize() {
-        google.annotations.setApplicationId(<data:top.blogspotReviews/>);
-        google.annotations.createAll();
-        google.annotations.fetch();
-      }
-      google.setOnLoadCallback(initialize);
-    </script>
-  </b:if>
 </b:includable>
 <b:includable id='commentDeleteIcon' var='comment'>
   <span expr:class='&quot;item-control &quot; + data:comment.adminClass'>
@@ -1083,9 +1045,7 @@
     <h2 class='title'><data:title/></h2>
   </b:if>
   <div class='widget-content'>
-    <data:content/>
-  <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js' type='text/javascript'/><!-- move into page widget -->
-  <script src='http://dataved.googlecode.com/svn/trunk/site/bbn/bbn.js' type='text/javascript'/>
+  <data:content/>
   </div>
 
   <b:include name='quickedit'/>
