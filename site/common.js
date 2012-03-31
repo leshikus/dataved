@@ -5,7 +5,7 @@ $(document).ready(function() {
 
   // Share Buttons
   $.getScript('//connect.facebook.net/ru_RU/all.js#xfbml=1')
-  //$.getScript('https://apis.google.com/js/plusone.js')
+  $.getScript('https://apis.google.com/js/plusone.js')
   $.getScript('//platform.twitter.com/widgets.js')
   $.getScript('http://assets.pinterest.com/js/pinit.js')
 })
