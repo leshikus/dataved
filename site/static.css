@@ -248,10 +248,9 @@ background-color: #f9f9f9;
 border-bottom: 1px solid #eeeeee;
 }
 
-span .share-button {
-padding-left: 2em;
+.share-button {
+display: inline;
 vertical-align: middle;
-height: 22px;
 }
 
 /* Google skin
