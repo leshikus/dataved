@@ -57,10 +57,10 @@
     <script async='true' src='//www.google.com/jsapi' type='text/javascript'/>
 	<script async='true' src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' type='text/javascript'/>
     <script async='true' src='//dataved.googlecode.com/svn/trunk/site/common.js' type='text/javascript'/>
-    <div id="fb-root"></div>
   </head>
 
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
+  <div id='fb-root'/>
   <div class='content'>
 
     <header>
@@ -460,8 +460,15 @@
         <!-- quickedit pencil -->
         <b:include data='post' name='postQuickEdit'/>
       </span>
-	  <fb:like colorscheme='light' expr:href='data:post.url' font='' layout='button_count' send='true' show_faces='false'/>
+      <div class="share-button">
+  	  <fb:like colorscheme='light' expr:href='data:post.url' font='' layout='button_count' send='true' show_faces='false'/>
 	  <g:plusone annotation='bubble' expr:href='data:post.url' size='medium'/>
+	  <a class='twitter-share-button' data-count='horizontal' data-lang='en' data-related='' data-via='' expr:data-text='data:post.title' expr:data-url='data:post.url' href='https://twitter.com/share'>Tweet</a>
+      <div id='pin-wrapper' style='display: inline;'>
+      <a class='pin-it-button' count-layout='horizontal' expr:href='&quot;http://pinterest.com/pin/create/button/?url=&quot; + data:post.url'>Pin It</a>
+      <a href='javascript:void($.getScript("http://assets.pinterest.com/js/pinmarklet.js?r=" + Math.random()*99999999run_pinmarklet())' style='margin-left:-93px; width:43px; height:20px; display:inline-block;'/>
+	  </div>
+	  </div>
 	  </div>
 
       <div class='post-footer-line post-footer-line-2'><span class='post-labels'>
