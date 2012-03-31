@@ -251,6 +251,7 @@ border-bottom: 1px solid #eeeeee;
 
 /* Google skin
 ----------------------------------------------- */
+.goog-inline-block{position:relative;display:-moz-inline-box;display:inline-block}
 section,nav,article,aside,hgroup,header,footer{display:block}
 time,mark{display:inline}
 #ArchiveList .toggle{cursor:pointer;font-family:Arial,sans-serif}

@@ -161,7 +161,13 @@
   <div class='clear'/>
 </b:includable>
 <b:includable id='shareButtons' var='post'>
-  <b:if cond='data:top.showEmailButton'><a class='goog-inline-block share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'><span class='share-button-link-text'><data:top.emailThisMsg/></span></a></b:if><b:if cond='data:top.showBlogThisButton'><a class='goog-inline-block share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'><span class='share-button-link-text'><data:top.blogThisMsg/></span></a></b:if><b:if cond='data:top.showTwitterButton'><a class='goog-inline-block share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToTwitterMsg/></span></a></b:if><b:if cond='data:top.showFacebookButton'><a class='goog-inline-block share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToFacebookMsg/></span></a></b:if><b:if cond='data:top.showOrkutButton'><a class='goog-inline-block share-button sb-orkut' expr:href='data:post.sharePostUrl + &quot;&amp;target=orkut&quot;' expr:title='data:top.shareToOrkutMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToOrkutMsg/></span></a></b:if><b:if cond='data:top.showDummy'><div class='goog-inline-block dummy-container'><data:post.dummyTag/></div></b:if>
+  <span style='padding-left: 3ex; position: relative; top: 1px;'><fb:like colorscheme='light' expr:href='data:post.url' font='' layout='button_count' send='true' show_faces='false'/>
+  <span style='position: relative; top: 3px;'><g:plusone annotation='bubble' expr:href='data:post.url' size='medium'/></span>
+  <span style='position: relative; top: 3px;'><a class='twitter-share-button' data-count='horizontal' data-lang='en' data-related='' data-via='' expr:data-text='data:post.title' expr:data-url='data:post.url' href='https://twitter.com/share'>Tweet</a></span>
+  <div id='pin-wrapper' style='display: inline; position: relative; top: 3px;'>
+  <a class='pin-it-button' count-layout='horizontal' expr:href='&quot;http://pinterest.com/pin/create/button/?url=&quot; + data:post.url'>Pin It</a>
+  <a href='javascript:void($.getScript(&quot;http://assets.pinterest.com/js/pinmarklet.js?r=&quot; + Math.random()*99999999run_pinmarklet())' style='margin-left:-93px; width:43px; height:20px; display:inline-block;'/>
+  </div></span>
 </b:includable>
 <b:includable id='threaded_comment_js' var='post'>
   <script async='async' expr:src='data:post.commentSrc' type='text/javascript'/>
@@ -455,15 +461,9 @@
 
         <!-- quickedit pencil -->
         <b:include data='post' name='postQuickEdit'/>
-      </span>
-
-  	  <span style='padding-left: 3ex; position: relative; top: 1px;'><fb:like colorscheme='light' expr:href='data:post.url' font='' layout='button_count' send='true' show_faces='false'/>
-	  <span style='position: relative; top: 3px;'><g:plusone annotation='bubble' expr:href='data:post.url' size='medium'/></span>
-	  <span style='position: relative; top: 3px;'><a class='twitter-share-button' data-count='horizontal' data-lang='en' data-related='' data-via='' expr:data-text='data:post.title' expr:data-url='data:post.url' href='https://twitter.com/share'>Tweet</a></span>
-      <div id='pin-wrapper' style='display: inline; position: relative; top: 3px;'>
-      <a class='pin-it-button' count-layout='horizontal' expr:href='&quot;http://pinterest.com/pin/create/button/?url=&quot; + data:post.url'>Pin It</a>
-      <a href='javascript:void($.getScript(&quot;http://assets.pinterest.com/js/pinmarklet.js?r=&quot; + Math.random()*99999999run_pinmarklet())' style='margin-left:-93px; width:43px; height:20px; display:inline-block;'/>
-	  </div></span>
+      </span><div class='post-share-buttons goog-inline-block'>
+          <b:include data='post' name='shareButtons'/>
+        </div>
 
 	  </div>
 
