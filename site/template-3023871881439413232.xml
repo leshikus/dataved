@@ -461,6 +461,7 @@
         <b:include data='post' name='postQuickEdit'/>
       </span>
 	  <fb:like colorscheme='light' expr:href='data:post.url' font='' layout='button_count' send='true' show_faces='false'/>
+	  <g:plusone annotation='bubble' expr:href='data:post.url' size='medium'/>
 	  </div>
 
       <div class='post-footer-line post-footer-line-2'><span class='post-labels'>
