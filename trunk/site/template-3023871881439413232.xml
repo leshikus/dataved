@@ -473,7 +473,7 @@
       </span>		  
 	  </div>
 
-      <div class='post-footer-line post-footer-line-3'></div>
+      <div class='post-footer-line post-footer-line-3'/>
     </div>
   </div>
 </b:includable>
@@ -1236,16 +1236,6 @@
   </b:if>
 
   <b:include name='quickedit'/>
-</b:includable>
-</b:widget>
-<b:widget id='AdSense1' locked='false' title='' type='AdSense'>
-<b:includable id='main'>
-  <div class='widget-content'>
-    <b:if cond='data:blog.pageType != &quot;error_page&quot;'>
-      <data:adCode/>
-    </b:if>
-    <b:include name='quickedit'/>
-  </div>
 </b:includable>
 </b:widget>
 <b:widget id='HTML1' locked='false' title='Партнёры' type='HTML'>
