@@ -7,11 +7,6 @@ fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
 var _gaq
-// = _gaq || [];
-//_gaq.push(['_setAccount', 'UA-13024987-1']);
-//_gaq.push(['_trackPageview']);
-
-$.getScript('//www.google-analytics.com/ga.js')
 
 $(document).ready(function() {
   // Google Analytics
