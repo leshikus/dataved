@@ -14,5 +14,4 @@ $(document).ready(function() {
   // Share Buttons
   $.getScript('https://apis.google.com/js/plusone.js')
   $.getScript('//platform.twitter.com/widgets.js')
-  $.getScript('http://assets.pinterest.com/js/pinit.js')
 })
