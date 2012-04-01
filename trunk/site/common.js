@@ -11,8 +11,7 @@ $(document).ready(function() {
   var _gaq = [['_setAccount', 'UA-13024987-1'], ['_trackPageview']]
   $.getScript('//www.google-analytics.com/ga.js')
 
-  var plusone_loaded = function() {} 
-  if (gapi_init) plusone_loaded = function() {
+  var plusone_loaded = (typeof gapi_init == 'undefined') ? function() {} : function() {
     $.getScript("https://apis.google.com/js/client.js?onload=gapi_init")
   }
 
