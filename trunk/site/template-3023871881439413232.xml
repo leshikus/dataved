@@ -54,8 +54,8 @@
     <link href='http://www.blogger.com/favicon-image.g?blogID=3023871881439413232' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
     <meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
-    <script async='async' src='//www.google.com/jsapi' type='text/javascript'/>
-	<script async='async' src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' type='text/javascript'/>
+    <script src='//www.google.com/jsapi' type='text/javascript'/>
+	<script src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' type='text/javascript'/>
   </head>
 
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
