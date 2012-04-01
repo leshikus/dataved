@@ -9,7 +9,9 @@ fjs.parentNode.insertBefore(js, fjs);
 $(document).ready(function() {
   // Google Analytics
   var _gaq = [['_setAccount', 'UA-13024987-1'], ['_trackPageview']]
-  $.getScript('//www.google-analytics.com/ga.js')
+  $.getScript('//www.google-analytics.com/ga.js', function() {
+    console.log('loadad GA')
+  })
 
   var plusone_loaded = (typeof gapi_init == 'undefined') ? function() {} : function() {
     $.getScript("https://apis.google.com/js/client.js?onload=gapi_init")
