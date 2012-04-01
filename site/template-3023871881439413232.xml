@@ -163,7 +163,7 @@
 <b:includable id='shareButtons' var='post'>
   <span style='relative; top: 1px; float: right;'><fb:like colorscheme='light' expr:href='data:post.url' font='' layout='button_count' send='true' show_faces='false'/>
   <span style='position: relative; top: 3px;'><g:plusone annotation='bubble' expr:href='data:post.url' size='medium'/></span>
-  <span style='position: relative; top: 3px;'><a class='twitter-share-button' data-count='horizontal' data-lang='en' data-related='' data-via='' expr:data-text='data:post.title' expr:data-url='data:post.url' href='https://twitter.com/share'>Tweet</a></span>
+  <span style='position: relative; top: 3px;'><a class='twitter-share-button' data-count='horizontal' data-lang='ru' data-related='' data-via='' expr:data-text='data:post.title' expr:data-url='data:post.url' href='https://twitter.com/share'>Твитнуть</a></span>
   </span>
 </b:includable>
 <b:includable id='threaded_comment_js' var='post'>
