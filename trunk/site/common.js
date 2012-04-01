@@ -6,18 +6,17 @@ js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1";
 fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-13024987-1']);
-_gaq.push(['_trackPageview']);
+var _gaq
+// = _gaq || [];
+//_gaq.push(['_setAccount', 'UA-13024987-1']);
+//_gaq.push(['_trackPageview']);
 
 $.getScript('//www.google-analytics.com/ga.js')
 
 $(document).ready(function() {
   // Google Analytics
-  //var _gaq = [['_setAccount', 'UA-13024987-1'], ['_trackPageview']]
-  //$.getScript('//www.google-analytics.com/ga.js', function() {
-//    console.log('loadad GA')
-//  })
+  _gaq = [['_setAccount', 'UA-13024987-1'], ['_trackPageview']]
+  $.getScript('//www.google-analytics.com/ga.js')
 
   var plusone_loaded = (typeof gapi_init == 'undefined') ? function() {} : function() {
     $.getScript("https://apis.google.com/js/client.js?onload=gapi_init")
