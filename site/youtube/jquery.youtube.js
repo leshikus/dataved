@@ -68,6 +68,7 @@
                 loadPlaylist(function() {
                     goTo(cur_index);
                 }, tracks_played);
+                return false;
             }
             goTo(cur_index);
         }
@@ -124,6 +125,14 @@
         },
         next : function() {
             cur_index++;
+            if (cur_index >= opts.results_count) {
+                tracks_played += opts.results_count;
+                cur_index = 0;
+                loadPlaylist(function() {
+                    goTo(cur_index);
+                }, tracks_played);
+                return false;
+            }
             goTo(cur_index);
         },
         prev : function() {
