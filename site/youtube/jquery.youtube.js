@@ -1,8 +1,9 @@
 (function ($) {
 
     var defaults = {
-        'query':'blues',
-        'results_count':5
+        'query' : 'blues', // поисковый запрос по умолчанию
+        'results_count' : 25, // количество резултатов
+        'autoplay' : false // автоматическое воспроизведение после инициализации
     };
 
     var playlist = [];
@@ -33,6 +34,7 @@
         }
 
         var r_url = url + $.param(url_params);
+        playlist = [];
 
         $.getJSON(r_url, function (json) {
             var entries = json.feed.entry;
@@ -50,6 +52,14 @@
         });
     };
 
+    var loadNextTrack = function() {
+        tracks_played += opts.results_count;
+        cur_index = 0;
+        loadPlaylist(function() {
+            goTo(cur_index);
+        }, tracks_played);
+    };
+
     var getVideoId = function (str) {
         var matches = /videos\/([\S]+)/.exec(str);
         var video_id = matches[1];
@@ -63,18 +73,14 @@
             cur_index++;
 
             if (cur_index >= opts.results_count) {
-                tracks_played += opts.results_count;
-                cur_index = 0;
-                loadPlaylist(function() {
-                    goTo(cur_index);
-                }, tracks_played);
+                loadNextTrack();
                 return false;
             }
             goTo(cur_index);
         }
     };
 
-    var initPlayer = function (video_id, callback) {
+    var initPlayer = function (callback) {
         var params = { allowScriptAccess:"always" };
         var player_id = 'youtube-' + container_id;
         var atts = { id:player_id, 'wmode' : 'transparent' };
@@ -84,7 +90,7 @@
 
         var player = document.getElementById(player_id);
 
-        var interval = window.setInterval(function () {
+        var interval = window.setInterval(function() {
 
             try {
                 if (player_is_loaded) {
@@ -94,14 +100,17 @@
                 }
                 player_is_loaded = player.getVideoEmbedCode();
 
-            } catch (e) {
-            }
+            } catch (e) { }
         }, 100);
 
         return player;
     };
 
     var goTo = function (index) {
+        if (!index) {
+            index = 0;
+        }
+
         var video_id = playlist[index].id;
         player.loadVideoById(video_id);
     };
@@ -113,24 +122,20 @@
             container_id = $(this).attr('id');
 
             return this.each(function () {
-                loadPlaylist(function () {
-                    player = initPlayer(playlist[0].id, function () {
-                        goTo(0);
+                    player = initPlayer(function () {
+                        if (opts.autoplay) {
+                            loadPlaylist(goTo);
+                        }
 
                         window.setInterval(playerCallback, 1000);
                     });
-                });
             });
 
         },
         next : function() {
             cur_index++;
             if (cur_index >= opts.results_count) {
-                tracks_played += opts.results_count;
-                cur_index = 0;
-                loadPlaylist(function() {
-                    goTo(cur_index);
-                }, tracks_played);
+                loadNextTrack();
                 return false;
             }
             goTo(cur_index);
@@ -154,7 +159,22 @@
             return this.each(function () {
 
             })
+        },
+        changeplaylist : function(query) {
+            if (query) {
+                opts.query = query;
+                loadPlaylist(goTo);
+            }
+        },
+        gettitle : function() {
+            var track = playlist[cur_index];
+            var title = track.title;
 
+            return title;
+        },
+        launch : function() {
+            goTo(0);
+            return true;
         }
     };
 
@@ -167,7 +187,6 @@
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.youtube');
         }
-
     };
 
 })(jQuery);

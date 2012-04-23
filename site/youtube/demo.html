@@ -2,14 +2,113 @@
 <html>
 <head>
     <title>youtube player demo</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css" media="all">
+    <link rel="stylesheet" type="text/css" href="prettify.css" media="all">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <script type="text/javascript" src="prettify.js"></script>
     <script type="text/javascript" src="swfobject.js"></script>
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="jquery.youtube.js"></script>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="page-header"><h1>jQuery YouTube player demo</h1></div>
+        <br><br>
+
+        <div class="span8">
+                <fieldset>
+                    <legend>Настройки плеера</legend>
+                    <div class="control-group">
+                        <label for="playlist" class="control-label">Выбор плейлиста:</label>
+
+                        <div class="controls">
+                            <select name="playlist" id="playlist">
+                                <option value="blues">Blues</option>
+                                <option value="jazz">Jazz</option>
+                                <option value="breakbit">Breakbit</option>
+                                <option value="lady gaga">Lady Gaga</option>
+                                <option value="nu metal">Nu Metal</option>
+                                <option value="etnic">Etnic</option>
+                            </select>
+                            <button class="btn btn-primary" id="launch">Играть!</button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Воспроизведение:</label>
+
+                        <div class="controls" id="play-control">
+                            <button data-id="prev" class="btn disabled">Предыдущий</button>
+                            <button data-id="toggleplay" class="btn btn-info disabled">Пауза/играть</button>
+                            <button data-id="next" class="btn disabled">Следующий</button>
+                        </div>
+                    </div>
+                </fieldset>
+        </div>
+        <div class="span3 offset1">
+            <p><b>Сейчас играет: </b> <br><span id="curplay"></span></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="page-header"><h2>Использование плагина</h2></div>
+        <div class="span7">
+            <h3>1. Подключение файлов</h3>
+
+            <p>Для работы плагина необходимо подключить два JS файла: <i>swfobject.js</i> и <i>jquery.youtube.js</i></p>
+            <pre class="prettyprint linenums">
+&lt;script type="text/javascript" src="swfobject.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="jquery.youtube.js"&gt;&lt;/script&gt;
+            </pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span7">
+            <h3>2. Добавление контейнера</h3>
+
+            <p>Плагин для своей работы требует пустой элемент, в который будет загружен плеер. В роли такого контейнера
+                может выступать
+                пустой div c идентификатором.</p>
+        <pre class="prettyprint">    &lt;div id="player"&gt;&lt;/div&gt;</pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span7">
+            <h3>3. Инициализация плагина</h3>
+
+            <p>Можно указать следующие настройки плагина или обойтись без них:</p>
+            <pre class="prettyprint ">
+    var opts = {
+        'query' : 'blues', // поисковый запрос по умолчанию
+        'results_count' : 25, // количество резултатов
+        'autoplay' : false // автоматическое воспроизведение после инициализации
+    };
+    $('#player').youtube(opts);
+            </pre>
+        </div>
+    </div>
+</div>
 <div id="player"></div>
 </body>
 <script type="text/javascript">
-    $('#player').youtube();
+    $(function() {
+        prettyPrint();
+        $('#player').youtube();
+
+        /* дальше логика для демо страницы */
+        $('#launch').click(function() {
+            var query = $('#playlist').val();
+            $('#player').youtube('changeplaylist', query);
+            $('#play-control button').removeClass('disabled');
+            return true;
+        });
+
+        $('#play-control button').click(function() {
+            var method = $(this).attr('data-id');
+            $('#player').youtube(method);
+            var curplay = $('#player').youtube('gettitle');
+            $('#curplay').text(curplay);
+            return true;
+        });
+    });
 </script>
 </html>
