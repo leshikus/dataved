@@ -122,13 +122,13 @@
             container_id = $(this).attr('id');
 
             return this.each(function () {
-                    player = initPlayer(function () {
-                        if (opts.autoplay) {
-                            loadPlaylist(goTo);
-                        }
+                player = initPlayer(function () {
+                    if (opts.autoplay) {
+                        loadPlaylist(goTo);
+                    }
 
-                        window.setInterval(playerCallback, 1000);
-                    });
+                    window.setInterval(playerCallback, 1000);
+                });
             });
 
         },
