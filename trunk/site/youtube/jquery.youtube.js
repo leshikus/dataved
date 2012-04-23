@@ -26,7 +26,7 @@
         var url_params = {
             'q' : opts.query,
             'max-results' : opts.results_count,
-            'alt' : 'json'
+            'alt' : 'json-in-script'
         };
 
         if (from) {
@@ -36,7 +36,7 @@
         var r_url = url + $.param(url_params);
         playlist = [];
 
-        $.getJSON(r_url, function (json) {
+        $.getJSON(r_url + '&callback=?', function(json) {
             var entries = json.feed.entry;
 
             for (var i = 0; i < entries.length; i++) {
@@ -95,7 +95,7 @@
             try {
                 if (player_is_loaded) {
                     callback();
-                    player.addEventListener("onStateChange", "playerCallback");
+//                    player.addEventListener("onStateChange", "playerCallback");
                     window.clearInterval(interval);
                 }
                 player_is_loaded = player.getVideoEmbedCode();
