@@ -195,7 +195,8 @@ ul.rpw img {
 
 /* Transparent tables
 ----------------------------------------------- */
-.post-body table.nob, .post-body table.nob tr, .post-body table.nob th, .post-body table.nob td {
+.post-body table.nob, .post-body table.nob tr, .post-body table.nob th, .post-body table.nob td,
+.post-body tr.nob, .post-body td.nob {
   border: none;
 }
 
