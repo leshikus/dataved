@@ -1,0 +1,15 @@
+Bundle-Activator: net.java.sip.communicator.plugin.addrbook.AddrBookActivator
+Bundle-Description: OS-specific Address Book support
+Bundle-Name: OS-specific Address Book support
+Bundle-Vendor: sip-communicator.org
+Bundle-Version: 0.0.1
+Import-Package: javax.swing,
+ net.java.sip.communicator.service.configuration,
+ net.java.sip.communicator.service.contactsource,
+ net.java.sip.communicator.service.gui,
+ net.java.sip.communicator.service.protocol,
+ net.java.sip.communicator.service.resources,
+ net.java.sip.communicator.util,
+ net.java.sip.communicator.util.swing,
+ org.osgi.framework
+System-Bundle: yes
