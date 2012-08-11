@@ -20,6 +20,10 @@ input, select {
   padding: 1ex;
 }
 
+input[text] {
+  font-size: 28px;
+}
+
 input .gsc-search-button {
   background-image: url("http://www.google.com/uds/css/small-logo.png");
   background-color: transparent;
@@ -215,9 +219,9 @@ color: #999999;
 /* The skin
 ----------------------------------------------- */
 body {
-font: normal normal 14px Verdana, Arial, sans-serif;
-color: #222222;
-background: #fdf5e8 url(http://lh6.ggpht.com/_92OKnY0EOfU/TLrfsJ2nxbI/AAAAAAAAAl8/uWnU2mQ79rI/s800/sand.jpg) repeat scroll top left;
+  font: normal normal 14px Verdana, Arial, sans-serif;
+  color: #222222;
+  background: #fdf5e8 url(http://lh6.ggpht.com/_92OKnY0EOfU/TLrfsJ2nxbI/AAAAAAAAAl8/uWnU2mQ79rI/s800/sand.jpg) repeat scroll top left;
 }
 html body .region-inner {
 min-width: 0;
