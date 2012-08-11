@@ -16,7 +16,7 @@ table .gs-branding {
   display: none !important;
 }
 
-input, select {
+select, button {
   padding: 1ex;
 }
 
@@ -488,7 +488,7 @@ table.section-columns td.columns-cell{vertical-align:top}
 /** Copyright 2005 Google Inc. All rights reserved. */
 
 /* the GSearchControl CSS Classes
- * .gsc-control : the primary class of the control
+ * .gsc-control: the primary class of the control
  */
 .gsc-control {
   width: 300px;
@@ -501,7 +501,7 @@ table.section-columns td.columns-cell{vertical-align:top}
 .gsc-control-cse {
   width: 100%;
   font-family: Arial, sans-serif;
-  font-size : 13px;
+  font-size: 13px;
 }
 
 .gsc-control-cse div {
@@ -509,16 +509,11 @@ table.section-columns td.columns-cell{vertical-align:top}
 }
 
 /* control inputs
- * .gsc-search-box : the container that hosts the text input area
- * .gsc-input : the text input area
- * .gsc-keeper : the save link below savable results
+ * .gsc-search-box: the container that hosts the text input area
+ * .gsc-input: the text input area
+ * .gsc-keeper: the save link below savable results
  */
 form.gsc-search-box {
-  font-size: 13px;
-  margin-top : 0;
-  margin-right : 0;
-  margin-bottom : 4px;
-  margin-left : 0;
   width: 100%;
 }
 
@@ -528,27 +523,26 @@ form.gsc-search-box {
  * button div's background image
  */
 table.gsc-search-box {
-  border-style : none;
-  border-width : 0;
-  border-spacing : 0 0;
-  width : 100%;
-  margin-bottom : 2px;
+  border-style: none;
+  border-width: 0;
+  border-spacing: 0 0;
+  width: 100%;
 }
 
 table.gsc-search-box td {
-  vertical-align : middle;
+  vertical-align: middle;
 }
 
 table.gsc-search-box td.gsc-input {
-  padding-right : 2px;
+  padding-right: 1ex;
 }
 
 td.gsc-search-button {
-  width : 1%;
+  width: 1%;
 }
 
 td.gsc-clear-button {
-  width : 14px;
+  width: 14px;
 }
 
 /**
@@ -559,93 +553,93 @@ table.gsc-branding td,
 table.gsc-branding {
   margin: 0 0 0 0;
   padding: 0 0 0 0;
-  border : none;
+  border: none;
 }
 
 table.gsc-branding {
-  border-style : none;
-  border-width : 0;
-  border-spacing : 0 0;
-  width : 100%;
+  border-style: none;
+  border-width: 0;
+  border-spacing: 0 0;
+  width: 100%;
 }
 
 .gsc-branding-text {
-  color : #676767;
+  color: #676767;
 }
 
 td.gsc-branding-text {
-  vertical-align : top;
+  vertical-align: top;
 }
 
 td.gsc-branding-text div.gsc-branding-text {
-  padding-bottom : 2px;
-  text-align : right;
-  font-size : 11px;
-  margin-right : 2px;
+  padding-bottom: 2px;
+  text-align: right;
+  font-size: 11px;
+  margin-right: 2px;
 }
 
 div.gsc-branding-youtube td.gsc-branding-text {
-  vertical-align : middle;
+  vertical-align: middle;
 }
 
 td.gsc-branding-img-noclear {
-  width : 51px;
-  vertical-align : bottom;
+  width: 51px;
+  vertical-align: bottom;
 }
 
 td.gsc-branding-img {
-  width : 65px;
-  vertical-align : bottom;
+  width: 65px;
+  vertical-align: bottom;
 }
 
 div.gsc-branding-youtube td.gsc-branding-img-noclear {
-  width : 55px;
+  width: 55px;
 }
 
 div.gsc-branding-youtube td.gsc-branding-img {
-  width : 69px;
+  width: 69px;
 }
 
 table.gsc-branding-vertical td.gsc-branding-text div.gsc-branding-text {
-  margin-right : 0;
-  text-align : center;
+  margin-right: 0;
+  text-align: center;
 }
 
 table.gsc-branding-vertical td.gsc-branding-img-noclear {
-  text-align : center;
+  text-align: center;
 }
 
 div.gsc-branding-img,
 div.gsc-branding-img-noclear,
 img.gsc-branding-img,
 img.gsc-branding-img-noclear {
-  padding-top : 1px;
+  padding-top: 1px;
 }
 
 img.gsc-branding-img,
 img.gsc-branding-img-noclear {
-  margin : 0 0 0 0;
-  padding-right : 0;
-  padding-left : 0;
-  padding-bottom : 0;
-  border : none;
-  display : inline;
+  margin: 0 0 0 0;
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+  border: none;
+  display: inline;
 }
 
 a.gsc-branding-clickable {
-  cursor : pointer;
+  cursor: pointer;
 }
 
 div.gsc-clear-button {
-  display : inline;
-  text-align : right;
-  margin-left : 4px;
-  margin-right : 4px;
-  padding-left : 10px;
+  display: inline;
+  text-align: right;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-left: 10px;
   background-repeat: no-repeat;
   background-position: center center;
   background-image: url('//www.google.com/uds/css/clear.gif');
-  cursor : pointer;
+  cursor: pointer;
 }
 
 /*
@@ -667,21 +661,21 @@ div.gsc-clear-button {
 }
 
 /* each section of results has a results header table
- * .gsc-resultsHeader : the header itseld
- * td.twiddleRegionCell : the section that controls twiddleing of the section to expand/collapse
- * td.configLabelCell : the twiddler that controls active configuration of a searcher (used in GlocalSearch)
- * .gsc-twiddle : the twiddle image, note, this is a div that wraps gsc-title so that standard image replacement is feasible
- * .gsc-twiddle-closed : class added to gsc-twiddle when the twiddler is in the closed state
- * .gsc-twiddle-opened : class added to gsc-twiddle when the twiddler is in the opened state
- * .gsc-title : the section's title (e.g., Web Results, etc.)
- * .gsc-stats : contains the result counts
+ * .gsc-resultsHeader: the header itseld
+ * td.twiddleRegionCell: the section that controls twiddleing of the section to expand/collapse
+ * td.configLabelCell: the twiddler that controls active configuration of a searcher (used in GlocalSearch)
+ * .gsc-twiddle: the twiddle image, note, this is a div that wraps gsc-title so that standard image replacement is feasible
+ * .gsc-twiddle-closed: class added to gsc-twiddle when the twiddler is in the closed state
+ * .gsc-twiddle-opened: class added to gsc-twiddle when the twiddler is in the opened state
+ * .gsc-title: the section's title (e.g., Web Results, etc.)
+ * .gsc-stats: contains the result counts
  * .gsc-stats
  */
 .gsc-resultsHeader {
-  width : 100%;
-  border-bottom : 1px solid #e9e9e9;
-  margin-bottom : 4px;
-  clear : both;
+  width: 100%;
+  border-bottom: 1px solid #e9e9e9;
+  margin-bottom: 4px;
+  clear: both;
 }
 
 .gsc-resultsHeader td.gsc-twiddleRegionCell{
@@ -728,33 +722,33 @@ div.gsc-clear-button {
   color: #676767;
   font-size: 11px;
   font-weight: normal;
-  display : inline;
+  display: inline;
 }
 
 .gsc-resultsHeader td.gsc-twiddle-opened .gsc-stats {
-  display : none;
+  display: none;
 }
 
 /*
- * .gsc-results-selector : box surrounding individual selectors for 1, more, or all results
- * .gsc-result-selector : an individual selector
- * .gsc-one-result : single result selector
- * .gsc-more-results : more (4) results selector
- * .gsc-all-results : all results (8) selector
+ * .gsc-results-selector: box surrounding individual selectors for 1, more, or all results
+ * .gsc-result-selector: an individual selector
+ * .gsc-one-result: single result selector
+ * .gsc-more-results: more (4) results selector
+ * .gsc-all-results: all results (8) selector
  */
 .gsc-results-selector {
-  display : inline;
+  display: inline;
 }
 
 .gsc-resultsHeader td.gsc-twiddle-closed .gsc-results-selector {
-  display : none;
+  display: none;
 }
 
 .gsc-result-selector {
-  cursor : pointer;
-  display : inline;
-  font-size : 13px;
-  padding-left : 13px;
+  cursor: pointer;
+  display: inline;
+  font-size: 13px;
+  padding-left: 13px;
   background-repeat: no-repeat;
   background-position: center left;
 }
@@ -770,7 +764,7 @@ div.gsc-clear-button {
 
 .gsc-all-results {
   background-image: url('//www.google.com/uds/css/all-complex-dark.gif');
-  padding-right : 1px;
+  padding-right: 1px;
 }
 
 /* active mode is light */
@@ -802,14 +796,14 @@ div.gsc-clear-button {
 
 
 /* tabbed mode of search control
- * .gsc-tabsArea : the box containing all of the tabs
- * .gsc-tabsAreaInvisible : same as above, but this is the state when search has been cleared
- * .gsc-tabHeader : an individual tab
- * .gsc-tabHeader.gsc-tabhActive : the active tab
- * .gsc-tabHeader.gsc-tabhInactive : an inactive tab
- * .gsc-tabData : the data area/box containg results and header data for each tab
- * .gsc-tabData.gsc-tabdActive : the data area for the active tab
- * .gsc-tabData.gsc-tabdInactive : the data area for inactive tabs
+ * .gsc-tabsArea: the box containing all of the tabs
+ * .gsc-tabsAreaInvisible: same as above, but this is the state when search has been cleared
+ * .gsc-tabHeader: an individual tab
+ * .gsc-tabHeader.gsc-tabhActive: the active tab
+ * .gsc-tabHeader.gsc-tabhInactive: an inactive tab
+ * .gsc-tabData: the data area/box containg results and header data for each tab
+ * .gsc-tabData.gsc-tabdActive: the data area for the active tab
+ * .gsc-tabData.gsc-tabdInactive: the data area for inactive tabs
  */
 .gsc-tabsArea {
   clear: both;
@@ -817,17 +811,17 @@ div.gsc-clear-button {
   }
 
 .gsc-tabsArea .gs-spacer {
-  font-size : 1px;
-  margin-right : 0;
-  overflow : hidden;
+  font-size: 1px;
+  margin-right: 0;
+  overflow: hidden;
 }
 
 .gsc-tabsArea .gs-spacer-opera {
-  margin-right : 0;
+  margin-right: 0;
 }
 
 .gsc-tabsAreaInvisible {
-  display : none;
+  display: none;
   }
 
 .gsc-tabHeader {
@@ -875,44 +869,44 @@ div.gsc-clear-button {
   }
 
 .gsc-tabData .gsc-resultsHeader .gsc-results-selector {
-  display : none;
+  display: none;
 }
 
 /* style for auto-completion table
- * .gsc-completion-selected : styling for a suggested query which the user has moused-over
- * .gsc-completion-container : styling for the table which contains the completions
+ * .gsc-completion-selected: styling for a suggested query which the user has moused-over
+ * .gsc-completion-container: styling for the table which contains the completions
  */
 .gsc-completion-selected {
-  background : #D5E2FF;
+  background: #D5E2FF;
 }
 
 .gsc-completion-container {
   font-family: Arial, sans-serif;
-  font-size : 13px;
-  position : absolute;
-  background : white;
-  border : 1px solid #666666;
-  margin-left : 0;
-  margin-right : 0;
+  font-size: 13px;
+  position: absolute;
+  background: white;
+  border: 1px solid #666666;
+  margin-left: 0;
+  margin-right: 0;
   /* The top, left, and width are set in JavaScript */
 }
 
 /* the results for each section
- * .gsc-resultsbox-{visible,invisible} : a complete-collection of results including headers
- * .gsc-results : the collection of results for a given searcher
- * .gsc-result : a generic result within the control. each result has this class, as well as .gsc-xxxResult where xxx is web, image, local, blog, etc.
+ * .gsc-resultsbox-{visible,invisible}: a complete-collection of results including headers
+ * .gsc-results: the collection of results for a given searcher
+ * .gsc-result: a generic result within the control. each result has this class, as well as .gsc-xxxResult where xxx is web, image, local, blog, etc.
  */
 .gsc-resultsbox-visible {
-  display : block;
+  display: block;
 }
 
 .gsc-resultsbox-invisible {
-  display : none;
+  display: none;
 }
 
 .gsc-results {
   padding-bottom: 2px;
-  width : 99%;
+  width: 99%;
 }
 
 .gsc-result {
@@ -936,88 +930,88 @@ div.gsc-clear-button {
 }
 
 .gsc-wrapper {
-  position : relative;
-  display : block;
+  position: relative;
+  display: block;
 }
 
 .gsc-adBlock {
-  position : relative;
-  display : block;
+  position: relative;
+  display: block;
 }
 
 .gsc-adBlock h2 {
-  float : right;
-  margin : 3px 5px 0;
-  font-weight : normal;
-  font-size : .9em;
-  color : #676767;
+  float: right;
+  margin: 3px 5px 0;
+  font-weight: normal;
+  font-size: .9em;
+  color: #676767;
 }
 
 .gsc-adBlock .gsc-ad {
-  padding-left : 8px;
-  padding-top : 5px;
-  padding-right : 3px;
+  padding-left: 8px;
+  padding-top: 5px;
+  padding-right: 3px;
 }
 
 .gsc-adBlock .gsc-ad a {
-  font-weight : bolder;
-  color : #0000CC;
-  line-height : 1.4em;
+  font-weight: bolder;
+  color: #0000CC;
+  line-height: 1.4em;
 }
 
 .gsc-adBlock .gsc-ad cite {
-  font-style : normal;
-  color : green;
+  font-style: normal;
+  color: green;
 }
 
 .gsc-adBlock .gsc-ad span {
-  padding-left : 8px;
+  padding-left: 8px;
 }
 
 .gsc-adBlockNoHeight {
-    height : 0;
+    height: 0;
 }
 
 .gsc-adBlockInvisible {
-  display : none;
+  display: none;
 }
 
 .gsc-adBlockVertical {
-  position : relative;
-  display : block;
-  float : right;
-  width : 30%;
+  position: relative;
+  display: block;
+  float: right;
+  width: 30%;
 }
 
 .gsc-thinWrapper {
-  width : 69%;
-  float : left;
-  overflow : hidden;
+  width: 69%;
+  float: left;
+  overflow: hidden;
 }
 
 .gsc-adBlockVertical h2 {
-  text-align : center;
-  font-weight : normal;
-  font-size : .9em;
-  color : #676767;
-  margin-top : 6px;
+  text-align: center;
+  font-weight: normal;
+  font-size: .9em;
+  color: #676767;
+  margin-top: 6px;
 }
 
 .gsc-adBlockVertical .gsc-ad {
-  padding-left : 8px;
-  padding-top : 5px;
+  padding-left: 8px;
+  padding-top: 5px;
 }
 
 .gsc-adBlockVertical .gsc-ad a {
-  font-weight : bolder;
-  color : #0000CC;
-  line-height : 1.4em;
+  font-weight: bolder;
+  color: #0000CC;
+  line-height: 1.4em;
 }
 
 .gsc-adBlockVertical .gsc-ad cite {
-  font-style : normal;
-  color : green;
-  display : block;
+  font-style: normal;
+  color: green;
+  display: block;
 }
 
 .gsc-adBlockVertical .gsc-ad span {
@@ -1028,18 +1022,18 @@ div.gsc-config {
   border: 1px solid #e9e9e9;
   margin-top: 0;
   margin-bottom: 10px;
-  padding-top : 2px;
-  padding-left : 6px;
-  padding-right : 6px;
-  padding-bottom : 6px;
+  padding-top: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-bottom: 6px;
 }
 
 form.gsc-config {
-  margin-bottom : 0;
+  margin-bottom: 0;
 }
 
 .gsc-configSetting {
-  margin-top : 6px;
+  margin-top: 6px;
   }
 
 .gsc-configSetting_Label {
@@ -1058,13 +1052,13 @@ form.gsc-config {
   }
 
 .gsc-configSettingCheckboxLabel {
-  display : inline;
+  display: inline;
   color: #676767;
   }
 
 div.gsc-configSettingSubmit {
-  margin-top : 8px;
-  text-align : right;
+  margin-top: 8px;
+  text-align: right;
 }
 
 input.gsc-configSettingSubmit {
@@ -1159,35 +1153,35 @@ div.gs-action.link a.gs-action {
 
 .gs-imageResult {
   width: 114px; /* default width + 1px border */
-  overflow : hidden;
+  overflow: hidden;
 }
 
 .gs-imageResult .gs-image-box {
   height: 86px; /* default height + 1px border */
-  position : relative;
+  position: relative;
 }
 
 /* note, left edge is auto-set by search control */
 .gs-imageResult .gs-image-box img.gs-image {
-  position : absolute;
-  bottom : 0;
+  position: absolute;
+  bottom: 0;
 }
 
 .gs-imageResult .gs-text-box {
   text-align: center;
-  overflow : hidden;
+  overflow: hidden;
   height: 4em;
 }
 
 .gs-imageResult .gs-snippet {
-  overflow : hidden;
+  overflow: hidden;
   line-height: 1em;
-  cursor : pointer;
-  white-space : nowrap;
+  cursor: pointer;
+  white-space: nowrap;
 }
 .gs-imageResult .gs-visibleUrl {
-  cursor : pointer;
-  overflow : hidden;
+  cursor: pointer;
+  overflow: hidden;
   line-height: 1.3em;
   height: 1.3em;
 }
@@ -1215,11 +1209,11 @@ div.gs-action.link a.gs-action {
  * a collection of results
  */
 .gsc-imageResult .gsc-trailing-more-results {
-  clear : both;
+  clear: both;
 }
 
 .gsc-results .gsc-trailing-more-results {
-  margin-bottom : 10px;
+  margin-bottom: 10px;
 }
 
 .gsc-results .gsc-trailing-more-results,
@@ -1231,33 +1225,33 @@ div.gs-action.link a.gs-action {
 /* trailing cursor section
  */
 .gsc-imageResult .gsc-cursor-box {
-  clear : both;
+  clear: both;
 }
 
 .gsc-results .gsc-cursor-box .gsc-trailing-more-results {
-  margin-bottom : 0;
-  display : inline;
+  margin-bottom: 0;
+  display: inline;
 }
 
 .gsc-results .gsc-cursor {
-  display : inline;
+  display: inline;
 }
 
 .gsc-results .gsc-cursor-box {
-  margin-bottom : 10px;
+  margin-bottom: 10px;
 }
 
 .gsc-results .gsc-cursor-box .gsc-cursor-page {
-  cursor : pointer;
-  color : #000000;
+  cursor: pointer;
+  color: #000000;
   text-decoration: underline;
-  margin-right : 8px;
-  display : inline;
+  margin-right: 8px;
+  display: inline;
 }
 
 .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
-  color : #A90A08;
-  font-weight : bold;
+  color: #A90A08;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -1265,22 +1259,22 @@ div.gs-action.link a.gs-action {
 
 /* generic, cross cutting result style
  * - in the form of .gs-result .gs-xxx where xxx is the generic style
- * .gs-title : typically the first line of a result, typically a link, image results over ride this, since for image results, the image is the link
- * .gs-divider : typically seperates results from ads
- * .gs-visibleUrl : typically the last line of a result, displayed in green. sometimes a link (like in blog search)
- * .gs-clusterUrl : for news, and other similar services, this is a cluster of additional results
- * img.gs-image : an actial image in a result
- * .gs-phone : a phone number
- * .gs-address : an address (includes street, city, region, country)
- * .gs-streetAddress : a street (including #)
- * .gs-city : a city
- * .gs-region : a region (zip code, area, etc.)
- * .gs-country : a country
- * .gs-snippet : snippetized content
- * .gs-watermark : indicator that user selected this result
- * .gs-metadata : generic metadata, e.g.,
- * .gs-image-box : generic container for a result's image (within a table)
- * .gs-text-box : generic container for a result's text content (within a table). Note that this class, and image-box are only used in video
+ * .gs-title: typically the first line of a result, typically a link, image results over ride this, since for image results, the image is the link
+ * .gs-divider: typically seperates results from ads
+ * .gs-visibleUrl: typically the last line of a result, displayed in green. sometimes a link (like in blog search)
+ * .gs-clusterUrl: for news, and other similar services, this is a cluster of additional results
+ * img.gs-image: an actial image in a result
+ * .gs-phone: a phone number
+ * .gs-address: an address (includes street, city, region, country)
+ * .gs-streetAddress: a street (including #)
+ * .gs-city: a city
+ * .gs-region: a region (zip code, area, etc.)
+ * .gs-country: a country
+ * .gs-snippet: snippetized content
+ * .gs-watermark: indicator that user selected this result
+ * .gs-metadata: generic metadata, e.g.,
+ * .gs-image-box: generic container for a result's image (within a table)
+ * .gs-text-box: generic container for a result's text content (within a table). Note that this class, and image-box are only used in video
  */
 .gs-result .gs-title,
 .gs-result .gs-title * {
@@ -1315,7 +1309,7 @@ div.gs-action.link a.gs-action {
 
 .gs-newsResult .gs-publisher {
   color: #6f6f6f;
-  display : inline;
+  display: inline;
   text-decoration: none;
 }
 
@@ -1331,69 +1325,69 @@ div.gs-action.link a.gs-action {
 /* establish the base style */
 .gs-newsResult .gs-relativePublishedDate,
 .gs-newsResult .gs-publishedDate {
-  display : inline;
-  margin-left : 4px;
+  display: inline;
+  margin-left: 4px;
 }
 
 /* base styling for relative date is none */
 .gs-blogResult .gs-relativePublishedDate,
 .gs-newsResult .gs-relativePublishedDate {
-  display : none;
+  display: none;
 }
 
 /* suppress publishedDate while in the control */
 .gsc-blogResult .gs-blogResult .gs-publishedDate,
 .gsc-newsResult .gs-newsResult .gs-publishedDate {
-  display : none;
+  display: none;
 }
 
 /* enable relativePublishedDate while in the control */
 .gsc-blogResult .gs-blogResult .gs-relativePublishedDate,
 .gsc-newsResult .gs-newsResult .gs-relativePublishedDate {
-  display : inline;
+  display: inline;
 }
 
 .gs-newsResult .gs-location {
   color: #6f6f6f;
-  display : inline;
+  display: inline;
   text-decoration: none;
 }
 
 .gs-promotion {
-  padding-top : 5px;
+  padding-top: 5px;
 }
 
 .gs-promotion a {
-  font-weight : bold;
+  font-weight: bold;
   font-size: 14px;
 }
 
 .gs-promotion-image {
-  margin-right : 10px;
+  margin-right: 10px;
 }
 
 .gs-promotion-image-td {
-  vertical-align : top;
+  vertical-align: top;
 }
 
 .gs-promotion table {
-  border : none;
-  border-style : none;
-  border-width : 0;
-  border-spacing : 0 0;
+  border: none;
+  border-style: none;
+  border-width: 0;
+  border-spacing: 0 0;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
 }
 
 .gs-promotion table a {
-  font-weight : normal;
+  font-weight: normal;
   font-size: 13px;
-  padding-right : 5px;
+  padding-right: 5px;
 }
 
 .gs-result img.gs-image {
-  vertical-align : middle;
-  border : 1px solid #0000cc;
+  vertical-align: middle;
+  border: 1px solid #0000cc;
 }
 
 .gs-result div.gs-phone {}
@@ -1402,16 +1396,16 @@ div.gs-action.link a.gs-action {
 .gs-result .gs-directions * {
   color: #7777cc;
   font-weight: normal;
-  text-decoration : underline;
-  cursor : pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .gs-secondary-link,
 .gs-secondary-link * {
   color: #7777cc;
   font-weight: normal;
-  text-decoration : underline;
-  cursor : pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* wrapper around user supplied to/from mode directions
@@ -1420,26 +1414,26 @@ div.gs-action.link a.gs-action {
  * and display:none on the rule above
  * e.g., add these two rules to switch local results into
  * alternate style driving directions
- * .gs-localResult .gs-directions-to-from { display : block; }
- * .gs-localResult .gs-directions { display : none; }
+ * .gs-localResult .gs-directions-to-from { display: block; }
+ * .gs-localResult .gs-directions { display: none; }
  */
 .gs-result .gs-directions-to-from {
-  display : none;
-  margin-top : 4px;
+  display: none;
+  margin-top: 4px;
 }
 .gs-result .gs-directions-to-from .gs-label {
-  display : inline;
-  margin-right : 4px;
+  display: inline;
+  margin-right: 4px;
 }
 
 .gs-result .gs-directions-to-from div.gs-secondary-link {
-  display : inline;
+  display: inline;
 }
 
 .gs-result .gs-directions-to-from .gs-spacer {
-  display : inline;
-  margin-right : 3px;
-  margin-left : 3px;
+  display: inline;
+  margin-right: 3px;
+  margin-left: 3px;
 }
 
 .gs-videoResult a.gs-publisher,
@@ -1460,10 +1454,10 @@ div.gs-action.link a.gs-action {
 
 .gs-no-results-result .gs-snippet,
 .gs-error-result .gs-snippet {
-  padding : 5px;
-  margin : 5px;
-  border : 1px solid rgb(255,204,51);
-  background-color : rgb(255,244,194);
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid rgb(255,204,51);
+  background-color: rgb(255,244,194);
 }
 
 .gs-result .gs-watermark{
@@ -1472,24 +1466,24 @@ div.gs-action.link a.gs-action {
 }
 
 div.gs-results-attribution {
-  text-align : center;
-  margin-bottom : 4px;
+  text-align: center;
+  margin-bottom: 4px;
 }
 
 div.gs-results-attribution,
 div.gs-results-attribution * {
-  font-size : 10px;
-  color : #676767;
-  text-decoration : none;
+  font-size: 10px;
+  color: #676767;
+  text-decoration: none;
 }
 
 div.gs-results-attribution a {
   color: #0000cc;
-  cursor : pointer;
+  cursor: pointer;
 }
 
 div.gs-results-attribution a:hover {
-  text-decoration : underline;
+  text-decoration: underline;
 }
 
 .gs-result .gs-metadata{
@@ -1506,7 +1500,7 @@ div.gs-results-attribution a:hover {
  */
 
 /* webAd search specific over rides
- * .gs-ad-marker : disabled in control, but on in green to indicate clipped result is an ad
+ * .gs-ad-marker: disabled in control, but on in green to indicate clipped result is an ad
  */
 .gs-localAd img.gs-ad-marker,
 .gs-webAd img.gs-ad-marker {
@@ -1518,9 +1512,9 @@ div.gs-results-attribution a:hover {
  * div.gs-visibleUrl-short
  */
 .gs-webResult div.gs-visibleUrl-long {
-  width : 100%;
-  overflow : hidden;
-  display : none;
+  width: 100%;
+  overflow: hidden;
+  display: none;
 }
 
 /* local search specific over rides
@@ -1530,7 +1524,7 @@ div.gs-results-attribution a:hover {
  */
 
 .gs-localAd div.gs-address * {
-  color : #676767;
+  color: #676767;
 }
 
 .gs-localAd div.gs-street {
@@ -1566,16 +1560,16 @@ div.gs-infoWindow * {
 
 /*
 .gs-videoResult td .gs-image {
-  vertical-align : middle;
+  vertical-align: middle;
 }
 
 .gs-videoResult td.gs-image-box {
-  background-color : #000000;
+  background-color: #000000;
 }*/
 
 .gs-videoResult td div.gs-image-box {
-  width : 110px;
-  height : 78px;
+  width: 110px;
+  height: 78px;
 }
 
 .gs-videoResult td div.gs-text-box {
@@ -1591,18 +1585,18 @@ div.gs-infoWindow * {
 
 div.gs-book-image-box td,
 .gs-bookResult td {
-  vertical-align : top;
+  vertical-align: top;
 }
 
 div.gs-book-image-box,
 div.gs-book-image-box div {
-  position : static;
-  text-align : start;
+  position: static;
+  text-align: start;
 }
 
 div.gs-book-image-box {
-  width : 75px;
-  height : 90px;
+  width: 75px;
+  height: 90px;
 }
 
 .gs-bookResult td div.gs-text-box {
@@ -1611,44 +1605,44 @@ div.gs-book-image-box {
   }
 
 div.gs-book-image-box img {
-  border-spacing : 0 0;
-  border : none;
+  border-spacing: 0 0;
+  border: none;
 }
 
 div.gs-book-image-box div.gs-row-1 {
-  line-height : 7px;
+  line-height: 7px;
 }
 
 div.gs-book-image-box img.gs-pages {
-  height : 7px;
-  width : 45px;
+  height: 7px;
+  width: 45px;
 }
 
 div.gs-book-image-box img.gs-page-edge {
-  height : 7px;
-  width : 11px;
+  height: 7px;
+  width: 11px;
 }
 
 div.gs-book-image-box div.gs-row-2 {
 }
 
 div.gs-book-image-box img.gs-image {
-  height : 80px;
-  border : 1px solid #a0a0a0;
+  height: 80px;
+  border: 1px solid #a0a0a0;
 }
 
 .gs-bookResult .gs-author {
-  display : inline;
+  display: inline;
   color: #6f6f6f;
 }
 .gs-bookResult .gs-publishedDate {
-  display : inline;
+  display: inline;
 }
 
 .gs-bookResult .gs-pageCount {
-  display : inline;
+  display: inline;
   color: #6f6f6f;
-  margin-left : 4px;
+  margin-left: 4px;
 }
 
 .gs-bookResult .gs-id {}
@@ -1659,7 +1653,7 @@ div.gs-book-image-box img.gs-image {
  */
 
 .gs-patentResult td {
-  vertical-align : top;
+  vertical-align: top;
 }
 .gs-patentResult .gs-patent-number,
 .gs-patentResult .gs-publishedDate,
@@ -1668,11 +1662,11 @@ div.gs-book-image-box img.gs-image {
 }
 
 .gs-patentResult .gs-image-box {
-  padding-right : 8px;
+  padding-right: 8px;
 }
 
 .gs-patentResult img.gs-image {
-  border : 1px solid #7777cc;
+  border: 1px solid #7777cc;
 }
 
 .gsc-control-cse:after {
