@@ -16,7 +16,7 @@ table .gs-branding {
   display: none !important;
 }
 
-select, button {
+select, button, input[button] {
   padding: 1ex;
 }
 
