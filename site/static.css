@@ -15,6 +15,11 @@
 table .gs-branding {
   display: none !important;
 }
+
+input, select {
+  padding: 1ex;
+}
+
 input .gsc-search-button {
   background-image: url("http://www.google.com/uds/css/small-logo.png");
   background-color: transparent;
@@ -627,10 +632,6 @@ a.gsc-branding-clickable {
   cursor : pointer;
 }
 
-input.gsc-search-button {
-  margin-left : 2px;
-}
-
 div.gsc-clear-button {
   display : inline;
   text-align : right;
@@ -648,14 +649,6 @@ div.gsc-clear-button {
  * for it to consume the entire cell. The adjacent cell contains the search
  * button and that is a fixed width cell.
  */
-input.gsc-input {
-  padding-left : 2px;
-  border-style : solid;
-  border-width : 1px;
-  border-color : #BCCDF0;
-  width : 99%;
-}
-
 .gsc-keeper {
   color: #3366cc;
   text-decoration: underline;
