@@ -46,8 +46,8 @@ input .gsc-search-button {
 }
 
 .header .HTML, .header  .Header {
-  width: 226px;
-  height: 54px;
+  width: 226px !important;
+  height: 54px !important;
 }
 
 /* Body
