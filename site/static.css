@@ -58,7 +58,7 @@ body {
 
 div.content {
   margin: 15px auto;
-  max-width: 1200px;
+  max-width: 1280px;
 }
 
 /* Links
@@ -88,12 +88,14 @@ img.fleft {
 /* Widgets
 ----------------------------------------------- */
 aside {
-  display: inline;
+//  display: inline;
+float: left;
   width: 350px;
 }
 
 .sidebar .widget {
-  display: inline;
+//  display: inline;
+float: left;
 }
 
 .section {
@@ -103,7 +105,8 @@ aside {
 .widget {
   margin: 15px !important;
   padding: 15px;
-  display: inline;
+//  display: inline;
+float: left;
   border-radius: 15px;
   -moz-border-radius: 15px;
   background-color: #ffffff;
