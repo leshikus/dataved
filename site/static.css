@@ -88,12 +88,12 @@ img.fleft {
 /* Widgets
 ----------------------------------------------- */
 aside {
-  display: inline;
+  float: left;
   width: 350px;
 }
 
 .sidebar .widget {
-  display: inline;
+  float: left;
 }
 
 .section {
@@ -103,7 +103,7 @@ aside {
 .widget {
   margin: 15px !important;
   padding: 15px;
-  display: inline;
+  float: left;
   border-radius: 15px;
   -moz-border-radius: 15px;
   background-color: #ffffff;
