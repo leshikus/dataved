@@ -86,12 +86,12 @@ img.fleft {
 /* Widgets
 ----------------------------------------------- */
 aside {
-  float: left;
+  display: inline;
   width: 350px;
 }
 
 .sidebar .widget {
-  width: 290px;
+  display: inline;
 }
 
 .section {
