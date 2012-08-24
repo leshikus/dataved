@@ -6,8 +6,8 @@
 
 (function($) {
 	if(!document.defaultView || !document.defaultView.getComputedStyle) { // IE6-IE8
-		var oldCurCSS = jQuery.curCSS;
-		jQuery.curCSS = function(elem, name, force) {
+		var oldCurCSS = jQuery.css;
+		jQuery.css = function(elem, name, force) {
 			if(name === 'background-position') {
 				name = 'backgroundPosition';
 			}
@@ -44,7 +44,7 @@
 
 	$.fx.step.backgroundPosition = function(fx) {
 		if (!fx.bgPosReady) {
-			var start = $.curCSS(fx.elem,'backgroundPosition');
+			var start = $.css(fx.elem,'backgroundPosition');
 
 			if(!start) {//FF2 no inline-style fallback
 				start = '0px 0px';
