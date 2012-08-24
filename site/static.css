@@ -46,8 +46,8 @@ input .gsc-search-button {
 }
 
 .header .HTML, .header  .Header {
-  width: 226px !important;
-  height: 54px !important;
+  width: 226px;
+  height: 54px;
 }
 
 /* Body
@@ -58,7 +58,7 @@ body {
 
 div.content {
   margin: 15px auto;
-  max-width: 1280px;
+  max-width: 1200px;
 }
 
 /* Links
@@ -88,12 +88,12 @@ img.fleft {
 /* Widgets
 ----------------------------------------------- */
 aside {
-  float: left;
+  display: inline;
   width: 350px;
 }
 
 .sidebar .widget {
-  float: left;
+  display: inline;
 }
 
 .section {
@@ -103,7 +103,7 @@ aside {
 .widget {
   margin: 15px !important;
   padding: 15px;
-  float: left;
+  display: inline;
   border-radius: 15px;
   -moz-border-radius: 15px;
   background-color: #ffffff;
