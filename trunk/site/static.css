@@ -37,7 +37,7 @@ input .gsc-search-button {
 
 /* Widths
 ----------------------------------------------- */
-.tabs-outer, .main {
+.main {
   width: 860px;
 }
 
@@ -129,53 +129,8 @@ color: #999999;
 
 /* Template specific style */
 
-/* Tabs
+/* Popuar posts
 ----------------------------------------------- */
-.tabs-inner .section:first-child ul {
-  margin-top: -1px;
-  border-top: 1px solid #eee;
-  border-left: 0px solid #eee;
-  border-right: 0px solid #eee;
-}
-
-.tabs-inner .widget ul {
-  _background-image: none;
-  border-bottom: 1px solid #eee;
-
-  margin-left: -2ex;
-  margin-right: -2ex;
-}
-
-.tabs-inner .widget li a {
-  display: inline-block;
-  padding: .6em 1em;
-
-  color: #999;
-
-  border-left: 1px solid #fff;
-  border-right: 1px solid #eee;
-}
-
-.tabs-inner .widget li:first-child a {
-  border-left: none;
-}
-
-.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
-  color: #000;
-  background-color: #eee;
-  text-decoration: none;
-}
-
-.tabs-inner .widget li:first-child a {
-  border-left: none;
-}
-
-.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
-  color: #58a;
-  background-color: transparent;
-  text-decoration: none;
-}
-
 .widget .popular-posts ul {
   list-style: none;
 }
@@ -246,11 +201,6 @@ color: #cc6600;
 h1, h2, h3, h4, h5 {
 font: normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
 color: #999999;
-}
-/* Tabs
------------------------------------------------ */
-.tabs-inner .widget ul {
-background: #f5f5f5 url(http://www.blogblog.com/1kt/simple/gradients_light.png) repeat-x scroll 0 -800px;
 }
 /* Posts
 ----------------------------------------------- */
@@ -427,17 +377,12 @@ div.floatingPlayer_gsvb div.playerInnerBox_gsvb .player_gsvb{width:320px;height:
 .section:first-child .widget:first-child{margin-top:0}
 .section:first-child #uds-searchControl+.widget{margin-top:0}
 .section:last-child .widget:last-child{margin-bottom:0}
-.tabs:first-child .widget{margin-bottom:0}
 .Header h1{margin-bottom:10px}
 .Header .description{margin:.5em 0 10px;padding:0 2px}
 a img{border:none;position:relative}
 h1,h2,h3,h4{margin:0;position:relative}
 h1 a:hover{text-decoration:none}
 h3 a:hover{text-decoration:none}
-.tabs .widget h2{display:none}
-.tabs .widget ul,.tabs .widget ul{margin:0;padding:0;overflow:hidden;list-style:none}
-.tabs .widget li,.tabs .widget li{margin:0;padding:0;float:left}
-.tabs .widget li a:hover{text-decoration:none}
 .widget{line-height:1.4}
 .widget ul{padding:0 0 0 1.25em;margin:0;line-height:1.2}
 .BlogList ul{padding:0}
@@ -461,7 +406,7 @@ h3 a:hover{text-decoration:none}
 .Profile .profile-datablock{margin:0 0 .5em}
 dt{font-weight:bold}
 table.section-columns td.first.columns-cell{border-left:none}
-#layout .header-outer,#layout .tabs-outer,#layout .main-outer,#layout .footer-outer{margin:5px 0}
+#layout .header-outer,#layout .main-outer,#layout .footer-outer{margin:5px 0}
 #layout .cap-top,#layout .cap-bottom{display:none}
 #layout .region-inner{padding:0 10px;margin:0}
 #layout .main-inner .column-center-inner,#layout .main-inner .column-left-inner,#layout .main-inner .column-right-inner{padding:0 5px}
