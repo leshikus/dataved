@@ -56,7 +56,8 @@ body {
 }
 
 div.content {
-  margin: 15px auto 15px auto;
+  margin: 0px auto;
+  max-width: 1180px;
 }
 
 /* Links
