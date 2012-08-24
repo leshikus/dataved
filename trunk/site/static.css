@@ -55,8 +55,8 @@ body {
   line-height: 1.5;
 }
 
-.content {
-  margin: 15px;
+div.content {
+  margin: 15px auto 15px auto;
 }
 
 /* Links
