@@ -94,7 +94,6 @@ head.appendChild(script);
   <div class='content'>
 
     <header>
-    <div class='region-inner header-inner'>
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
 <b:widget id='Header1' locked='false' title='Свободное общество Датавед (заголовок)' type='Header'>
 <b:includable id='title'>
@@ -111,7 +110,6 @@ head.appendChild(script);
 </b:includable>
 <b:includable id='main'>
   <!--Show the image only-->
-  <div id='header-inner'>
 	<b:if cond='data:blog.url ==  &quot;http://www.dataved.ru/p/welcome.html&quot;'>
 	  <a expr:href='data:blog.homepageUrl + &quot;search&quot;'>
 		<img expr:alt='data:title' expr:height='data:height' expr:src='data:sourceUrl' expr:width='data:width'/>
@@ -121,7 +119,6 @@ head.appendChild(script);
 		<img expr:alt='data:title' expr:height='data:height' expr:src='data:sourceUrl' expr:width='data:width'/>
 	  </a>
 	</b:if>
-  </div>
 </b:includable>
 </b:widget>
 <b:widget id='HTML5' locked='false' title='' type='HTML'>
@@ -154,7 +151,6 @@ head.appendChild(script);
 </b:widget>
 </b:section>
     <div class='clear'/>    
-    </div>
     </header>
 	
 	<!-- aaf: page1 -->
@@ -162,9 +158,8 @@ head.appendChild(script);
     <!--
     <b:if cond='1 == 1'>
     -->
-    <div class='region-inner main-inner'>
 
-          <b:section class='main' id='main' showaddelement='no'>
+<b:section class='main' id='main' showaddelement='no'>
 <b:widget id='Blog1' locked='false' title='Сообщения блога' type='Blog'>
 <b:includable id='nextprev'>
   <div class='blog-pager' id='blog-pager'>
@@ -931,19 +926,15 @@ head.appendChild(script);
   </div>
 </b:includable>
 <b:includable id='iframe_comments' var='post'>
-  <script expr:src='data:post.commentSrc' type='text/javascript'/>
-  <script type='text/javascript'>
-    (function() {
-      var url = &#39;<data:post.canonicalUrl/>&#39;;
-// <![CDATA[
-      gapi.comments.render('cmt_iframe_holder', {
-          'href': url,
-          'view_type': 'UNFILTERED'
-      });
-    })();
-// ]]>
-  </script>
-  <div id='cmt_iframe_holder'/>
+
+  <b:if cond='data:post.allowComments'>
+    <script expr:src='data:post.commentSrc' type='text/javascript'/>
+    <div class='cmt_iframe_holder'/>
+
+    <b:if cond='data:post.embedCommentForm == &quot;false&quot;'>
+      <a expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'><data:postCommentMsg/></a>
+    </b:if>
+  </b:if>
 </b:includable>
 <b:includable id='feedLinksBody' var='links'>
   <div class='feed-links'>
@@ -1084,8 +1075,6 @@ head.appendChild(script);
 	<div style='clear: both'/>
 
     <!-- main -->
-    </div>
-
     <footer>
     </footer>
 
@@ -1131,6 +1120,45 @@ head.appendChild(script);
 
 
 <b:section-contents id='sidebar-right-top'>
+<b:widget id='HTML8' locked='false' title='Комментарии свободного общества Датавед' type='HTML'>
+<b:includable id='main'>
+            <script type='text/javascript'>
+                var disqus_shortname = &#39;dataved&#39;;
+                var disqus_blogger_current_url = &quot;<data:blog.canonicalUrl/>&quot;;
+                if (!disqus_blogger_current_url.length) {
+                    disqus_blogger_current_url = &quot;<data:blog.url/>&quot;;
+                }
+                var disqus_blogger_homepage_url = &quot;<data:blog.homepageUrl/>&quot;;
+                var disqus_blogger_canonical_homepage_url = &quot;<data:blog.canonicalHomepageUrl/>&quot;;
+            </script>
+            <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                <style type='text/css'>
+                    #comments {display:none;}
+                </style>
+                <script type='text/javascript'>
+                    (function() {
+                        var bloggerjs = document.createElement(&#39;script&#39;);
+                        bloggerjs.type = &#39;text/javascript&#39;;
+                        bloggerjs.async = true;
+                        bloggerjs.src = &#39;http://&#39;+disqus_shortname+&#39;.disqus.com/blogger_item.js&#39;;
+                        (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(bloggerjs);
+                    })();
+                </script>
+            </b:if>
+                <style type='text/css'>
+                    .post-comment-link { visibility: hidden; }
+                </style>
+                <script type='text/javascript'>
+                (function() {
+                    var bloggerjs = document.createElement(&#39;script&#39;);
+                    bloggerjs.type = &#39;text/javascript&#39;;
+                    bloggerjs.async = true;
+                    bloggerjs.src = &#39;http://&#39;+disqus_shortname+&#39;.disqus.com/blogger_index.js&#39;;
+                    (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(bloggerjs);
+                })();
+                </script>
+        </b:includable>
+</b:widget>
 <b:widget id='HTML2' locked='false' title='Продукты' type='HTML'>
 <b:includable id='main'>
   <!-- only display title if it's non-empty -->
