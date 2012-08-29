@@ -214,6 +214,33 @@
 
 
     /**
+         *
+         */
+    loadStateFromString : function(s) {
+      var state, i, j, y;
+
+	  this.cleanUp();
+
+      if ( s === 'random') {
+        this.randomState();
+      } else {
+
+        state = jsonParse(decodeURI(s));
+
+        for (i = 0; i < state.length; i++) {
+          for (y in state[i]) {
+            for (j = 0 ; j < state[i][y].length ; j++) {
+              this.listLife.addCell(state[i][y][j], parseInt(y, 10), this.listLife.actualState);
+            }
+          }
+        }
+      }
+
+		this.prepare();
+	  },
+
+
+    /**
      * Create a random pattern
      */
     randomState : function() {
@@ -222,8 +249,6 @@
       for (i = 0; i < liveCells; i++) {
         this.listLife.addCell(this.helpers.random(0, this.columns - 1), this.helpers.random(0, this.rows - 1), this.listLife.actualState);
       }
-
-      this.listLife.nextGeneration();
     },
 
 
@@ -288,6 +313,23 @@
       this.helpers.registerEvent(document.getElementById('buttonTrail'), 'click', this.handlers.buttons.trail, false);
       this.helpers.registerEvent(document.getElementById('buttonGrid'), 'click', this.handlers.buttons.grid, false);
       this.helpers.registerEvent(document.getElementById('buttonColors'), 'click', this.handlers.buttons.colors, false);
+	  
+	  // Standard objects
+      this.helpers.registerEvent(document.getElementById('objectStillLife'), 'click', function() {
+	    GOL.loadStateFromString('%5B{%228%22:%5B60,61,98,103,109,115%5D},{%229%22:%5B60,61,77,78,97,99,102,104,108,110,114,116%5D},{%2210%22:%5B76,79,98,103,105,109,111,115,117%5D},{%2211%22:%5B76,79,104,110,112,116,118%5D},{%2212%22:%5B60,61,63,64,77,78,111,117%5D},{%2213%22:%5B60,61,63,64%5D},{%2219%22:%5B76,77,79,97,98,102,103,108,109,114,115%5D},{%2220%22:%5B76,78,79,97,99,102,104,108,110,114,116%5D},{%2221%22:%5B98,103,105,109,111,115,117%5D},{%2222%22:%5B104,110,112,116,118%5D},{%2223%22:%5B61,111,117%5D},{%2224%22:%5B60,62,76,77%5D},{%2225%22:%5B60,62,75,78%5D},{%2226%22:%5B61,76,79%5D},{%2227%22:%5B77,78,96,97,102,103,109,110,115,116%5D},{%2228%22:%5B96,98,102,104,109,111,115,117%5D},{%2229%22:%5B61,65,97,98,103,105,110,112,116,118%5D},{%2230%22:%5B60,62,64,66,104,105,111,113,117,119%5D},{%2231%22:%5B60,62,64,66,75,76,112,113,118,120%5D},{%2232%22:%5B61,65,75,78,119,120%5D},{%2233%22:%5B77,78%5D},{%2237%22:%5B78,79%5D},{%2238%22:%5B77,79%5D},{%2239%22:%5B77%5D},{%2240%22:%5B60,61,63,64,75,77%5D},{%2241%22:%5B61,63,75,76%5D},{%2242%22:%5B61,63%5D},{%2243%22:%5B60,61,63,64,114%5D},{%2244%22:%5B78,79,84,85,92,93,95,113,115%5D},{%2245%22:%5B79,84,86,92,93,95,96,97,104,112,115%5D},{%2246%22:%5B78,86,98,103,105,111,113,114%5D},{%2247%22:%5B75,77,86,87,92,93,95,96,97,102,105,110,112%5D},{%2248%22:%5B75,76,93,95,103,104,109,112%5D},{%2249%22:%5B93,95,110,111%5D},{%2250%22:%5B94%5D}%5D');
+	  }, false);
+      this.helpers.registerEvent(document.getElementById('objectAcorn'), 'click', function() {
+	    GOL.loadStateFromString('%5B{%2239%22:%5B110%5D},{%2240%22:%5B112%5D},{%2241%22:%5B109,110,113,114,115%5D}%5D');
+	  }, false);
+      this.helpers.registerEvent(document.getElementById('objectGliderGun'), 'click', function() {
+	    GOL.loadStateFromString('%5B{%229%22:%5B44%5D},{%2210%22:%5B42,44%5D},{%2211%22:%5B32,33,40,41,54,55%5D},{%2212%22:%5B31,35,40,41,54,55%5D},{%2213%22:%5B20,21,30,36,40,41%5D},{%2214%22:%5B20,21,30,34,36,37,42,44%5D},{%2215%22:%5B30,36,44%5D},{%2216%22:%5B31,35%5D},{%2217%22:%5B32,33%5D}%5D');
+	  }, false);
+      this.helpers.registerEvent(document.getElementById('objectTagalong'), 'click', function() {
+	    GOL.loadStateFromString('%5B{%2236%22:%5B93%5D},{%2237%22:%5B90,91,92,93%5D},{%2238%22:%5B85,88,90,91%5D},{%2239%22:%5B85%5D},{%2240%22:%5B72,73,74,75,84,88,90,91%5D},{%2241%22:%5B72,76,82,83,85,86,88,90,92,93,94,95,96%5D},{%2242%22:%5B72,82,83,85,87,89,92,93,94,95,96%5D},{%2243%22:%5B73,76,79,80,83,87,88,89,92,94,95%5D},{%2244%22:%5B78,81,83,84%5D},{%2245%22:%5B78,83,84%5D},{%2246%22:%5B78,81,83,84%5D},{%2247%22:%5B73,76,79,80,83,87,88,89,92,94,95%5D},{%2248%22:%5B72,82,83,85,87,89,92,93,94,95,96%5D},{%2249%22:%5B72,76,82,83,85,86,88,90,92,93,94,95,96%5D},{%2250%22:%5B72,73,74,75,84,88,90,91%5D},{%2251%22:%5B85%5D},{%2252%22:%5B85,88,90,91%5D},{%2253%22:%5B90,91,92,93%5D},{%2254%22:%5B93%5D}%5D');
+	  }, false);
+      this.helpers.registerEvent(document.getElementById('objectRandom'), 'click', function() {
+	    GOL.loadStateFromString('random');
+	  }, false);
     },
 
 
