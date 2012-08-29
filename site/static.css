@@ -45,7 +45,7 @@ input .gsc-search-button {
   width: 800px;
 }
 
-.header .HTML, .header  .Header, .header  CustomSearch1 {
+.header .HTML, .header  .Header, .header  .CustomSearch {
   width: 226px;
   height: 54px;
 }
