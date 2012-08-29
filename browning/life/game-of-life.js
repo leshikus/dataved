@@ -483,9 +483,9 @@
           GOL.running = !GOL.running;
           if (GOL.running) {
             GOL.nextStep();
-            document.getElementById('buttonRun').value = 'Стоп';
+            document.getElementById('buttonRun').value = ' Стоп ';
           } else {
-            document.getElementById('buttonRun').value = 'Пуск';
+            document.getElementById('buttonRun').value = ' Пуск ';
           }
         },
 
@@ -507,7 +507,7 @@
           if (GOL.running) {
             GOL.clear.schedule = true;
             GOL.running = false;
-            document.getElementById('buttonRun').value = 'Пуск';
+            document.getElementById('buttonRun').value = ' Пуск ';
           } else {
             GOL.cleanUp();
           }
