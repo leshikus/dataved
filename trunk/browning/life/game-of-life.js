@@ -84,7 +84,7 @@
       schemes : [
       // { columns : 100, rows : 48, cellSize : 8 },
       {
-        columns : 180,
+        columns : 150,
         rows : 86,
         cellSize : 4
       },
@@ -619,7 +619,7 @@
         this.canvas.setAttribute('width', this.width);
 
         this.height = this.height + (this.cellSpace * GOL.rows) + (this.cellSize * GOL.rows);
-        this.canvas.getAttribute('height', this.height);
+        this.canvas.setAttribute('height', this.height);
 
         // Fill background
         this.context.fillStyle = GOL.grid.schemes[GOL.grid.current].color;
