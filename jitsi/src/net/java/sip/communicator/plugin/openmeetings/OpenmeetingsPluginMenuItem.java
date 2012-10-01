@@ -105,18 +105,24 @@ public class OpenmeetingsPluginMenuItem
         OperationSetBasicInstantMessaging basicInstMsgImpl = jabberProvider
                     .getOperationSet(OperationSetBasicInstantMessaging.class);
 
+        String invitationLinkStr = OpenmeetingsPluginActivator.resourceService
+            .getI18NString("plugin.openmeetings.INVITATION_LINK");
+
         String message =
             OpenmeetingsPluginActivator.resourceService
-                .getI18NString("plugin.openmeetings.INVITE_MESSAGE");
-        message += "\n" + invitationUrlForSend;
+                .getI18NString("plugin.openmeetings.INVITE_MESSAGE") + "\n" +
+                "<a href=\"" + invitationUrlForSend + "\">" + invitationLinkStr + "</a>";
 
-        Message msg = basicInstMsgImpl.createMessage(message);
+        Message msg = basicInstMsgImpl.createMessage(message,
+            OperationSetBasicInstantMessaging.HTML_MIME_TYPE,
+            OperationSetBasicInstantMessaging.DEFAULT_MIME_ENCODING, null);
         basicInstMsgImpl.sendInstantMessage(to, msg);
 
         message = OpenmeetingsPluginActivator.resourceService
-            .getI18NString("plugin.openmeetings.ENTER_MESSAGE") + "\n" + invitationUrl; 
+            .getI18NString("plugin.openmeetings.ENTER_MESSAGE") + "\n" +
+            "<a href=\"" + invitationUrl + "\">" + invitationLinkStr + "</a>";
         chat.addMessage(null, System.currentTimeMillis(), Chat.SYSTEM_MESSAGE,
-            message, "plain/text");
+            message, "text/html");
         
     }
 
