@@ -44,6 +44,10 @@ public class OpenmeetingsPluginMenuItem
         OpenmeetingsConfigManager.getInstance().setContext(bc_);
     }
 
+	private String escapeAmp(String url) {
+	  return url.replace("&", "&amp;");
+	}
+	
     /**
      * Listens for events triggered by user clicks on this menu item. Opens the
      * <tt>PluginDialog</tt>.
@@ -111,7 +115,7 @@ public class OpenmeetingsPluginMenuItem
         String message =
             OpenmeetingsPluginActivator.resourceService
                 .getI18NString("plugin.openmeetings.INVITE_MESSAGE") + "\n" +
-                "<a href=\"" + invitationUrlForSend + "\">" + invitationLinkStr + "</a>";
+                "<a href=\"" + escapeAmp(invitationUrlForSend) + "\">" + invitationLinkStr + "</a>";
 
         Message msg = basicInstMsgImpl.createMessage(message,
             OperationSetBasicInstantMessaging.HTML_MIME_TYPE,
