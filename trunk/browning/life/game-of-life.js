@@ -1123,9 +1123,10 @@
        *
        */
       mousePosition : function (e) {
-        // http://www.malleus.de/FAQ/getImgMousePos.html
+        // http://learn.javascript.ru/coordinates
         // http://www.quirksmode.org/js/events_properties.html#position
-        var event, x, y, domObject, posx = 0, posy = 0, top = 0, left = 0, cellSize = GOL.zoom.schemes[GOL.zoom.current].cellSize + 1;
+        var event, x, y, domObject, posx = 0, posy = 0, top = 0, left = 0,
+		 cellSize = GOL.zoom.schemes[GOL.zoom.current].cellSize + 1, box;
 
         event = e;
         if (!event) {
@@ -1141,18 +1142,16 @@
         }
 
         domObject = event.target || event.srcElement;
+		
+		box = domObject.getBoundingClientRect();
+		
+		top = box.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop)
+		 - (document.documentElement.clientTop || document.body.clientTop || 0);
+		left= box.left+ (window.pageXOffset || document.documentElement.scrollLeft|| document.body.scrollLeft)
+		 - (document.documentElement.clientLeft|| document.body.clientLeft|| 0);
 
-        while ( domObject.offsetParent ) {
-          left += domObject.offsetLeft;
-          top += domObject.offsetTop;
-          domObject = domObject.offsetParent;
-        }
-
-        domObject.pageTop = top;
-        domObject.pageLeft = left;
-
-        x = Math.ceil(((posx - domObject.pageLeft)/cellSize) - 1);
-        y = Math.ceil(((posy - domObject.pageTop)/cellSize) - 1);
+        x = Math.ceil(((posx - left)/cellSize) - 1);
+        y = Math.ceil(((posy - top )/cellSize) - 1);
 
         return [x, y];
       }
