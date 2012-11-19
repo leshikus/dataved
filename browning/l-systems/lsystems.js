@@ -4,7 +4,7 @@
  * JavaScript Canvas 04/03/09
  * @author Kevin Roast  kevtoast at yahoo.com
  * Updated: 16th July 2012
- * Russian translation and minor edits by Andrey Zabolotskiy with author's permission, October 2012
+ * Russian translation and minor edits by Andrey Zabolotskiy with author's permission, 2012
  */
 
 /**
@@ -94,7 +94,7 @@ function calcOffsets()
       g_renderer.process(g_commands, false);
       var after = new Date();
       
-      updateStatus("Границы расчитаны за " + (after - before) + " мс. Прорисовка...", renderCmds);
+      updateStatus("Границы рассчитаны за " + (after - before) + " мс. Прорисовка...", renderCmds);
    }
    catch (e)
    {
@@ -209,7 +209,7 @@ var examples =
    ],
    [
       // Koch Snowflake
-      4, 60, "X", "F++F++F", "F=F-F++F-F", "X=FF"
+      4, 60, "", "F++F++F", "F=F-F++F-F"
    ],
    [
       // Pleasant Error
@@ -270,6 +270,7 @@ if (typeof LSystems == "undefined" || !LSystems)
 }
 
 // Public constants
+const BLANK      = 'f';
 const ANTICLOCK  = '+';
 const CLOCKWISE  = '-';
 const PUSH       = '[';
@@ -594,7 +595,7 @@ const RAD = Math.PI/180.0;
                      pos.x += distance * Math.cos(rad);
                      pos.y += distance * Math.sin(rad);
                      
-                     if (draw)
+                     if (draw && c !== BLANK)
                      {
                         // render this element
                         if (renderLineWidths)
