@@ -10,19 +10,17 @@
   display: none;
 }
 
-/* Controls
+/* Buttons
 ----------------------------------------------- */
-select, button {
+select, button, input.gsc-search-button, input[type="button"] {
   padding: 1ex;
 }
 
+/* Controls
+----------------------------------------------- */
 form.gsc-search-box, table.gsc-search-box {
   width: 100%;
   height: 54px;
-}
-
-input.gsc-search-button, input[type="button"] {
-  padding: 1ex;
 }
 
 input.gsc-input  {
