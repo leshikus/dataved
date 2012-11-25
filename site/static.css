@@ -25,6 +25,9 @@ form.gsc-search-box, table.gsc-search-box {
 
 input[type="text"]  {
   font-size: 24px;
+  padding: 1px 6px;
+  border: 1px solid #DDD;
+  width: 99%;
 }
 
 /* Search
