@@ -16,11 +16,7 @@ select, button {
   padding: 1ex;
 }
 
-input .gsc-search-button  {
-  padding: 1ex;
-}
-
-input.gsc-search-button {
+input .gsc-search-button, input[type="button"] {
   padding: 1ex;
 }
 
