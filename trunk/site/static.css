@@ -375,7 +375,7 @@ h1,h2,h3,h4{margin:0;position:relative}
 h1 a:hover{text-decoration:none}
 h3 a:hover{text-decoration:none}
 .widget{line-height:1.4}
-.widget ul{padding:0 0 0 1.25em;margin:0;line-height:1.2}
+.widget ul{margin:0;line-height:1.2}
 .BlogList ul{padding:0}
 .BlogList li .blog-content{position:relative}
 .widget li,.BlogArchive #ArchiveList ul.flat li{padding:.25em 0;margin:0;text-indent:0}
