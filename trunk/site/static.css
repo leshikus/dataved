@@ -30,11 +30,6 @@ table .gs-branding {
   display: none !important;
 }
 
-input .gsc-search-button {
-  background-image: url("http://www.google.com/uds/css/small-logo.png");
-  background-color: transparent;
-}
-
 /* Widths
 ----------------------------------------------- */
 .main {
