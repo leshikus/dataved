@@ -20,6 +20,10 @@ input .gsc-search-button  {
   padding: 1ex;
 }
 
+input.gsc-search-button {
+  padding: 1ex;
+}
+
 input .gsc-input  {
   font-size: 28px;
 }
