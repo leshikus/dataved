@@ -81,7 +81,7 @@
         gapi.load(&quot;iframes-styles-bubble&quot;, function() {
           if (window.iframes &amp;&amp; iframes.open) {
             iframes.open(
-                &#39;//www.blogger.com/navbar.g?targetBlogID\0753023871881439413232\46blogName\75%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5+%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE+%D0%94%D0%B0%D1%82%D0%B0%D0%B2%D0%B5%D0%B4\46publishMode\75PUBLISH_MODE_HOSTED\46navbarType\75LIGHT\46layoutType\75LAYOUTS\46searchRoot\75http://www.dataved.ru/search\46blogLocale\75ru\46v\0752\46homepageUrl\75http://www.dataved.ru/\46vt\75-7129750591282518043&#39;,
+                &#39;//www.blogger.com/navbar.g?targetBlogID\0753023871881439413232\46blogName\75%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5+%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE+dataved.ru\46publishMode\75PUBLISH_MODE_HOSTED\46navbarType\75LIGHT\46layoutType\75LAYOUTS\46searchRoot\75http://www.dataved.ru/search\46blogLocale\75ru\46v\0752\46homepageUrl\75http://www.dataved.ru/\46vt\75-7129750591282518043&#39;,
                 {
                   container: &quot;navbar-iframe-container&quot;,
                   id: &quot;navbar-iframe&quot;
@@ -109,7 +109,7 @@ head.appendChild(script);
 
     <header>
       <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
-<b:widget id='Header1' locked='false' title='Свободное общество Датавед (заголовок)' type='Header'>
+<b:widget id='Header1' locked='false' title='Свободное общество dataved.ru (заголовок)' type='Header'>
 <b:includable id='title'>
   <b:if cond='data:blog.url == data:blog.homepageUrl'>
     <data:title/>
@@ -155,10 +155,8 @@ head.appendChild(script);
       <h2 class='title'><data:title/></h2>
     </b:if>
 
-    <div class='widget-content'>
-      <div expr:id='data:widget.instanceId + &quot;_form&quot;'>
-        <span class='cse-status'><data:loadingMsg/></span>
-      </div>
+    <div expr:id='data:widget.instanceId + &quot;_form&quot;'>
+      <span class='cse-status'><data:loadingMsg/></span>
     </div>
     <b:include name='quickedit'/>
   </b:includable>
