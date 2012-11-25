@@ -16,11 +16,11 @@ select, button {
   padding: 1ex;
 }
 
-input .gsc-search-button, input[type="button"] {
+input.gsc-search-button, input[type="button"] {
   padding: 1ex;
 }
 
-input .gsc-input  {
+input.gsc-input  {
   font-size: 28px;
 }
 
