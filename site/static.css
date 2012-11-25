@@ -130,7 +130,7 @@ color: #999999;
 
 /* Popuar posts
 ----------------------------------------------- */
-.widget .popular-posts ul {
+.widget .popular-posts ul, .Feed .widget-content ul {
   list-style: none;
 }
 
