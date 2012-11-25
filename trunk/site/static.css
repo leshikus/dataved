@@ -43,7 +43,7 @@ table .gs-branding {
   width: 800px;
 }
 
-.header .HTML, .header  .Header, .header  .CustomSearch {
+.header .HTML, .header  .Header, .header  .CustomSearch, .header  .CustomSearch div {
   width: 226px;
   height: 54px;
 }
