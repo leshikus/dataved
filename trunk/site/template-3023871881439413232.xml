@@ -75,8 +75,22 @@
       }
     }
   &lt;/script&gt;
-&lt;iframe src=&quot;//www.blogger.com/navbar.g?targetBlogID=3023871881439413232&amp;amp;blogName=%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5+%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE+%D0%94%D0%B0%D1%82%D0%B0%D0%B2%D0%B5%D0%B4&amp;amp;publishMode=PUBLISH_MODE_HOSTED&amp;amp;navbarType=LIGHT&amp;amp;layoutType=LAYOUTS&amp;amp;searchRoot=http://www.dataved.ru/search&amp;amp;blogLocale=ru&amp;amp;v=1&amp;amp;homepageUrl=http://www.dataved.ru/&amp;amp;vt=-7129750591282518043&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; height=&quot;30px&quot; width=&quot;100%&quot; id=&quot;navbar-iframe&quot; allowtransparency=&quot;true&quot; title=&quot;Навигация и поиск в Blogger&quot;&gt;&lt;/iframe&gt;
-&lt;div&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot;&gt;
+&lt;div id=&quot;navbar-iframe-container&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://apis.google.com/js/plusone.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+        gapi.load(&quot;iframes-styles-bubble&quot;, function() {
+          if (window.iframes &amp;&amp; iframes.open) {
+            iframes.open(
+                &#39;//www.blogger.com/navbar.g?targetBlogID\0753023871881439413232\46blogName\75%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5+%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE+%D0%94%D0%B0%D1%82%D0%B0%D0%B2%D0%B5%D0%B4\46publishMode\75PUBLISH_MODE_HOSTED\46navbarType\75LIGHT\46layoutType\75LAYOUTS\46searchRoot\75http://www.dataved.ru/search\46blogLocale\75ru\46v\0752\46homepageUrl\75http://www.dataved.ru/\46vt\75-7129750591282518043&#39;,
+                {
+                  container: &quot;navbar-iframe-container&quot;,
+                  id: &quot;navbar-iframe&quot;
+                },
+                {
+                });
+          }
+        });
+      &lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;
 (function() {
 var script = document.createElement(&#39;script&#39;);
 script.type = &#39;text/javascript&#39;;
@@ -507,13 +521,22 @@ head.appendChild(script);
   </div>
 </b:includable>
 <b:includable id='comment_picker' var='post'>
-  <b:if cond='data:post.commentSource == 1'>
+  <b:if cond='data:post.forceIframeComments'>
     <b:include data='post' name='iframe_comments'/>
-  <b:else/>
     <b:if cond='data:post.showThreadedComments'>
       <b:include data='post' name='threaded_comments'/>
     <b:else/>
       <b:include data='post' name='comments'/>
+    </b:if>
+  <b:else/>
+    <b:if cond='data:post.commentSource == 1'>
+      <b:include data='post' name='iframe_comments'/>
+    <b:else/>
+      <b:if cond='data:post.showThreadedComments'>
+        <b:include data='post' name='threaded_comments'/>
+      <b:else/>
+        <b:include data='post' name='comments'/>
+      </b:if>
     </b:if>
   </b:if>
 </b:includable>
@@ -635,6 +658,12 @@ head.appendChild(script);
       <div class='post-outer'>
 
         <div class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+          <b:if cond='data:post.thumbnailUrl'>
+            <meta expr:content='data:post.thumbnailUrl' itemprop='image_url'/>
+          </b:if>
+          <meta expr:content='data:blog.blogId' itemprop='blogId'/>
+          <meta expr:content='data:post.id' itemprop='postId'/>
+
           <a expr:name='data:post.id'/>
           <b:if cond='data:post.title'>
             <h3 class='post-title entry-title' itemprop='name'>
@@ -668,13 +697,16 @@ head.appendChild(script);
               <span class='post-author vcard'>
                 <b:if cond='data:top.showAuthor'>
                   <b:if cond='data:post.authorProfileUrl'>
-                    <span class='fn'>
-                      <a expr:href='data:post.authorProfileUrl' itemprop='author' rel='author' title='author profile'>
-                        <data:post.author/>
+                    <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                      <meta expr:content='data:post.authorProfileUrl' itemprop='url'/>
+                      <a expr:href='data:post.authorProfileUrl' rel='author' title='author profile'>
+                        <span itemprop='name'><data:post.author/></span>
                       </a>
                     </span>
                   <b:else/>
-                    <span class='fn'><data:post.author/></span>
+                    <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                      <span itemprop='name'><data:post.author/></span>
+                    </span>
                   </b:if>
                 </b:if>
               </span>
@@ -683,7 +715,8 @@ head.appendChild(script);
                 <b:if cond='data:top.showTimestamp'>
                   <data:top.timestampLabel/>
                   <b:if cond='data:post.url'>
-                    <a class='timestamp-link' expr:href='data:post.url' itemprop='url' rel='bookmark' title='permanent link'><abbr class='published' expr:title='data:post.timestampISO8601' itemprop='datePublished'><data:post.timestamp/></abbr></a>
+                    <meta expr:content='data:post.url' itemprop='url'/>
+                    <a class='timestamp-link' expr:href='data:post.url' rel='bookmark' title='permanent link'><abbr class='published' expr:title='data:post.timestampISO8601' itemprop='datePublished'><data:post.timestamp/></abbr></a>
                   </b:if>
                 </b:if>
               </span>
@@ -927,8 +960,8 @@ head.appendChild(script);
 </b:includable>
 <b:includable id='iframe_comments' var='post'>
 
-  <b:if cond='data:post.allowComments'>
-    <script expr:src='data:post.commentSrc' type='text/javascript'/>
+  <b:if cond='data:post.allowIframeComments'>
+    <script expr:src='data:post.iframeCommentSrc' type='text/javascript'/>
     <div class='cmt_iframe_holder'/>
 
     <b:if cond='data:post.embedCommentForm == &quot;false&quot;'>
@@ -1293,28 +1326,16 @@ head.appendChild(script);
   <b:include name='quickedit'/>
 </b:includable>
 </b:widget>
-<b:widget id='Gadget1' locked='false' title='Последние комментарии' type='Gadget'>
-<b:includable id='main'>  
-  <!-- only display title if it's non-empty -->
-  <b:if cond='data:renderingUrl != &quot;&quot;'>
-    <b:if cond='data:title != &quot;&quot;'>
-      <h2 class='title'><data:title/></h2>
-    </b:if>
-    <b:if cond='data:gadgetSnippet != &quot;&quot;'>
-       <data:gadgetSnippet/>
-    <b:else/>
-      <div class='widget-content'>
-        <b:if cond='data:nonSocialFragment != &quot;&quot;'>
-          <data:nonSocialFragment/>
-        </b:if>
-      </div>
-    </b:if>
-  <b:else/>
-    <data:errorMessage/>
-  </b:if>
-
-  <b:include name='quickedit'/>
-</b:includable>
+<b:widget id='Feed1' locked='false' title='Последние комментарии' type='Feed'>
+<b:includable id='main'>
+    <h2><data:title/></h2>
+    <div class='widget-content' expr:id='data:widget.instanceId + &quot;_feedItemListDisplay&quot;'>
+      <span style='filter: alpha(25); opacity: 0.25;'>
+        <a expr:href='data:feedUrl'><data:loadingMsg/></a>
+      </span>
+    </div>
+    <b:include name='quickedit'/>
+  </b:includable>
 </b:widget>
 <b:widget id='HTML1' locked='false' title='Партнёры' type='HTML'>
 <b:includable id='main'>
