@@ -16,6 +16,11 @@ select, button {
   padding: 1ex;
 }
 
+form.gsc-search-box, table.gsc-search-box {
+  width: 100%;
+  height: 54px;
+}
+
 input.gsc-search-button, input[type="button"] {
   padding: 1ex;
 }
@@ -442,12 +447,8 @@ table.section-columns td.columns-cell{vertical-align:top}
  * .gsc-input: the text input area
  * .gsc-keeper: the save link below savable results
  */
-form.gsc-search-box {
-  width: 100%;
-  height: 100%;
-}
 
-/*
+ /*
  * This table contains the input element as well as the search button
  * Note that the search button column is fixed width, designed to hold the
  * button div's background image
@@ -456,8 +457,6 @@ table.gsc-search-box {
   border-style: none;
   border-width: 0;
   border-spacing: 0 0;
-  width: 100%;
-  height: 100%;
 }
 
 table.gsc-search-box td {
