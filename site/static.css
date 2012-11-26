@@ -23,7 +23,7 @@ form.gsc-search-box, table.gsc-search-box {
   height: 100%;
 }
 
-input[type="text"]  {
+input:text  {
   font-size: 24px;
   padding: 1px 6px;
   border: 1px solid #DDD;
