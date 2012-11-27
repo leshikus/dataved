@@ -163,6 +163,13 @@ ul.rpw img {
   padding: 0;
 }
 
+/* Block embeds for scripts
+----------------------------------------------- */
+.post-body textarea, .post-body iframe {
+  width: 100%;
+  height: 5ex;
+}
+
 /* Code highlight
 ----------------------------------------------- */
 .post-body code, .post-body pre {
@@ -176,7 +183,6 @@ ul.rpw img {
   background-color: #eee;
   border: 1px dashed lightGrey;
 }
-
 
 /* Epigraph
 ----------------------------------------------- */
