@@ -6,7 +6,7 @@
   position: static;
 }
 
-#navbar {
+#navbar, #HTML8 {
   display: none;
 }
 
@@ -14,7 +14,6 @@
 ----------------------------------------------- */
 select, button, input[type="button"], input[type="submit"] {
   padding: 1ex;
-  height: 54px;
 }
 
 /* Controls
@@ -25,8 +24,6 @@ form.gsc-search-box, table.gsc-search-box {
 }
 
 input[type="text"]  {
-  font-size: 28px;
-  height: 50px;
   padding: 1px 6px;
   border: 1px solid #DDD;
 }
@@ -37,7 +34,7 @@ table .gs-branding {
   display: none !important;
 }
 
-/* Widths
+/* Metrics
 ----------------------------------------------- */
 .main {
   width: 860px;
@@ -50,6 +47,15 @@ table .gs-branding {
 .header .HTML, .header  .Header, .header  .CustomSearch, .header  .CustomSearch div {
   width: 226px;
   height: 54px;
+}
+
+select, button, input[type="button"], input[type="submit"] {
+  height: 54px;
+}
+
+input[type="text"]  {
+  font-size: 28px;
+  height: 50px;
 }
 
 /* Body
