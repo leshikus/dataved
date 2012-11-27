@@ -14,6 +14,7 @@
 ----------------------------------------------- */
 select, button, input[type="button"], input[type="submit"] {
   padding: 1ex;
+  height: 54px;
 }
 
 /* Controls
@@ -24,8 +25,8 @@ form.gsc-search-box, table.gsc-search-box {
 }
 
 input[type="text"]  {
-  font-size: 24px;
-  height: 30px;
+  font-size: 28px;
+  height: 50px;
   padding: 1px 6px;
   border: 1px solid #DDD;
 }
