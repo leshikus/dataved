@@ -167,7 +167,7 @@ ul.rpw img {
 ----------------------------------------------- */
 .post-body textarea, .post-body iframe {
   width: 100%;
-  height: 5ex;
+  height: 10ex;
 }
 
 /* Code highlight
