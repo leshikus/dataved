@@ -170,6 +170,10 @@ ul.rpw img {
   height: 10ex;
 }
 
+.post-body iframe.conf {
+  height: 600px;
+}
+
 /* Code highlight
 ----------------------------------------------- */
 .post-body code, .post-body pre {
