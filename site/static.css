@@ -12,7 +12,7 @@
 
 /* Buttons
 ----------------------------------------------- */
-select, button, input[type="button"] {
+select, button, input[type="button"], input[type="submit"] {
   padding: 1ex;
 }
 
