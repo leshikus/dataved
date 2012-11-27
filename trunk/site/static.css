@@ -12,7 +12,7 @@
 
 /* Buttons
 ----------------------------------------------- */
-select, button, input.gsc-search-button, input[type="button"] {
+select, button, input[type="button"] {
   padding: 1ex;
 }
 
@@ -25,6 +25,7 @@ form.gsc-search-box, table.gsc-search-box {
 
 input[type="text"]  {
   font-size: 24px;
+  height: 30px;
   padding: 1px 6px;
   border: 1px solid #DDD;
 }
