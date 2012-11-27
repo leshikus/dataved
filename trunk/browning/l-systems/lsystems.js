@@ -1,9 +1,8 @@
 ﻿/**
  * L-Systems
  * 
- * JavaScript Canvas 04/03/09
+ * JavaScript Canvas 04/03/09-16/07/12
  * @author Kevin Roast  kevtoast at yahoo.com
- * Updated: 16th July 2012
  * Russian translation and minor edits by Andrey Zabolotskiy with author's permission, 2012
  */
 
@@ -173,7 +172,7 @@ var examples =
 [
    [
       // Heighway Dragon
-      12, 90, "", "FX", "X=X+YF+", "Y=-FX-Y"
+      15, 90, "", "X", "X=X+Y", "Y=X-Y"
    ],
    [
       // Koch Curve
@@ -181,7 +180,7 @@ var examples =
    ],
    [
       // Kevs Tree
-      5, 22, "", "F", "F=C0FF-[C1-F+F+F]+[C2+F-F-F]"
+      5, 22, "", "F", "F=C0FF-[C5-F+F+F]+[C6+F-F-F]"
    ],
    [
       // Kevs Wispy Tree
@@ -201,7 +200,8 @@ var examples =
    ],
    [
       // Dragon Curve
-      10, 90, "F", "FX", "X=X+YF", "Y=FX-Y"
+	  // not used since it's a duplicate of #0
+      10, 90, "", "FX", "X=X+YF+", "Y=-FX-Y"
    ],
    [
       // Fractal Plant
@@ -217,7 +217,7 @@ var examples =
    ],
    [
       // Sierpinski's Carpet
-      4, 90, "", "F", "F=F+F-F-F-G+F+F+F-F", "G=GGG"
+      5, 90, "", "F", "F=F+F-F-F-G+F+F+F-F", "G=fff", "f=fff"
    ],
    [
       // Space Filling Curve
@@ -233,11 +233,19 @@ var examples =
    ],
    [
       // Joined Cross Curves
-      3, 90, "F", "XYXYXYX+XYXYXYX+XYXYXYX+XYXYXYX", "F=", "X=FX+FX+FXFY-FY-", "Y=+FX+FXFY-FY-FY"
+      3, 90, "", "XYXYXYX+XYXYXYX+XYXYXYX+XYXYXYX", "X=X+X+XY-Y-", "Y=+X+XY-Y-Y"
    ],
    [
       // Penrose Tiling
-      5, 36, "6 7 8 9", "[7]++[7]++[7]++[7]++[7]", "6=81++91----71[-81----61]++", "7=+81--91[---61--71]+", "8=-61++71[+++81++91]-", "9=--81++++61[+91++++71]--71", "1="
+      5, 36, "ABDE", "[B]++[B]++[B]++[B]++[B]", "A=DF++EF----BF[-DF----AF]++", "B=+DF--EF[---AF--BF]+", "D=-AF++BF[+++DF++EF]-", "E=--DF++++AF[+EF++++BF]--BF", "F="
+   ],
+   [
+      // Triangle Cloud
+      6, 60, "A", "AAA", "A=fAAA+++f+F", "F=FF", "f=ff"
+   ],
+   [
+      // Lakes and Islands
+      2, 90, "", "F+F+F+F", "F=F+f-FF+F+FF+Ff+FF-f+FF-F-FF-Ff-FFF", "f=ffffff"
    ]
 ];
 
@@ -270,7 +278,7 @@ if (typeof LSystems == "undefined" || !LSystems)
 }
 
 // Public constants
-const BLANK      = 'f';
+const JUMP       = 'f';
 const ANTICLOCK  = '+';
 const CLOCKWISE  = '-';
 const PUSH       = '[';
@@ -299,7 +307,17 @@ const RAD = Math.PI/180.0;
          this._height = height;
       }
       
-      this._colourList = ["rgba(140, 80, 60, 0.75)", "rgba(24, 180, 24, 0.75)", "rgba(48, 220, 48, 0.5)", "rgba(64, 255, 64, 0.5)"];
+      this._colourList = ["rgba(140, 80, 60, 0.75)",  // brown
+                          "rgba(24, 180, 24, 0.75)",  // dark green
+                          "rgba(48, 220, 48, 0.5)",   // green
+                          "rgba(64, 255, 64, 0.5)",   // light green
+                          "rgba(0, 70, 130, 0.75)",   // blue
+                          "rgba(200, 200, 0, 0.5)",   // yellow
+                          "rgba(255, 0, 0, 0.25)",    // red
+                          "rgba(100, 65, 255, 0.75)", // purple
+                          "rgba(0, 0, 0, 0.0)",       // hollow
+                          "rgba(0, 0, 0, 1.0)"        // black
+						  ];
       this._constants = [];
       
       return this;
@@ -544,7 +562,7 @@ const RAD = Math.PI/180.0;
          var yOffset = this._yOffset, maxStackDepth = this._maxStackDepth;
          var colourList = this._colourList, stack = this._stack;
          var renderLineWidths = this._renderLineWidths;
-         var rad, width, colour, lastColour = null;
+         var rad, width, colour, lastColour = null, ncolour;
          var c, len = cmds.length;
          for (var i=0; i<len; i++)
          {
@@ -552,10 +570,14 @@ const RAD = Math.PI/180.0;
             
             switch (c)
             {
+			   case ' ':
+			      break;
                case COLOUR:
                {
                   // get colour index from next character
-                  pos.colour = (cmds.charAt(++i) - '0');
+                  ncolour = (cmds.charAt(++i) - '0');
+				  if (0<=ncolour && pos.colour<10)
+				     pos.colour = ncolour;
                   break;
                }
                
@@ -595,7 +617,7 @@ const RAD = Math.PI/180.0;
                      pos.x += distance * Math.cos(rad);
                      pos.y += distance * Math.sin(rad);
                      
-                     if (draw && c !== BLANK)
+                     if (draw && c !== JUMP)
                      {
                         // render this element
                         if (renderLineWidths)
