@@ -201,7 +201,6 @@ head.appendChild(script);
 <b:includable id='shareButtons' var='post'>
   <span style='relative; top: 1px; float: right; '>
   <span style='position: relative; top: 3px; left: -12px;'><g:plusone annotation='bubble' expr:href='data:post.url' size='medium'/></span>
-  <span style='position: relative; top: 3px;'><a class='twitter-share-button' data-count='horizontal' data-lang='ru' data-related='' data-via='' expr:data-text='data:post.title' expr:data-url='data:post.url' href='https://twitter.com/share'>Твитнуть</a></span>
   <fb:like colorscheme='light' expr:href='data:post.url' font='' layout='button_count' send='false' show_faces='false'/>
   </span>
 </b:includable>
