@@ -154,12 +154,6 @@ ul.rpw img {
   padding: 0 2ex 1ex 0;
 }
 
-.post-body img.bcenter, .post-body object.bcenter, .post-body iframe.bcenter {
-  float: none;
-  margin: 0 auto;
-  padding: 0;
-}
-
 /* Inline images
 ----------------------------------------------- */
 .post-body p img, .post-body td img,
