@@ -128,6 +128,10 @@ ul.rpw img {
   margin: 1em 0;
 }
 
+.post-body p.grey {
+  color: grey;
+}
+
 .post-body ul, ol {
   margin: 0.5em 0px;
   padding: 0px 2.5em;
