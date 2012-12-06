@@ -128,7 +128,7 @@ ul.rpw img {
   margin: 1em 0;
 }
 
-.post-body p.grey {
+.post-body p.grey, .post-body ul li.grey {
   color: grey;
 }
 
