@@ -13,6 +13,7 @@ var HEIGHT;
 var WIDTH;
 var g_renderer;
 var g_commands;
+var n_rules = 5;
 
 /**
  * Window body onload handler
@@ -57,7 +58,7 @@ function generateCmdString()
       var lsys = new LSystems.LSystemsProcessor();
       lsys.iterations = parseInt(document.getElementById('iterations').value);
       lsys.axiom = document.getElementById('axiom').value;
-      for (var i=1; i<=5; i++)
+      for (var i=1; i<=n_rules; i++)
       {
          var rule = document.getElementById('rule' + i).value;
          if (rule && rule.length !== 0)
@@ -167,7 +168,7 @@ function updateStatus(msg, fn)
       setTimeout(fn, 0);
    }
 }
-
+/*
 var examples =
 [
    [
@@ -257,7 +258,7 @@ function example(i)
       document.getElementById('angle').value = examples[i][1];
       document.getElementById('constants').value = examples[i][2];
       document.getElementById('axiom').value = examples[i][3];
-      for (var n=1; n<=5; n++)
+      for (var n=1; n<=n_rules; n++)
       {
          var rule = examples[i][3 + n];
          document.getElementById('rule' + n).value = (rule ? rule : "");
@@ -265,6 +266,24 @@ function example(i)
       startHandler();
    }
 }
+*/
+function depict(lsyst)
+{
+   if (!document.getElementById('start').disabled)
+   {
+      document.getElementById('iterations').value = lsyst[0];
+      document.getElementById('angle').value = lsyst[1];
+      document.getElementById('constants').value = lsyst[2];
+      document.getElementById('axiom').value = lsyst[3];
+      for (var n=1; n<=n_rules; n++)
+      {
+         var rule = lsyst[3 + n];
+         document.getElementById('rule' + n).value = (rule ? rule : "");
+      }
+      startHandler();
+   }
+}
+
 
 
 /**
