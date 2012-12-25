@@ -1035,7 +1035,7 @@ var GOLloadState;
 		this.actualState = [];
         for (i = 0; i < oldState.length; i++) {
 		  y = oldState[i][0];
-		  if (y >= 0 && y <G OL.rows) {
+		  if (y >= 0 && y < GOL.rows) {
             for (j = 1; j < oldState[i].length; j++) {
               x = oldState[i][j];
 		      if (x >= 0 && x < GOL.columns) {
