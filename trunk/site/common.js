@@ -12,7 +12,7 @@ $(document).ready(function() {
   // Google Analytics
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-13024987-1']);
-  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageview']);  
 
   $.getScript('//www.google-analytics.com/ga.js');
 
