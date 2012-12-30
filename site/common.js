@@ -11,6 +11,7 @@ var _gaq;
 $(document).ready(function() {
   // Google Analytics
   _gaq = [['_setAccount', 'UA-13024987-1'], ['_trackPageview']];
+  if (!ga_loaded) ga_loaded = function() {}
   $.getScript('//www.google-analytics.com/ga.js', ga_loaded);
 
   var plusone_loaded = (typeof gapi_init == 'undefined') ? function() {} : function() {
