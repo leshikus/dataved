@@ -10,10 +10,10 @@ var _gaq;
 
 $(document).ready(function() {
   // Google Analytics
-  _gaq = [['_setAccount', 'UA-13024987-1'], ['_trackPageview']];
+  var _gaq = _gaq || [];
+  _gaq.push([['_setAccount', 'UA-13024987-1'], ['_trackPageview']]);
 
-  if (!ga_loaded) ga_loaded = function() {}
-  $.getScript('//www.google-analytics.com/ga.js', ga_loaded);
+  $.getScript('//www.google-analytics.com/ga.js');
 
   window.onerror = function(msg, url, line) {
     var preventErrorAlert = true;
