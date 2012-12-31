@@ -10,6 +10,7 @@ var _gaq;
 
 $(document).ready(function() {
   // Google Analytics
+  console.log('_gaq = ' + _gaq);
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-13024987-1']);
   _gaq.push(['_trackPageview']);
