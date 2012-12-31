@@ -10,12 +10,11 @@ var _gaq;
 
 $(document).ready(function() {
   // Google Analytics
-/*
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-13024987-1']);
   _gaq.push(['_trackPageview']);
-*/
-  var _gaq = [['_setAccount', 'UA-13024987-1'], ['_trackPageview']];
+
+  //var _gaq = [['_setAccount', 'UA-13024987-1'], ['_trackPageview']];
 
   $.getScript('//www.google-analytics.com/ga.js');
 /*
