@@ -27,7 +27,6 @@ var d;
 var n;
 var page = 0;
 
-
 function nextW(i) {
   console.log('nextW(' + i + ')');
   if (i < 0) {
@@ -45,6 +44,11 @@ function nextW(i) {
   var type = elem.children[1].children[1].children[1].innerText;
   var name = elem.children[1].children[1].children[2].innerText;
   if (skipNames[type + '::' + name]) {
+    nextW(i - 1);
+    return;
+  }
+  
+  if (d[i].className.indexOf('output__item_visited') >= 0) {
     nextW(i - 1);
     return;
   }
