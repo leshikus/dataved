@@ -25,12 +25,15 @@ var res = [];
 
 var d;
 var n;
-var page = 0;
+var page = 1;
+var ww = 0;
 
 function nextW(i) {
   console.log('nextW(' + i + ')');
   if (i < 0) {
-	ww = window.open(self.location.href + '&page=' + page, 'hh_page');
+    if (ww) ww.close();
+	var url = self.location.href.replace(/&page=\d+/, '');
+	ww = window.open(url + '&page=' + page, 'hh_page');
     page++;
     waitFor(function() {
 	  if (ww.document.getElementsByClassName('copyright').length != 1) throw 'Not loaded';
