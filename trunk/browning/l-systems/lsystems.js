@@ -158,7 +158,6 @@ function resetUI()
    g_commands = null;
    document.getElementById('lsystems').style.cursor = "";
    document.getElementById('start').disabled = false;
-   $('status_start').style.display = 'block';
    updateStatus('');
 }
 
