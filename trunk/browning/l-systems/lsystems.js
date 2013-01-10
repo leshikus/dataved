@@ -1,4 +1,4 @@
-﻿/**
+ /**
  * L-Systems
  * 
  * JavaScript Canvas 04/03/09-16/07/12
@@ -77,7 +77,7 @@ function generateCmdString()
    catch (e)
    {
       alert("Ошибка при выполнении LSystemsProcessor.generate()\n" + e);
-      resetUI("Нажмите <b>Пуск</b>, чтобы начать.");
+      resetUI();
    }
 }
 
@@ -99,7 +99,7 @@ function calcOffsets()
    catch (e)
    {
       alert("Ошибка при выполнении TurtleRenderer.process()\n" + e);
-      resetUI("Нажмите <b>Пуск</b>, чтобы начать.");
+      resetUI();
    }
 }
 
@@ -142,22 +142,24 @@ function renderCmds()
       var after = new Date();
       
       // completed
-      resetUI("Прорисовка завершена за " + (after - before) + " мс.");
+      resetUI();
+      updateStatus("Прорисовка завершена за " + (after - before) + " мс.");
    }
    catch (e)
    {
       alert("Ошибка при выполнении TurtleRenderer.process(draw)\n" + e);
-      resetUI("Нажмите <b>Пуск</b>, чтобы начать.");
+      resetUI();
    }
 }
 
-function resetUI(msg)
+function resetUI()
 {
    g_renderer = null;
    g_commands = null;
-   updateStatus(msg);
    document.getElementById('lsystems').style.cursor = "";
    document.getElementById('start').disabled = false;
+   $('status_start').style.display = 'block';
+   updateStatus('');
 }
 
 function updateStatus(msg, fn)
