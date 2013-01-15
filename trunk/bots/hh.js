@@ -32,14 +32,14 @@ function nextW(i) {
   console.log('nextW(' + i + ')');
   if (i < 0) {
     if (ww) ww.close();
-	var url = self.location.href.replace(/&page=\d+/, '');
-	ww = window.open(url + '&page=' + page, 'hh_page');
+    var url = self.location.href.replace(/&page=\d+/, '');
+    ww = window.open(url + '&page=' + page, 'hh_page');
     page++;
     waitFor(function() {
-	  if (ww.document.getElementsByClassName('copyright').length != 1) throw 'Not loaded';
-	  d = ww.document.getElementsByClassName('HH-Employer-ResumeFolders-Resume');
-	  nextW(d.length - 1);
-	});
+      if (ww.document.getElementsByClassName('copyright').length != 1) throw 'Not loaded';
+      d = ww.document.getElementsByClassName('HH-Employer-ResumeFolders-Resume');
+      nextW(d.length - 1);
+    });
     return;
   }
 
@@ -67,13 +67,18 @@ function nextW(i) {
       return;
     }
 
+	try {
+	  w.document.getElementsByClassName('related__wrapper')[0].innerHTML = '';
+	} catch(e) {}
+	w.document.getElementsByClassName('topbuttons')[2].innerHTML = '';
+
     var html = w.document.getElementsByClassName('resume__contacts')[0].innerHTML;
     var email = reEmail.exec(html)[1];
 
-    html = w.document.getElementsByClassName('resume')[0].innerText.substr(0,1000);
+    html = w.document.getElementsByClassName('resume')[0].innerText;
     w.close();
 
-    res.push([type, name, email, href, html]);
+    res.push([type, name, email, href.replace(/\?.*/, ''), html]);
     nextW(i - 1);
   });
 }
