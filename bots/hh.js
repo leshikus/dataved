@@ -32,14 +32,14 @@ function nextW(i) {
   console.log('nextW(' + i + ')');
   if (i < 0) {
     if (ww) ww.close();
-    var url = self.location.href.replace(/&page=\d+/, '');
-    ww = window.open(url + '&page=' + page, 'hh_page');
+	var url = self.location.href.replace(/&page=\d+/, '');
+	ww = window.open(url + '&page=' + page, 'hh_page');
     page++;
     waitFor(function() {
-      if (ww.document.getElementsByClassName('copyright').length != 1) throw 'Not loaded';
-      d = ww.document.getElementsByClassName('HH-Employer-ResumeFolders-Resume');
-      nextW(d.length - 1);
-    });
+	  if (ww.document.getElementsByClassName('copyright').length != 1) throw 'Not loaded';
+	  d = ww.document.getElementsByClassName('HH-Employer-ResumeFolders-Resume');
+	  nextW(d.length - 1);
+	});
     return;
   }
 
