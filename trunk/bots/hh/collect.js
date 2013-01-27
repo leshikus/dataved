@@ -74,7 +74,7 @@ function nextW(i) {
 
     var html = w.document.getElementsByClassName('resume__contacts')[0].innerHTML;
     var email = reEmail.exec(html)[1];
-	email = email.replace(/[^a-zA-Z0-9._%-]/g, '');
+	email = email.replace(/[^a-zA-Z0-9._%+-]/g, '');
 
     html = w.document.getElementsByClassName('resume')[0].innerText;
     w.close();
