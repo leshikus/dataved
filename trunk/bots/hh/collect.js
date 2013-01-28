@@ -44,8 +44,9 @@ function nextW(i) {
   }
 
   var elem = d[i];
-  var type = elem.children[1].children[1].children[1].innerText;
-  var name = elem.children[1].children[1].children[2].innerText;
+  var typeElem = elem.children[1].children[1].children[3];
+  var type = typeElem.innerText;
+  var name = elem.children[1].children[1].children[4].innerText;
   if (skipNames[type + '::' + name]) {
     nextW(i - 1);
     return;
@@ -56,7 +57,7 @@ function nextW(i) {
     return;
   }
 
-  var href = elem.children[1].children[1].children[1].children[0].getAttribute('href');
+  var href = typeElem.children[0].getAttribute('href');
   console.log('Processing d[' + i + ']: ' + name);
 
   var w = window.open(href, '_blank');
