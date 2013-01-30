@@ -52,7 +52,7 @@ table .gs-branding {
   width: 860px;
 }
 
-.main .widget {
+.main .widget, .uds-searchControl {
   width: 800px;
 }
 
