@@ -52,8 +52,12 @@ select, button, input {
   width: 860px;
 }
 
-.main .widget, .gsc-results {
+/*.main .widget, .gsc-results {
   width: 800px;
+}*/
+
+.main {
+  width: 860px;
 }
 
 .header .HTML, .header  .Header, .header  .CustomSearch, .header  .CustomSearch div {
