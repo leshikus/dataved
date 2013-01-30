@@ -73,11 +73,15 @@ input[type="text"]  {
 /* Padding
 ----------------------------------------------- */
 .widget,
-#uds-searchControl .gsc-results,
-#uds-searchControl .gsc-tabsArea,
-#uds-searchControl .gsc-above-wrapper-area {
+#uds-searchControl .gsc-results {
   margin: 15px;
   padding: 15px;
+}
+
+#uds-searchControl .gsc-tabsArea,
+#uds-searchControl .gsc-above-wrapper-area {
+  margin: 0 15px;
+  padding: 0 15px;
 }
 
 /* Body
