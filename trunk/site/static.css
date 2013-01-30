@@ -18,8 +18,8 @@ select, button, input {
 }
 
 .widget, .gsc-results {
-  border-radius: 8px;
-  -moz-border-radius: 8px;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
 }
 
 /* Buttons
