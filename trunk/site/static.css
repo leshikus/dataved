@@ -52,7 +52,7 @@ select, button, input {
   width: 860px;
 }
 
-.main .widget, .uds-searchControl {
+.main .widget, #uds-searchControl {
   width: 800px;
 }
 
@@ -72,7 +72,7 @@ input[type="text"]  {
 
 /* Padding
 ----------------------------------------------- */
-.widget, .uds-searchControl {
+.widget, #uds-searchControl {
   margin: 15px;
   padding: 15px;
 }
