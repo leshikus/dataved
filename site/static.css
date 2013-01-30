@@ -12,9 +12,13 @@
 
 /* Buttons
 ----------------------------------------------- */
+select, button, input {
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+}
+
 select, button, input[type="button"], input[type="submit"] {
   padding: 1ex;
-  border-radius: 8px;
 }
 
 /* Controls
@@ -27,7 +31,6 @@ form.gsc-search-box, table.gsc-search-box {
 input[type="text"]  {
   padding: 1px 6px;
   border: 1px solid #DDD;
-  border-radius: 8px;
 }
 
 /* Search
@@ -44,6 +47,11 @@ table .gs-branding {
 
 .main .widget {
   width: 800px;
+}
+
+.widget, #uds-searchControl .gsc-results {
+  border-radius: 8px;
+  -moz-border-radius: 8px;
 }
 
 .header .HTML, .header  .Header, .header  .CustomSearch, .header  .CustomSearch div {
@@ -114,8 +122,6 @@ aside {
   margin: 15px !important;
   padding: 15px;
   float: left;
-  border-radius: 15px;
-  -moz-border-radius: 15px;
   background-color: #ffffff;
 }
 
@@ -1677,7 +1683,6 @@ color: #000;
 
 /* From bundle */
 #uds-searchClearResults{position:absolute;top:15px;right:-3px;display:none;border-width:1px;border-style:solid;padding:0;height:9px;width:9px}
-#uds-searchControl .gsc-results{padding:1em 1em 0 1em;margin:0 0 2em;border-width:1px;border-style:solid;width:auto}
 #uds-searchControl .gsc-resultsHeader{display:none}
 #uds-searchControl .gsc-tabsArea{float:left;position:relative;top:1px;padding-right:10px}
 #uds-searchControl .gsc-tabHeader{float:left;line-height:1.7}
@@ -1689,6 +1694,14 @@ color: #000;
 #uds-searchControl .gs-result a.gs-visibleUrl,#uds-searchControl .gs-result .gs-visibleUrl{line-height:1.3em;font-size:95%}
 #uds-searchControl .gs-result .gs-snippet{margin:.25em 0;line-height:1.2em}
 #uds-searchControl .gs-no-results-result .gs-snippet,#uds-searchControl .gs-error-result .gs-snippet{border:none;background-color:transparent;font-style:italic}
+
+#uds-searchControl .gsc-results {
+  padding: 1em 1em 0 1em;
+  margin: 0 0 2em;
+  border-width: 1px;
+  border-style: solid;
+  width: auto;
+}
 
 
 /* The skin ends
