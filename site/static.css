@@ -188,7 +188,8 @@ color: #999999;
 ----------------------------------------------- */
 body {
   font: normal normal 14px Verdana, Arial, sans-serif;
-  color: #4289A5;
+  color: #222222;
+  background-color: #4289A5;
 }
 a:link {
 color: #5588aa;
