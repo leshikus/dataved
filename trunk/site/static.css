@@ -52,12 +52,8 @@ select, button, input {
   width: 860px;
 }
 
-.main {
-  width: 860px;
-}
-
 #uds-searchControl .gsc-results {
-  width: 830px;
+  width: 800px;
 }
 
 .header .HTML, .header  .Header, .header  .CustomSearch, .header  .CustomSearch div {
