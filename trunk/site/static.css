@@ -79,12 +79,9 @@ input[type="text"]  {
 
 #uds-searchControl .gsc-results {
   margin: 0 15px;
-  padding: 0 15px;
+  padding: 15px;
 }
 
-
-.gsc-results {
-}
 
 /* Body
 ----------------------------------------------- */
