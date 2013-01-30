@@ -52,7 +52,7 @@ select, button, input {
   width: 860px;
 }
 
-.main .widget, #uds-searchControl {
+.main .widget, #uds-searchResults {
   width: 800px;
 }
 
