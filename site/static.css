@@ -10,18 +10,6 @@
   display: none;
 }
 
-/* Radius
------------------------------------------------ */
-select, button, input {
-  border-radius: 8px;
-  -moz-border-radius: 8px;
-}
-
-.widget, .gsc-results {
-  border-radius: 15px;
-  -moz-border-radius: 15px;
-}
-
 /* Buttons
 ----------------------------------------------- */
 select, button, input[type="button"], input[type="submit"] {
@@ -46,6 +34,18 @@ table .gs-branding {
   display: none !important;
 }
 
+/* Radius
+----------------------------------------------- */
+select, button, input {
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+}
+
+.widget, .gsc-results {
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+}
+
 /* Metrics
 ----------------------------------------------- */
 .main {
@@ -68,6 +68,13 @@ select, button, input[type="button"], input[type="submit"] {
 input[type="text"]  {
   font-size: 28px;
   height: 50px;
+}
+
+/* Padding
+----------------------------------------------- */
+.widget, .uds-searchControl {
+  margin: 15px;
+  padding: 15px;
 }
 
 /* Body
@@ -121,8 +128,6 @@ aside {
 }
 
 .widget {
-  margin: 15px !important;
-  padding: 15px;
   float: left;
   background-color: #ffffff;
 }
