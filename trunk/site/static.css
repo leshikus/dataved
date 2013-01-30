@@ -72,12 +72,9 @@ input[type="text"]  {
 
 /* Padding
 ----------------------------------------------- */
-.widget {
-  margin: 15px;
-  padding: 15px;
-}
-
-#uds-searchControl .gsc-results {
+.widget,
+#uds-searchControl .gsc-results,
+#uds-searchControl .gsc-tabsArea {
   margin: 15px;
   padding: 15px;
 }
@@ -765,8 +762,7 @@ div.gsc-clear-button {
  */
 .gsc-tabsArea {
   clear: both;
-  margin-top: 6px;
-  }
+}
 
 .gsc-tabsArea .gs-spacer {
   font-size: 1px;
