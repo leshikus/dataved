@@ -74,7 +74,8 @@ input[type="text"]  {
 ----------------------------------------------- */
 .widget,
 #uds-searchControl .gsc-results,
-#uds-searchControl .gsc-tabsArea {
+#uds-searchControl .gsc-tabsArea,
+#uds-searchControl .gsc-above-wrapper-area {
   margin: 15px;
   padding: 15px;
 }
