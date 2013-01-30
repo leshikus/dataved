@@ -52,10 +52,6 @@ select, button, input {
   width: 860px;
 }
 
-/*.main .widget, .gsc-results {
-  width: 800px;
-}*/
-
 .main {
   width: 860px;
 }
@@ -81,9 +77,13 @@ input[type="text"]  {
   padding: 15px;
 }
 
-.gsc-results {
+#uds-searchControl .gsc-results {
   margin: 0 15px;
   padding: 0 15px;
+}
+
+
+.gsc-results {
 }
 
 /* Body
@@ -1710,14 +1710,6 @@ color: #000;
 #uds-searchControl .gs-result a.gs-visibleUrl,#uds-searchControl .gs-result .gs-visibleUrl{line-height:1.3em;font-size:95%}
 #uds-searchControl .gs-result .gs-snippet{margin:.25em 0;line-height:1.2em}
 #uds-searchControl .gs-no-results-result .gs-snippet,#uds-searchControl .gs-error-result .gs-snippet{border:none;background-color:transparent;font-style:italic}
-
-#uds-searchControl .gsc-results {
-  padding: 1em 1em 0 1em;
-  margin: 0 0 2em;
-  border-width: 1px;
-  border-style: solid;
-  width: auto;
-}
 
 
 /* The skin ends
