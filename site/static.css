@@ -10,13 +10,20 @@
   display: none;
 }
 
-/* Buttons
+/* Radius
 ----------------------------------------------- */
 select, button, input {
   border-radius: 8px;
   -moz-border-radius: 8px;
 }
 
+.widget, .gsc-results {
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+}
+
+/* Buttons
+----------------------------------------------- */
 select, button, input[type="button"], input[type="submit"] {
   padding: 1ex;
 }
@@ -47,11 +54,6 @@ table .gs-branding {
 
 .main .widget {
   width: 800px;
-}
-
-.widget, #uds-searchControl .gsc-results {
-  border-radius: 8px;
-  -moz-border-radius: 8px;
 }
 
 .header .HTML, .header  .Header, .header  .CustomSearch, .header  .CustomSearch div {
