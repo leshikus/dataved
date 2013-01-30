@@ -52,7 +52,7 @@ select, button, input {
   width: 860px;
 }
 
-.main .widget, #uds-searchResults {
+.main .widget, .gsc-results {
   width: 800px;
 }
 
@@ -77,7 +77,7 @@ input[type="text"]  {
   padding: 15px;
 }
 
-#uds-searchResults {
+.gsc-results {
   margin: 0 15px;
   padding: 0 15px;
 }
