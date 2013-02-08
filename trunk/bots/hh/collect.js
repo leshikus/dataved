@@ -2,6 +2,7 @@ var skipNames = [];
 skipNames = arrToHash(skipNames);
 
 var timeout = 500;
+var errReload = 'Произошла ошибка. Мы скоро это починим.';
 
 function waitFor(f) {
   setTimeout(function() {
@@ -63,9 +64,16 @@ function nextW(i) {
   var w = window.open(href, '_blank');
   waitFor(function() {
     var err = w.document.getElementsByClassName('m-attention_bad');
-    if ((err.length > 0) && (err[0].innerText.indexOf('500') > 0)) { // limit exceeded
-      console.log(JSON.stringify(res));
-      return;
+    if (err.length > 0) {
+      var errText = err[0].innerText;
+	
+	  if ((errText.indexOf('500') > 0)) { // limit exceeded
+        console.log(JSON.stringify(res));
+        return;
+	  } else if (errText.indexOf(errReload) == errReload) {
+	    w.close();
+	    nextW(i); // reload
+	  }
     }
 
 	try {
@@ -75,7 +83,8 @@ function nextW(i) {
 
     var html = w.document.getElementsByClassName('resume__contacts')[0].innerHTML;
     var email = reEmail.exec(html)[1];
-	email = email.replace(/[^a-zA-Z0-9._%@+-]/g, '');
+	email = email.replace(/\+[a-zA-Z0-9._%+-]+@gmail\.com$/g, '@gmail.com');
+	email = email.replace(/[^a-zA-Z0-9._%@-]/g, '');
 
     html = w.document.getElementsByClassName('resume')[0].innerText;
     w.close();
