@@ -1,11 +1,14 @@
 // res = 
+var out = [];
 
 
 function isEnglish(name) {
   return name.replace(/[a-zA-Z\s]*/g, '') == '';
 }
 
-var e, eng = [], rus = [], out = [], r = [];
+var e, eng = [], rus = [], r = [];
+
+console.log(res.length);
 
 while (e = res.shift()) (isEnglish(e[1]) ? eng : rus).push(e);
 
