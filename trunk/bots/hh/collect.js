@@ -1,8 +1,10 @@
 var skipNames = [];
 skipNames = arrToHash(skipNames);
 
-var timeout = 500;
-var errReload = 'Произошла ошибка. Мы скоро это починим.';
+var TIMEOUT = 500;
+var ERR_RELOAD = 'Произошла ошибка. Мы скоро это починим.';
+var RESUME_RENEWED = /(Резюме обновлено)\s.*\s(\d+\.\d+\.\d+)/;
+var ERR_LOAD = '— подтвердили программисты.'
 
 function waitFor(f) {
   setTimeout(function() {
@@ -12,7 +14,7 @@ function waitFor(f) {
       console.log('waitFor(): ' + e);
       waitFor(f);
     }
-  }, timeout);
+  }, TIMEOUT);
 }
 
 function arrToHash(arr) {
@@ -26,7 +28,7 @@ var res = [];
 
 var d;
 var n;
-var page = 1;
+var page = 0;
 var ww = 0;
 
 function nextW(i) {
@@ -70,9 +72,21 @@ function nextW(i) {
 	  if ((errText.indexOf('500') > 0)) { // limit exceeded
         console.log(JSON.stringify(res));
         return;
-	  } else if (errText.indexOf(errReload) == errReload) {
+	  } else if (errText == ERR_RELOAD) {
 	    w.close();
 	    nextW(i); // reload
+		return;
+	  }
+    }
+	
+	var err = w.document.getElementsByClassName('hang_mdash');
+    if (err.length > 0) {
+      var errText = err[0].innerText;
+	
+	  if ((errText.indexOf(ERR_LOAD) > 0)) { // limit exceeded
+	    w.close();
+	    nextW(i); // reload
+		return;
 	  }
     }
 
@@ -86,10 +100,12 @@ function nextW(i) {
 	email = email.replace(/\+[a-zA-Z0-9._%+-]+@gmail\.com$/g, '@gmail.com');
 	email = email.replace(/[^a-zA-Z0-9._%@-]/g, '');
 
-    html = w.document.getElementsByClassName('resume')[0].innerText;
+    var text = w.document.getElementsByClassName('resume')[0].innerText;
     w.close();
 
-    res.push([type, name, email, href.replace(/\?.*/, ''), html]);
+	text = text.replace(/^\s*|\s*$/g, '').replace(/^\s*|\s*$/gm, '');
+	text = text.replace(RESUME_RENEWED, '$1 $2');
+    res.push([type, name, email, href.replace(/\?.*/, ''), text]);
     nextW(i - 1);
   });
 }
