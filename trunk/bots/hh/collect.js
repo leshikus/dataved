@@ -2,9 +2,9 @@ var skipNames = [];
 skipNames = arrToHash(skipNames);
 
 var TIMEOUT = 500;
-var ERR_RELOAD = 'Ïðîèçîøëà îøèáêà. Ìû ñêîðî ýòî ïî÷èíèì.';
-var RESUME_RENEWED = /(Ðåçþìå îáíîâëåíî)\s.*\s(\d+\.\d+\.\d+)/;
-var ERR_LOAD = '— ïîäòâåðäèëè ïðîãðàììèñòû.'
+var ERR_RELOAD = 'ÐŸÑ€Ð¾Ð¸Ð·Ð¾ÑˆÐ»Ð° Ð¾ÑˆÐ¸Ð±ÐºÐ°. ÐœÑ‹ ÑÐºÐ¾Ñ€Ð¾ ÑÑ‚Ð¾ Ð¿Ð¾Ñ‡Ð¸Ð½Ð¸Ð¼.';
+var RESUME_RENEWED = /(Ð ÐµÐ·ÑŽÐ¼Ðµ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¾)\s.*\s(\d+\.\d+\.\d+)/;
+var ERR_LOAD = 'â€” Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸Ð»Ð¸ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð¸ÑÑ‚Ñ‹.'
 
 function waitFor(f) {
   setTimeout(function() {
@@ -83,9 +83,9 @@ function nextW(i) {
     if (err.length > 0) {
       var errText = err[0].innerText;
 	
-	  if ((errText.indexOf(ERR_LOAD) > 0)) { // limit exceeded
+	  if ((errText.indexOf(ERR_LOAD) > 0)) { // skip
 	    w.close();
-	    nextW(i); // reload
+	    nextW(i - 1); // reload
 		return;
 	  }
     }
