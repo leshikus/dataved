@@ -41,6 +41,10 @@ function nextW(i) {
     waitFor(function() {
 	  if (ww.document.getElementsByClassName('copyright').length != 1) throw 'Not loaded';
 	  d = ww.document.getElementsByClassName('HH-Employer-ResumeFolders-Resume');
+	  if (d.length == 0) {
+        console.log(JSON.stringify(res));
+        return;	    
+	  }
 	  nextW(d.length - 1);
 	});
     return;
