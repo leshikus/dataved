@@ -1,4 +1,4 @@
-﻿/* For pages containing posts
+ /* For pages containing posts
 ----------------------------------------------- */
 
 /* Headers
@@ -214,6 +214,11 @@ ul.rpw img {
 .post-body tr.nob, .post-body td.nob {
   border: none;
 }
+
+/* Github gists
+----------------------------------------------- */
+.gist { font-size: 10px; }
+.gist table, .gist td, .gist tr { border: none; }
 
 /* Boxed tables
 ----------------------------------------------- */
