@@ -252,22 +252,13 @@ ul.rpw img {
   width: 100%;
 }
 
-#ranking hr {
-  position: relative;
-  top: 3px;
-  text-align: left;
-  color: lightgreen;
-  background-color: lightgreen;
-  border-color: lightgreen;
-}
-
 /* Ranking
 ----------------------------------------------- */
-#ranking ul {
+.post-body ul#ranking {
   list-style-type: none;
 }
 
-#ranking hr {
+.post-body #ranking hr {
   position: relative;
   top: 3px;
   text-align: left;
@@ -276,17 +267,17 @@ ul.rpw img {
   border-color: lightgreen;
 }
 
-#ranking li span img {
+.post-body #ranking li span img {
   padding: 0;
 }
 
-#ranking li, #ranking li span {
+.post-body #ranking li, .post-body #ranking li span {
   padding: 0;
   margin: 0;
   height: 24px;
   vertical-align: top;
 }
 
-#ranking li span {
+.post-body #ranking li span {
   float: right;
 }
