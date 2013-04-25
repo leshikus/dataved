@@ -263,8 +263,8 @@ ul.rpw img {
 
 /* Ranking
 ----------------------------------------------- */
-#ranking {
-  list-style-type: none
+#ranking ul {
+  list-style-type: none;
 }
 
 #ranking hr {
