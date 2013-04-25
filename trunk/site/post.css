@@ -263,6 +263,19 @@ ul.rpw img {
 
 /* Ranking
 ----------------------------------------------- */
+#ranking {
+  list-style-type: none
+}
+
+#ranking hr {
+  position: relative;
+  top: 3px;
+  text-align: left;
+  color: lightgreen;
+  background-color: lightgreen;
+  border-color: lightgreen;
+}
+
 #ranking li span img {
   padding: 0;
 }
