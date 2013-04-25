@@ -267,6 +267,10 @@ ul.rpw img {
   border-color: lightgreen;
 }
 
+.post-body #ranking li {
+  clear: right;
+}
+
 .post-body #ranking li span img {
   padding: 0;
 }
