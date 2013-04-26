@@ -254,7 +254,7 @@ ul.rpw img {
 
 /* Radic
 ----------------------------------------------- */
-.radic span {
+span.radic {
   text-decoration: overline;
 }
 
