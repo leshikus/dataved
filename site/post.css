@@ -252,6 +252,12 @@ ul.rpw img {
   width: 100%;
 }
 
+/* Radic
+----------------------------------------------- */
+.radic span {
+  text-decoration: overline;
+}
+
 /* Ranking
 ----------------------------------------------- */
 .post-body ul#ranking {
