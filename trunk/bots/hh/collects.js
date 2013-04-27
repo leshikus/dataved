@@ -1,7 +1,8 @@
 var TIMEOUT = 500;
 var ERR_RELOAD = 'Произошла ошибка. Мы скоро это починим.';
 var RESUME_RENEWED = /(Резюме обновлено)\s.*\s(\d+\.\d+\.\d+)/;
-var ERR_LOAD = '— подтвердили программисты.'
+var ERR_LOAD = '— подтвердили программисты.';
+var S_URL = 'https://script.google.com/macros/s/AKfycbwQ0KbAXlSCinvUjFr__kAv7cEwmkuix1wjEjsByq1yoNpsYEY/exec';
 
 function waitFor(f) {
   setTimeout(function() {
@@ -31,12 +32,13 @@ var ww = 0;
 function pushRes(res, type, name, email, href, text) {
   res.push([type, name, email, href.replace(/\?.*/, ''), text]);
   // nextW(i - 1);
-  www = window.open(SCRIPT_URL + '?name=' +
+  www = window.open(S_URL + '?name=' +
                     encodeURIComponent(type + ':' + name + ':' + email) +
                     '&content=' + encodeURIComponent(text));
   waitFor(function() {
     console.log(www.document);
-    www.close();
+	throw 'Test';
+    //www.close();
     // nextW(i - 1);
   });
 }
@@ -127,7 +129,7 @@ function nextW(i) {
 
 	text = text.replace(/^\s*|\s*$/g, '').replace(/^\s*|\s*$/gm, '');
 	text = text.replace(RESUME_RENEWED, '$1 $2');
-    pushRes(type, name, email, href.replace(/\?.*/, ''), text, i);
+    pushRes(res, type, name, email, href.replace(/\?.*/, ''), text, i);
   });
 }
 
