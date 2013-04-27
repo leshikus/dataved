@@ -1,7 +1,8 @@
 var TIMEOUT = 500;
 var ERR_RELOAD = 'Произошла ошибка. Мы скоро это починим.';
 var RESUME_RENEWED = /(Резюме обновлено)\s.*\s(\d+\.\d+\.\d+)/;
-var ERR_LOAD = '— подтвердили программисты.'
+var ERR_LOAD = '— подтвердили программисты.';
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwQ0KbAXlSCinvUjFr__kAv7cEwmkuix1wjEjsByq1yoNpsYEY/exec';
 
 function waitFor(f) {
   setTimeout(function() {
@@ -17,7 +18,7 @@ function waitFor(f) {
 function pushRes(res, type, name, email, href, text) {
   res.push([type, name, email, href.replace(/\?.*/, ''), text]);
   // nextW(i - 1);
-  www = window.open('https://script.google.com/macros/s/AKfycbwQ0KbAXlSCinvUjFr__kAv7cEwmkuix1wjEjsByq1yoNpsYEY/exec?name=' +
+  www = window.open(SCRIPT_URL + '?name=' +
                     encodeURIComponent(type + ':' + name + ':' + email) +
                     '&content=' + encodeURIComponent(text));
   waitFor(function() {
