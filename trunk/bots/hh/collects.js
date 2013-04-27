@@ -2,9 +2,9 @@ var skipNames = [];
 skipNames = arrToHash(skipNames);
 
 var TIMEOUT = 500;
-var ERR_RELOAD = 'РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°. РњС‹ СЃРєРѕСЂРѕ СЌС‚Рѕ РїРѕС‡РёРЅРёРј.';
-var RESUME_RENEWED = /(Р РµР·СЋРјРµ РѕР±РЅРѕРІР»РµРЅРѕ)\s.*\s(\d+\.\d+\.\d+)/;
-var ERR_LOAD = 'вЂ” РїРѕРґС‚РІРµСЂРґРёР»Рё РїСЂРѕРіСЂР°РјРјРёСЃС‚С‹.'
+var ERR_RELOAD = 'Произошла ошибка. Мы скоро это починим.';
+var RESUME_RENEWED = /(Резюме обновлено)\s.*\s(\d+\.\d+\.\d+)/;
+var ERR_LOAD = '— подтвердили программисты.'
 
 function waitFor(f) {
   setTimeout(function() {
