@@ -1,8 +1,7 @@
 var TIMEOUT = 500;
 var ERR_RELOAD = 'Произошла ошибка. Мы скоро это починим.';
 var RESUME_RENEWED = /(Резюме обновлено)\s.*\s(\d+\.\d+\.\d+)/;
-var ERR_LOAD = '— подтвердили программисты.';
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwQ0KbAXlSCinvUjFr__kAv7cEwmkuix1wjEjsByq1yoNpsYEY/exec';
+var ERR_LOAD = '— подтвердили программисты.'
 
 function waitFor(f) {
   setTimeout(function() {
@@ -13,19 +12,6 @@ function waitFor(f) {
       waitFor(f);
     }
   }, TIMEOUT);
-}
-
-function pushRes(res, type, name, email, href, text) {
-  res.push([type, name, email, href.replace(/\?.*/, ''), text]);
-  // nextW(i - 1);
-  www = window.open(SCRIPT_URL + '?name=' +
-                    encodeURIComponent(type + ':' + name + ':' + email) +
-                    '&content=' + encodeURIComponent(text));
-  waitFor(function() {
-    console.log(www.document);
-    www.close();
-    // nextW(i - 1);
-  });
 }
 
 function arrToHash(arr) {
@@ -41,6 +27,19 @@ var d;
 var n;
 var page = 0;
 var ww = 0;
+
+function pushRes(res, type, name, email, href, text) {
+  res.push([type, name, email, href.replace(/\?.*/, ''), text]);
+  // nextW(i - 1);
+  www = window.open(SCRIPT_URL + '?name=' +
+                    encodeURIComponent(type + ':' + name + ':' + email) +
+                    '&content=' + encodeURIComponent(text));
+  waitFor(function() {
+    console.log(www.document);
+    www.close();
+    // nextW(i - 1);
+  });
+}
 
 function nextW(i) {
   console.log('nextW(' + i + ')');
@@ -76,6 +75,9 @@ function nextW(i) {
 
   var w = window.open(href, '_blank');
   waitFor(function() {
+    var copy = w.document.getElementsByClassName('copyright');
+	if (copy.length == 0) throw 'Loading';
+	
     var err = w.document.getElementsByClassName('m-attention_bad');
     if (err.length > 0) {
       var errText = err[0].innerText;
@@ -88,34 +90,43 @@ function nextW(i) {
 	    nextW(i); // reload
 		return;
 	  }
-  }
+    }
 	
 	var err = w.document.getElementsByClassName('hang_mdash');
     if (err.length > 0) {
       var errText = err[0].innerText;
 	
-	    if ((errText.indexOf(ERR_LOAD) > 0)) { // skip
-	      w.close();
-	      nextW(i - 1); // reload
-		    return;
-	    }
+	  if ((errText.indexOf(ERR_LOAD) > 0)) { // skip
+	    w.close();
+	    nextW(i - 1); // reload
+		return;
+	  }
     }
 
-	  try {
-	    w.document.getElementsByClassName('related__wrapper')[0].innerHTML = '';
-  	} catch(e) {}
-  	w.document.getElementsByClassName('topbuttons')[2].innerHTML = '';
-
-    var html = w.document.getElementsByClassName('resume__contacts')[0].innerHTML;
-    var email = reEmail.exec(html)[1];
+	try {
+	  w.document.getElementsByClassName('related__wrapper')[0].innerHTML = '';
+	} catch(e) {}
+	try {
+	  w.document.getElementsByClassName('topbuttons')[2].innerHTML = '';
+	} catch(e) {}
+	try {
+	  e  = w.document.getElementsByClassName('resume__achtung');
+	  for (j in e) e[j].innerHTML = '';
+	} catch(e) {}
+				
+	var email = 'ask.linkedin@yandex.ru';
+	try {
+      var html = w.document.getElementsByClassName('resume__contacts')[0].innerHTML;
+      email = reEmail.exec(html)[1];
 	  email = email.replace(/\+[a-zA-Z0-9._%+-]+@gmail\.com$/g, '@gmail.com');
 	  email = email.replace(/[^a-zA-Z0-9._%@-]/g, '');
+	} catch(e) {}
 
     var text = w.document.getElementsByClassName('resume')[0].innerText;
     w.close();
 
-	  text = text.replace(/^\s*|\s*$/g, '').replace(/^\s*|\s*$/gm, '');
-	  text = text.replace(RESUME_RENEWED, '$1 $2');
+	text = text.replace(/^\s*|\s*$/g, '').replace(/^\s*|\s*$/gm, '');
+	text = text.replace(RESUME_RENEWED, '$1 $2');
     pushRes(type, name, email, href.replace(/\?.*/, ''), text, i);
   });
 }
