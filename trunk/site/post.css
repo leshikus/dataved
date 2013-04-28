@@ -158,6 +158,11 @@ ul.rpw img {
   padding: 0 2ex 1ex 0;
 }
 
+.post-body iframe.hidden {
+  position: absolute;
+  top: -4000px;
+}
+
 /* Inline images
 ----------------------------------------------- */
 .post-body p img, .post-body td img,
