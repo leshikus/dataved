@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<svg xmlns="http://www.w3.org/2000/svg" onmousedown="evt.preventDefault()" version="1.1" onload="init(evt.target.ownerDocument)"> 
+	<script type="text/ecmascript"><![CDATA[var xmlHttp = null;function createXmlHttpRequestObject(){var xmlHttp;try{xmlHttp = new XMLHttpRequest();}catch(e){var XmlHttpVersions = new Array("MSXML2.XMLHTTP.6.0","MSXML2.XMLHTTP.5.0","MSXML2.XMLHTTP.4.0","MSXML2.XMLHTTP.3.0","MSXML2.XMLHTTP","Microsoft.XMLHTTP");for (var i=0; i<XmlHttpVersions.length && !xmlHttp; i++){try{xmlHttp = new ActiveXObject(XmlHttpVersions[i]);}catch (e) {}}}if (!xmlHttp)alert("Error creating the XMLHttpRequest object.");else return xmlHttp; }function ajaxRequest(url, callback){var innerCallback = callback;if (!xmlHttp) xmlHttp = createXmlHttpRequestObject();if (xmlHttp && (xmlHttp.readyState == 4 || xmlHttp.readyState == 0)){xmlHttp.onreadystatechange = handleGettingResults;xmlHttp.open("GET", url, true);xmlHttp.send(null);}else setTimeout("ajaxRequest(url,callback)", 1000); function handleGettingResults() { if (xmlHttp.readyState == 4){ if (xmlHttp.status == 200){innerCallback(xmlHttp.responseText)}else{console.info("Couldn't connect to server");}}}}]]></script> 
+	<script type="text/ecmascript"><![CDATA[
+		var GLOB = {}; function mySetInterval(f,t){ GLOB.i = function (){ f(); setTimeout("GLOB.i()",t) }; GLOB.i() };
+		
+		Array.prototype.each      = function(f) { for (var i=0; i<this.length; i++ ) { f(this[i]) }; return this };
+		Array.prototype.grep      = function(f) { for (var i=0; i<this.length; i++ ) { if (!f(this[i])) this.splice(i--,1) }; return this };
+		Array.prototype.map       = function(f) { var n=[]; for (var i=0; i<this.length; i++ ) { n.push(f(this[i])) }; return n };
+		Array.prototype.each2each = function(f) { for (var i=0; i<this.length; i++ ) { for (var j=i+1; j<this.length; j++){ f(this[i],this[j]) } }; return this };
+		
+		function init(SVGD){
+			var svg = {
+				atr : function(e,a) { for (var k in a) { e.setAttribute(k,a[k]) }; return e },
+				gatr: function(e,a) { var ga = {}; a.each(function(k){ ga[k] = e.getAttribute(k) }); return ga },
+				el  : function(type,to) { var e = this.document.createElementNS("http://www.w3.org/2000/svg",type); (to?to:this.root).appendChild(e); return e },
+				init: function(doc) {
+					this.root = (this.document = doc).documentElement;
+					this.back = this.atr(this.el('rect'),{fill:'#1C1C1C'});
+					return this;
+				},
+			}.init(SVGD);
+			
+			var camera = {
+				padpercent: 0.1, minrect: 1.1,
+				xys    : [],
+				reg    : function(xy) { this.xys.push(xy); return xy },
+				unreg  : function(xy) { this.xys.grep(function(e){ return (xy!=e) }) },
+				reframe: function(xy) {
+					var me = this;
+					var r  = { x1:0, y1:0, x2:0, y2:0 };
+					if (this.xys.length){
+						r = { x1: Infinity, y1: Infinity, x2: -Infinity, y2: -Infinity };
+						this.xys.each(function(xy){
+							if (r.x1 > xy.x) { r.x1 = xy.x };
+							if (r.y1 > xy.y) { r.y1 = xy.y };
+							if (r.x2 < xy.x) { r.x2 = xy.x };
+							if (r.y2 < xy.y) { r.y2 = xy.y };
+						});
+					};
+					
+					if (r.x2-r.x1 < this.minrect) { var d = (r.x1+r.x2)/2; r.x1 = d - this.minrect/2; r.x2 = d + this.minrect/2 };
+					if (r.y2-r.y1 < this.minrect) { var d = (r.y1+r.y2)/2; r.y1 = d - this.minrect/2; r.y2 = d + this.minrect/2 };
+					
+					var b = {
+						x: r.x1     -(r.x2-r.x1) * this.padpercent,
+						y: r.y1     -(r.y2-r.y1) * this.padpercent,
+						w: r.x2-r.x1+(r.x2-r.x1) * this.padpercent*2,
+						h: r.y2-r.y1+(r.y2-r.y1) * this.padpercent*2
+					};
+					var w = { w:window.innerWidth, h: window.innerHeight };
+					var t = {
+						 k: Math.max(b.w/w.w, b.h/w.h),
+						dx: Math.max(0,b.h/2*(w.w/w.h-b.w/b.h)) - b.x,
+						dy: Math.max(0,b.w/2*(w.h/w.w-b.h/b.w)) - b.y
+					};
+					this.CTM = function(ev){ return { x:ev.clientX * t.k - t.dx, y:ev.clientY * t.k - t.dy }; };
+					var bxy  = this.CTM({clientX:0  ,clientY:0  });
+					var bwh  = this.CTM({clientX:w.w,clientY:w.h});
+					svg.atr(svg.back, {x: bxy.x, y: bxy.y, width: bwh.x - bxy.x, height: bwh.y-bxy.y });
+					svg.atr(svg.root, {viewBox: [ b.x, b.y, b.w, b.h ].join(' ')});
+				},
+				init: function(){ var me=this; me.reframe(); window.onresize = function() { me.reframe() }; return me }
+			}.init();
+			
+			var spring = {
+				inert      : 0.98,
+				inertmovek : 0.001,
+				msec       : 10,
+				inter      : 2,
+				movek      : 0.16,
+				movedegrade: 0.99,
+				mmax       : 0.5,
+				femax2     : Infinity,
+				vs         : [],
+				go         : 0,
+				
+				adrenaline : 30,
+				edgebreak  :  1,
+				wheneat    :  5,
+				foodtemp   : 10,
+				foodk      : 0.01,
+				ondeath    : function() {  },
+				
+				suns       : [],
+				unregsun   : function(v) { this.suns.grep(function(e){ return (v!=e) }) },
+				regsun     : function(v) { this.suns.push(v); this.unreg(v); return v },
+				//regsun     : function(v) { this.suns.push(v);  return v },
+				
+				unreg      : function(v) { this.vs.grep(function(e){ return (v!=e) }) },
+				reg        : function(v) { this.vs.push(v); return v },
+				dostep     : function() {
+					function xyp(xy,d,k) { xy.x+=d.x*k; xy.y+=d.y*k };
+					function xym(xy  ,k) { xy.x*=k; xy.y*=k; return xy };
+					function r2(xy)      { return xy.x*xy.x + xy.y*xy.y };
+					function dr()        { return Math.random() * 0.1 - 0.05 };
+					function fe(type,f,t,k){
+						var d  = { x: t.xy.x - f.xy.x, y: t.xy.y - f.xy.y };
+						var d2; while ((d2 = r2(d)) < 0.001) { d = {x:dr(),y:dr()} };
+						var fe = k * (type
+							? (d2 < me.femax2 ? 1/d2 : 0)
+							: -Math.sqrt(Math.min(d2,me.femax2)));
+						
+						xyp(t.fe,d, fe);
+						xyp(f.fe,d,-fe);
+						
+						return fe;
+					};
+					
+					var me = this; var degrade;
+					
+					me.vs.each(function(v  ){ xym(v.fe,me.inert) });
+					
+					if (me.go == 1){
+						
+						me.vs.each2each(function(f,t){
+							if (f.body[t.id]){
+								fe(1,f,t,f.e * t.e);
+							}else{
+								var d  = { x: t.xy.x - f.xy.x, y: t.xy.y - f.xy.y };
+								
+								if ((d2 = r2(d)) > 0.0001){
+									var fee = 1 / d2;
+									
+									if (fee * f.e * f.e > me.wheneat){
+										if (f.e > t.body.e){
+											if (t == t.body.head){
+												f.edge(t);
+											};
+										};
+									};
+									if (fee * t.e * t.e > me.wheneat){
+										if (t.e > f.body.e){
+											if (f == f.body.head){
+												t.edge(f);
+											};
+										};
+									};
+									
+									
+									var ke = 1;
+									if (f.body.e < t.body.e){
+										ke = -1;
+									}else{
+										if (f.body.e == t.body.e){
+											ke = 0;
+										};
+									};
+									
+									//console.info(f.e);
+									
+									xyp(t.fe,d, ke * fee * Math.sqrt(t.e) * me.adrenaline);
+									xyp(f.fe,d, ke * fee * Math.sqrt(f.e) * me.adrenaline);
+								};
+							};
+						});
+					}else{
+						me.vs.each2each(function(f,t){ fe(1,f,t,f.e * t.e)});
+					};
+					
+					
+					
+					me.vs.each     (function(v  ){
+					   v.edges.each(function(e  ){
+					   //if (v==e.f){ if ( (-fe(0,e.f,e.t,e.e)) > e.e * me.edgebreak ){ e.remove() } };
+					   if (v==e.f){ if ( (-fe(0,e.f,e.t,Math.sqrt(e.e))) > e.e * me.edgebreak ){ e.remove() } };
+					})});
+					
+					me.suns.each     (function(v  ){ v.fe2.x = v.fe.x; v.fe2.y = v.fe.y; });
+					
+					// me.suns.each(function(sun){
+						// me.vs.each(function(f){ fe(0,f,sun,f.e * sun.spring)});
+						// me.vs.each(function(f){ fe(1,f,sun,f.e * sun.spring * 500000)});
+					// });
+					
+					
+					// massaraksh / 2
+					me.suns.each(function(sun){
+						me.vs.each(function(f){ fe(0,f,sun,sun.spring * 100)});
+						me.vs.each(function(f){ fe(1,f,sun,sun.spring * 5000000)});
+					});
+					
+					// massaraksh
+					// me.suns.each(function(sun){
+						// me.vs.each(function(f){ fe(0,f,sun,1/f.e * sun.spring * 10)});
+						// me.vs.each(function(f){ fe(1,f,sun,1/f.e * sun.spring * 500000)});
+					// });
+					
+					me.suns.each     (function(v  ){ v.fe.x = v.fe2.x; v.fe.y = v.fe2.y; });
+					
+					//me.suns.each     (function(v  ){ v.fe = {x:0,y:0}; });
+					
+					me.suns.each2each(function(f,t){ fe(1,f,t,- f.spring * t.spring)});
+					me.suns.each     (function(v  ){ if (!v.fixed) { xyp(v.xy,v.fe,0.000001) } });
+					
+					
+					//me.vs.each     (function(f  ){ fe(1,f,Sun, f.spring / 10 )});
+					
+					
+					
+					if (me.inert > 0){
+						me.vs.each(function(v  ){ xym(v.fe,me.inert) });
+						me.vs.each     (function(v  ){ if (!v.fixed){ xyp(v.xy,v.fe,me.inertmovek); }});
+					}else{
+						me.vs.each     (function(v  ){ if (!v.fixed){ xyp(v.xy,xym(v.fe,(r2(xym(v.fe, me.movek)) > me.mmax*me.mmax) && (degrade=1) ? me.mmax/Math.sqrt(r2(v.fe)) : 1),1) } });
+						if (degrade) me.movek*=me.movedegrade;
+					};
+				},
+				run: function(gotime) {
+					
+					function tst() { return (new Date()).getTime() / 1000 };
+					
+					var food = 0;
+					
+					if (!this.runonce++){
+						var me = this;
+						
+						me.gotime = tst() + gotime;
+						
+						var  x = 0;
+						
+						mySetInterval(function(){
+							//console.info(me.gotime + ' ' + tst());
+							if (me.gotime < tst()) {  me.go = 1 };
+							
+							for (var i=0;i<me.inter;i++){ spring.dostep() };
+							
+							me.vs.each(function(v) { v.redraw() });
+							
+							me.suns.each(function(v) { v.redraw() });
+							
+							if (++food >= me.foodtemp){
+								food = 0;
+								
+								me.vs.each(function(v){
+									v.edges.each(function(e){
+										var f;
+										var t;
+										
+										if (e.f.e > e.t.e){ f=e.f; t=e.t }
+										else              { f=e.t; t=e.f };
+										
+										var foode = t.e * me.foodk;
+										f.E(f.e + foode);
+										t.E(t.e - foode);
+										
+										if (t.e <= 1){ t.remove(); me.ondeath() };
+									});
+								});
+								
+								// me.vs.each(function(v){
+									// v.edges.each(function(e){
+										// var f;
+										// var t;
+										
+										// if (e.f.e > e.t.e){ f=e.f; t=e.t }
+										// else              { f=e.t; t=e.f };
+										
+										// var foode = t.e * me.foodk;
+										// f.E(f.e + foode);
+										// t.E(t.e - foode);
+										
+										// if (t.e <= 1){ t.remove(); me.ondeath() };
+									// });
+								// });
+							};
+							
+							camera.reframe();
+						}, this.msec);
+					};
+				}, runonce: 0
+			};
+			
+			var interact = {
+				evt : function(e,a){ for (var k in a) { e.addEventListener   (k,a[k],false) }; return e },
+				devt: function(e,a){ for (var k in a) { e.removeEventListener(k,a[k],false) }; return e },
+				// google chrome & safari mousehits bugfix: http://code.google.com/p/chromium/issues/detail?id=25135
+				// remove it and all "mousefix." above when bug be fixed
+				
+				mousefix: {
+					els: {mousedown:[],mouseup:[]},
+					mouseevent: function(tp,ev){
+						function map(f,v){ return f(v) };
+						var xy=camera.CTM(ev);
+						var zor={circle:0,rect:1};
+						this.els[tp].concat([])
+							.grep(function(e){
+								var r =
+									(e.e.nodeName == 'circle') ? map(function(v){ return {x1: v.cx-v.r,y1: v.cy-v.r,x2:v.cx-(-v.r),y2:v.cy-(-v.r)} },svg.gatr(e.e,['cx','cy','r'])) :
+									(e.e.nodeName ==   'rect') ? map(function(v){ return {x1: v.x, y1: v.y, x2: v.x-(-v.width), y2: v.y-(-v.height)} },svg.gatr(e.e,['x' ,'y' ,'width', 'height'])) : {x1:0,y1:0,x2:0,y2:0};
+								return (
+									r.x1<=xy.x && r.y1<=xy.y &&
+									r.x2>=xy.x && r.y2>=xy.y
+								);
+							})
+							.sort(function(a,b){ return (zor[a.e.nodeName]<zor[b.e.nodeName]) ? -1 : (zor[a.e.nodeName]>zor[b.e.nodeName]) ? 1 : 0 })
+							.concat({a:function(){ }})[0].a(ev)
+					},
+					evt: function(e,a) {
+						if (a.mousedown){ this.els.mousedown.push({ e: e, a: a.mousedown }) };
+						if (a.mouseup  ){ this.els.mouseup  .push({ e: e, a: a.mouseup   }) };
+						return e;
+					},
+					init: function(interact) {
+						var me = this;
+						interact.evt(svg.root,{
+							mousedown: function(ev){ me.mouseevent('mousedown',ev) },
+							mouseup  : function(ev){ me.mouseevent('mouseup'  ,ev) }
+						});
+					}
+				},
+				dragdrop: function(e,dispatch) {
+					var me = this;
+					return me.mousefix.evt(e,{
+						mousedown: function(ev){
+							var f = dispatch(ev);
+							f.take(ev);
+							var evts = {
+								mousemove: function(ev) { f.drag(ev); },
+								mouseup:   function(ev) { me.devt(svg.root,evts); f.drop(ev); }
+							};
+							me.evt(svg.root,evts);
+						}
+					});
+				},
+				unreg: function (vx) {
+					this.mousefix.els.mousedown.grep(function(e){ return (vx.visual.e!=e.e) });
+					this.mousefix.els.mouseup  .grep(function(e){ return (vx.visual.e!=e.e) });
+				},
+				reg  : function (vx) {
+					var me = this;
+					//me.mousefix.evt( vx.visual.e, { mouseup: function (ev) { if (ev.ctrlKey && !ev.shiftKey){ vx.remove() } } });
+					me.mousefix.evt( me.dragdrop( vx.visual.e,
+						function (ev){
+							if (ev.shiftKey){
+								var pedge = vx.edge({ xy: camera.CTM(ev), edges: [], fixed:1, fe:{x:0,y:0},
+
+								e     : 100000,
+								E     : function() { },
+								MINE  : function() { },
+								REMINE: function() { },
+
+								move:function() {  } });
+								pedge.spring=0;
+								return {
+									take: function(ev){  },
+									drag: function(ev){ pedge.t.xy = camera.CTM(ev); pedge.redraw() },
+									drop: function(ev){
+										pedge.remove();
+										if (me.contextMouseUp && me.contextMouseUp!=vx) {
+											if (!vx.spring) vx.spring=1;
+											if (!me.contextMouseUp.spring) me.contextMouseUp.spring=1;
+											vx.edge(me.contextMouseUp);
+										};
+									}
+								};
+							}else{
+								if (ev.altKey){
+									return {
+										take: function(ev) { },
+										drag: function(ev) { },
+										// ToDo: this must be done by additional event
+										drop: function(ev) { vx.remove() },
+									};
+								}else{
+									//ajaxRequest('click?'+vx.tag,function(){ });
+									
+									return {
+										take: function(ev){ vx.fixed=true  },
+										drop: function(ev){ vx.fixed=false },
+										drag: function(ev){ vx.move(camera.CTM(ev)); camera.reframe(); }
+									};
+								};
+							};
+						}
+					),{ mouseup: function(ev) { me.contextMouseUp = vx } });
+					return vx;
+				},
+				init: function() {
+					var me = this;
+					me.evt(svg.root,{ mousedown: function(ev) { me.contextMouseUp = null } });
+					me.evt(svg.root,{ mousedown: function(ev) { if (ev.altKey ) spring.run() } });
+					me.mousefix.init(me);
+					me.mousefix.evt(svg.back,{ mousedown: function(ev){ if (ev.shiftKey){ vertex(camera.CTM(ev)).spring=0 } } });
+					return me;
+				}
+			}.init();
+			
+			var visual = {
+				init  : function() {
+					this.G  = svg.atr(svg.el('g'), { fill: "blue", stroke: "black", 'stroke-width': 0.01 });
+					this.GE = svg.atr(svg.el('g',this.G), { fill: "black"});
+					this.GV = svg.el('g',this.G);
+					svg.atr(svg.el('polyline',
+						svg.atr(svg.el('marker',this.GE),{
+							id: 'endArrow', markerUnits:"strokeWidth", orient:"auto",
+							camera : '0 0 6 4', refX:"15", refY:"2",
+							markerWidth:"15", markerHeight:"10"
+						})
+					),{points: "0,0 6,2 0,4 1,2"});
+					return this;
+				},
+				vertex: function() {
+					return {
+						r   : 0.1,
+						e   : svg.atr( svg.el('circle',this.GV),{ cursor: 'pointer' } ),
+						t   : svg.atr( svg.el('text'  ,this.GV),{
+							'stroke':'none',
+							'fill':'white',
+							'display':'none'
+						}),
+						ta  : {x:0,y:0},
+						init: function() {
+							svg.atr(this.e,{r:this.r});
+							svg.atr(this.t,{'font-size':this.r});
+							this.t.appendChild(document.createTextNode('',true));
+							return this;
+						},
+						text: function(t){ this.t.childNodes[0].nodeValue = t; this.ta = {x: this.r/4 * this.t.childNodes[0].nodeValue.length,y: this.r/3} },
+						move: function(xy){
+							svg.atr(this.e,{cx: xy.x, cy: xy.y});
+							svg.atr(this.t,{ x: xy.x - this.ta.x ,  y: xy.y + this.ta.y});
+						},
+						remove: function() { svg.atr(this.e,{'display':'none'}); svg.atr(this.t,{'display':'none'}); } // FIXIT
+					}.init();
+				},
+				edge  : function() {
+					return {
+						//e     : svg.atr(svg.el('line',this.GE),{ 'marker-end' : 'url(#endArrow)' }),
+						e     : svg.atr(svg.el('line',this.GE)),
+						move  : function(xy1,xy2){ svg.atr(this.e,{x1:xy1.x, y1:xy1.y, x2:xy2.x, y2:xy2.y}) },
+						remove: function() { svg.atr(this.e,{'display':'none'}); } // FIXIT
+					};
+				}
+			}.init();
+			
+			
+			function t2rgb(t) {
+				function p(d,t) {
+					var
+						v = 2 - Math.abs(d-t)*6;
+						v = v<-2 ? -2-v : v;
+						v = v<1 ? v>0 ? v : 0 : 1;
+					return Math.round(v*255);
+				};
+				return 'rgb('+[p(3/3,t),p(1/3,t),p(2/3,t)].join(',')+')';
+			};
+			function e2rgb(e) {
+				return t2rgb(Math.log(e,1.618) / 7);
+				//return t2rgb(e / 10);
+			};
+			
+			
+			var ID = 1;
+			function vertex(xy,wrk){
+				
+				return spring.reg(interact.reg({
+					//xy     : camera.reg(xy?xy:{x:0,y:0}),
+					xy     : (xy?xy:{x:0,y:0}),
+					
+					id     : ++ID,
+					fe     : {x:0,y:0},
+					fe2    : {x:0,y:0},
+					spring : 1,
+					wrk    : wrk,
+					visual : visual.vertex(),
+					edges  : [],
+					body   : { },
+					
+					REBODYE : function() {
+						var e  = 0;
+						var se = 0;
+						for (var i in this.body){
+							if (this.body[i].e > e ){ e = this.body[i].e; this.body.head = this.body[i] };
+							se += this.body[i].e;
+						};
+						
+						this.body.e  =  e;
+						this.body.se = se;
+						
+						return this;
+					},
+					
+					REBODY : function() {
+						function re(body,v){
+							v.body = body;
+							body[v.id] = v;
+							
+							v.edges.each(function(e) {
+								if (!body[e.f.id]){ re(body,e.f) };
+								if (!body[e.t.id]){ re(body,e.t) };
+							});
+						};
+						re({ },this);
+						
+						this.REBODYE();
+						
+						return this;
+					},
+					
+					mine   : 1000000,
+					
+					REMINE : function(){
+						var me = this;
+						me.mine = me.e;
+						this.edges.each(function(e){
+							if (me.mine > e.e){
+								me.mine = e.e;
+							};
+						});
+						
+						svg.atr(this.visual.e,{
+							'stroke-width': Math.sqrt(this.mine) / 3,
+							'stroke': '#555',
+						});
+						return this;
+					},
+					
+					e      : 1,
+					E      : function(e)  {
+						this.e      = e;
+						//this.spring = e * 2;
+						
+						svg.atr(this.visual.e,{
+							'fill' : e2rgb(e),
+							'r'    : Math.sqrt(e) / 3,
+						});
+						
+						
+						this.edges.each(function(e){
+							e.RE();
+						});
+						
+						// на случай если нет edges
+						this.REMINE();
+						
+						this.REBODYE();
+						//console.info(this.body.e + ' ' + this.e);
+						
+						return this;
+					},
+					
+					redraw : function()   { this.visual.move(this.xy); this.edges.each(function(e){ e.redraw() }); return this },
+					move   : function(xy) { this.xy.x = xy.x; this.xy.y = xy.y; this.redraw() },
+					edge   : function(t ) {
+						return {
+							f     : this,
+							t     : t,
+							spring: 1,
+							visual: visual.edge(),
+							
+							e     : 1,
+							E     : function(e)  {
+								this.e      = e;
+								this.spring = e;
+								
+								svg.atr(this.visual.e,{
+									'stroke': '#555',
+									'stroke-width': Math.sqrt(e) / 3,
+								});
+								
+								return this;
+							},
+							RE    : function() { this.E(Math.min(this.f.e,this.t.e)); this.f.REMINE(); this.t.REMINE(); },
+							
+							link  : function() {
+								this.f.edges.push(this); this.t.edges.push(this); 
+								
+								this.RE();
+								this.f.REBODY();
+								
+								return this
+							},
+							redraw: function(i) { this.visual.move(this.f.xy,this.t.xy); return this },
+							remove: function() {
+								var me = this;
+								
+								me.visual.remove();
+								
+								me.f.edges.grep(function(e){ return (e!=me) });
+								me.t.edges.grep(function(e){ return (e!=me) });
+								
+								me.f.REMINE(); me.t.REMINE();
+								
+								this.f.REBODY();
+								this.t.REBODY();
+							}
+						}.link().redraw();
+					},
+					remove : function() {
+						camera  .unreg(this.xy);
+						spring  .unreg(this);
+						interact.unreg(this);
+						while (this.edges.length) { this.edges[0].remove() };
+						this.visual.remove();
+					}
+				}.REMINE().redraw().REBODY()));
+			};
+			
+			function V(e){ return vertex().E(e) };
+			
+			// just comment to disable spring layouter engine
+			
+			function Seq(f,t){
+				var A = [];
+				for (var i=f;i<=t;i++){ A.push(i) };
+				return A;
+			};
+			
+			function rand(i){ return Math.round(Math.random() * (i-1)) + 1 };
+			
+			function Vert(slvl,lvl,diap){
+				
+				var v = V(Math.pow(1.618,slvl - lvl));
+				
+				Seq(1,diap)
+					.map(function(cn){
+					
+					var E = v.edge(
+						Vert(slvl, lvl + 1,diap - 1)
+					);
+				});
+				
+				return v;
+			};
+			
+			
+			function Sun(mass,xy){
+				var sun    = vertex(xy);
+				sun.fixed  = 1;
+				sun.spring = mass / 100000;
+				svg.atr(sun.visual.e,{ 'fill' : 'white', 'r': mass });
+				
+				spring.regsun(sun);
+				
+				camera.reg(sun.xy);
+				camera.minrect = 500.1;
+				
+				return sun;
+			};
+			
+			
+			
+			// Seq(1,3).map(function(s){
+				// Sun(7,{
+					// x: Math.random() * 500 - 250,
+					// y: Math.random() * 500 - 250,
+				// });
+			// });
+			
+			// Seq(1,10).map(function(s){
+				// Vert( 3, 0, 3 );
+			// });
+			
+			
+			// TODO: 
+			// .REMINE() грамотный!
+			// старение вглубину
+			// синтез частиц
+			// скелетные телодвижения
+			// возможно монстров на орбиту!
+			
+			// камера: инерция
+			// камера: динамическое выделение + escape
+			
+			// кто кого съел - определяет передачу инстинктивной информаии
+			// если произошёл разрыв - идёт динамическая (либо дискретная) мутация
+			
+			// динамические свойства упрочнения скелета (сколько энергии уходит на упрочнение)
+			// динамические свойства сращивания скелета (когда происходит индивидуально для особи или даже клетки особи)
+			
+			
+			// Sun(14,{x:-200,  y:100});
+			// Sun(14,{x: 200, y:-100});
+			
+			Sun(1);
+			
+			spring.adrenaline = 50;
+			spring.edgebreak  = 20;
+			spring.wheneat    = 2.5;
+			spring.inert      = 0.98;
+			spring.inertmovek = 0.002;
+			spring.foodtemp   = 25;
+			spring.foodk      = 0.001;
+			
+			
+			// Vert( 3, 0, 3 );
+			// Vert( 3, 0, 3 );
+			// Vert( 3, 0, 3 );
+			// Vert( 3, 0, 3 );
+			// Vert( 3, 0, 3 );
+			
+			spring.ondeath = function(){
+				
+				var avgv = 0;
+				spring.vs.each(function(v){ avgv += v.e });
+				avgv /= spring.vs.length;
+				
+				V( 1 + Math.random() * avgv * 2 );
+			};
+			Seq(1,250).each(function(i){ V( 1 + Math.random() ) });
+			
+			//Seq(1,250).each(function(i){ V( 1 + Math.random() *  4 ); });
+			
+			// Seq(1,100).each(function(i){ V( 1 + Math.random() *  4 ); });
+			// Seq(1, 50).each(function(i){ V( 1 + Math.random() *  6 ); });
+			// Seq(1, 25).each(function(i){ V( 1 + Math.random() *  8 ); });
+			// Seq(1, 12).each(function(i){ V( 1 + Math.random() * 10 ); });
+			// Seq(1,  7).each(function(i){ V( 1 + Math.random() * 12 ); });
+			// Seq(1,  1).each(function(i){ V( 1 + Math.random() * 14 ); });
+			
+			spring.run(2);
+			
+			// for (var i=-1;i<2;i++){
+				// for (var j=-1;j<2;j++){
+					// vertex({x:i*10,y:j*10}).fixed=1;
+				// };
+			// };
+			
+			
+			// svg+js graph visualization, interaction, simple js interface and spring layouter sketch
+			// (c) 2009 by pavel kudinov    
+			// about: http://pavel-kudinov.livejournal.com/64525.html
+			//
+			// fastest work in chrome or safari(only on mac)
+			// properly work in firefox (see bugs)
+			// generally should work in chrome,safari,firefox,opera & ie (with adobe svg plugin)
+			//
+			// mouse interface:
+			//   drag        - change position of vertex (without spring.run() you can layout graph by mouse, with spring layouter you can help to untangle graph)
+			//   shift+click - new vertex
+			//   shift+drag  - new edge
+			//   alt+click   - drop vertex
+			// ORIGINALY DEVELOPED FOR:
+			//   use simple js interface to real-time render internal state of some real system by eval of ajax commands (just eval commands from the example by ajax)
+			// you can:
+			//   disable spring layouter (comment springrun()) and manually layout graph (by mouse or by js interface)
+			//   dynamically change visual parts (like shape/color) by js interface (see example)
+			//   change spring layouter properties of every vertex and edges by js interface (ex. vertex().spring=100 and edge().spring=10 )
+			// spring engine properties:
+			//   msec  - delay between frames
+			//   inter - visible frames
+			//   movek,movedegrade,mmax - adaptive engine power (to have optimal latout speed without shake)
+			//   femax2 - use values 1-10 to better layouting of low connected graphs
+			
+			
+			// This is a SKETCH
+			
+			// ToDo List:
+			
+			// +adaptive step
+			// +Manual add vertex, edge
+			// +restore camera
+			// +some flat optimization of vertex?
+			// +pretty spring code
+			// +pretty 6 objects
+			
+			// isolate 6 objects
+			// globalize
+			
+			// why new edge so slow to render?
+			
+			// implement vertex remove, edge remove
+			// interact delete vertex, edge
+			
+			// fix adaptive step on dragndrop
+			// fix bad adaptive step on some small graphs?
+			
+			// spring engine params interface (femax, resolve, start/stop spring, ?)
+			
+			// pin
+			
+			
+			// IE contextMouseUp fix
+			
+			
+			// pretty mousefix code?
+			
+			// maybe...
+			// adaptive stroke-width ?
+			
+			// pointer autohit
+			// inter1 + inter2 / 2 = ?
+			// more simple visualization modifications
+			// more comfortable spring apply/start/stop
+		};
+		
+	]]></script> 
+</svg> 
