@@ -1,6 +1,3 @@
-var skipNames = [];
-skipNames = arrToHash(skipNames);
-
 var TIMEOUT = 500;
 var ERR_RELOAD = 'Произошла ошибка. Мы скоро это починим.';
 var RESUME_RENEWED = /(Резюме обновлено)\s.*\s(\d+\.\d+\.\d+)/;
@@ -54,10 +51,6 @@ function nextW(i) {
   var typeElem = elem.children[1].children[1].children[3];
   var type = typeElem.innerText;
   var name = elem.children[1].children[1].children[4].innerText;
-  if (skipNames[type + '::' + name]) {
-    nextW(i - 1);
-    return;
-  }
   
   if (d[i].className.indexOf('output__item_visited') >= 0) {
     nextW(i - 1);
@@ -114,4 +107,6 @@ function nextW(i) {
   });
 }
 
-nextW(-1);
+function start() {
+  nextW(-1);
+}
