@@ -12,7 +12,7 @@ Glob.prototype.modifyListItem = function(html, res) {
 }
 
 Glob.prototype.getSearchText = function(text) {
-  return text.replace(/^.*: /, '');
+  return text.replace(/^.*: /, '').replace(/,/g, ' ');
 }
 
 Glob.prototype.searchRequest = function() {
