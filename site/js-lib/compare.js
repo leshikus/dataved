@@ -2,23 +2,22 @@ function Glob(list) {
   this.list = list;
   this.li = 0;
   this.childElement = list.children[0];
+  this.searches = [];
   this.nodes = [];
   this.hash = [];
 }
 
 Glob.prototype.modifyListItem = function(html, res) {
-  return '<hr width="' + (Math.log(res) * 40) + '" /> ' + res + ' ' + html;
+  return '<hr width="' + (Math.log(res) * 40) + '" /> ' + res + ': ' + html;
 }
 
-Glob.prototype.getInnerText = function(e) {
-  console.log('getInnerText:');
-  var text = e.innerHTML;
-  console.log('getInnerText: ' + text);
-  return text.replace(/((\S*\s){20}).*/, '$1');
+Glob.prototype.getSearchText = function(text) {
+  return text.replace(/^.*: /, '');
 }
 
 Glob.prototype.searchRequest = function() {
-  var text = this.getInnerText(this.childElement);
+  var text = this.childElement.innerHTML;
+  text = text.replace(/((\S*\s){20}).*/, '$1');
   console.log('calling searchRequest: ' + text);
   return text;
 }
@@ -27,8 +26,9 @@ Glob.prototype.onComplete = function() {
   console.log('onComplete:');
   var q;
   
+  
   with (this) {
-    q = nodes.slice(5).map(getInnerText).join(',');
+    q = nodes.slice(5).map(getSearchText).join(',');
   }
   console.log(q);
   
