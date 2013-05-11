@@ -1,22 +1,39 @@
 function Glob(list) {
-  this.list = list
-  this.li = 0
-  this.childElement = list.children[0]
-  this.nodes = []
-  this.hash = []
+  this.list = list;
+  this.li = 0;
+  this.childElement = list.children[0];
+  this.nodes = [];
+  this.hash = [];
 }
 
 Glob.prototype.modifyListItem = function(html, res) {
   return '<hr width="' + (Math.log(res) * 40) + '" /> ' + res + ' ' + html;
 }
 
-Glob.prototype.searchRequest = function() {
-  var text = this.childElement.innerHTML;
-  console.log('calling searchRequest: ' + text);
+Glob.prototype.getInnerText = function(e) {
+  var text = e.innerHTML;
   return text.replace(/((\S*\s){20}).*/, '$1');
 }
 
+Glob.prototype.searchRequest = function() {
+  var text = this.getInnerText(childElement);
+  console.log('calling searchRequest: ' + text);
+  return text;
+}
+
 Glob.prototype.onComplete = function() {
+  var e = document.createElement('div');
+  var q;
+  
+  with (this) {
+    q = nodes.slice(5).map(getInnerText).join(',');
+  }
+  console.log(q);
+  e.innerHTML = '<s' + 'cript type="text/javascript" src="//www.google.com/trends/embed.js?q=' +
+    encodeURIComponent(q) + '"></s' + + 'cript>';
+
+  var theFirstChild = this.list.firstChild;
+  this.list.insertBefore(e, theFirstChild);
 }
 
 Glob.prototype.rank = function(searchControl, searcher) {
