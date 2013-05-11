@@ -24,6 +24,7 @@ Glob.prototype.searchRequest = function() {
 
 Glob.prototype.onComplete = function() {
   console.log('onComplete:');
+  return;
   var q;
   
   
