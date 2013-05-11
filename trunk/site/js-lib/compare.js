@@ -24,15 +24,17 @@ Glob.prototype.searchRequest = function() {
 }
 
 Glob.prototype.onComplete = function() {
-  var e = document.createElement('div');
+  console.log('onComplete:');
   var q;
   
   with (this) {
     q = nodes.slice(5).map(getInnerText).join(',');
   }
   console.log(q);
-  e.innerHTML = '<s' + 'cript type="text/javascript" src="//www.google.com/trends/embed.js?q=' +
-    encodeURIComponent(q) + '"></s' + + 'cript>';
+  
+  var e = document.createElement('script');
+  e.src = '//www.google.com/trends/embed.js?q=' +
+    encodeURIComponent(q)
 
   var theFirstChild = this.list.firstChild;
   this.list.insertBefore(e, theFirstChild);
