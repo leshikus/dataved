@@ -11,12 +11,14 @@ Glob.prototype.modifyListItem = function(html, res) {
 }
 
 Glob.prototype.getInnerText = function(e) {
+  console.log('getInnerText:');
   var text = e.innerHTML;
+  console.log('getInnerText: ' + text);
   return text.replace(/((\S*\s){20}).*/, '$1');
 }
 
 Glob.prototype.searchRequest = function() {
-  var text = this.getInnerText(childElement);
+  var text = this.getInnerText(this.childElement);
   console.log('calling searchRequest: ' + text);
   return text;
 }
