@@ -21,15 +21,15 @@ Glob.prototype.onComplete = function() {
 
 Glob.prototype.rank = function(searchControl, searcher) {
   with(this) {
-    res = (searcher.cursor) ? 1 + parseInt(searcher.cursor.estimatedResultCount) : 1
+    res = (searcher.cursor) ? 1 + parseInt(searcher.cursor.estimatedResultCount) : 1;
 
-    childElement.innerHTML = html = modifyListItem(childElement.innerHTML, res)
-    nodes.push(html)
-    hash[html] = res
+    childElement.innerHTML = html = modifyListItem(childElement.innerHTML, res);
+    nodes.push(html);
+    hash[html] = res;
 
-    childElement = list.children[++li]
+    childElement = list.children[++li];
     if (childElement) { // Execute search
-      searchControl.execute(searchRequest())
+      searchControl.execute(searchRequest());
     } else {
       nodes.sort(function(a, b) {
         return hash[b] - hash[a];
