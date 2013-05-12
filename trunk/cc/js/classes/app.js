@@ -30,7 +30,7 @@ Class.subclass('App', {
     
     // Load our resources
     Crafty.load([
-      '/images/sprites.png'
+      'http://dataved.googlecode.com/svn/trunk/cc/images/sprites.png'
     ], function() {
       app.setup();
     });
