@@ -1,3 +1,6 @@
+// load main.php
+// went to the energy field
+
 var TIMEOUT = 500;
 
 function waitFor(f) {
