@@ -38,14 +38,6 @@ a:hover, a:active {
   height: 600px;
 }
 
-#title {
-  height: 16px;
-  line-height: 16px;
-  margin-bottom: 4px;
-  color: #666;
-  font-weight: bold; 
-}
-
 #canvas {
   width: 512px;
   height: 512px;
@@ -96,8 +88,10 @@ button {
   	color-stop(0.68, rgb(186,186,186))
   );
 }
+
 button.toggle.on {
 }
+
 button.toggle.off {
   background: #ddd;
   background-image: 0;
@@ -106,14 +100,6 @@ button.toggle.off {
 }
 button.toggle.off img {
   opacity: 0.4;
-}
-
-.section {
-  margin-bottom: 10px;
-}
-
-.indent {
-  margin-left: 15px;
 }
 
 .clickable {
@@ -138,6 +124,7 @@ button.toggle.off img {
   width: 492px;
   height: 492px;
 }
+
 #overlay-contents {
   display: none;
   position: absolute;
