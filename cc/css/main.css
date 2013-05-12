@@ -22,11 +22,6 @@ a:hover, a:active {
   text-decoration: underline;
 }
 
-#wrapper {
-  margin: auto;
-  width: 1000px;
-}
-
 #body {
   position: relative;
 }
