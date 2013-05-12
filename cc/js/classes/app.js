@@ -74,8 +74,8 @@ Class.subclass('App', {
   },
   
   setupSprites: function() {
-    Crafty.sprite(64, '/images/sprites.png', App.SPRITES);
-    Crafty.sprite(90, '/images/explosion-sprites.png', {explosion: [0,0]});
+    Crafty.sprite(64, 'http://dataved.googlecode.com/svn/trunk/cc/images/sprites.png', App.SPRITES);
+    Crafty.sprite(90, 'http://dataved.googlecode.com/svn/trunk/cc/images/explosion-sprites.png', {explosion: [0,0]});
   },
 
   setupControls: function() {
