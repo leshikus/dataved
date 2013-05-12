@@ -27,19 +27,6 @@ a:hover, a:active {
   width: 1000px;
 }
 
-#header {
-  position: relative;
-  margin-bottom: 16px;
-  width: 960px;
-}
-#header h1 {
-  margin: 0;
-  font-size: 40px;
-  padding-left: 10px;
-  line-height: 40px;
-  text-shadow: 3px 3px 0 #bbb;
-}
-
 #body {
   position: relative;
 }
