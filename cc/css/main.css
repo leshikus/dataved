@@ -142,11 +142,17 @@ button.toggle.off img {
   font-size: 25px;
   color: #fff; 
 }
+
 #overlay-contents td {
   color: #fff; 
 }
+
 #overlay-contents a {
   color: #aca !important;
+}
+
+#overlay-contents p {
+  margin-top: 16px;
 }
 
 table {
