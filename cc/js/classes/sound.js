@@ -35,7 +35,7 @@ Class.subclass('Sound', {
         soundManager.createSound({
           id: sound,
           autoload: true,
-          url: '/sounds/' + sound + '.mp3'
+          url: 'http://dataved.googlecode.com/svn/trunk/cc/sounds/' + sound + '.mp3'
         });
       });
       
