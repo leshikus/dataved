@@ -23,7 +23,7 @@ Class.subclass('Sound', {
       // Define music
       soundManager.createSound({
         id: 'music',
-        url: '/music/' + Sound.MUSIC + '.mp3',
+        url: 'http://dataved.googlecode.com/svn/trunk/cc/music/' + Sound.MUSIC + '.mp3',
         loops: 9999,
         autoplay: false,
         autoload: true,
