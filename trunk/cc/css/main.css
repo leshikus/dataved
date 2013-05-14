@@ -25,11 +25,10 @@ a:hover, a:active {
   position: relative;
 }
 
-#main {
-  float: left;
+#field {
   width: 600px;
-  margin-right: 20px;
   height: 600px;
+  margin-right: 20px;
 }
 
 #sidebar {
