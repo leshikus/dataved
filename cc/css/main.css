@@ -134,8 +134,7 @@ button.toggle.off img {
   width: 442px;
   height: 442px;
   color: #fff !important;
-  font: 16px sans-serif;
-  line-height: 20px;
+  font-family: sans-serif;
 }
 
 #overlay-contents h1 {
