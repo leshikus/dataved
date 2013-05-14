@@ -121,8 +121,8 @@ button.toggle.off img {
 #overlay {
   display: none;
   position: absolute;
-  left: 20px;
-  top: 30px;
+  left: 10px;
+  top: 36px;
   opacity: 0.5;
   background: #000;
   width: 492px;
@@ -132,8 +132,8 @@ button.toggle.off img {
 #overlay-contents {
   display: none;
   position: absolute;
-  left: 20px;
-  top: 30px;
+  left: 10px;
+  top: 36px;
   padding: 15px;
   width: 442px;
   height: 442px;
