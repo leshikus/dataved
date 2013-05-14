@@ -30,9 +30,9 @@ a:hover, a:active {
 
 #cside{
   float: left;
-  width: 258px;
+  width: 288px;
   height: 600px;
-  padding-left: 15px;
+  padding: 15px;
 }
 
 #canvas {
