@@ -52,13 +52,13 @@ a:hover, a:active {
 
 #program {
   border: 2px solid #888;
-  width: 270px;
-  height: 600px;
+  width: 240px;
+  height: 512px;
   color: #cdf;
   background: #222;
   font-size: 18px;
   line-height: 22px; 
-  padding: 1ex;
+  padding: 15px;
 }
 
 h1, h2, h3, h4, h5 {
