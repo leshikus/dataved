@@ -32,7 +32,7 @@ a:hover, a:active {
   float: left;
   width: 258px;
   height: 600px;
-  margin-left: 15px;
+  padding-left: 15px;
 }
 
 #canvas {
@@ -44,9 +44,8 @@ a:hover, a:active {
 
 #program {
   border: 2px solid #888;
-  width: 277px;
+  width: 258px;
   height: 400px;
-  padding: 5px;
   color: #cdf;
   background: #222;
   font-size: 18px;
