@@ -17,6 +17,7 @@ a, a:visited {
   color: #888;
   text-decoration: none;
 }
+
 a:hover, a:active {
   text-decoration: underline;
 }
@@ -40,6 +41,13 @@ a:hover, a:active {
   height: 512px;
   border: 2px solid #888;
   background: url(http://dataved.googlecode.com/svn/trunk/cc/images/stage-bg.png);
+}
+
+#cr-stage {
+  width: 512px;
+  height: 512px;
+  overflow: hidden;
+  position: relative;
 }
 
 #program {
@@ -113,8 +121,8 @@ button.toggle.off img {
 #overlay {
   display: none;
   position: absolute;
-  left: 0px;
-  top: 20px;
+  left: 20px;
+  top: 30px;
   opacity: 0.5;
   background: #000;
   width: 492px;
@@ -124,8 +132,8 @@ button.toggle.off img {
 #overlay-contents {
   display: none;
   position: absolute;
-  left: 0px;
-  top: 20px;
+  left: 20px;
+  top: 30px;
   padding: 15px;
   width: 442px;
   height: 442px;
