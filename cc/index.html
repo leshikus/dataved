@@ -29,7 +29,17 @@
 <script src="http://dataved.googlecode.com/svn/trunk/cc/js/classes/beam.js"></script>
 <script src="http://dataved.googlecode.com/svn/trunk/cc/js/classes/explosion.js"></script>
 
-<script src="http://dataved.googlecode.com/svn/trunk/cc/js/classes/init.js"></script>
+<script>
+
+  // Config sound manager
+  soundManager.url = 'http://dataved.googlecode.com/svn/trunk/cc/swf/';
+  soundManager.flashVersion = 9;
+  soundManager.debugMode = true;
+  soundManager.useHighPerformance = true;
+  // All classes now loaded...
+  Class.classesLoaded();
+
+</script>
 
 
 <p>
@@ -54,7 +64,7 @@
 <button id="run-button">Run Program</button>
 <button id="help-button">Programming Help</button>
 <button id="select-button">Select Level</button>
-<button id="audio-toggle" class="toggle off"><img src="http://dataved.googlecode.com/svn/trunk/cc/images/icons/24/Audio.png"></button>
+<button id="audio-toggle" class="toggle off"><img src="http://dataved.googlecode.com/svn/trunk/cc/images/icons/24/Audio.png"/></button>
 </p>
 
   
@@ -65,6 +75,12 @@
 
 
 <div id="res">
+  <script>
+    var app = null;
+    $(function() {
+      app = App.start();
+    });
+  </script>
 </div>  
   
 </body>
