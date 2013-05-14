@@ -160,10 +160,6 @@ ul.rpw img {
 
 /* Frames
 ----------------------------------------------- */
-.post-body iframe {
-  border: none;
-}
-
 .post-body iframe.hidden {
   position: absolute;
   top: -4000px;
