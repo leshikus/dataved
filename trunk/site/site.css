@@ -143,27 +143,8 @@ color: #999999;
   border-top: 0 dashed #bbbbbb;
 }
 
-/* Comments
------------------------------------------------ */
-#comments .comment-author {
-  padding-top: 1.5em;
-  background-position: 0 1.5em;
-}
-
-#comments .comment-author:first-child {
-  border-top: none;
-}
-
 .avatar-image-container {
   margin-top: .2em;
-}
-
-#comments .avatar-image-container img {
-  border: none;
-}
-
-#comments .comment-author {
-  border-top: 1px solid #eee;
 }
 
 /* The skin
@@ -219,18 +200,10 @@ time,mark{display:inline}
 .reactions-label{margin:3px 0 0 0}
 .reactions-label-cell{line-height:2.3em}
 .reactions-iframe{background:transparent;height:2.3em;width:100%;border:0}
-#comments .blogger-comment-icon,.blogger-comment-icon{line-height:16px;background:url(/img/b16-rounded.gif) left no-repeat;padding-left:20px}
-#comments .openid-comment-icon,.openid-comment-icon{line-height:16px;background:url(/img/openid16-rounded.gif) left no-repeat;padding-left:20px}
-#comments .anon-comment-icon,.anon-comment-icon{line-height:16px;background:url(/img/anon16-rounded.gif) left no-repeat;padding-left:20px}
 .comment-form{max-width:425px;_width:410px;clear:both}
 .comment-link{white-space:nowrap}
 .paging-control-container{float:right;margin:0 6px 0 0;font-size:80%}
 .unneeded-paging-control{visibility:hidden}
-#comments-block .avatar-image-container img{-ms-interpolation-mode:bicubic;border:1px solid #ccc;float:right}
-#comments-block .avatar-image-container.avatar-stock img{border-width:0;padding:1px}
-#comments-block .avatar-image-container{height:37px;left:-45px;position:absolute;width:37px}
-#comments-block.avatar-comment-indent{margin-left:45px;position:relative}
-#comments-block.avatar-comment-indent dd{margin-left:0}
 iframe.avatar-hovercard-iframe{border:0 none;padding:0;width:25em;height:9.4em;margin:.5em}
 table.tr-caption-container{padding:4px;margin-bottom:.5em}
 td.tr-caption{font-size:80%}
@@ -243,7 +216,6 @@ td.tr-caption{font-size:80%}
 .icon-action{border-style:none !important;margin:0 0 0 .5em !important;vertical-align:middle}
 .comment-action-icon{width:13px;height:13px;margin-top:3px}
 .delete-comment-icon{background:url("//www.blogger.com/img/icon_delete13.gif") no-repeat left;padding:7px}
-#comment-popup{position:absolute;visibility:hidden}
 @media all{.BLOG_mobile_video_class{display:none}
 }
 @media handheld{.BLOG_mobile_video_class{display:inline}
@@ -370,11 +342,9 @@ h3 a:hover{text-decoration:none}
 .post .post-comment-link:first-child{padding-left:0}
 .post .tr-caption-container{position:relative}
 .inline-ad{margin:2em 0;text-align:center;line-height:0}
-#comments .comment-author{padding-left:25px}
 .comment-body{margin:.5em 25px}
 .comment-footer{margin:.5em 25px 1.5em}
 .comment-body p{margin:0}
-#comments .avatar-comment-indent .comment-author{margin-left:-45px;padding-left:45px}
 .deleted-comment{font-style:italic;opacity:.5}
 .Profile img{margin:0 .75em .5em 0}
 .Profile .profile-datablock{margin:0 0 .5em}
