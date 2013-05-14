@@ -9,10 +9,6 @@
   font-style: normal;
 }
 
-body {
-  background: #4C5561 url(http://dataved.googlecode.com/svn/trunk/cc/images/bg.gif);
-}
-
 a, a:visited {
   color: #888;
   text-decoration: none;
@@ -61,7 +57,7 @@ a:hover, a:active {
   padding: 15px;
 }
 
-.post-body h3 {
+h3 {
   font-family: 'Elements', verdana;
   padding: 0;
   margin: 0;
