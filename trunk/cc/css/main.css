@@ -26,15 +26,16 @@ a:hover, a:active {
 }
 
 #field {
-  width: 600px;
+  float: left;
+  width: 512px;
   height: 600px;
-  margin-right: 20px;
 }
 
 #sidebar {
   float: left;
-  width: 300px;
+  width: 258px;
   height: 600px;
+  margin-right: 15px;
 }
 
 #canvas {
