@@ -117,8 +117,8 @@ button.toggle.off img {
 #overlay {
   display: none;
   position: absolute;
-  left: 33px;
-  top: 53px;
+  left: 0px;
+  top: 20px;
   opacity: 0.5;
   background: #000;
   width: 492px;
@@ -128,15 +128,16 @@ button.toggle.off img {
 #overlay-contents {
   display: none;
   position: absolute;
-  left: 33px;
-  top: 53px;
-  padding: 25px;
+  left: 0px;
+  top: 20px;
+  padding: 15px;
   width: 442px;
   height: 442px;
   color: #fff !important;
   font-family: sans-serif;
   line-height: 20px;
 }
+
 #overlay-contents h1 {
   font-size: 25px;
   color: #fff; 
