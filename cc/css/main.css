@@ -61,7 +61,7 @@ a:hover, a:active {
   padding: 15px;
 }
 
-h4 {
+.post-body h3 {
   font-family: 'Elements', verdana;
   padding: 0;
   margin: 0;
