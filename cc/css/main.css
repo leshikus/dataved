@@ -53,11 +53,12 @@ a:hover, a:active {
 #program {
   border: 2px solid #888;
   width: 270px;
-  height: 400px;
+  height: 600px;
   color: #cdf;
   background: #222;
   font-size: 18px;
   line-height: 22px; 
+  padding: 1ex;
 }
 
 h1, h2, h3, h4, h5 {
