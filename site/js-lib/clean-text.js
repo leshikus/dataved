@@ -1,14 +1,3 @@
-function gebid(id) {
-  return document.getElementById('cleanit-' + id)
-}
-
-google.setOnLoadCallback(function() {
-  var cleaner = new Cleaner(gebid('word-input'), gebid('allowed-tags'), gebid('empty-tags'), gebid('convert-tags'))
-  cleaner.init()
-})
-
-// -- Library
-
 function esc(str) {
   if (str && str.replace) return str.replace(/>/g, '&gt;').replace(/</g, '&lt;')
   return str
@@ -46,7 +35,7 @@ function parseTagPairs(tags) {
 }
 
 function isEmpty(o) {
-  console.log("isEmpty: [" + o.innerHTML + "]");
+//  console.log("isEmpty: [" + o.innerHTML + "]");
   return cleanerEmptyRe.test(o.innerHTML);
 }
 
@@ -152,7 +141,7 @@ function Cleaner(iframe, allowedTags, emptyTags, convertTags) {
       return
     }
 
-    console.log('->' + tag + '->' + (!this.atags[tag] || (isEmpty(o) && !this.etags[tag])) )
+//    console.log('->' + tag + '->' + (!this.atags[tag] || (isEmpty(o) && !this.etags[tag])) )
     if (!this.atags[tag] || (isEmpty(o) && !this.etags[tag])) {
 //      console.log(tag + ' to be removed')
       var range = document.createRange()
