@@ -186,6 +186,11 @@ ul.rpw img {
   height: 600px;
 }
 
+.post-body iframe.idoc {
+  width: 100%;
+  border: 1px solid;
+}
+
 /* Code highlight
 ----------------------------------------------- */
 .post-body code, .post-body pre {
