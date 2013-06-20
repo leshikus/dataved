@@ -1,366 +1,187 @@
+function gebid(id) {
+  return document.getElementById('cleanit-' + id)
+}
+
+google.setOnLoadCallback(function() {
+  var cleaner = new Cleaner(gebid('word-input'), gebid('allowed-tags'), gebid('empty-tags'), gebid('convert-tags'))
+  cleaner.init()
+})
+
+// -- Library
+
 function esc(str) {
-  if (str && str.replace) return str.replace(/>/g, '&gt;').replace(/</g, '&lt;');
-  return str;
+  if (str && str.replace) return str.replace(/>/g, '&gt;').replace(/</g, '&lt;')
+  return str
 }
 
 function trim(str) {
-  return str.replace(/\s*$/, '').replace(/^\s*/, '');
+  return str.replace(/\s*$|^\s*/g, '')
 }
 
-function clean_tree(o, must_clean) {
-  var c = o.children
+var cleanerTagRe = /&lt;(\w+(?:\s+\w+)*)&gt;/g
+var cleanerEmptyRe = /^(\&nbsp;|\s)*$/
+var cleanerHrefRe = /file:\/\/[^#]*/
+
+function parseTags(tags) {
+  var a = new Array()
   
-  if (c) {
-    var i
-    for (i = 0; i < c.length; i++) clean_tree(c[i], true)
-  }
-  if (must_clean) clean_object(o)
-}
-
-function monitor() {
-  var content = doc.body.innerHTML;
-  if (content.match(/^\s*$/) || doc.designMode != 'on') return;
-
-  var e = doc.getElementById('cleanit-spandots');
-  if (e) {
-    e.innerHTML += '.';
-    if (e.innerHTML.length > 3) e.innerHTML = '';
-    doc.execCommand('selectall', false, null);
-    return;
-  }
-
-  if (content == result) {
-    doc.execCommand('selectall', false, null);
-    doc.execCommand('copy', false, null);
-    return;
-  }
-
-  doc.designMode = 'off';
-  result = '<pre>' + esc(clean_tree(doc.body)) + '</pre>';
-  //result = '<pre>' + esc(doc.body.innerHTML) + '</pre>'; // used to check the initial HTML
-  doc.body.innerHTML = result;
-}
-
-function clean_onload(iframe, allowed_tags) {
-  var win = iframe.contentWindow
-
-  // Globals
-  doc = win.document
-  result = ''
-  attr = new Array()
-
-  var allowed_tags = allowed_tags.innerHTML
-  var re_tag = /&lt;(\w+(?:\s+\w+)*)&gt;/g
   var element
-  while ((element = re_tag.exec(allowed_tags)) != null) {
+  while ((element = cleanerTagRe.exec(tags)) != null) {
     element = element[1].split(/\s+/)
     var tag = element.shift()
-    attr[tag] = element
+    a[tag] = element
+  }
+  return a
+}
+
+function parseTagPairs(tags) {
+  var a = new Array()
+  
+  var element
+  while ((element = cleanerTagRe.exec(tags)) != null) {
+    var tag = element[1]
+    a[tag] = cleanerTagRe.exec(tags)[1]
+  }
+  return a
+}
+
+function isEmpty(o) {
+  console.log("isEmpty: [" + o.innerHTML + "]");
+  return cleanerEmptyRe.test(o.innerHTML);
+}
+
+function hashList(a) {
+  var hash = new Array()
+  var i
+
+  for (i = 0; i < a.length; i++) hash[a[i]] = 1
+  return hash
+}
+
+function Cleaner(iframe, allowedTags, emptyTags, convertTags) {
+  this.win = iframe.contentWindow
+  this.doc = this.win.document
+
+  this.atags = parseTags(allowedTags.innerHTML)
+  this.etags = parseTags(emptyTags.innerHTML)
+  this.rtags = parseTagPairs(convertTags.innerHTML)
+
+  this.init = function() {
+    with (this.doc) {
+      open()
+      write('<html><head><meta http-equiv="Content-type" content="text/html; charset=utf-8"></head>'
+        + '<body></body></html>')
+      close()
+      this.result = body.innerHTML
+      designMode = 'on'
+    }
+
+    var self = this
+    setInterval(function() {
+      self.monitor()
+    }, 2000)
   }
 
-  doc.open()
-  spandots = '<span id="cleanit-spandots"></span>'
-  doc.write('<html><head><meta http-equiv="Content-type" content="text/html; charset=utf-8"></head>'
-    + '<body>Чтобы очистить текст в HTML от лишних тэгов и атрибутов, cкопируйте его в эту форму'
-    + spandots + '</body></html>')
-  doc.close()
-  doc.designMode = 'on'
-
-  setInterval(monitor, 1000);
-}
-
-//-------------
-// хорошие теги
-
-goodTags0=["a","p","br","strong","b","em","i","tt","code","pre","ul","ol","li","img","table","tbody","thead","tfoot","caption","tr","td","th","col","colgroup","h1","h2","h3","h4","h5","h6","small","big","sub","sup","div"]
-
-
-// inline теги, которые удалять, если они пустые внутри
-
-emptyInlineTags0=["strong","b","em","i","tt","code","small","big","sub","sup","span"];
-
-// block теги, которые удалять, если они пустые внутри
-
-emptyBlockTags0=["p","strong","pre","div"];
-
-
-// теги, которые canHaveHTML() и могут быть пустыми.
-
-canEmptyTags0=["td","th"]
-
-
-goodAttributes0=[]
-
-// хорошие атрибуты (допустимы у всех тегов)
-
-goodAttributes0[""] = ["href", "target", "name", "title", "alt", "src", "id", "bgColor", "color"]
-
-
-// дополнительные допустимые атрибуты для отдельных тегов
-
-goodAttributes0["img"] = ["width", "height", "border", "align"]
-
-goodAttributes0["table"] = ["cellSpacing", "cellPadding", "border", "width %"] // width % - на будущее - сделаю, чтоб только процентные меры принимать, остальные посылать...
-
-goodAttributes0["td"] = ["colSpan", "rowSpan"]
-
-goodAttributes0["tr td col colgroup"] = ["noWrap", "align", "vAlign", "width %"]
-
-goodAttributes0["a area"] = ["href", "name"]
-
-goodAttributes0["br"] = ["clear"]
-
-
-// однозначно убиваемые псевдо-атрибуты (отсутствуют в коллекции attributes)
-
-mustDieAttributes=["x:str","x:num","x:fmla"] // внимание - в 6-ом MSIE убийство несуществующих атрибутов у тега TABLE ведет к краху браузера
-
-
-// хорошие классы (не убиваем)
-
-goodClasses0=["important","noindent","note","h1","h2","h3","h4","h5","h6"]
-
-
-goodTags=[]
-
-for(i in goodTags0){
-
- goodTags[goodTags0[i]]=true
-
-}
-
-canEmptyTags=[]
-
-for(i in canEmptyTags0){
-
- canEmptyTags[canEmptyTags0[i]]=true
-
-}
-
-
-emptyInlineTags=[]
-
-for(i in emptyInlineTags0){
-
- emptyInlineTags[emptyInlineTags0[i]]=true
-
-}
-
-emptyBlockTags=[]
-
-for(i in emptyBlockTags0){
-
- emptyBlockTags[emptyBlockTags0[i]]=true
-
-}
-
-
-goodAttributes=[]
-
-for(i in goodAttributes0){
-
- var splitted=i.split(" ")
-
- for(ii in splitted){
-
-  if(!goodAttributes[splitted[ii]]) goodAttributes[splitted[ii]]=[]  
-
-  for(j in goodAttributes0[i]){
-
-   goodAttributes[splitted[ii]][goodAttributes0[i][j]]=true
-
-  }  
-
- }
-
-}
-
-
-goodClasses=[]
-
-for(i in goodClasses0){
-
- goodClasses[goodClasses0[i]]=true
-
-}
-
-function clean_object(o) {
-
- var s=""
-
- var myAttributes=[]
-
- var i
-
- 
-if (o.outerHTML != null)
-{
-
- if(o.outerHTML.substr(0,2)=="<?"){
-
-  o.removeNode(false)
-
-  //o.parentNode.replaceChild(o.firstChild, o)
-
-  return
-
- }
-}
- var tag=o.tagName.toLowerCase()
-
-
- // удаляем пустые строчные теги
-
- 
-
-
- // удаляем плохие, заказные и пустые теги
-
- if(!goodTags[tag] || (self.clean_a && tag=="a") ||
-
-  (self.clean_img && tag=="img") ||
-
-  (o.canHaveHTML && o.innerHTML=="" && !canEmptyTags[tag])
-
- ){
-
-  try{
-
-   o.removeNode(false)
-
-  // o.parentNode.replaceChild(o.firstChild, o)
-
-  }catch(e){
-
-   return
-
+  this.monitor = function() {
+    with (this.doc) {
+      var content = body.innerHTML;
+      execCommand('selectall', false, null);
+
+      if ((designMode != 'on') || (content == this.result)) return;
+
+      designMode = 'off';
+
+//      console.log("initial = " + this.doc.body.innerHTML);
+      this.cleanElement(this.doc.body, false);
+      this.viewSource();
+    }
   }
 
- }
-
-
-//emptyInlineTags
-
-
- // удаляем пустые инлайны
-
- if(self.clean_emptytags && emptyInlineTags[tag] && o.innerHTML==''){
-
-  o.removeNode(true)
-
-  return
-
- }
-
- // удаляем пустые блоки
-
- if(self.clean_emptytags && emptyBlockTags[tag] && (o.innerHTML=='&nbsp;' || o.innerHTML=='')){
-
-  o.removeNode(true)
-
-  return
-
- }
-
-
- var a=o.attributes
-
- if(!a) return
-
-
- for(i in a){ // хм...
-
-  if(""+a[i]!="null"){ // странно, но просто if(a[i]) не прокатывает
-
-   myAttributes[i]=a[i]
-
+  this.viewSource = function() {
+    with (this.doc) {
+      body.innerHTML = '<pre>' + esc(body.innerHTML) + '</pre>'
+      this.result = body.innerHTML
+      designMode = 'on'
+      execCommand('selectall', false, null)
+      execCommand('copy', false, null)
+    }
   }
 
- }
+  this.cleanElement = function(o, f) {
+//    console.log('cleanElement: ' + o.outerHTML.substr(0,5))
+    var cn = o.firstChild
 
- // киляем плохие атрибуты и плохие классы
+    while (c = cn) {
+      var cn = c.nextSibling
+      switch (c.nodeType) {
+        case 1: this.cleanElement(c, true)
+          break
+        case 2:
+          break
+        case 3:
+        case 5:
+        case 6:
+          break
+        default:
+          o.removeChild(c)
+      }
+    }
+    if (!f) return
 
- for(i in myAttributes){
+    var tag = o.tagName.toLowerCase()
+//    console.log('->' + o.parentNode.outerHTML)
 
-  //i=i.toLowerCase()
+    // replace tags
+    if (this.rtags[tag]) {
+      var range = document.createRange()
+      range.selectNodeContents(o)
 
-  if( 
+      var parent = o.parentNode
+      var ntag = this.rtags[tag]
 
-   (
+      if (isEmpty(o) && !this.etags[ntag]) {
+//        console.log(tag + ' to be removed, not replaced')
+        parent.replaceChild(range.extractContents(), o)
+      } else {
+        var etag = document.createElement(ntag)
+        etag.appendChild(range.extractContents())
+        parent.replaceChild(etag, o)
+//        console.log(tag + ' replaced with ' + ntag)
+      }
 
-    !goodAttributes[""][i] &&
+      return
+    }
 
-    (
+    console.log('->' + tag + '->' + (!this.atags[tag] || (isEmpty(o) && !this.etags[tag])) )
+    if (!this.atags[tag] || (isEmpty(o) && !this.etags[tag])) {
+//      console.log(tag + ' to be removed')
+      var range = document.createRange()
+      range.selectNodeContents(o)
+      o.parentNode.replaceChild(range.extractContents(), o)
+      return
+    }
 
-     !goodAttributes[tag] || !goodAttributes[tag][i] || i=="class" || i=="className"
+    var a = o.attributes
+    if (!a) return
 
-    )
+    var i
+    var hash = new Array()
 
-   )
+    for (i = 0; i < a.length; i++) {
+//      console.log(a[i].name + ' from ' + tag + ' found')
+      hash[a[i].name] = 1
+      if (a[i].name == 'href') {
+        a[i].value = a[i].value.replace(cleanerHrefRe, '')
+      }
+    }
 
-   ||
+    var aa = this.atags[tag]
+    for (i = 0; i < aa.length; i++) {
+//      console.log('removing ' + aa[i] + ' from hash')
+      delete hash[aa[i]]
+    }
 
-   (
-
-    self.clean_colors &&
-
-    (
-
-     i=="bgColor" || i=="color"
-
-    )
-
-   )
-
-   ||
-
-   (
-
-    self.clean_aligns &&
-
-    (
-
-     i=="align" || i=="vAlign"
-
-    )
-
-   )
-
-  ){
-
-   
-
-   if(i=="class"){
-
-    i="className"
-
-   }
-
-   if(i!="className" || !goodClasses[o.className]){
-
-    o.removeAttribute(i)
-
-   }
-
-  } 
-
- }
-
- // в 6-ом MSIE не киляем непонятных атрибутов у таблиц. см. выше.
-
- if(o.tagName.toLowerCase()!="table"){
-
-  for(i in mustDieAttributes){
-
-   o.removeAttribute(mustDieAttributes[i])
-
+    for (attr in hash)
+      o.removeAttribute(attr)
   }
-
- }
-
- o.style.cssText=""
-
 }
-
-
-
