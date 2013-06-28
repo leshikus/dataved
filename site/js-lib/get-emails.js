@@ -8,8 +8,9 @@ function getEmails(content, res, domain) {
   
   var registerEmail = function(email, index, lastIndex) {
     console.log("index = " + index);
-    index = (index < _CONTEXT) ? 0 : index - _CONTEXT;
+    console.log("lastIndex = " + index);
     var len = lastIndex - index + _CONTEXT * 2;
+    index = (index < _CONTEXT) ? 0 : index - _CONTEXT;
     console.log("len = " + len);
     res[email.toLowerCase()] = content.substr(index, len);
   }
