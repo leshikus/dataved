@@ -6,20 +6,14 @@ function getEmails(content, res, domain) {
   content = content.replace(/(\s+|_+)at\1/gi, '@');
   content = content.replace(/\s+/g, ' ');
   
-  var registerEmail = function(email, index) {
-    var len = _CONTEXT * 2 + email.length;
-    index -= _CONTEXT + email.length;
-    if (index < 0) index = 0;
-    res[email.toLowerCase()] = content.substr(index, len);
+  var registerEmail = function(email, s) {
+    res[email.toLowerCase()] = s;
   }
   
-  re = /([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4})/gi;
-  while ((result = re.exec(content)) !== null)
-    registerEmail(result[0], re.lastIndex);
+  matchContext(/([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4})/gi, content, registerEmail);
   
   if (domain) {
     var re = new RegExp('([a-z0-9._%+-]+)[^a-z0-9._%+-]+' + domain.replace('.', '\.'), 'gi');
-    while ((result = re.exec(content)) !== null) registerEmail(result[0] + '@' + domain, re.lastIndex);
+    matchContext(re, content, registerEmail);
   }
 }
-
