@@ -10,6 +10,7 @@ function getEmails(content, res, domain) {
     var len = _CONTEXT * 2 + email.length;
     index = (index < _CONTEXT + email.length) ? 0 : index - _CONTEXT - email.length;
     console.log("len = " + len);
+    console.log(content.substr(index, len));
     res[email.toLowerCase()] = content.substr(index, len);
   }
   
