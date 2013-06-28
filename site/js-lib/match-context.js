@@ -3,7 +3,7 @@ var _CONTEXT = 30;
 function matchContext(re, content, cb) {
   var result;
   while ((result = re.exec(content)) !== null) {
-    var match = result[0];
+    var match = result[result.length - 1];
     var len = _CONTEXT * 2 + match.length;
     var index = re.lastIndex - _CONTEXT - match.length;
 	if (index < 0) index = 0;
