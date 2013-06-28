@@ -1,5 +1,5 @@
 var _CONTEXT = 20;
-alert(1)
+console.log('1: ');
 
 function getEmails(content, res, domain) {
   var result;
@@ -7,8 +7,10 @@ function getEmails(content, res, domain) {
   content = content.replace(/(\s+|_+)at\1/gi, '@');
   
   var registerEmail = function(email, index, lastIndex) {
+    console.log("index = " + index);
     index = (index < _CONTEXT) ? 0 : index - _CONTEXT;
     var len = lastIndex - index + _CONTEXT * 2;
+    console.log("len = " + len);
     res[email.toLowerCase()] = content.substr(index, len);
   }
   
@@ -22,4 +24,4 @@ function getEmails(content, res, domain) {
   }
 }
 
-alert(2)
+console.log('2: ');
