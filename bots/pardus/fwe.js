@@ -72,12 +72,13 @@ function toEnergy() {
   });
 }
 
-function collect(w) {
+function collect(w, num) {
   waitFor(function() {
     var r = w.document.getElementById('fieldres').innerHTML;
 
 	console.log('Found ' + r + ' resources');
-    w.document.getElementById('aCmdCollect2').click();
+	var cmd = 'aCmdCollect' + ((num) ? num : '');
+    w.document.getElementById(cmd).click();
 	waitFor(toPlanet);
   });
 }
@@ -85,7 +86,7 @@ function collect(w) {
 function cloak(w) {
   waitFor(function() {
     w.document.getElementById('inputShipCloak').click();
-	collect(w);
+	collect(w, 2);
   });
 }
 
@@ -106,7 +107,7 @@ function toFuel() {
   var w = window.open('main.php', 'w_main');
   waitFor(function() {
 	moveTo(w, 'tdNavField16');
-	collect(w, toPlanet);
+	collect(w);
   });
 }
 
