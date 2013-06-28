@@ -1,4 +1,5 @@
 var _CONTEXT = 20;
+alert(1)
 
 function getEmails(content, res, domain) {
   var result;
@@ -20,3 +21,5 @@ function getEmails(content, res, domain) {
     while ((result = re.exec(content)) !== null) registerEmail(result[0] + '@' + domain, result.index, re.lastIndex);
   }
 }
+
+alert(2)
