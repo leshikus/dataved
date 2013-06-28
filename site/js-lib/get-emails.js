@@ -1,4 +1,4 @@
-function getEmails(content, hash, domain) {
+function getEmails(content, res, domain) {
   var result;
   
   content = content.replace(/(\s+|_+)at\1/gi, '@');
@@ -7,6 +7,6 @@ function getEmails(content, hash, domain) {
   
   if (domain) {
     var re = new RegExp('(.{0,20}([a-z0-9._%+-]+)[^a-z0-9._%+-]+' + domain.replace('.', '\.'), 'gi');
-	while ((result = re.exec(content)) !== null) res[result[1] + '@' + domain] = result[0];
+	  while ((result = re.exec(content)) !== null) res[result[1] + '@' + domain] = result[0];
   }
 }
