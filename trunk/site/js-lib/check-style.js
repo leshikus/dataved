@@ -26,8 +26,7 @@ function checkRules(url, content) {
     matchHtmlRule = function(re) {
       matchContext(re, html, function(match, context) {
         maxErrors--;
-        error += context.replace(/</g, '&lt;').replace(/>/g, '&gt;').
-          replace(/&/g, '&amp;') + '<br/>';
+        error += context + '<br/>';
       });
     }
     
