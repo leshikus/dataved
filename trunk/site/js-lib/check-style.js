@@ -30,7 +30,6 @@ function checkRules(url, content) {
     }
 
     rules[r]();
-    
-    if (error) e(rule).innerHTML += url + ":<pre>\n" + error + '</pre>';
+    if (error) e(r).innerHTML += url + ":<pre>\n" + error + '</pre>';
   }
 }
