@@ -11,8 +11,17 @@ function checkRules(url, content) {
   var text = html.replace(/<\/?(p|div|li|blockquote|br|td|th|tr)(|\s[^<]*)>/g, ' ');
   text = text.replace(/<[^<]*>/g, '');
 
+
   for (r in rules) {
     var error = '';
+
+    cutHtml = function(re) {
+      html = html.replace(re, '');
+    }
+
+    cutText = function(re) {
+      html = html.replace(re, '');
+    }
     
     matchHtmlRule = function(re) {
       matchContext(re, html, function(match, context) {
