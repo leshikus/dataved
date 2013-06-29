@@ -19,14 +19,14 @@ function checkRules(url, content) {
         maxErrors--;
         error += context.replace(/</g, '&lt;').replace(/>/g, '&gt;').
           replace(/&/g, '&amp;') + '<br/>';
-      }
+      });
     }
     
     matchTextRule = function(re) {
       matchContext(re, text, function(match, context) {
         maxErrors--;
         error += context + '<br/>';
-      }
+      });
     }
 
     rules[r]();
