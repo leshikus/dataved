@@ -1,5 +1,3 @@
-var MAX_ERRORS = 20;
-
 var preRe = /<(pre|code)>[^<]*<\/\1>/gi;
 var scriptRe = /<(script|style|textarea)[^<]*(\n\s*[^<].*)*\s*<\/\1>/gi;
 var entityRe = /&[a-z#0-9]+;/g;
