@@ -2,7 +2,7 @@ var preRe = /<(pre|code)>[^<]*<\/\1>/gi;
 var scriptRe = /<(script|style|textarea)[^<]*(\n\s*[^<].*)*\s*<\/\1>/gi;
 var entityRe = /&[a-z#0-9]+;/g;
 
-function check(url, content, rule) {
+function check(url, content) {
   var html = content.replace(scriptRe, '');
   html = html.replace(preRe, 'code');
   html = html.replace(/\.NET|яндекс\.‘отки|H\.(264|323)/g, 'ново€з');
