@@ -3,7 +3,7 @@ var _CONTEXT = 20;
 function getEmails(content, res, domain) {
   var result;
   
-  content = content.replace(/(\s+|_+)at\1|\(at\)|\[at\]/gi, '@');
+  content = content.replace(/[^a-z0-9._%+-]+at[^a-z0-9._%+-]+/gi, '@');
   content = content.replace(/\s+/g, ' ');
   
   var registerEmail = function(email, s) {
