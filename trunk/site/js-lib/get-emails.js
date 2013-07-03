@@ -10,13 +10,13 @@ function getEmails(content, res, domain) {
     res[email.toLowerCase()] = s;
   }
   
-  matchContext(/[a-z0-9._%+-]*[a-z0-9_%]@[a-z0-9.-]+\.[a-z]{2,4}/gi, content, registerEmail);
+  matchContext(/[a-z0-9._%+-]*[a-z0-9_%+]@[a-z0-9.-]+\.[a-z]{2,4}/gi, content, registerEmail);
   
   var registerEmail = function(email, s) {
     res[(email + '@' + domain).toLowerCase()] = s;
   }
   if (domain) {
-    var re = new RegExp('([a-z0-9._%+-]*[a-z0-9_%])[^a-z0-9_%+-]+' + domain.replace('.', '\.'), 'gi');
+    var re = new RegExp('([a-z0-9._%+-]*[a-z0-9_%+])[^a-z0-9_%+-]+' + domain.replace('.', '\.'), 'gi');
     matchContext(re, content, registerEmail);
   }
 }
