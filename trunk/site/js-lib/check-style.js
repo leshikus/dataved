@@ -20,7 +20,7 @@ function checkRules(url, content) {
     }
 
     cutText = function(re) {
-      html = html.replace(re, '');
+      text = text.replace(re, '');
     }
     
     matchHtmlRule = function(re) {
