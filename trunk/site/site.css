@@ -39,13 +39,26 @@ table .gs-branding {
   height: 54px;
 }
 
-#HTML7, aside div.sidebar {
+aside {
+  width: 350px;
+}
+
+#HTML7, aside div.sidebar .widget {
   width: 290px;
 }
 
 #HTML7 {
   height: 54px;
 }
+
+.header .widget {
+  height: 54px;
+}
+
+.header .HTML {
+  width: 226px;
+}
+
 
 /* Padding
 ----------------------------------------------- */
@@ -86,7 +99,6 @@ img.fleft {
 ----------------------------------------------- */
 aside {
   float: left;
-  width: 350px;
 }
 
 .sidebar .widget {
@@ -103,7 +115,7 @@ aside {
 }
 
 .widget .zippy {
-color: #999999;
+  color: #999999;
 }
 
 .widget-content {
@@ -111,13 +123,11 @@ color: #999999;
 }
 
 .header .widget {
-  height: 54px;
   text-align: center;
 }
 
 .header .HTML {
   font-size: 140%;
-  width: 226px;
 }
 
 
