@@ -34,10 +34,14 @@ table .gs-branding {
   width: 800px;
 }
 
-.header .HTML, .header  .Header, .header  .CustomSearch, .header  .CustomSearch div {
+.header .HTML, .header .Header, .header .CustomSearch, .header .CustomSearch div {
   width: 226px;
+}
+
+.header .widget {
   height: 54px;
 }
+
 
 aside {
   width: 350px;
@@ -47,16 +51,8 @@ aside {
   width: 290px;
 }
 
-#HTML7 {
-  height: 54px;
-}
-
-.header .widget {
-  height: 54px;
-}
-
-.header .HTML {
-  width: 226px;
+div.content {
+  max-width: 1210px;
 }
 
 
@@ -78,7 +74,6 @@ aside {
 ----------------------------------------------- */
 div.content {
   margin: 15px auto;
-  max-width: 1210px;
 }
 
 /* Images
