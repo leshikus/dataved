@@ -39,9 +39,11 @@ table .gs-branding {
   height: 54px;
 }
 
+#HTML7, aside section {
+  width: 290px;
+}
 
 #HTML7 {
-  width: 290px;
   height: 54px;
 }
 
