@@ -143,11 +143,3 @@ function generate() {
     nt = (nt + 1) % topics.length;
   }
 }
-
-function getKeys(hash) {
-  var keys = [];
-  for (key in hash)
-    if (hash.hasOwnProperty(key))
-	  keys.push(key);
-  return keys;
-}
