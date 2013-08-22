@@ -86,7 +86,7 @@ topics.push(
 );
 
 var H_TOTAL = 450;
-var H_STEP = 0.25;
+var H_STEP = 0.5;
 
 var pair_keys = getKeys(pairs);
 
@@ -114,9 +114,10 @@ function generate(element) {
 	var topic = topics[nt];
 	if (topic.indexOf('#product') == -1 || topic.indexOf('#project') == -1) console.log('Error in ' + topic);
     topic = topic.replace('#product', LQ + product + RQ).replace('#project', LQ + project + RQ);
-	topic = topic.replace(LQ + LQ, LQ).replace(RQ + RQ, RQ);
+	topic = getRandomElement(genFunc)(topic);
+	topic = topic.replace(new RegExp(LQ + LQ, 'g'), LQ).replace(new RegExp(RQ + RQ, 'g'), RQ);
 
-    line += getRandomElement(genFunc)(topic);
+    line += topic;
 	element.value += line + '\n';
     nt = (nt + 1) % topics.length;
   }
