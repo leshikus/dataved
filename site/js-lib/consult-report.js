@@ -40,7 +40,13 @@ var topics = [
   'Рассылка информации по регионам по проекту #project о продукте #product',
   'Расписание отпусков специалистов по продукту #product, участвующих в проекте #project',
   'Содержание информационной рассылки по продукту #product в рамках проекта #project'
-
+  'Основные моменты при общении с регионами, участвующими в проекте #project по продукту #product',
+  'Обучение совместителей и отпускников, выполняющих технические функции поддержки продукта #product в проекте #project',
+  'Расписание рассылки по тем специалистам проекта #project, кто уже прошел обучение по продукту #product',
+  'Буклет по продукту #product для рассылки участникам проекта #project',
+  'Вычитывание буклета по продукту #product для рассылки участникам проекта #project',
+  'Планерки по понедельникам перед семинарами с техническими специалистами по продукту #prodcut проекта #project',
+  'Сбор контактов и номеров телефонов ответственных людей и лиц, принимающих решения, в регионах, использующих продукт #product по проекту #project'
 ];
 
 var H_TOTAL = 450;
@@ -70,7 +76,7 @@ function generate(element) {
     var project = getRandomElement(projects);
     var topic = topics[nt].replace('#product', product).replace('#project', project);
 
-    element.value += line + randomElem(genFunc)(topic) + '\n';
+    element.value += line + getRandomElement(genFunc)(topic) + '\n';
     nt = (nt + 1) % topics.length;
   }
 }
