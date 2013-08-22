@@ -108,7 +108,8 @@ function generate(element) {
     var project = getRandomElement(projects);
 	var topic = topics[nt];
 	if (topic.indexOf('#product') == -1 || topic.indexOf('#project') == -1) console.log('Error in ' + topic);
-    var topic = topic.replace('#product', LQ + product + RQ).replace('#project', LQ + project + RQ);
+    topic = topic.replace('#product', LQ + product + RQ).replace('#project', LQ + project + RQ);
+	topic = topic.replace(LQ + LQ, LQ).replace(RQ + RQ, RQ);
 
     line += getRandomElement(genFunc)(topic);
 	element.value += line + '\n';
