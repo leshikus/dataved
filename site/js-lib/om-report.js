@@ -127,15 +127,6 @@ function randomElem(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function getSubset(arr) {
-  var res = arr.slice(0);
-  while (res.length > 1 + Math.random() * 2) {
-    var index = Math.floor(Math.random() * res.length);
-    res.splice(index, 1);
-  }
-  return res;
-}
-
 var element = document.getElementById('result');
 
 function generate() {
@@ -145,10 +136,18 @@ function generate() {
 
   while (n > 0) {
     var r = getSubset(consultant);
-//    n -= r.length;
+    n -= r.length ;
     n--;
     element.value += r.length + DELIM + getSubset(consultee).join(', ') + DELIM +
       r.join(', ') + DELIM + randomElem(genFunc)(topics[nt]) + '\n';
     nt = (nt + 1) % topics.length;
   }
+}
+
+function getKeys(hash) {
+  var keys = [];
+  for (key in hash)
+    if (hash.hasOwnProperty(key))
+	  keys.push(key);
+  return keys;
 }
