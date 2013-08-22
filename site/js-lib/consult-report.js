@@ -2,13 +2,13 @@ var pairs = {
   'Система телесовещаний':
   [
     'Обсуждение опыта проведения конференций коалиции Общероссийский народный фронт',
-	  'Обсуждение опыта проведения конференций партии Единая Россия'
+    'Обсуждение опыта проведения конференций партии Единая Россия'
   ],
   'Методика интернет-мониторинга качества государственных услуг;  Интерактивная анкета участника интернет-мониторинга на сайте innoros.ru; Автоматизированная информационная система сбора информации и обработки статистики интернет-мониторинга на сайте innoros.ru'
   ]:
   [
     'Оценка региональных и муниципальных чиновников Воронежской области',
-	  'Перспективы развития открытого правительства в Воронежской области'
+    'Перспективы развития открытого правительства в Воронежской области'
   ]
 }
 
@@ -58,20 +58,20 @@ function generate(element) {
     var line = getSubset(consultee).join(', ') + ', ' + getSubset(consultee_opt).join(', ') + DELIM;
 
     var r = getSubset(consultant);
-	  line += r.join(', ') + DELIM;
-	
-  	var time = r.length * H_STEP;
+    line += r.join(', ') + DELIM;
+    
+    var time = r.length * H_STEP;
     t -= time;
-  	line += time + DELIM;
-	
-  	var products = getRandomElement(pair_keys);
-	  var projects = pairs[products];
-	
-	  var product = getRandomElement(products.slice(/;\s*/g));
-	  var project = getRandomElement(projects);
-	  var topic = topics[nt].replace('#product', product).replace('#project', project);
+    line += time + DELIM;
+    
+    var products = getRandomElement(pair_keys);
+    var projects = pairs[products];
+    
+    var product = getRandomElement(products.slice(/;\s*/g));
+    var project = getRandomElement(projects);
+    var topic = topics[nt].replace('#product', product).replace('#project', project);
 
-	element.value += line + randomElem(genFunc)(topic) + '\n';
+    element.value += line + randomElem(genFunc)(topic) + '\n';
     nt = (nt + 1) % topics.length;
   }
 }
