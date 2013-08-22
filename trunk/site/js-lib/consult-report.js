@@ -64,7 +64,9 @@ topics.push(
   'Настройка фильтров безопасности продукта #product для безопасной работы в рамках проекта #project',
   'Риски обновления продукта #product и смягчение этих рисков в рамках проекта #project',
   'Оптимизация настроек продукта #product в рамках проекта #project',
-  'Проверка и мониторинг работоспособности продукта #product после внесения изменений в рамках проекта #project'
+  'Проверка и мониторинг работоспособности продукта #product после внесения изменений в рамках проекта #project',
+  'Резервное копирование артефактов продукта #product и данных в рамках проекта #project',
+  'Регламент восстановление работоспособности инструментария #product у Государственного заказчика из артефактов и данных'
 );
 
 // Наталья
@@ -106,8 +108,8 @@ function generate(element) {
     var products = getRandomElement(pair_keys);
     var projects = pairs[products];
     
-    var product = getRandomElement(products.slice(/;\s*/g));
-	console.log(products.slice(/;\s*/g));
+    var product = getRandomElement(products.split(/;\s*/g));
+	console.log(products.split(/;\s*/g));
     var project = getRandomElement(projects);
 	var topic = topics[nt];
 	if (topic.indexOf('#product') == -1 || topic.indexOf('#project') == -1) console.log('Error in ' + topic);
