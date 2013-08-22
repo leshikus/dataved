@@ -109,7 +109,7 @@ function generate(element) {
     var projects = pairs[products];
     
     var product = getRandomElement(products.split(/;\s*/g));
-	console.log(products.split(/;\s*/g));
+
     var project = getRandomElement(projects);
 	var topic = topics[nt];
 	if (topic.indexOf('#product') == -1 || topic.indexOf('#project') == -1) console.log('Error in ' + topic);
