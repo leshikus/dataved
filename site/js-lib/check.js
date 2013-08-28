@@ -4,7 +4,7 @@ function checkProblem(form, result) {
   if ((form.elements[0].value ^ result) == _MASK) {
 	document.getElementById('hidden').style.display = 'block';
   } else {
-	alert('sorry, incorrect');
+	alert('Sorry, incorrect. Try again. Неправильно, попробуйте еще раз.');
   }
   return false;
 }
