@@ -9,17 +9,17 @@
 /* Buttons
 ----------------------------------------------- */
 select, button, input[type="button"], input[type="submit"] {
+  padding: 1ex;
   vertical-align: bottom;
 }
 
 /* Forms
 ----------------------------------------------- */
 input {
-  padding: 1ex 6px;
+  padding: 1px 6px;
 }
 
 input[type="text"]  {
-  padding: 1px 6px;
   border: 1px solid #DDD;
   font-size: 28px;
   height: 50px;
