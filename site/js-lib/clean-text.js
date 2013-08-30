@@ -81,6 +81,7 @@ function Cleaner(iframe, allowedTags, emptyTags, convertTags) {
       designMode = 'off';
 
 //      console.log("initial = " + this.doc.body.innerHTML);
+      this.doc.body.innerHTML = this.doc.body.innerHTML.replace(/<br>/gi, '</p><p>');
       this.cleanElement(this.doc.body, false);
       this.viewSource();
     }
