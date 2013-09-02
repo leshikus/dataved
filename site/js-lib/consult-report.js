@@ -277,8 +277,8 @@ topics.push(
   'Проведение экспертизы инновационных идей	с использованием продукта #product в рамках проекта #project',
 );
 
-var H_TOTAL = 450;
-var H_STEP = 0.5;
+var H_TOTAL = 225;
+var H_STEP = 0.25;
 
 function generate(element) {
   element.value = '';
