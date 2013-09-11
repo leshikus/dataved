@@ -253,7 +253,7 @@ var consultant = [
 ];
 
 
-var topics = [
+var TOPICS_ = [
   'Семинар с техническими специалистами по вопросам использования продукта #product в рамках проекта #project',
   'Расписание заседаний технических специалистов об использовании продукта #product по проекту #project',
   'Расписание семинаров с техническими специалистами по использованию продукта #product по проекту #project',
@@ -277,7 +277,7 @@ var topics = [
   'Выбор удобного времени для следующего митинга с технарями по проекту #project по проекту #product'
 ];
 
-topics.push(
+TOPICS_.push(
   'Повышение стабильности продукта #product в рамках проекта #project',
   'Настройка модулей клиентского программного обеспечения для безотказной работы продукта #product в рамках проекта #project',
   'Настройка фильтров безопасности продукта #product для безопасной работы в рамках проекта #project',
@@ -288,7 +288,7 @@ topics.push(
   'Регламент восстановление работоспособности инструментария #product у Государственного заказчика из артефактов и данных в рамках проекта #project'
 );
 
-topics.push(
+TOPICS_.push(
   'Объяснение концепции проекта #project и принципов работы продукта #product, разъяснение выгод для координации деятельности, которые будут достигнуты с помощью внедрения продукта, перспектив развития',
   'Разъяснение принципов организации и обсуждение методики проведения Семинаров с техническими специалистами по продукту #product в рамках проекта #project',
   'Согласование списка персоналий и контактов, которые будут привлекаться для работы по проекту #project для работы с продуктом #product, составление информационных писем о проведении распределённых региональных мероприятий',
@@ -322,7 +322,6 @@ function generate(element) {
     var r = getSubset(consultant);
     line += r.join(', ') + DELIM;
     
-    
     var index = Math.floor(Math.random() * pairs.length * 0.5) * 2;
     var products = pairs[index];
     var projects = pairs[index + 1];
@@ -331,9 +330,13 @@ function generate(element) {
 	
     var i;
 	for (i = 0; i < NUM_Q; i++) {
+
       var product = getRandomElement(products);
       var project = getRandomElement(projects);
-      var topic = topics[nt];
+	  console.log("nt1 = " + nt);
+      var topic = TOPICS_[nt++];
+      nt = nt % TOPICS_.length;
+
       if (topic.indexOf('#product') == -1 || topic.indexOf('#project') == -1) console.log('Error in ' + topic);
       topic = topic.replace('#product', LQ + product + RQ).replace('#project', LQ + project + RQ);
 	  topics[topic] = 1;
@@ -347,6 +350,5 @@ function generate(element) {
     topic = topic.replace(new RegExp(LQ + LQ, 'g'), LQ).replace(new RegExp(RQ + RQ, 'g'), RQ);
     line += topic;
     element.value += line + '\n';
-    nt = (nt + 1) % topics.length;
   }
 }
