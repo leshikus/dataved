@@ -32,7 +32,7 @@ function packTopics(topics, scale) {
   
   var a = TOPIC_[i], res = [];
 
-  for (i = 0; i < a1.length; i++)
+  for (i = 0; i < a.length; i++)
     res.push(a[i] + ' ' + s);
 
   res.hours = Math.ceil(n * H_STEP * scale);
