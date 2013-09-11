@@ -333,7 +333,6 @@ function generate(element) {
 
       var product = getRandomElement(products);
       var project = getRandomElement(projects);
-	  console.log("nt1 = " + nt);
       var topic = TOPICS_[nt++];
       nt = nt % TOPICS_.length;
 
