@@ -313,7 +313,7 @@ var NUM_Q = 5;
 
 function generate(element) {
   element.value = '';
-  var t = H_TOTAL;
+  var t = NUM_TOTAL;
   var nt = 0;
 
   while (t > 0) {
