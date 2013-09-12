@@ -321,7 +321,7 @@ TOPICS_.push(
 );
 
 var NUM_TOTAL = 225;
-var NUM_Q = 5;
+var NUM_Q = 14;
 
 function generate(element) {
   element.value = '';
@@ -329,7 +329,8 @@ function generate(element) {
   var nt = 0;
 
   while (t > 0) {
-    var line = getSubset(consultee).join(', ') + ', ' + getSubset(consultee_opt).join(', ') + DELIM;
+    //var line = getSubset(consultee).join(', ') + ', ' + getSubset(consultee_opt).join(', ') + DELIM;
+	var line = getSubset(consultee).join(', ');
 
     var r = getSubset(consultant);
     line += r.join(', ') + DELIM;
@@ -337,12 +338,10 @@ function generate(element) {
     var index = Math.floor(Math.random() * pairs.length * 0.5) * 2;
     var products = pairs[index];
     var projects = pairs[index + 1];
-    
 	var topics = [];
 	
     var i;
-	for (i = 0; i < NUM_Q; i++) {
-
+	for (i = Math.floor(Math.random() * NUM_Q); i >= 0; i--) {
       var product = getRandomElement(products);
       var project = getRandomElement(projects);
       var topic = TOPICS_[nt++];
@@ -352,12 +351,12 @@ function generate(element) {
       topic = topic.replace('#product', LQ + product + RQ).replace('#project', LQ + project + RQ);
 	  topics[topic] = 1;
 	}
-	
+
 	var pt = packTopics(topics, r.length);
     t -= pt.hours;
-	
+
     topic = getRandomElement(genFunc)(pt);
-    topic = topic.replace(new RegExp(LQ + LQ, 'g'), LQ).replace(new RegExp(RQ + RQ, 'g'), RQ);
+    topic = topic.replace(new RegExp(LQ + '+', 'g'), LQ).replace(new RegExp(RQ + '+', 'g'), RQ);
     line += topic;
     element.value += line + '\n';
   }
