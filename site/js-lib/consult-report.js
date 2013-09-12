@@ -330,7 +330,7 @@ function generate(element) {
 
   while (t > 0) {
     //var line = getSubset(consultee).join(', ') + ', ' + getSubset(consultee_opt).join(', ') + DELIM;
-	var line = getSubset(consultee).join(', ');
+	var line = getSubset(consultee).join(', ') + DELIM;
 
     var r = getSubset(consultant);
     line += r.join(', ') + DELIM;
