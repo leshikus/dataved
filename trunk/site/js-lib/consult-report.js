@@ -195,7 +195,7 @@ var TRIPLES_ = [
     'Модель пространственного роста клетки',
     'Эволюционная модель тележек (генетический алгоритм)',
 	'Фрактальные модели (L-системы)'
-  ]
+  ],
   [ 
     'Математические модели в биологии',
     'Реализация математических моделей на веб-сайте',
@@ -300,6 +300,7 @@ function generate(element) {
   var t = NUM_TOTAL;
   
   while (t > 0) {
+    console.log('t = ' + t);
     var consultee = getRandomElement(getKeys(ALL_TOPICS));
 	var topics;
 	
