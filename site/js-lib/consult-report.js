@@ -1,4 +1,4 @@
-var triples = [
+var TRIPLES_ = [
   [ 'Тригуб Борис Владимирович' ],
   [
     'Система электронного документооборота Alfresco',
@@ -261,16 +261,16 @@ function generateAllTopics() {
   var nt = 0;
   var index, i, j, k;
   
-  for (index = 0; index < triples.length; ) {
-    var consultees = triples[index++];
-    var products = triples[index++];
-    var projects = triples[index++];
+  for (index = 0; index < TRIPLES_.length; ) {
+    var consultees = TRIPLES_[index++];
+    var products = TRIPLES_[index++];
+    var projects = TRIPLES_[index++];
 	for (i = 0; i < consultees.length; j++) {
 	  var consultee = consultees[i];
 	  console.log('consultee = ' + consultee);
 	  if (!ALL_TOPICS[consultee]) ALL_TOPICS[consultee] = [];
-	  for (j = 0; j < products.length; j++) {
-	    var product = product[j];
+	  for (j = 0; j < products.length; j++) {  
+	    var product = products[j];
 		console.log('product = ' + product);
 	    for (k = 0; k < projects.length; k++) {
           var project = projects[k];
