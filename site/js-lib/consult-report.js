@@ -273,7 +273,7 @@ function generateAllTopics() {
 	for (i = 0; i < consultees.length; i++) {
 	  var consultee = consultees[i];
 	  console.log('consultee = ' + consultee);
-	  if (!ALL_TOPICS[consultee]) ALL_TOPICS[consultee] = [];
+	  var topics = (ALL_TOPICS[consultee]) ? ALL_TOPICS[consultee] : [];
 	  for (j = 0; j < products.length; j++) {  
 	    var product = products[j];
 		//console.log('product = ' + product);
@@ -283,9 +283,10 @@ function generateAllTopics() {
           nt = nt % TOPICS_.length;
           if (topic.indexOf('#product') == -1 || topic.indexOf('#project') == -1) console.log('Error in ' + topic);
           topic = topic.replace('#product', LQ + product + RQ).replace('#project', LQ + project + RQ);
-	      ALL_TOPICS.push(topic);
+	      topics.push(topic);
 		}
 	  }
+	  ALL_TOPICS[consultee] = topics;
 	}
   }
   
