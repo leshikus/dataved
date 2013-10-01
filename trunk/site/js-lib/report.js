@@ -1,7 +1,7 @@
 var DELIM = '\t';
 var LQ = '\u00AB';
 var RQ = '\u00BB';
-var H_STEP = 0.2;
+var H_STEP = 0.3;
 
 var TOPIC_ = [
   ['по актуальной теме', 'актуальной темы'], ['по актуальным темам', 'актуальных тем'],
@@ -22,23 +22,33 @@ function getRandomEvenIndex(arr) {
 }
 
 function packTopics(topics, scale) {
-  var n = 0;
-  var s = '';
-  for (t in topics)
-    s += ((n++ > 0) ? ', ' : '') + LQ + t + RQ;
+  var i, j;
+  var s;
+ 
+  j = getRandomEvenIndex(TOPIC_);
   
-  var i = getRandomEvenIndex(TOPIC_);
-  if (n > 1) i++;
+  if (topics.length == 1) {
+    s = LQ + topics[0] + RQ;
+  } else {
+    j++;
+    s = '1) ' + LQ + topics[0] + RQ;
+    for (i = 1; i < topics.length; ) {
+	  var t = topics[i];
+      s += ', ' + (++i) + ') ' + LQ + t + RQ;
+	}
   
-  var a = TOPIC_[i], res = [];
+  }
+  
+
+  
+  var a = TOPIC_[j], res = [];
 
   for (i = 0; i < a.length; i++)
     res.push(a[i] + ' ' + s);
 
-  res.hours = Math.ceil(n * H_STEP * scale);
+  res.hours = Math.ceil(topics.length * H_STEP);
   return res;
 }
-
 
 var genFunc = [
   function(topics) {
@@ -65,6 +75,11 @@ var genFunc = [
     return 'совещание ' + topics[0] + DELIM +
 	  topics.hours + DELIM +
 	  'проведено совещание ' + topics[0] + ', заслушан выступающий от лица Исполнителя, заслушан выступающий от лица Заказчика, согласованы спорные моменты, подготовлена стенограмма заседания (в электронном виде), проект протокола разослан по электронной почте';
+  },
+  function(topics) {
+    return 'телефонное совещание ' + topics[0] + DELIM +
+	  topics.hours + DELIM +
+	  'проведено совещание по телефону ' + topics[0] + ', заслушан выступающий от лица Исполнителя, заслушан выступающий от лица Заказчика, согласованы спорные моменты, подготовлена стенограмма заседания (в электронном виде), проект протокола разослан по электронной почте';
   },
   function(topics) {
     return 'выступление ' + topics[0] + DELIM +
@@ -112,6 +127,18 @@ function getSubset(arr) {
   }
   return res;
 }
+
+function extractSubset(arr, num) {
+  if (arr.length >= num) Logger.log('extractSubset Error: arr.length = ' + arr.length);
+
+  var n = Math.floor(Math.random() * num / 2);
+  var i;
+  var res = [];
+  
+  for (i = 0; i < num - n; i++) res.push(arr.pop());
+  return res;
+}
+
 
 function getKeys(hash) {
   var keys = [];
