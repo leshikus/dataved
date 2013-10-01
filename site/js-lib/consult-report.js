@@ -267,11 +267,11 @@ function generateAllTopics() {
     var projects = triples[index++];
 	for (i = 0; i < consultees.length; j++) {
 	  var consultee = consultees[i];
-	  Logger.log('consultee = ' + consultee);
+	  console.log('consultee = ' + consultee);
 	  if (!ALL_TOPICS[consultee]) ALL_TOPICS[consultee] = [];
 	  for (j = 0; j < products.length; j++) {
 	    var product = product[j];
-		Logger.log('product = ' + product);
+		console.log('product = ' + product);
 	    for (k = 0; k < projects.length; k++) {
           var project = projects[k];
           var topic = TOPICS_[nt++];
@@ -297,15 +297,15 @@ function generate(element) {
     var consultee = getRandomElement(getKeys(ALL_TOPICS));
 	var topics;
 	
-	Logger.log('ALL_TOPICS[consultee].length = ' + ALL_TOPICS[consultee].length);
+	console.log('ALL_TOPICS[consultee].length = ' + ALL_TOPICS[consultee].length);
     if (ALL_TOPICS[consultee].length < NUM_Q) {
 	  topics = ALL_TOPICS[consultee];
 	  delete ALL_TOPICS[consultee];
 	} else {
 	  topics = extractSubset(ALL_TOPICS[consultee], NUM_Q);
-	  Logger.log('now ALL_TOPICS[consultee].length = ' + ALL_TOPICS[consultee].length);
+	  console.log('now ALL_TOPICS[consultee].length = ' + ALL_TOPICS[consultee].length);
 	}
-    Logger.log('topics.length = ' + topics.length);
+    console.log('topics.length = ' + topics.length);
   
 	var line = consultee + DELIM;
 	var pt = packTopics(topics);
