@@ -139,9 +139,7 @@ function extractSubset(arr, num) {
 }
 
 function shuffle(arr) {
-  console.log(JSON.stringify(arr));
   for (var j, x, i = arr.length; i; j = Math.floor(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
-  console.log(JSON.stringify(arr));
   return arr;
 }
 
