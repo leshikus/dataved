@@ -271,7 +271,7 @@ function generateAllTopics() {
 	  if (!ALL_TOPICS[consultee]) ALL_TOPICS[consultee] = [];
 	  for (j = 0; j < products.length; j++) {  
 	    var product = products[j];
-		console.log('product = ' + product);
+		//console.log('product = ' + product);
 	    for (k = 0; k < projects.length; k++) {
           var project = projects[k];
           var topic = TOPICS_[nt++];
