@@ -139,6 +139,10 @@ function extractSubset(arr, num) {
   return res;
 }
 
+function shuffle(arr)
+  for(var j, x, i = arr.length; i; j = Math.floor(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
+  return arr;
+};
 
 function getKeys(hash) {
   var keys = [];
