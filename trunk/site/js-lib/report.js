@@ -129,7 +129,7 @@ function getSubset(arr) {
 }
 
 function extractSubset(arr, num) {
-  if (arr.length >= num) console.log('extractSubset Error: arr.length = ' + arr.length);
+  if (arr.length < num) console.log('extractSubset Error: arr.length = ' + arr.length);
 
   var n = Math.floor(Math.random() * num / 2);
   var i;
