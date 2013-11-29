@@ -10008,8 +10008,8 @@
             this.Lb && this.ql();
             this.Nc && this.pl();
             this.U && // FIXME
-			  (c = "Web" == this.U.gb.Mb && 0 < a.G.results[H] && 0 === a.G[Rb].currentPageIndex);
-            if (f && f.html && c) {
+              (c = "Web" == this.U.gb.Mb && 0 < a.G.results[H] && 0 === a.G[Rb].currentPageIndex);
+            if (f && f.html && c) { // FIXME
                 g = X(a.G.fe());
                 Z(g, "gsc-result");
                 h = f.html[Fb](!0);
