@@ -7720,7 +7720,7 @@
     google[w].A[I].cv = function () {
         var a, b;
         for (a = 0; a < this.results[H]; a++) b = this.results[a], this.cb(b);
-        this.dl(this.context)
+        this.context && this.dl(this.context) // FIXME
     };
     google[w].A[I].Uf = function (a, b, c) {
         c || (c = [null]);
