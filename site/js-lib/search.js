@@ -10977,7 +10977,8 @@
     };
     google[w].F[I].createPromotionHtml = google[w].F[I].Cl;
     google[w].F[I].dl = function (a) {
-        a.html && delete a.html;
+		if (!a) return;
+        delete a.html;
         0 < a.display_facets[H] && (a.html = google[w].fa.ka("facets", a))
     };
     google[w].F[I].createFacetResultHtml = google[w].F[I].dl;
