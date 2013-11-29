@@ -10007,9 +10007,9 @@
             this.nl(a.G);
             this.Lb && this.ql();
             this.Nc && this.pl();
-            // if (!this.U) return; // FIXME
-			c = "Web" == this.U.gb.Mb && 0 < a.G.results[H] && 0 === a.G[Rb].currentPageIndex;
-            if (f.html && c) {
+            this.U && // FIXME
+			  (c = "Web" == this.U.gb.Mb && 0 < a.G.results[H] && 0 === a.G[Rb].currentPageIndex);
+            if (f && f.html && c) {
                 g = X(a.G.fe());
                 Z(g, "gsc-result");
                 h = f.html[Fb](!0);
@@ -10978,7 +10978,6 @@
     };
     google[w].F[I].createPromotionHtml = google[w].F[I].Cl;
     google[w].F[I].dl = function (a) {
-        // if (!a) return; // FIXME
         delete a.html;
         0 < a.display_facets[H] && (a.html = google[w].fa.ka("facets", a))
     };
