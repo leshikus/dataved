@@ -46,13 +46,14 @@
       <data:blog.pageTitle/>
     </title>
     <noscript>
-      <b:skin>
-        <![CDATA[]]>
-      </b:skin>
+      <b:skin><![CDATA[
+        
+      ]]></b:skin>
     </noscript>
     <!-- ignore skins -->
     <link href='http://www.blogger.com/dyn-css/authorization.css?targetBlogID=3023871881439413232&amp;zx=947805cc-7f10-4e75-8bb6-d4534b03fa29' rel='stylesheet' type='text/css'/>
     <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
+    <link href='http://dataved.googlecode.com/svn/trunk/site/site.css' rel='stylesheet' type='text/css'/>
     <link href='http://dataved.googlecode.com/svn/trunk/site/post.css' rel='stylesheet' type='text/css'/>
     <link href='http://dataved.googlecode.com/svn/trunk/site/bbn/style.css' rel='stylesheet' type='text/css'/>
     <link href='http://www.blogger.com/favicon-image.g?blogID=3023871881439413232' rel='shortcut icon' type='image/ico'/>
@@ -60,53 +61,53 @@
     <meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
     <script src='//www.google.com/jsapi' type='text/javascript'/>
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' type='text/javascript'/>
+    <script>
+      google.load(&quot;search&quot;, &quot;1&quot;);
+    </script>
+    <script src='http://dataved.googlecode.com/svn/trunk/site/js-lib/search.js'/>
   </head>
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
     <b:section class='navbar' id='navbar' maxwidgets='1' showaddelement='no'>
       <b:widget id='Navbar1' locked='false' title='Панель навигации' type='Navbar'>
-        <b:includable id='main'>
-          &lt;script type=&quot;text/javascript&quot;&gt;
-          function setAttributeOnload(object, attribute, val) {
-          if(window.addEventListener) {
-          window.addEventListener(&#39;load&#39;,
+        <b:includable id='main'>&lt;script type=&quot;text/javascript&quot;&gt;
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener(&#39;load&#39;,
           function(){ object[attribute] = val; }, false);
-          } else {
-          window.attachEvent(&#39;onload&#39;, function(){ object[attribute] = val; });
+      } else {
+        window.attachEvent(&#39;onload&#39;, function(){ object[attribute] = val; });
+      }
+    }
+  &lt;/script&gt;
+&lt;div id=&quot;navbar-iframe-container&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://apis.google.com/js/plusone.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+        gapi.load(&quot;gapi.iframes:gapi.iframes.style.bubble&quot;, function() {
+          if (gapi.iframes &amp;&amp; gapi.iframes.getContext) {
+            gapi.iframes.getContext().openChild({
+                url: &#39;//www.blogger.com/navbar.g?targetBlogID\0753023871881439413232\46blogName\75%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5+%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE+dataved.ru\46publishMode\75PUBLISH_MODE_HOSTED\46navbarType\75LIGHT\46layoutType\75LAYOUTS\46searchRoot\75http://www.dataved.ru/search\46blogLocale\75ru\46v\0752\46homepageUrl\75http://www.dataved.ru/\46blogFollowUrl\75https://plus.google.com/117636762579383086898\46vt\75-7129750591282518043&#39;,
+                where: document.getElementById(&quot;navbar-iframe-container&quot;),
+                id: &quot;navbar-iframe&quot;
+            });
           }
-          }
-          &lt;/script&gt;
-          &lt;div id=&quot;navbar-iframe-container&quot;&gt;&lt;/div&gt;
-          &lt;script type=&quot;text/javascript&quot; src=&quot;https://apis.google.com/js/plusone.js&quot;&gt;&lt;/script&gt;
-          &lt;script type=&quot;text/javascript&quot;&gt;
-          gapi.load(&quot;iframes-styles-bubble&quot;, function() {
-          if (window.iframes &amp;&amp; iframes.open) {
-          iframes.open(
-          &#39;//www.blogger.com/navbar.g?targetBlogID\0753023871881439413232\46blogName\75%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5+%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE+dataved.ru\46publishMode\75PUBLISH_MODE_HOSTED\46navbarType\75LIGHT\46layoutType\75LAYOUTS\46searchRoot\75http://www.dataved.ru/search\46blogLocale\75ru\46v\0752\46homepageUrl\75http://www.dataved.ru/\46vt\75-7129750591282518043&#39;,
-          {
-          container: &quot;navbar-iframe-container&quot;,
-          id: &quot;navbar-iframe&quot;
-          },
-          {
-          });
-          }
-          });
-          &lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;
-          (function() {
-          var script = document.createElement(&#39;script&#39;);
-          script.type = &#39;text/javascript&#39;;
-          script.src = &#39;//pagead2.googlesyndication.com/pagead/js/google_top_exp.js&#39;;
-          var head = document.getElementsByTagName(&#39;head&#39;)[0];
-          if (head) {
-          head.appendChild(script);
-          }})();
-          &lt;/script&gt;
-        </b:includable>
+        });
+      &lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;
+(function() {
+var script = document.createElement(&#39;script&#39;);
+script.type = &#39;text/javascript&#39;;
+script.src = &#39;//pagead2.googlesyndication.com/pagead/js/google_top_exp.js&#39;;
+var head = document.getElementsByTagName(&#39;head&#39;)[0];
+if (head) {
+head.appendChild(script);
+}})();
+&lt;/script&gt;
+</b:includable>
       </b:widget>
     </b:section>
     <div id='fb-root'/>
     <div class='content'>
       <header>
-        <b:section class='header' id='header' maxwidgets='1' showaddelement='no'>
+        <b:section class='header' id='header' maxwidgets='3' showaddelement='no'>
           <b:widget id='Header1' locked='false' title='Свободное общество dataved.ru (заголовок)' type='Header'>
             <b:includable id='main'>
               <!--Show the image only-->
@@ -153,14 +154,8 @@
               <b:include name='quickedit'/>
             </b:includable>
           </b:widget>
-          <b:widget id='CustomSearch1' locked='false' title='' type='CustomSearch'>
+          <b:widget id='CustomSearch1' locked='false' title='Поиск по этому блогу' type='CustomSearch'>
             <b:includable id='main'>
-              <!-- only display title if it's non-empty -->
-              <b:if cond='data:title != &quot;&quot;'>
-                <h2 class='title'>
-                  <data:title/>
-                </h2>
-              </b:if>
               <div expr:id='data:widget.instanceId + &quot;_form&quot;'>
                 <span class='cse-status'>
                   <data:loadingMsg/>
@@ -170,6 +165,24 @@
             </b:includable>
           </b:widget>
         </b:section>
+        <b:if cond='data:blog.url != &quot;http://www.dataved.ru/p/welcome.html&quot;'>
+          <b:section class='header' id='header-right' maxwidgets='1' showaddelement='no'>
+            <b:widget id='HTML7' locked='false' title='' type='HTML'>
+              <b:includable id='main'>
+                <!-- only display title if it's non-empty -->
+                <b:if cond='data:title != &quot;&quot;'>
+                  <h2 class='title'>
+                    <data:title/>
+                  </h2>
+                </b:if>
+                <div class='widget-content'>
+                  <data:content/>
+                </div>
+                <b:include name='quickedit'/>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </b:if>
         <div class='clear'/>
       </header>
       <!-- aaf: page1 -->
@@ -1227,23 +1240,13 @@
     </b:if>
     <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;&quot;' preferred='yes' showaddelement='yes'/>
   </macro:includable>
-  <b:section-contents id='sidebar-right-top'>
-    <b:widget id='HTML7' locked='false' title='' type='HTML'>
-      <b:includable id='main'>
-        <!-- only display title if it's non-empty -->
-        <b:if cond='data:title != &quot;&quot;'>
-          <h2 class='title'>
-            <data:title/>
-          </h2>
-        </b:if>
-        <div class='widget-content'>
-          <data:content/>
-        </div>
-        <b:include name='quickedit'/>
-      </b:includable>
-    </b:widget>
-    <b:widget id='HTML8' locked='false' title='Комментарии свободного общества Датавед' type='HTML'>
-      <b:includable id='main'>
+  
+  
+  
+  
+<b:section-contents id='sidebar-right-top'>
+  <b:widget id='HTML8' locked='false' title='Комментарии свободного общества Датавед' type='HTML'>
+    <b:includable id='main'>
         <script type='text/javascript'>
           var disqus_shortname = &#39;dataved&#39;;
           var disqus_blogger_current_url = &quot;<data:blog.canonicalUrl/>&quot;;
@@ -1280,9 +1283,9 @@
                                                    })();
         </script>
       </b:includable>
-    </b:widget>
-    <b:widget id='HTML2' locked='false' title='Продукты' type='HTML'>
-      <b:includable id='main'>
+  </b:widget>
+  <b:widget id='HTML2' locked='false' title='Продукты' type='HTML'>
+    <b:includable id='main'>
         <!-- only display title if it's non-empty -->
         <b:if cond='data:title != &quot;&quot;'>
           <h2 class='title'>
@@ -1294,11 +1297,10 @@
         </div>
         <b:include name='quickedit'/>
       </b:includable>
-    </b:widget>
-  </b:section-contents>
-  <b:section-contents id='sidebar-right-post'>
-    <b:widget id='HTML4' locked='false' title='' type='HTML'>
-      <b:includable id='main'>
+  </b:widget>
+</b:section-contents><b:section-contents id='sidebar-right-post'>
+  <b:widget id='HTML4' locked='false' title='' type='HTML'>
+    <b:includable id='main'>
         <!-- only display title if it's non-empty -->
         <b:if cond='data:title != &quot;&quot;'>
           <h2 class='title'>
@@ -1310,11 +1312,10 @@
         </div>
         <b:include name='quickedit'/>
       </b:includable>
-    </b:widget>
-  </b:section-contents>
-  <b:section-contents id='sidebar-right-collection'>
-    <b:widget id='Label1' locked='false' title='Темы' type='Label'>
-      <b:includable id='main'>
+  </b:widget>
+</b:section-contents><b:section-contents id='sidebar-right-collection'>
+  <b:widget id='Label1' locked='false' title='Темы' type='Label'>
+    <b:includable id='main'>
         <b:if cond='data:title'>
           <h2>
             <data:title/>
@@ -1369,11 +1370,10 @@
           <b:include name='quickedit'/>
         </div>
       </b:includable>
-    </b:widget>
-  </b:section-contents>
-  <b:section-contents id='sidebar-right'>
-    <b:widget id='PopularPosts2' locked='false' title='Популярные сообщения' type='PopularPosts'>
-      <b:includable id='main'>
+  </b:widget>
+</b:section-contents><b:section-contents id='sidebar-right'>
+  <b:widget id='PopularPosts2' locked='false' title='Популярные сообщения' type='PopularPosts'>
+    <b:includable id='main'>
         <b:if cond='data:title'>
           <h2>
             <data:title/>
@@ -1446,9 +1446,9 @@
           <b:include name='quickedit'/>
         </div>
       </b:includable>
-    </b:widget>
-    <b:widget id='HTML3' locked='false' title='Последние заметки' type='HTML'>
-      <b:includable id='main'>
+  </b:widget>
+  <b:widget id='HTML3' locked='false' title='Последние заметки' type='HTML'>
+    <b:includable id='main'>
         <!-- only display title if it's non-empty -->
         <b:if cond='data:title != &quot;&quot;'>
           <h2 class='title'>
@@ -1460,9 +1460,9 @@
         </div>
         <b:include name='quickedit'/>
       </b:includable>
-    </b:widget>
-    <b:widget id='HTML1' locked='false' title='Партнёры' type='HTML'>
-      <b:includable id='main'>
+  </b:widget>
+  <b:widget id='HTML1' locked='false' title='Партнёры' type='HTML'>
+    <b:includable id='main'>
         <!-- only display title if it's non-empty -->
         <b:if cond='data:title != &quot;&quot;'>
           <h2 class='title'>
@@ -1474,9 +1474,9 @@
         </div>
         <b:include name='quickedit'/>
       </b:includable>
-    </b:widget>
-    <b:widget id='BlogArchive1' locked='false' title='Архив публикаций сайта' type='BlogArchive'>
-      <b:includable id='main'>
+  </b:widget>
+  <b:widget id='BlogArchive1' locked='false' title='Архив публикаций сайта' type='BlogArchive'>
+    <b:includable id='main'>
         <b:if cond='data:title'>
           <h2>
             <data:title/>
@@ -1499,7 +1499,7 @@
           <b:include name='quickedit'/>
         </div>
       </b:includable>
-      <b:includable id='flat' var='data'>
+    <b:includable id='flat' var='data'>
         <ul class='flat'>
           <b:loop values='data:data' var='i'>
             <li class='archivedate'>
@@ -1513,7 +1513,7 @@
           </b:loop>
         </ul>
       </b:includable>
-      <b:includable id='interval' var='intervalData'>
+    <b:includable id='interval' var='intervalData'>
         <b:loop values='data:intervalData' var='i'>
           <ul class='hierarchy'>
             <li expr:class='&quot;archivedate &quot; + data:i.expclass'>
@@ -1536,7 +1536,7 @@
           </ul>
         </b:loop>
       </b:includable>
-      <b:includable id='menu' var='data'>
+    <b:includable id='menu' var='data'>
         <select expr:id='data:widget.instanceId + &quot;_ArchiveMenu&quot;'>
           <option value=''>
             <data:title/>
@@ -1551,7 +1551,7 @@
           </b:loop>
         </select>
       </b:includable>
-      <b:includable id='posts' var='posts'>
+    <b:includable id='posts' var='posts'>
         <ul class='posts'>
           <b:loop values='data:posts' var='i'>
             <li>
@@ -1562,7 +1562,7 @@
           </b:loop>
         </ul>
       </b:includable>
-      <b:includable id='toggle' var='interval'>
+    <b:includable id='toggle' var='interval'>
         <b:if cond='data:interval.toggleId'>
           <b:if cond='data:interval.expclass == &quot;expanded&quot;'>
             <a class='toggle' href='javascript:void(0)'>
@@ -1583,6 +1583,5 @@
           </b:if>
         </b:if>
       </b:includable>
-    </b:widget>
-  </b:section-contents>
-</html>
+  </b:widget>
+</b:section-contents></html>
