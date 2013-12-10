@@ -108,118 +108,9 @@
     </b:section>
     <div id='fb-root'/>
     <div class='content'>
-      <header>
-        <b:section class='header' id='header' maxwidgets='3' showaddelement='no'>
-          <b:widget id='Header1' locked='false' title='Свободное общество dataved.ru (заголовок)' type='Header'>
-            <b:includable id='main'>
-              <!--Show the image only-->
-              <b:if cond='data:blog.url ==  &quot;http://www.dataved.ru/p/welcome.html&quot;'>
-                <a expr:href='data:blog.homepageUrl + &quot;search&quot;'>
-                  <img expr:alt='data:title' expr:height='data:height' expr:src='data:sourceUrl' expr:width='data:width'/>
-                </a>
-                <b:else/>
-                <a expr:href='data:blog.homepageUrl + &quot;p/welcome.html&quot;'>
-                  <img expr:alt='data:title' expr:height='data:height' expr:src='data:sourceUrl' expr:width='data:width'/>
-                </a>
-              </b:if>
-            </b:includable>
-            <b:includable id='description'>
-              <div class='descriptionwrapper'>
-                <p class='description'>
-                  <span>
-                    <data:description/>
-                  </span>
-                </p>
-              </div>
-            </b:includable>
-            <b:includable id='title'>
-              <b:if cond='data:blog.url == data:blog.homepageUrl'>
-                <data:title/>
-                <b:else/>
-                <a expr:href='data:blog.homepageUrl'>
-                  <data:title/>
-                </a>
-              </b:if>
-            </b:includable>
-          </b:widget>
-          <b:widget id='HTML5' locked='false' title='' type='HTML'>
-            <b:includable id='main'>
-              <!-- only display title if it's non-empty -->
-              <b:if cond='data:title != &quot;&quot;'>
-                <h2 class='title'>
-                  <data:title/>
-                </h2>
-              </b:if>
-              <div class='widget-content'>
-                <data:content/>
-              </div>
-              <b:include name='quickedit'/>
-            </b:includable>
-          </b:widget>
-          <b:widget id='CustomSearch1' locked='false' title='Поиск по этому блогу' type='CustomSearch'>
-            <b:includable id='main'>
-              <div expr:id='data:widget.instanceId + &quot;_form&quot;'>
-                <span class='cse-status'>
-                  <data:loadingMsg/>
-                </span>
-              </div>
-              <b:include name='quickedit'/>
-            </b:includable>
-          </b:widget>
-        </b:section>
-        <b:if cond='data:blog.url != &quot;http://www.dataved.ru/p/welcome.html&quot;'>
-          <b:section class='header' id='header-right' maxwidgets='1' showaddelement='no'>
-            <b:widget id='HTML7' locked='false' title='' type='HTML'>
-              <b:includable id='main'>
-                <!-- only display title if it's non-empty -->
-                <b:if cond='data:title != &quot;&quot;'>
-                  <h2 class='title'>
-                    <data:title/>
-                  </h2>
-                </b:if>
-                <div class='widget-content'>
-                  <data:content/>
-                </div>
-                <b:include name='quickedit'/>
-              </b:includable>
-            </b:widget>
-          </b:section>
-        </b:if>
-        <div class='clear'/>
-      </header>
-      <!-- aaf: page1 -->
-      <b:if cond='data:blog.url != &quot;http://www.dataved.ru/p/welcome.html&quot;'>
-        <!--
-<b:if cond='1 != 1'>
--->
-        <macro:include id='main-columns' name='sections'>
-          <macro:param default='section' name='idPrefix'/>
-        </macro:include>
-        <div style='clear: both'/>
-        <!-- main -->
-        <footer>
-        </footer>
-        <b:else/>
-        <!-- aaf: page1 -->
-        <!-- The JavaScript -->
-        <b:section class='main' id='page1' showaddelement='no'>
-          <b:widget id='HTML6' locked='false' title='' type='HTML'>
-            <b:includable id='main'>
-              <!-- only display title if it's non-empty -->
-              <b:if cond='data:title != &quot;&quot;'>
-                <h2 class='title'>
-                  <data:title/>
-                </h2>
-              </b:if>
-              <div class='widget-content'>
-                <data:content/>
-              </div>
-              <b:include name='quickedit'/>
-            </b:includable>
-          </b:widget>
-        </b:section>
-      </b:if>
-      <!-- aaf: page1 -->
+      <macro:include id='main-columns' name='sections'>
+        <macro:param default='section' name='idPrefix'/>
+      </macro:include>
     </div>
     <script type='text/javascript'>
       window.setTimeout(function() {
@@ -229,18 +120,129 @@
     </script>
   </body>
   <macro:includable id='sections' var='col'>
-    <aside>
-      <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-top&quot;' preferred='yes' showaddelement='yes'/>
-      <b:if cond='data:blog.pageType == &quot;item&quot;'>
-        <!-- a post, not post collection -->
-        <b:section class='sidebar' mexpr:id='data:col.idPrefix + &quot;-post&quot;' preferred='yes' showaddelement='yes'/>
-        <b:else/>
-        <b:section class='sidebar' mexpr:id='data:col.idPrefix + &quot;-collection&quot;' preferred='yes' showaddelement='yes'/>
+    <header>
+      <b:section class='header' id='header-left' maxwidgets='3' showaddelement='no'/>
+      <b:if cond='data:blog.url != &quot;http://www.dataved.ru/p/welcome.html&quot;'>
+        <b:section class='header' id='header-right' maxwidgets='1' showaddelement='no'/>
       </b:if>
-      <b:section class='sidebar' mexpr:id='data:col.idPrefix + &quot;&quot;' preferred='yes' showaddelement='yes'/>
-    </aside>
-    <b:section class='main' mexpr:id='data:col.idPrefix + &quot;-main&quot;' showaddelement='no'/>
+      <div class='clear'/>
+    </header>
+    <!-- aaf: page1 -->
+    <b:if cond='data:blog.url != &quot;http://www.dataved.ru/p/welcome.html&quot;'>
+      <!--
+<b:if cond='1 != 1'>
+-->
+      <aside>
+        <b:section class='sidebar' id='sidebar-top' preferred='yes' showaddelement='yes'/>
+        <b:if cond='data:blog.pageType == &quot;item&quot;'>
+          <!-- a post, not post collection -->
+          <b:section class='sidebar' id='sidebar-post' preferred='yes' showaddelement='yes'/>
+          <b:else/>
+          <b:section class='sidebar' id='sidebar-collection' preferred='yes' showaddelement='yes'/>
+        </b:if>
+        <b:section class='sidebar' id='sidebar-bottom' preferred='yes' showaddelement='yes'/>
+      </aside>
+      <b:section class='main' id='section-main' showaddelement='no'/>
+      <!-- main -->
+      <footer>
+      </footer>
+      <b:else/>
+      <!-- aaf: page1 -->
+      <!-- The JavaScript -->
+      <b:section class='main' id='page1' showaddelement='no'/>
+    </b:if>
+    <!-- aaf: page1 -->
   </macro:includable>
+  <b:section-contents class='main' id='page1' showaddelement='no'>
+    <b:widget id='HTML6' locked='false' title='' type='HTML'>
+      <b:includable id='main'>
+        <!-- only display title if it's non-empty -->
+        <b:if cond='data:title != &quot;&quot;'>
+          <h2 class='title'>
+            <data:title/>
+          </h2>
+        </b:if>
+        <div class='widget-content'>
+          <data:content/>
+        </div>
+        <b:include name='quickedit'/>
+      </b:includable>
+    </b:widget>
+  </b:section-contents>
+  <b:section-contents id='header-right'>
+    <b:widget id='HTML7' locked='false' title='' type='HTML'>
+      <b:includable id='main'>
+        <!-- only display title if it's non-empty -->
+        <b:if cond='data:title != &quot;&quot;'>
+          <h2 class='title'>
+            <data:title/>
+          </h2>
+        </b:if>
+        <div class='widget-content'>
+          <data:content/>
+        </div>
+        <b:include name='quickedit'/>
+      </b:includable>
+    </b:widget>
+  </b:section-contents>
+  <b:section-contents id='header-left'>
+    <b:widget id='Header1' locked='false' title='Свободное общество dataved.ru (заголовок)' type='Header'>
+      <b:includable id='main'>
+        <!--Show the image only-->
+        <b:if cond='data:blog.url ==  &quot;http://www.dataved.ru/p/welcome.html&quot;'>
+          <a expr:href='data:blog.homepageUrl + &quot;search&quot;'>
+            <img expr:alt='data:title' expr:height='data:height' expr:src='data:sourceUrl' expr:width='data:width'/>
+          </a>
+          <b:else/>
+          <a expr:href='data:blog.homepageUrl + &quot;p/welcome.html&quot;'>
+            <img expr:alt='data:title' expr:height='data:height' expr:src='data:sourceUrl' expr:width='data:width'/>
+          </a>
+        </b:if>
+      </b:includable>
+      <b:includable id='description'>
+        <div class='descriptionwrapper'>
+          <p class='description'>
+            <span>
+              <data:description/>
+            </span>
+          </p>
+        </div>
+      </b:includable>
+      <b:includable id='title'>
+        <b:if cond='data:blog.url == data:blog.homepageUrl'>
+          <data:title/>
+          <b:else/>
+          <a expr:href='data:blog.homepageUrl'>
+            <data:title/>
+          </a>
+        </b:if>
+      </b:includable>
+    </b:widget>
+    <b:widget id='HTML5' locked='false' title='' type='HTML'>
+      <b:includable id='main'>
+        <!-- only display title if it's non-empty -->
+        <b:if cond='data:title != &quot;&quot;'>
+          <h2 class='title'>
+            <data:title/>
+          </h2>
+        </b:if>
+        <div class='widget-content'>
+          <data:content/>
+        </div>
+        <b:include name='quickedit'/>
+      </b:includable>
+    </b:widget>
+    <b:widget id='CustomSearch1' locked='false' title='Поиск по этому блогу' type='CustomSearch'>
+      <b:includable id='main'>
+        <div expr:id='data:widget.instanceId + &quot;_form&quot;'>
+          <span class='cse-status'>
+            <data:loadingMsg/>
+          </span>
+        </div>
+        <b:include name='quickedit'/>
+      </b:includable>
+    </b:widget>
+  </b:section-contents>
   <b:section-contents id='section-main'>
     <b:widget id='Blog1' locked='false' title='Сообщения блога' type='Blog'>
       <b:includable id='main' var='top'>
@@ -1240,7 +1242,7 @@
       </b:includable>
     </b:widget>
   </b:section-contents>
-  <b:section-contents id='section-top'>
+  <b:section-contents id='sidebar-top'>
     <b:widget id='HTML8' locked='false' title='Комментарии свободного общества Датавед' type='HTML'>
       <b:includable id='main'>
         <script type='text/javascript'>
@@ -1295,7 +1297,7 @@
       </b:includable>
     </b:widget>
   </b:section-contents>
-  <b:section-contents id='section-post'>
+  <b:section-contents id='sidebar-post'>
     <b:widget id='HTML4' locked='false' title='' type='HTML'>
       <b:includable id='main'>
         <!-- only display title if it's non-empty -->
@@ -1311,7 +1313,7 @@
       </b:includable>
     </b:widget>
   </b:section-contents>
-  <b:section-contents id='section-collection'>
+  <b:section-contents id='sidebar-collection'>
     <b:widget id='Label1' locked='false' title='Темы' type='Label'>
       <b:includable id='main'>
         <b:if cond='data:title'>
@@ -1370,7 +1372,7 @@
       </b:includable>
     </b:widget>
   </b:section-contents>
-  <b:section-contents id='section'>
+  <b:section-contents id='sidebar-bottom'>
     <b:widget id='PopularPosts2' locked='false' title='Популярные сообщения' type='PopularPosts'>
       <b:includable id='main'>
         <b:if cond='data:title'>
@@ -1577,7 +1579,7 @@
                   <b:else/>
                   &#9658;&#160;
                 </b:if>
-</span>
+              </span>
             </a>
           </b:if>
         </b:if>
