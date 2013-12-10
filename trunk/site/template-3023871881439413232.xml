@@ -732,7 +732,7 @@
           </b:if>
           <div class='date-posts'>
             <div class='post-outer'>
-              <div class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+              <article class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
                 <b:if cond='data:post.thumbnailUrl'>
                   <meta expr:content='data:post.thumbnailUrl' itemprop='image_url'/>
                 </b:if>
@@ -828,7 +828,7 @@
                     </b:if>
                   </div>
                 </div>
-              </div>
+              </article>
               <b:if cond='data:blog.pageType == &quot;static_page&quot;'>
                 <b:include data='post' name='comment_picker'/>
               </b:if>
@@ -869,7 +869,7 @@
         <div class='clear'/>
       </b:includable>
       <b:includable id='post' var='post'>
-        <div class='post hentry'>
+        <article class='post hentry'>
           <a expr:name='data:post.id'/>
           <b:if cond='data:post.title'>
             <h3 class='post-title entry-title'>
@@ -974,7 +974,7 @@
             </div>
             <div class='post-footer-line post-footer-line-3'/>
           </div>
-        </div>
+        </article>
       </b:includable>
       <b:includable id='postQuickEdit' var='post'>
         <b:if cond='data:post.editUrl'>
