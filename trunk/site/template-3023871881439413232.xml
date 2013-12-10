@@ -190,7 +190,59 @@ head.appendChild(script);
         <!--
 <b:if cond='1 != 1'>
 -->
-        <b:section class='main' id='main' showaddelement='no'>
+
+		<macro:include id='main-columns' name='sections'>
+          <macro:param default='section' name='idPrefix'/>
+        </macro:include>
+        <div style='clear: both'/>
+        <!-- main -->
+        <footer>
+        </footer>
+        <b:else/>
+        <!-- aaf: page1 -->
+        <!-- The JavaScript -->
+        <b:section class='main' id='page1' showaddelement='no'>
+          <b:widget id='HTML6' locked='false' title='' type='HTML'>
+            <b:includable id='main'>
+              <!-- only display title if it's non-empty -->
+              <b:if cond='data:title != &quot;&quot;'>
+                <h2 class='title'>
+                  <data:title/>
+                </h2>
+              </b:if>
+              <div class='widget-content'>
+                <data:content/>
+              </div>
+              <b:include name='quickedit'/>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </b:if>
+      <!-- aaf: page1 -->
+    </div>
+    <script type='text/javascript'>
+      window.setTimeout(function() {
+        document.body.className = document.body.className.replace(&#39;loading&#39;, &#39;&#39;)
+                                                                  $.getScript(&#39;//dataved.googlecode.com/svn/trunk/site/common.js&#39;)
+                                                                  }, 100);
+    </script>
+  </body>
+  <macro:includable id='sections' var='col'>
+	<aside>
+	  <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-top&quot;' preferred='yes' showaddelement='yes'/>
+	  <b:if cond='data:blog.pageType == &quot;item&quot;'>
+		<!-- a post, not post collection -->
+		<b:section class='sidebar' mexpr:id='data:col.idPrefix + &quot;-post&quot;' preferred='yes' showaddelement='yes'/>
+	  <b:else/>
+		<b:section class='sidebar' mexpr:id='data:col.idPrefix + &quot;-collection&quot;' preferred='yes' showaddelement='yes'/>
+	  </b:if>
+	  <b:section class='sidebar' mexpr:id='data:col.idPrefix + &quot;&quot;' preferred='yes' showaddelement='yes'/>
+	</aside>
+    <b:section class='main' mexpr:id='data:col.idPrefix + &quot;-main&quot;' showaddelement='no'/>	
+  </macro:includable>
+  
+  
+        <b:section-contents id='section-main'>
           <b:widget id='Blog1' locked='false' title='Сообщения блога' type='Blog'>
             <b:includable id='main' var='top'>
               <b:if cond='data:top.showDummy'>
@@ -1188,63 +1240,10 @@ head.appendChild(script);
               </div>
             </b:includable>
           </b:widget>
-        </b:section>
-        <aside>
-          <macro:include id='main-column-right-sections' name='sections'>
-            <macro:param default='1' name='num' value='1'/>
-            <macro:param default='sidebar-right' name='idPrefix'/>
-            <macro:param default='sidebar' name='class'/>
-            <macro:param default='true' name='includeBottom'/>
-          </macro:include>
-        </aside>
-        <div style='clear: both'/>
-        <!-- main -->
-        <footer>
-        </footer>
-        <b:else/>
-        <!-- aaf: page1 -->
-        <!-- The JavaScript -->
-        <b:section class='main' id='page1' showaddelement='no'>
-          <b:widget id='HTML6' locked='false' title='' type='HTML'>
-            <b:includable id='main'>
-              <!-- only display title if it's non-empty -->
-              <b:if cond='data:title != &quot;&quot;'>
-                <h2 class='title'>
-                  <data:title/>
-                </h2>
-              </b:if>
-              <div class='widget-content'>
-                <data:content/>
-              </div>
-              <b:include name='quickedit'/>
-            </b:includable>
-          </b:widget>
-        </b:section>
-      </b:if>
-      <!-- aaf: page1 -->
-    </div>
-    <script type='text/javascript'>
-      window.setTimeout(function() {
-        document.body.className = document.body.className.replace(&#39;loading&#39;, &#39;&#39;)
-                                                                  $.getScript(&#39;//dataved.googlecode.com/svn/trunk/site/common.js&#39;)
-                                                                  }, 100);
-    </script>
-  </body>
-  <macro:includable id='sections' var='col'>
-    <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-top&quot;' preferred='yes' showaddelement='yes'/>
-    <b:if cond='data:blog.pageType == &quot;item&quot;'>
-      <!-- a post, not post collection -->
-      <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-post&quot;' preferred='yes' showaddelement='yes'/>
-      <b:else/>
-      <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-collection&quot;' preferred='yes' showaddelement='yes'/>
-    </b:if>
-    <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;&quot;' preferred='yes' showaddelement='yes'/>
-  </macro:includable>
+        </b:section-contents>
   
   
-  
-  
-<b:section-contents id='sidebar-right-top'>
+<b:section-contents id='section-top'>
   <b:widget id='HTML8' locked='false' title='Комментарии свободного общества Датавед' type='HTML'>
     <b:includable id='main'>
         <script type='text/javascript'>
@@ -1298,7 +1297,7 @@ head.appendChild(script);
         <b:include name='quickedit'/>
       </b:includable>
   </b:widget>
-</b:section-contents><b:section-contents id='sidebar-right-post'>
+</b:section-contents><b:section-contents id='section-post'>
   <b:widget id='HTML4' locked='false' title='' type='HTML'>
     <b:includable id='main'>
         <!-- only display title if it's non-empty -->
@@ -1313,7 +1312,7 @@ head.appendChild(script);
         <b:include name='quickedit'/>
       </b:includable>
   </b:widget>
-</b:section-contents><b:section-contents id='sidebar-right-collection'>
+</b:section-contents><b:section-contents id='section-collection'>
   <b:widget id='Label1' locked='false' title='Темы' type='Label'>
     <b:includable id='main'>
         <b:if cond='data:title'>
@@ -1371,7 +1370,7 @@ head.appendChild(script);
         </div>
       </b:includable>
   </b:widget>
-</b:section-contents><b:section-contents id='sidebar-right'>
+</b:section-contents><b:section-contents id='section'>
   <b:widget id='PopularPosts2' locked='false' title='Популярные сообщения' type='PopularPosts'>
     <b:includable id='main'>
         <b:if cond='data:title'>
