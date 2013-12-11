@@ -27,7 +27,7 @@ table .gs-branding {
 /* Metrics
 ----------------------------------------------- */
 .main {
-  width: 740px;
+  width: 720px;
 }
 
 #uds-searchControl .gsc-results {
@@ -48,7 +48,7 @@ aside {
 }
 
 #HTML7 {
-  font-size: 100%;
+  font-size: 80%;
 }
 
 div.content {

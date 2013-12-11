@@ -73,7 +73,7 @@ a.tooltip:hover div { /* the span will display just on :hover state */
 ----------------------------------------------- */
 .inline-ad {
   text-align: center;
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 /* Post layout
@@ -92,7 +92,7 @@ h3.post-title, .comments h4 {
 }
 
 .post-footer {
-  margin: 20px 2px 0;
+  margin: 10px 2px 0;
   padding: 5px 10px;
   line-height: 1.6;
   font-size: 90%;
