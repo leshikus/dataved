@@ -47,8 +47,8 @@ aside {
   width: 260px;
 }
 
-#HTML7, aside div.sidebar .widget {
-  width: 220px;
+#HTML7 {
+  font-size: 100%;
 }
 
 div.content {
