@@ -1,4 +1,5 @@
 $(document).ready(
+  $('.content').css('width', '730px');
   $.getScript('http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js', function() {
     $(function() {
       /* position of the <li> that is currently shown */
