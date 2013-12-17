@@ -34,12 +34,11 @@ Glob.prototype.onComplete = function() {
   console.log(q);
   
   var e = document.createElement('script');
-  e.type = 'text/javascript';
+
   e.onload = function() {
     alert("Script loaded and ready");
   };
-  e.src = '//www.google.com/trends/embed.js?q=' +
-    encodeURIComponent(q);
+  e.src = '//www.google.com/trends/embed.js?q=' + encodeURIComponent(q);
   var theParent = this.list.parentNode;
 
   (function() {
