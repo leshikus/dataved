@@ -42,9 +42,9 @@ Glob.prototype.onComplete = function() {
     encodeURIComponent(q);
   var theParent = this.list.parentNode;
 
-  function () {
+  (function() {
     theParent.insertBefore(e, this.list);
-  } ();
+  })();
 }
 
 Glob.prototype.rank = function(searchControl, searcher) {
