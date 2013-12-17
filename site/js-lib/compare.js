@@ -29,7 +29,7 @@ Glob.prototype.onComplete = function() {
   
   
   with (this) {
-    q = nodes.slice(5).map(getSearchText).join(',');
+    q = nodes.slice(0, 5).map(getSearchText).join(',');
   }
   console.log(q);
   
@@ -37,8 +37,8 @@ Glob.prototype.onComplete = function() {
   e.src = '//www.google.com/trends/embed.js?q=' +
     encodeURIComponent(q)
 
-  var theFirstChild = this.list.firstChild;
-  this.list.insertBefore(e, theFirstChild);
+  var theParent = this.list.parentNode;
+  theParent.insertBefore(e, this.list);
 }
 
 Glob.prototype.rank = function(searchControl, searcher) {
