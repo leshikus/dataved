@@ -24,7 +24,7 @@ Glob.prototype.searchRequest = function() {
 
 Glob.prototype.onComplete = function() {
   console.log('onComplete:');
-  //return;
+  return;
   var q;
   
   
@@ -33,12 +33,12 @@ Glob.prototype.onComplete = function() {
   }
   console.log(q);
   
-  var e = document.createElement('script');
+  var e = document.createElement('iframe');
 
   e.onload = function() {
     alert("Script loaded and ready");
   };
-  e.src = '//www.google.com/trends/embed.js?q=' + encodeURIComponent(q);
+  e.src = '//www.google.com/trends/embed.js?w=800&q=' + encodeURIComponent(q);
   var theParent = this.list.parentNode;
 
   (function() {
