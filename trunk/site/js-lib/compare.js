@@ -40,9 +40,11 @@ Glob.prototype.onComplete = function() {
   };
   e.src = '//www.google.com/trends/embed.js?q=' +
     encodeURIComponent(q);
-
   var theParent = this.list.parentNode;
-  theParent.insertBefore(e, this.list);
+
+  function () {
+    theParent.insertBefore(e, this.list);
+  } ();
 }
 
 Glob.prototype.rank = function(searchControl, searcher) {
