@@ -1,6 +1,6 @@
 $(document).ready(
   $.getScript('http://dataved.googlecode.com/svn/trunk/site/bbn/jquery.bgpos.js', function() {
-    $('.content').css('width', '870px');
+    $('.content').css('width', '858px');
     $(function() {
       /* position of the <li> that is currently shown */
       var current = 0
