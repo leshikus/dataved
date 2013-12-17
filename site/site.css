@@ -20,14 +20,14 @@ table .gs-branding {
 /* Radius
 ----------------------------------------------- */
 .widget, .gsc-results {
-  border-radius: 20px;
-  -moz-border-radius: 20px;
+  border-radius: 14px;
+  -moz-border-radius: 14px;
 }
 
 /* Metrics
 ----------------------------------------------- */
 .main {
-  width: 870px;
+  width: 858px;
 }
 
 #uds-searchControl .gsc-results {
@@ -35,7 +35,7 @@ table .gs-branding {
 }
 
 .header .HTML, .header .Header, .header .CustomSearch, .header .CustomSearch div {
-  width: 210px;
+  width: 230px;
 }
 
 .header .widget {
@@ -44,7 +44,7 @@ table .gs-branding {
 
 
 aside {
-  width: 290px;
+  width: 286px;
 }
 
 #HTML7 {
@@ -60,20 +60,20 @@ div.content {
 ----------------------------------------------- */
 .widget,
 #uds-searchControl .gsc-results {
-  margin: 20px;
-  padding: 20px;
+  margin: 14px;
+  padding: 14px;
 }
 
 #uds-searchControl .gsc-tabsArea,
 #uds-searchControl .gsc-above-wrapper-area {
-  margin: 0 20px;
-  padding: 0 20px;
+  margin: 0 14px;
+  padding: 0 14px;
 }
 
 /* Content
 ----------------------------------------------- */
 div.content {
-  margin: 20px auto;
+  margin: 14px auto;
 }
 
 /* Images
