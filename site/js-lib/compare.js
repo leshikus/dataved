@@ -35,6 +35,9 @@ Glob.prototype.onComplete = function() {
   
   var e = document.createElement('script');
   e.type = 'text/javascript';
+  e.onload = function() {
+    alert("Script loaded and ready");
+  };
   e.src = '//www.google.com/trends/embed.js?q=' +
     encodeURIComponent(q);
 
