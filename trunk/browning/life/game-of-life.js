@@ -14,7 +14,7 @@ var GOLloadState;
 
     columns : 0,
     rows : 0,
-	torus : false,
+    torus : false,
   
     waitTime: 0,
     generation : 0,
@@ -318,6 +318,7 @@ var GOLloadState;
 	  // Save / Load
       this.helpers.registerEvent(document.getElementById('buttonExport'), 'click', this.handlers.buttons.export_, false);
       this.helpers.registerEvent(document.getElementById('buttonLoad'), 'click', this.handlers.buttons.load, false);
+      this.helpers.registerEvent(document.getElementById('buttonSave'), 'click', this.handlers.buttons.save, false);
     },
 
 
@@ -477,12 +478,14 @@ var GOLloadState;
           if (GOL.running) {
             GOL.nextStep();
             document.getElementById('buttonRun').value = ' Стоп ';
-			document.getElementById('torus').disabled = true;
-			document.getElementById('buttonLoad').disabled = true;
+            document.getElementById('torus').disabled = true;
+            document.getElementById('buttonLoad').disabled = true;
+            document.getElementById('buttonSave').disabled = true;
           } else {
             document.getElementById('buttonRun').value = ' Пуск ';
-			document.getElementById('torus').disabled = false;
-			document.getElementById('buttonLoad').disabled = false;
+            document.getElementById('torus').disabled = false;
+            document.getElementById('buttonLoad').disabled = false;
+            document.getElementById('buttonSave').disabled = false;
           }
         },
 
@@ -588,36 +591,43 @@ var GOLloadState;
          * Button Handler - load state in plaintext format according to http://www.conwaylife.com/wiki/Plaintext
          */
         load : function() {
-		    var text, i, j, hsize = 0, vsize, tlx, tly;
-			
-		    text = document.getElementById('textArea').value.split('\n');
-			while (text[0][0] === '!') {
-			    text.shift();
-			}
-			vsize = text.length;
-			for (i = 0; i < vsize; i++) {
-			    text[i] = text[i].trim().toUpperCase();
-			    if (!text[i].match(/^[.O]*$/)) {
-		    	    alert('Ошибка: неизвестные символы в строке ' + text[i]);
-	    			return;
-    			}
-				if (text[i].length > hsize) {
-				    hsize = text[i].length;
-				}
-			}
-			
-			GOL.cleanUp();
-			tlx = Math.floor((GOL.columns - hsize) / 2);
-			tly = Math.floor((GOL.rows - vsize) / 2);
-			for (j = 0; j < vsize; j++) {
-				for (i = 0; i < text[j].length; i++) {
-				    if (text[j][i] === 'O') {
-					    GOL.canvas.switchCell(tlx + i, tly + j);
-					}
-				}
-			}
-		}
-		
+          var text, i, j, hsize = 0, vsize, tlx, tly;
+
+          text = document.getElementById('textArea').value.split('\n');
+          while (text[0][0] === '!') {
+            text.shift();
+          }
+          vsize = text.length;
+          for (i = 0; i < vsize; i++) {
+            text[i] = text[i].trim().toUpperCase();
+            if (!text[i].match(/^[.O]*$/)) {
+              alert('Ошибка: неизвестные символы в строке ' + text[i]);
+              return;
+            }
+            if (text[i].length > hsize) {
+              hsize = text[i].length;
+            }
+          }
+
+          GOL.cleanUp();
+          tlx = Math.floor((GOL.columns - hsize) / 2);
+          tly = Math.floor((GOL.rows - vsize) / 2);
+          for (j = 0; j < vsize; j++) {
+            for (i = 0; i < text[j].length; i++) {
+              if (text[j][i] === 'O') {
+                GOL.canvas.switchCell(tlx + i, tly + j);
+              }
+            }
+          }
+        },
+
+        /**
+         * Button Handler - save state in plaintext format (visible part only)
+         */
+        save : function() {
+          //to be added soon
+        }
+
       }
     
     },
@@ -820,8 +830,8 @@ var GOLloadState;
 
       nextGeneration : function() {
         var x, y, xp1, xm1, yp1, ym1,
-		  i, j, m, key, t1, t2, alive = 0,
-		  neighbours, deadNeighbours, allDeadNeighbours = {}, newState = [];
+        i, j, m, key, t1, t2, alive = 0,
+        neighbours, deadNeighbours, allDeadNeighbours = {}, newState = [];
         this.redrawList = [];
 
         for (i = 0; i < this.actualState.length; i++) {
@@ -831,17 +841,17 @@ var GOLloadState;
           for (j = 1; j < this.actualState[i].length; j++) {
             x = this.actualState[i][j];
             y = this.actualState[i][0];
-			xp1 = x + 1;
-			xm1 = x - 1;
-			yp1 = y + 1;
-			ym1 = y - 1;
-			if (GOL.torus)
-			{
-			  xp1 = (xp1 + GOL.columns) % GOL.columns;
-			  xm1 = (xm1 + GOL.columns) % GOL.columns;
-			  yp1 = (yp1 + GOL.rows) % GOL.rows;
-			  ym1 = (ym1 + GOL.rows) % GOL.rows;
-			}
+            xp1 = x + 1;
+            xm1 = x - 1;
+            yp1 = y + 1;
+            ym1 = y - 1;
+            if (GOL.torus)
+            {
+              xp1 = (xp1 + GOL.columns) % GOL.columns;
+              xm1 = (xm1 + GOL.columns) % GOL.columns;
+              yp1 = (yp1 + GOL.rows) % GOL.rows;
+              ym1 = (ym1 + GOL.rows) % GOL.rows;
+            }
 
             // Possible dead neighbours
             deadNeighbours = [[xm1, ym1, 1], [x, ym1, 1], [xp1, ym1, 1], [xm1, y, 1], [xp1, y, 1], [xm1, yp1, 1], [x, yp1, 1], [xp1, yp1, 1]];
@@ -897,127 +907,126 @@ var GOLloadState;
 
       getNeighboursFromAlive : function (x, y, i, possibleNeighboursList) {
         var neighbours = 0, k, xp1, yp1, xm1, ym1, pn;
-		if (GOL.torus) {
-		  for (pn = 0; pn < 8; pn++) {
-		    if (this.isAlive(possibleNeighboursList[pn][0], possibleNeighboursList[pn][1])) {
-			  possibleNeighboursList[pn] = undefined;
-			  neighbours++;
-			}
-		  }
-		} else
-		{
+        if (GOL.torus) {
+          for (pn = 0; pn < 8; pn++) {
+            if (this.isAlive(possibleNeighboursList[pn][0], possibleNeighboursList[pn][1])) {
+              possibleNeighboursList[pn] = undefined;
+              neighbours++;
+            }
+          }
+        } else {
         // Top
-        if (this.actualState[i-1] !== undefined) {
-          if (this.actualState[i-1][0] === (y - 1)) {
-            for (k = this.topPointer; k < this.actualState[i-1].length; k++) {
+          if (this.actualState[i-1] !== undefined) {
+            if (this.actualState[i-1][0] === (y - 1)) {
+              for (k = this.topPointer; k < this.actualState[i-1].length; k++) {
 
 
-              if (this.actualState[i-1][k] >= (x-1) ) {
+                if (this.actualState[i-1][k] >= (x-1) ) {
 
 
-                if (this.actualState[i-1][k] === (x - 1)) {
-                  possibleNeighboursList[0] = undefined;
-                  this.topPointer = k + 1;
-                  neighbours++;
-                }
-
-
-                if (this.actualState[i-1][k] === x) {
-                  possibleNeighboursList[1] = undefined;
-                  this.topPointer = k;
-                  neighbours++;
-                }
-
-
-                if (this.actualState[i-1][k] === (x + 1)) {
-                  possibleNeighboursList[2] = undefined;
-
-
-                  if (k === 1) {
-                    this.topPointer = 1;
-                  } else {
-                    this.topPointer = k - 1;
+                  if (this.actualState[i-1][k] === (x - 1)) {
+                    possibleNeighboursList[0] = undefined;
+                    this.topPointer = k + 1;
+                    neighbours++;
                   }
-                                    
-                  neighbours++;
+
+
+                  if (this.actualState[i-1][k] === x) {
+                    possibleNeighboursList[1] = undefined;
+                    this.topPointer = k;
+                    neighbours++;
+                  }
+
+
+                  if (this.actualState[i-1][k] === (x + 1)) {
+                    possibleNeighboursList[2] = undefined;
+
+
+                    if (k === 1) {
+                      this.topPointer = 1;
+                    } else {
+                      this.topPointer = k - 1;
+                    }
+                                      
+                    neighbours++;
+                  }
+
+
+                  if (this.actualState[i-1][k] > (x + 1)) {
+                    break;
+                  }
                 }
+              }
+            }
+          }
+          
+          // Middle
+          for (k = 1; k < this.actualState[i].length; k++) {
+            if (this.actualState[i][k] >= (x - 1)) {
 
 
-                if (this.actualState[i-1][k] > (x + 1)) {
-                  break;
+              if (this.actualState[i][k] === (x - 1)) {
+                possibleNeighboursList[3] = undefined;
+                neighbours++;
+              }
+
+
+              if (this.actualState[i][k] === (x + 1)) {
+                possibleNeighboursList[4] = undefined;
+                neighbours++;
+              }
+
+
+              if (this.actualState[i][k] > (x + 1)) {
+                break;
+              }
+            }
+          }
+
+
+          // Bottom
+          if (this.actualState[i+1] !== undefined) {
+            if (this.actualState[i+1][0] === (y + 1)) {
+              for (k = this.bottomPointer; k < this.actualState[i+1].length; k++) {
+                if (this.actualState[i+1][k] >= (x - 1)) {
+
+
+                  if (this.actualState[i+1][k] === (x - 1)) {
+                    possibleNeighboursList[5] = undefined;
+                    this.bottomPointer = k + 1;
+                    neighbours++;
+                  }
+
+
+                  if (this.actualState[i+1][k] === x) {
+                    possibleNeighboursList[6] = undefined;
+                    this.bottomPointer = k;
+                    neighbours++;
+                  }
+
+
+                  if (this.actualState[i+1][k] === (x + 1)) {
+                    possibleNeighboursList[7] = undefined;
+                                      
+                    if (k === 1) {
+                      this.bottomPointer = 1;
+                    } else {
+                      this.bottomPointer = k - 1;
+                    }
+
+
+                    neighbours++;
+                  }
+
+
+                  if (this.actualState[i+1][k] > (x + 1)) {
+                    break;
+                  }
                 }
               }
             }
           }
         }
-        
-        // Middle
-        for (k = 1; k < this.actualState[i].length; k++) {
-          if (this.actualState[i][k] >= (x - 1)) {
-
-
-            if (this.actualState[i][k] === (x - 1)) {
-              possibleNeighboursList[3] = undefined;
-              neighbours++;
-            }
-
-
-            if (this.actualState[i][k] === (x + 1)) {
-              possibleNeighboursList[4] = undefined;
-              neighbours++;
-            }
-
-
-            if (this.actualState[i][k] > (x + 1)) {
-              break;
-            }
-          }
-        }
-
-
-        // Bottom
-        if (this.actualState[i+1] !== undefined) {
-          if (this.actualState[i+1][0] === (y + 1)) {
-            for (k = this.bottomPointer; k < this.actualState[i+1].length; k++) {
-              if (this.actualState[i+1][k] >= (x - 1)) {
-
-
-                if (this.actualState[i+1][k] === (x - 1)) {
-                  possibleNeighboursList[5] = undefined;
-                  this.bottomPointer = k + 1;
-                  neighbours++;
-                }
-
-
-                if (this.actualState[i+1][k] === x) {
-                  possibleNeighboursList[6] = undefined;
-                  this.bottomPointer = k;
-                  neighbours++;
-                }
-
-
-                if (this.actualState[i+1][k] === (x + 1)) {
-                  possibleNeighboursList[7] = undefined;
-                                    
-                  if (k === 1) {
-                    this.bottomPointer = 1;
-                  } else {
-                    this.bottomPointer = k - 1;
-                  }
-
-
-                  neighbours++;
-                }
-
-
-                if (this.actualState[i+1][k] > (x + 1)) {
-                  break;
-                }
-              }
-            }
-          }
-        }
-		}
         return neighbours;
       },
 
@@ -1068,19 +1077,19 @@ var GOLloadState;
        *
        */
       removeOuterCells : function() {
-	    var i, j, x, y, oldState = this.actualState;
-		this.actualState = [];
+	      var i, j, x, y, oldState = this.actualState;
+        this.actualState = [];
         for (i = 0; i < oldState.length; i++) {
-		  y = oldState[i][0];
-		  if (y >= 0 && y < GOL.rows) {
+          y = oldState[i][0];
+          if (y >= 0 && y < GOL.rows) {
             for (j = 1; j < oldState[i].length; j++) {
               x = oldState[i][j];
-		      if (x >= 0 && x < GOL.columns) {
-			    this.addCell(x, y, this.actualState);
-			  }
-		    }
-		  }
-		}
+              if (x >= 0 && x < GOL.columns) {
+                this.addCell(x, y, this.actualState);
+              }
+            }
+          }
+        }
       },
 
 
@@ -1210,7 +1219,7 @@ var GOLloadState;
         // http://learn.javascript.ru/coordinates
         // http://www.quirksmode.org/js/events_properties.html#position
         var event, x, y, domObject, posx = 0, posy = 0, top = 0, left = 0,
-		 cellSize = GOL.zoom.schemes[GOL.zoom.current].cellSize + 1, box;
+        cellSize = GOL.zoom.schemes[GOL.zoom.current].cellSize + 1, box;
 
         event = e;
         if (!event) {
@@ -1227,12 +1236,12 @@ var GOLloadState;
 
         domObject = event.target || event.srcElement;
 		
-		box = domObject.getBoundingClientRect();
+        box = domObject.getBoundingClientRect();
 		
-		top = box.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop)
-		 - (document.documentElement.clientTop || document.body.clientTop || 0);
-		left= box.left+ (window.pageXOffset || document.documentElement.scrollLeft|| document.body.scrollLeft)
-		 - (document.documentElement.clientLeft|| document.body.clientLeft|| 0);
+        top = box.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop)
+        - (document.documentElement.clientTop || document.body.clientTop || 0);
+        left= box.left+ (window.pageXOffset || document.documentElement.scrollLeft|| document.body.scrollLeft)
+        - (document.documentElement.clientLeft|| document.body.clientLeft|| 0);
 
         x = Math.ceil(((posx - left)/cellSize) - 1);
         y = Math.ceil(((posy - top )/cellSize) - 1);
