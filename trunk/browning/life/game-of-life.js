@@ -331,7 +331,7 @@ var GOLloadState;
       // Algorithm run
     
       if (!this.torus && document.getElementById('torus').checked) {
-          this.listLife.removeOuterCells();
+          this.listLife.actualState = this.listLife.withoutOuterCells();
       }
       this.torus = document.getElementById('torus').checked;
 
@@ -557,7 +557,7 @@ var GOLloadState;
 
 
         /**
-         * Button Handler - Export State
+         * Button Handler - export state as a link
          */
         export_ : function() {
           var i, j, url = '', cellState = '', params = '';
@@ -625,7 +625,34 @@ var GOLloadState;
          * Button Handler - save state in plaintext format (visible part only)
          */
         save : function() {
-          //to be added soon
+          var state, minx, i, j, x, text;
+
+          state = GOL.listLife.withoutOuterCells();
+
+          if (state.length === 0) {
+            return;
+          }
+
+          minx = state[0][1];
+          for (j = 1; j < state.length; j++) {
+            if (state[j][1] < minx) {
+              minx = state[j][1];
+            }
+          }
+
+          text = ''
+          for (j = 0; j < state.length; j++) {
+            if (j > 0) {
+              text += new Array(state[j][0] - state[j-1][0] + 1).join('\n');
+            }
+            x = minx - 1;
+            for (i = 1; i < state[j].length; i++) {
+              text = text + (new Array(state[j][i] - x).join('.')) + 'O';
+              x = state[j][i];
+            }
+          }
+
+          document.getElementById('textArea').value = text;
         }
 
       }
@@ -1076,20 +1103,21 @@ var GOLloadState;
       /**
        *
        */
-      removeOuterCells : function() {
-	      var i, j, x, y, oldState = this.actualState;
-        this.actualState = [];
+      withoutOuterCells : function() {
+	      var i, j, x, y, oldState = this.actualState, newState;
+        newState = [];
         for (i = 0; i < oldState.length; i++) {
           y = oldState[i][0];
           if (y >= 0 && y < GOL.rows) {
             for (j = 1; j < oldState[i].length; j++) {
               x = oldState[i][j];
               if (x >= 0 && x < GOL.columns) {
-                this.addCell(x, y, this.actualState);
+                this.addCell(x, y, newState);
               }
             }
           }
         }
+        return newState;
       },
 
 
