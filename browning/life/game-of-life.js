@@ -588,37 +588,167 @@ var GOLloadState;
         },
 
         /**
-         * Button Handler - load state in plaintext format according to http://www.conwaylife.com/wiki/Plaintext
+         * Button Handler - load state from text format
          */
         load : function() {
-          var text, i, j, hsize = 0, vsize, tlx, tly;
+          var text, i, j, k, hsize = 0, vsize, header, bhmsg, ph, row,
+          opos, bpos, block, n, bstack, ostack, bsmsg, tlx, tly, state;
 
           text = document.getElementById('textArea').value.split('\n');
-          while (text[0][0] === '!') {
-            text.shift();
+          if (text.length === 0) {
+            return;
           }
-          vsize = text.length;
-          for (i = 0; i < vsize; i++) {
-            text[i] = text[i].trim().toUpperCase();
-            if (!text[i].match(/^[.O]*$/)) {
-              alert('Ошибка: неизвестные символы в строке ' + text[i]);
+          state = [];
+
+          if (text[0].match(/^[!.O]./)) { // plaintext according to http://www.conwaylife.com/wiki/Plaintext
+            while (text.length > 0 && text[0].length > 0 && text[0][0] === '!') {
+              text.shift();
+            }
+            vsize = text.length;
+            for (i = 0; i < vsize; i++) {
+              text[i] = text[i].trim().toUpperCase();
+              if (!text[i].match(/^[.O]*$/)) {
+                alert('Ошибка - неизвестные символы в строке: ' + text[i]);
+                return;
+              }
+              if (text[i].length > hsize) {
+                hsize = text[i].length;
+              }
+            }
+
+            tlx = Math.floor((GOL.columns - hsize) / 2);
+            tly = Math.floor((GOL.rows - vsize) / 2);
+            for (j = 0; j < vsize; j++) {
+              for (i = 0; i < text[j].length; i++) {
+                if (text[j][i] === 'O') {
+                  GOL.listLife.addCell(tlx + i, tly + j, state);
+                }
+              }
+            }
+          } else { // RLE almost according to http://www.conwaylife.com/wiki/RLE (ignores rules instructions and so on)
+            while (text.length > 0 && text[0].length > 0 && text[0][0] === '#') {
+              text.shift();
+            }
+            if (text.length === 0) {
               return;
             }
-            if (text[i].length > hsize) {
-              hsize = text[i].length;
+
+            header = text[0].split(',');
+            bhmsg = 'Ошибка - плохой заголовок RLE: ' + text[0]
+            if (header.length < 2) {
+              alert(bhmsg);
+              return;
+            }
+            ph = header[0].split('=');
+            if (ph.length !== 2 || ph[0].trim() !== 'x') {
+              alert(bhmsg);
+              return;
+            }
+            hsize = parseInt(ph[1]);
+            if (isNaN(hsize)) {
+              alert(bhmsg);
+              return;
+            }
+            ph = header[1].split('=');
+            if (ph.length !== 2 || ph[0].trim() !== 'y') {
+              alert(bhmsg);
+              return;
+            }
+            vsize = parseInt(ph[1]);
+            if (isNaN(vsize)) {
+              alert(bhmsg);
+              return;
+            }
+            text.shift();
+
+            text = text.join('').split('!', 1)[0].replace(/\s/g, '').replace(/[^$0-9b]/g, 'o').split('$');
+            if (text.length !== vsize) {
+              alert('Ошибка - число строк в коде RLE (' + text.length + ') не совпадает с указанным в строке формата (' + vsize + ')');
+              return;
+            }
+
+            tlx = Math.floor((GOL.columns - hsize) / 2);
+            tly = Math.floor((GOL.rows - vsize) / 2);
+            for (j = 0; j < vsize; j++) {
+              row = text[j];
+              if (row.length > 0) {
+                bsmsg = 'Ошибка - неправильная строка в коде RLE: ' + text[j];
+                opos = row.indexOf('o');
+                if (row[row.length - 1] === 'b') {
+                  if (opos === -1) {
+                    continue;
+                  }
+                  row = row.slice(0, row.lastIndexOf('o') + 1);
+                }
+                if (opos === -1) {
+                  alert(bsmsg);
+                  return;
+                }
+                block = row.slice(0, opos);
+                bpos = block.indexOf('b');
+                if (bpos === -1) {
+                  bstack = [0];
+                } else {
+                  if (bpos === 0) {
+                    n = 1;
+                  } else {
+                    n = parseInt(block.slice(0, bpos));
+                  }
+                  bstack = [n];
+                  block = block.slice(bpos + 1);
+                }
+                if (block.length === 0) {
+                  ostack = [1];
+                } else {
+                  ostack = [parseInt(block)];
+                }
+                row = row.slice(opos + 1);
+                while (row.length > 0) {
+                  opos = row.indexOf('o');
+                  if (opos === -1) {
+                    alert(bsmsg);
+                    return;
+                  }
+                  block = row.slice(0, opos);
+                  bpos = block.indexOf('b');
+                  if (bpos === -1) {
+                    alert(bsmsg);
+                    return;
+                  }
+                  if (bpos === 0) {
+                    n = 1;
+                  } else {
+                    n = parseInt(block.slice(0, bpos));
+                  }
+                  bstack.push(n);
+                  block = block.slice(bpos + 1);
+                  if (block.length === 0) {
+                    ostack.push(1);
+                  } else {
+                    ostack.push(parseInt(block));
+                  }
+                  row = row.slice(opos + 1);
+                }
+                i = 0;
+                for (k = 0; k < bstack.length; k++) {
+                  i += bstack[k];
+                  while (ostack[k] > 0) {
+                    GOL.listLife.addCell(tlx + i, tly + j, state);
+                    i++;
+                    ostack[k]--;
+                  }
+                }
+                if (i > hsize) {
+                  alert('Ошибка - число столбцов в коде RLE (' + i + ') больше указанного в строке формата (' + hsize + ')');
+                  return;
+                }
+              }
             }
           }
 
           GOL.cleanUp();
-          tlx = Math.floor((GOL.columns - hsize) / 2);
-          tly = Math.floor((GOL.rows - vsize) / 2);
-          for (j = 0; j < vsize; j++) {
-            for (i = 0; i < text[j].length; i++) {
-              if (text[j][i] === 'O') {
-                GOL.canvas.switchCell(tlx + i, tly + j);
-              }
-            }
-          }
+          GOL.listLife.actualState = state;
+          GOL.canvas.drawWorld();
         },
 
         /**
@@ -640,7 +770,7 @@ var GOLloadState;
             }
           }
 
-          text = ''
+          text = '';
           for (j = 0; j < state.length; j++) {
             if (j > 0) {
               text += new Array(state[j][0] - state[j-1][0] + 1).join('\n');
