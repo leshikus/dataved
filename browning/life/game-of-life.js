@@ -2,7 +2,7 @@
  * Game of Life - JS & CSS
  * http://pmav.eu
  * 04/Sep/2010
- * Russian translation and minor edits by Andrey Zabolotskiy, 2012
+ * Russian translation and minor edits by Andrey Zabolotskiy, 2012-2014
  */
 
 // Enable global access to function that loads a state
@@ -317,6 +317,7 @@ var GOLloadState;
 
 	  // Save / Load
       this.helpers.registerEvent(document.getElementById('buttonExport'), 'click', this.handlers.buttons.export_, false);
+      this.helpers.registerEvent(document.getElementById('buttonLoad'), 'click', this.handlers.buttons.load, false);
     },
 
 
@@ -477,9 +478,11 @@ var GOLloadState;
             GOL.nextStep();
             document.getElementById('buttonRun').value = ' Стоп ';
 			document.getElementById('torus').disabled = true;
+			document.getElementById('buttonLoad').disabled = true;
           } else {
             document.getElementById('buttonRun').value = ' Пуск ';
 			document.getElementById('torus').disabled = false;
+			document.getElementById('buttonLoad').disabled = false;
           }
         },
 
@@ -579,8 +582,42 @@ var GOLloadState;
             document.getElementById('exportUrlLink').href = params;
             document.getElementById('exportUrl').style.display = 'inline';
           }
-        }
+        },
 
+        /**
+         * Button Handler - load state in plaintext format according to http://www.conwaylife.com/wiki/Plaintext
+         */
+        load : function() {
+		    var text, i, j, hsize = 0, vsize, tlx, tly;
+			
+		    text = document.getElementById('textArea').value.split('\n');
+			while (text[0][0] === '!') {
+			    text.shift();
+			}
+			vsize = text.length;
+			for (i = 0; i < vsize; i++) {
+			    text[i] = text[i].trim().toUpperCase();
+			    if (!text[i].match(/^[.O]*$/)) {
+		    	    alert('Ошибка: неизвестные символы в строке ' + text[i]);
+	    			return;
+    			}
+				if (text[i].length > hsize) {
+				    hsize = text[i].length;
+				}
+			}
+			
+			GOL.cleanUp();
+			tlx = Math.floor((GOL.columns - hsize) / 2);
+			tly = Math.floor((GOL.rows - vsize) / 2);
+			for (j = 0; j < vsize; j++) {
+				for (i = 0; i < text[j].length; i++) {
+				    if (text[j][i] === 'O') {
+					    GOL.canvas.switchCell(tlx + i, tly + j);
+					}
+				}
+			}
+		}
+		
       }
     
     },
@@ -722,7 +759,7 @@ var GOLloadState;
         if(GOL.listLife.isAlive(i, j)) {
           this.changeCelltoDead(i, j);
           GOL.listLife.removeCell(i, j, GOL.listLife.actualState);
-        }else {
+        } else {
           this.changeCelltoAlive(i, j);
           GOL.listLife.addCell(i, j, GOL.listLife.actualState);
         }
