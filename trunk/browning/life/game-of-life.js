@@ -2,7 +2,7 @@
  * Game of Life - JS & CSS
  * http://pmav.eu
  * 04/Sep/2010
- * Russian translation and minor edits by Andrey Zabolotskiy, 2012-2014
+ * Russian translation and further development by Andrey Zabolotskiy, 2012-2014
  */
 
 // Enable global access to function that loads a state
