@@ -197,7 +197,7 @@ var GOLloadState;
     loadState : function() {
       var state, i, j, y, s = this.helpers.getUrlParameter('s');
 
-      if ( s === 'random') {
+      if (s === 'random') {
         this.randomState();
       } else {
         if (s === undefined) {
@@ -218,14 +218,14 @@ var GOLloadState;
 
 
     /**
-         *
+         * Load world state from a given object
          */
     loadStateDirectly : function(state) {
       var i, j, y;
 
-	  this.cleanUp();
+      this.cleanUp();
 
-      if ( state === 'random') {
+      if (state === 'random') {
         this.randomState();
       } else {
 
@@ -238,8 +238,8 @@ var GOLloadState;
         }
       }
 
-		this.prepare();
-	  },
+      this.prepare();
+    },
 
 
     /**
@@ -316,10 +316,10 @@ var GOLloadState;
       this.helpers.registerEvent(document.getElementById('buttonColors'), 'click', this.handlers.buttons.colors, false);
 
       // Save / Load
-      this.helpers.registerEvent(document.getElementById('buttonExport'), 'click', this.handlers.buttons.export_, false);
       this.helpers.registerEvent(document.getElementById('buttonLoad'), 'click', this.handlers.buttons.load, false);
       this.helpers.registerEvent(document.getElementById('buttonSavePlaintext'), 'click', this.handlers.buttons.savePlaintext, false);
       this.helpers.registerEvent(document.getElementById('buttonSaveRLE'), 'click', this.handlers.buttons.saveRLE, false);
+      this.helpers.registerEvent(document.getElementById('buttonExport'), 'click', this.handlers.buttons.export_, false);
     },
 
 
@@ -1379,8 +1379,8 @@ var GOLloadState;
               tempRow = [];
               added = false;
               for (m = 1; m < state[n].length; m++) {
-                if ((!added) && (x < state[n][m])) {
-                  if (tempRow.length === 0 || x !== tempRow[tempRow.length - 1]) {
+                if ((!added) && (x <= state[n][m])) {
+                  if (x !== state[n][m]) {
                     tempRow.push(x);
                   }
                   added = true;
