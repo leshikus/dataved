@@ -595,7 +595,7 @@ var GOLloadState;
          */
         load : function() {
           var text, i, j, k, hsize = 0, vsize, header, bhmsg, ph, row,
-          opos, bpos, block, n, bstack, ostack, bsmsg, tlx, tly, state;
+          nd, dpos, opos, bpos, block, n, bstack, ostack, bsmsg, tlx, tly, state;
 
           text = document.getElementById('textArea').value.split('\n');
           if (text.length === 0) {
@@ -628,7 +628,7 @@ var GOLloadState;
                 }
               }
             }
-          } else { // RLE almost according to http://www.conwaylife.com/wiki/RLE (ignores rules instructions and so on)
+          } else { // RLE almost according to http://www.conwaylife.com/wiki/RLE (ignoring instructions about rules and so on)
             while (text.length > 0 && text[0].length > 0 && text[0][0] === '#') {
               text.shift();
             }
@@ -664,20 +664,28 @@ var GOLloadState;
             }
             text.shift();
 
-            text = text.join('').split('!', 1)[0].replace(/\s/g, '').replace(/[^$0-9b]/g, 'o').split('$');
-            if (text.length !== vsize) {
-              alert('Предупреждение: число строк в коде RLE (' + text.length + ') не совпадает с указанным в строке формата (' + vsize + ')');
-            }
+            text = text.join('').split('!', 1)[0].replace(/\s/g, '').replace(/[^$0-9b]/g, 'o') + '$';
 
             tlx = Math.floor((GOL.columns - hsize) / 2);
             tly = Math.floor((GOL.rows - vsize) / 2);
-            for (j = 0; j < vsize; j++) {
-              row = text[j];
+            j = 0;
+            while ((dpos = text.indexOf('$')) !== -1) {
+              row = text.slice(0, dpos);
+              text = text.slice(dpos + 1);
+              no = Math.max(row.lastIndexOf('o'), row.lastIndexOf('b'));
+              nd = row.slice(no + 1);
+              row = row.slice(0, no + 1);
+              if (nd.length === 0) {
+                nd = 1;
+              } else {
+                nd = parseInt(nd);
+              }
               if (row.length > 0) {
-                bsmsg = 'Ошибка - неправильная строка в коде RLE: ' + text[j];
+                bsmsg = 'Ошибка - неправильная строка в коде RLE: ' + row;
                 opos = row.indexOf('o');
                 if (row[row.length - 1] === 'b') {
                   if (opos === -1) {
+                    j += nd;
                     continue;
                   }
                   row = row.slice(0, row.lastIndexOf('o') + 1);
@@ -744,6 +752,10 @@ var GOLloadState;
                   alert('Предупреждение: на строке ' + j + ' число столбцов в коде RLE (' + i + ') больше указанного в строке формата (' + hsize + ')');
                 }
               }
+              j += nd;
+            }
+            if (j !== vsize) {
+              alert('Предупреждение: число строк в коде RLE (' + j + ') не совпадает с указанным в строке формата (' + vsize + ')');
             }
           }
 
@@ -812,13 +824,16 @@ var GOLloadState;
           text = '';
           for (j = 0; j < state.length; j++) {
             if (j > 0) {
-              no = text.length - text.lastIndexOf('\n');
-              x = state[j][0] - state[j - 1][0];
-              if (no + x > lim) {
-                text += new Array(lim - no + 1).join('$') + '\n' + new Array(no + x - lim + 1).join('$');
-              } else {
-                text += new Array(x + 1).join('$');
+              no = state[j][0] - state[j - 1][0];
+              block = '';
+              if (no !== 1) {
+                block = block + no;
               }
+              block = block + '$';
+              if (text.length + block.length - text.lastIndexOf('\n') > lim) {
+                text = text + '\n';
+              }
+              text = text + block;
             }
             x = minx - 1;
             no = 0;
