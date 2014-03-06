@@ -315,10 +315,11 @@ var GOLloadState;
       this.helpers.registerEvent(document.getElementById('buttonGrid'), 'click', this.handlers.buttons.grid, false);
       this.helpers.registerEvent(document.getElementById('buttonColors'), 'click', this.handlers.buttons.colors, false);
 
-	  // Save / Load
+      // Save / Load
       this.helpers.registerEvent(document.getElementById('buttonExport'), 'click', this.handlers.buttons.export_, false);
       this.helpers.registerEvent(document.getElementById('buttonLoad'), 'click', this.handlers.buttons.load, false);
-      this.helpers.registerEvent(document.getElementById('buttonSave'), 'click', this.handlers.buttons.save, false);
+      this.helpers.registerEvent(document.getElementById('buttonSavePlaintext'), 'click', this.handlers.buttons.savePlaintext, false);
+      this.helpers.registerEvent(document.getElementById('buttonSaveRLE'), 'click', this.handlers.buttons.saveRLE, false);
     },
 
 
@@ -480,12 +481,14 @@ var GOLloadState;
             document.getElementById('buttonRun').value = ' Стоп ';
             document.getElementById('torus').disabled = true;
             document.getElementById('buttonLoad').disabled = true;
-            document.getElementById('buttonSave').disabled = true;
+            document.getElementById('buttonSavePlaintext').disabled = true;
+            document.getElementById('buttonSaveRLE').disabled = true;
           } else {
             document.getElementById('buttonRun').value = ' Пуск ';
             document.getElementById('torus').disabled = false;
             document.getElementById('buttonLoad').disabled = false;
-            document.getElementById('buttonSave').disabled = false;
+            document.getElementById('buttonSavePlaintext').disabled = false;
+            document.getElementById('buttonSaveRLE').disabled = false;
           }
         },
 
@@ -663,8 +666,7 @@ var GOLloadState;
 
             text = text.join('').split('!', 1)[0].replace(/\s/g, '').replace(/[^$0-9b]/g, 'o').split('$');
             if (text.length !== vsize) {
-              alert('Ошибка - число строк в коде RLE (' + text.length + ') не совпадает с указанным в строке формата (' + vsize + ')');
-              return;
+              alert('Предупреждение: число строк в коде RLE (' + text.length + ') не совпадает с указанным в строке формата (' + vsize + ')');
             }
 
             tlx = Math.floor((GOL.columns - hsize) / 2);
@@ -739,8 +741,7 @@ var GOLloadState;
                   }
                 }
                 if (i > hsize) {
-                  alert('Ошибка - число столбцов в коде RLE (' + i + ') больше указанного в строке формата (' + hsize + ')');
-                  return;
+                  alert('Предупреждение: на строке ' + j + ' число столбцов в коде RLE (' + i + ') больше указанного в строке формата (' + hsize + ')');
                 }
               }
             }
@@ -754,7 +755,7 @@ var GOLloadState;
         /**
          * Button Handler - save state in plaintext format (visible part only)
          */
-        save : function() {
+        savePlaintext : function() {
           var state, minx, i, j, x, text;
 
           state = GOL.listLife.withoutOuterCells();
@@ -781,6 +782,87 @@ var GOLloadState;
               x = state[j][i];
             }
           }
+
+          document.getElementById('textArea').value = text;
+        },
+
+        /**
+         * Button Handler - save state in RLE format
+         */
+        saveRLE : function() {
+          var state, minx, maxx, i, j, x, text, block, no, lim = 69;
+
+          state = GOL.listLife.actualState;
+
+          if (state.length === 0) {
+            return;
+          }
+
+          minx = state[0][1];
+          maxx = state[0][state[0].length - 1];
+          for (j = 1; j < state.length; j++) {
+            if (state[j][1] < minx) {
+              minx = state[j][1];
+            }
+            if (state[j][state[j].length - 1] > maxx) {
+              maxx = state[j][state[j].length - 1];
+            }
+          }
+
+          text = '';
+          for (j = 0; j < state.length; j++) {
+            if (j > 0) {
+              no = text.length - text.lastIndexOf('\n');
+              x = state[j][0] - state[j - 1][0];
+              if (no + x > lim) {
+                text += new Array(lim - no + 1).join('$') + '\n' + new Array(no + x - lim + 1).join('$');
+              } else {
+                text += new Array(x + 1).join('$');
+              }
+            }
+            x = minx - 1;
+            no = 0;
+            for (i = 1; i < state[j].length; i++) {
+              if (state[j][i] - x > 1) {
+                if (no > 0) {
+                  block = '';
+                  if (no !== 1) {
+                    block = block + no;
+                  }
+                  block = block + 'o';
+                  if (text.length + block.length - text.lastIndexOf('\n') > lim) {
+                    text = text + '\n';
+                  }
+                  text = text + block;
+                }
+                block = '';
+                if (state[j][i] - x - 1 !== 1) {
+                  block = block + (state[j][i] - x - 1);
+                }
+                block = block + 'b';
+                if (text.length + block.length - text.lastIndexOf('\n') > lim) {
+                  text = text + '\n';
+                }
+                text = text + block;
+                no = 1;
+              } else {
+                no += 1;
+              }
+              x = state[j][i];
+            }
+            block = '';
+            if (no !== 1) {
+              block = block + no;
+            }
+            block = block + 'o';
+            if (text.length + block.length - text.lastIndexOf('\n') > lim) {
+              text = text + '\n';
+            }
+            text = text + block;
+          }
+          text += '!';
+
+          text = 'x = ' + (maxx - minx + 1) + ', y = ' + (state[state.length - 1][0] - state[0][0] + 1) + '\n' + text;
 
           document.getElementById('textArea').value = text;
         }
@@ -923,7 +1005,7 @@ var GOLloadState;
        * switchCell
        */
       switchCell : function(i, j) {
-        if(GOL.listLife.isAlive(i, j)) {
+        if (GOL.listLife.isAlive(i, j)) {
           this.changeCelltoDead(i, j);
           GOL.listLife.removeCell(i, j, GOL.listLife.actualState);
         } else {
@@ -1283,8 +1365,10 @@ var GOLloadState;
               added = false;
               for (m = 1; m < state[n].length; m++) {
                 if ((!added) && (x < state[n][m])) {
-                  tempRow.push(x);
-                  added = !added;
+                  if (tempRow.length === 0 || x !== tempRow[tempRow.length - 1]) {
+                    tempRow.push(x);
+                  }
+                  added = true;
                 }
                 tempRow.push(state[n][m]);
               }
