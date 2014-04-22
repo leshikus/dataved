@@ -1,6 +1,6 @@
 var preRe = /<(pre|code)>[^<]*<\/\1>/gi;
 var scriptRe = /<(script|style|textarea)[^<]*(\n\s*[^<].*)*\s*<\/\1>/gi;
-var logr;
+var logr, getHtml, getText;
 
 function Matcher(data, log) {
   this.data = data;
@@ -27,10 +27,10 @@ function checkRules(rules, content, log) {
   var text = html.replace(/<\/?(p|div|li|blockquote|br|td|th|tr)(|\s[^<]*)>/g, ' ');
   text = text.replace(/<[^<]*>/g, '');
 
-  var getHtml = function() {
+  getHtml = function() {
     return new Matcher(html, log);
   }
-  var getText = function() {
+  getText = function() {
     return new Matcher(text, log);
   }
 
