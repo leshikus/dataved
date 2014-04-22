@@ -20,7 +20,7 @@ var rules = {
     return getHtml().match(/\.\s*<\/h\d>/g);
   },
   more: function() {
-    return getHtml().cut(/<a name='more'><\/a>[\s\S]*/).match(/<p>.*<p>.*<p>/);
+    return getHtml().cut(/<a name='more'><\/a>[\s\S]*/).match(/<p>.*<p>.*<p>/g);
   },
   datavedurl: function() {
     return getHtml().match(/href=["']?https?:\/\/(www\.)?dataved.ru\//gi);
