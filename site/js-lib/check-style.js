@@ -1,9 +1,9 @@
 var preRe = /<(pre|code)>[^<]*<\/\1>/gi;
 var scriptRe = /<(script|style|textarea)[^<]*(\n\s*[^<].*)*\s*<\/\1>/gi;
+var logr;
 
 function Matcher(data, log) {
   this.data = data;
-  this.log = log;
   
   this.cut = function(re) {
     this.data = this.data.replace(re, '');
@@ -12,7 +12,7 @@ function Matcher(data, log) {
   this.match = function(re) {
     matchContext(re, this.data, function(match, context) {
       maxErrors--;
-      this.log(context);
+      logr(context);
     });
   }    
 }
@@ -35,6 +35,11 @@ function checkRules(rules, content, log) {
   }
 
   for (r in rules) {
+    logr = function(message) {
+      console.log(r + ': ' + message);
+      log(r, message);
+    }
+
     rules[r]();
   }
 }
