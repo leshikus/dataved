@@ -2,7 +2,7 @@ var preRe = /<(pre|code)>[^<]*<\/\1>/gi;
 var scriptRe = /<(script|style|textarea)[^<]*(\n\s*[^<].*)*\s*<\/\1>/gi;
 var entityRe = /&[a-z#0-9]+;/g;
 
-function checkRules(url, content) {
+function checkRules(e, url, content) {
   var html = content.replace(scriptRe, '');
   html = html.replace(preRe, 'code');
   html = html.replace(/\.NET|Яндекс\.Фотки|H\.(264|323)/g, 'новояз');
