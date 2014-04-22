@@ -2,7 +2,9 @@ var LOWER_CASE = 'абвгдеёжзийклмнопрстуфхцчшщъыьэ
 var UPPER_CASE = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
 
 var MDASH_RE = new RegExp('[' + LOWER_CASE + ']\\s+[-]\\s+', 'g');
-var AFTERDOT_RE = new RegExp('(,|[.])[' + LOWER_CASE + UPPER_CASE + ']', 'g'); 
+var AFTERDOT_RE = new RegExp('(,|[.])[' + LOWER_CASE + UPPER_CASE + ']', 'g');
+
+var entityRe = /&[a-z#0-9]+;/g;
 
 var rules = {
   mdash: function() {
