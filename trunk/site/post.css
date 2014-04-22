@@ -302,3 +302,7 @@ span.over {
 .post-body #ranking li span {
   float: right;
 }
+
+.post-body cite {
+  font-size: 60%;
+}
