@@ -7,6 +7,7 @@ function Matcher(data, log) {
   
   this.cut = function(re) {
     this.data = this.data.replace(re, '');
+    return this;
   }
   
   this.match = function(re) {
@@ -14,6 +15,7 @@ function Matcher(data, log) {
       maxErrors--;
       logr(context);
     });
+    return this;
   }    
 }
 
