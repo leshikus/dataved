@@ -90,7 +90,7 @@ function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea, re
   }
 
   this.viewSource = function() {
-    this.resultArea.value = esc(this.doc.body.innerHTML);
+    this.resultArea.value = this.doc.body.innerHTML;
     this.resultArea.focus();
     this.resultArea.select();
     this.callback();
