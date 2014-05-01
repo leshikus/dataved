@@ -50,7 +50,7 @@ function hashList(a) {
 function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea, resultCallback) {
   this.win = iframeName.contentWindow;
   this.doc = this.win.document;
-  this.result = resultArea;
+  this.resultArea = resultArea;
   this.callback = resultCallback;
 
   this.atags = parseTags(allowedTags.innerHTML);
@@ -90,9 +90,9 @@ function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea, re
   }
 
   this.viewSource = function() {
-    this.result.value = esc(this.doc.body.innerHTML);
-    this.result.focus();
-    this.result.select();
+    this.resultArea.value = esc(this.doc.body.innerHTML);
+    this.resultArea.focus();
+    this.resultArea.select();
     this.callback();
   }
 
