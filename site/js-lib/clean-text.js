@@ -47,13 +47,15 @@ function hashList(a) {
   return hash
 }
 
-function Cleaner(iframe, allowedTags, emptyTags, convertTags) {
-  this.win = iframe.contentWindow
-  this.doc = this.win.document
+function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea, resultCallback) {
+  this.win = iframeName.contentWindow;
+  this.doc = this.win.document;
+  this.result = resultArea;
+  this.callback = resultCallback;
 
-  this.atags = parseTags(allowedTags.innerHTML)
-  this.etags = parseTags(emptyTags.innerHTML)
-  this.rtags = parseTagPairs(convertTags.innerHTML)
+  this.atags = parseTags(allowedTags.innerHTML);
+  this.etags = parseTags(emptyTags.innerHTML);
+  this.rtags = parseTagPairs(convertTags.innerHTML);
 
   this.init = function() {
     with (this.doc) {
@@ -88,13 +90,10 @@ function Cleaner(iframe, allowedTags, emptyTags, convertTags) {
   }
 
   this.viewSource = function() {
-    with (this.doc) {
-      body.innerHTML = '<pre>' + esc(body.innerHTML) + '</pre>'
-      this.result = body.innerHTML
-      designMode = 'on'
-      execCommand('selectall', false, null)
-      execCommand('copy', false, null)
-    }
+    this.result.value = esc(body.innerHTML);
+    this.result.focus();
+    this.result.select();
+    this.callback();
   }
 
   this.cleanElement = function(o, f) {
