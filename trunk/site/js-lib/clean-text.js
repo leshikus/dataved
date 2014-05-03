@@ -59,21 +59,18 @@ function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea, re
 
   this.init = function() {
     with (this.doc) {
-      open()
+      open();
       write('<html><head><meta http-equiv="Content-type" content="text/html; charset=utf-8"></head>'
-        + '<body></body></html>')
-      close()
-      this.result = body.innerHTML
-      designMode = 'on'
+        + '<body></body></html>');
+      close();
+      this.result = body.innerHTML;
+      designMode = 'on';
     }
 
-    var self = this
-    setInterval(function() {
-      self.monitor()
-    }, 2000)
+    var self = this;
   }
 
-  this.monitor = function() {
+  this.convert = function() {
     with (this.doc) {
       var content = body.innerHTML;
       execCommand('selectall', false, null);
@@ -85,8 +82,9 @@ function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea, re
 //      console.log("initial = " + this.doc.body.innerHTML);
       this.doc.body.innerHTML = this.doc.body.innerHTML.replace(/<br>/gi, '</p><p>');
       this.cleanElement(this.doc.body, false);
-      this.doc.designMode = 'on';
       this.viewSource();
+      designMode = 'on';
+      this.callback();
     }
   }
 
@@ -94,7 +92,6 @@ function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea, re
     this.resultArea.value = this.doc.body.innerHTML;
     this.resultArea.focus();
     this.resultArea.select();
-    this.callback();
   }
 
   this.cleanElement = function(o, f) {
