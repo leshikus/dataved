@@ -47,11 +47,10 @@ function hashList(a) {
   return hash
 }
 
-function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea, resultCallback) {
+function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea) {
   this.win = iframeName.contentWindow;
   this.doc = this.win.document;
   this.resultArea = resultArea;
-  this.callback = resultCallback;
 
   this.atags = parseTags(allowedTags.innerHTML);
   this.etags = parseTags(emptyTags.innerHTML);
@@ -84,7 +83,6 @@ function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea, re
       this.cleanElement(this.doc.body, false);
       this.viewSource();
       designMode = 'on';
-      this.callback();
     }
   }
 
