@@ -105,7 +105,6 @@ head.appendChild(script);
 </b:includable>
       </b:widget>
     </b:section>
-    <div id='fb-root'/>
     <div class='content'>
       <macro:include id='main-columns' name='sections'>
         <macro:param default='section' name='idPrefix'/>
@@ -1315,7 +1314,6 @@ head.appendChild(script);
           <span style='position: relative; top: 3px; left: -12px;'>
             <g:plusone annotation='bubble' expr:href='data:post.url' size='medium'/>
           </span>
-          <fb:like colorscheme='light' expr:href='data:post.url' font='' layout='button_count' send='false' show_faces='false'/>
         </span>
       </b:includable>
     <b:includable id='status-message'>
