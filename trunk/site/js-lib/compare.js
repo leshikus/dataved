@@ -34,9 +34,12 @@ Glob.prototype.onComplete = function() {
   var e = document.createElement('iframe');
 
   e.onload = function() {
-    alert("Script loaded and ready");
+    console.log("Script loaded and ready");
   };
-  e.src = '//www.google.com/trends/embed.js?w=800&q=' + encodeURIComponent(q);
+  //e.src = '//www.google.com/trends/embed.js?w=800&q=' + encodeURIComponent(q);
+  e.width = '800';
+  e.height = '528'
+  e.src = '//www.google.com/trends/fetchComponent?hl=en-US&q=' + encodeURIComponent(q) + '&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=500&h=330';
   var theParent = this.list.parentNode;
 
   (function() {
