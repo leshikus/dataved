@@ -24,9 +24,7 @@ Glob.prototype.searchRequest = function() {
 
 Glob.prototype.onComplete = function() {
   console.log('onComplete:');
-  return;
   var q;
-  
   
   with (this) {
     q = nodes.slice(0, 5).map(getSearchText).join(',');
