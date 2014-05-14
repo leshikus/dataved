@@ -38,7 +38,8 @@ Glob.prototype.onComplete = function() {
   };
   e.width = '800';
   e.height = '324'
-  e.src = '//www.google.com/trends/fetchComponent?q=' + encodeURIComponent(q) + '&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=800&h=324';
+  e.src = '//www.google.com/trends/fetchComponent?q=' + encodeURIComponent(q) +
+    '&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=' + e.width + '&h=' + e.height;
   $(this.list).before(e);
 }
 
