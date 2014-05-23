@@ -5,8 +5,8 @@
  * Russian translation and further development by Andrey Zabolotskiy, 2012-2014
  */
 
-// Enable global access to function that loads a state
-var GOLloadState;
+// Enable global access to functions that load a state
+var GOLloadState, GOLrandom;
 
 (function () {
 
@@ -137,8 +137,8 @@ var GOLloadState;
 
 
     /**
-         * On Load Event
-         */
+      * On Load Event
+      */
     init : function() {
       try {
         this.listLife.init();   // Reset/init algorithm
@@ -150,14 +150,14 @@ var GOLloadState;
     
         this.prepare();
       } catch (e) {
-        alert("Error: "+e);
+        this.helpers.error("Error: "+e);
       }
     },
 
 
     /**
-         * Load config from URL
-         */
+     * Load config from URL
+     */
     loadConfig : function() {
       var colors, grid, zoom;
 
@@ -192,10 +192,10 @@ var GOLloadState;
 
 
     /**
-         * Load world state from URL parameter
-         */
+     * Load world state from URL parameter
+     */
     loadState : function() {
-      var state, i, j, y, s = this.helpers.getUrlParameter('s');
+      var state, s = this.helpers.getUrlParameter('s');
 
       if (s === 'random') {
         this.randomState();
@@ -204,41 +204,26 @@ var GOLloadState;
           s = this.initialState;
         }
 
-        state = jsonParse(decodeURI(s));
+        state = JSON.parse(decodeURI(s));
           
-        for (i = 0; i < state.length; i++) {
-          for (y in state[i]) {
-            for (j = 0 ; j < state[i][y].length ; j++) {
-              this.listLife.addCell(state[i][y][j], parseInt(y, 10), this.listLife.actualState);
-            }
-          }
-        }
+        this.loadStateDirectly(state);
       }
     },
 
 
     /**
-         * Load world state from a given object
-         */
+     * Load world state from a given object
+     */
     loadStateDirectly : function(state) {
       var i, j, y;
 
-      this.cleanUp();
-
-      if (state === 'random') {
-        this.randomState();
-      } else {
-
-        for (i = 0; i < state.length; i++) {
-          for (y in state[i]) {
-            for (j = 0; j < state[i][y].length; j++) {
-              this.listLife.addCell(state[i][y][j], parseInt(y, 10), this.listLife.actualState);
-            }
+      for (i = 0; i < state.length; i++) {
+        for (y in state[i]) {
+          for (j = 0; j < state[i][y].length; j++) {
+            this.listLife.addCell(state[i][y][j], parseInt(y, 10), this.listLife.actualState);
           }
         }
       }
-
-      this.prepare();
     },
 
 
@@ -294,6 +279,17 @@ var GOLloadState;
       this.element.livecells = document.getElementById('livecells');
       this.element.messages.layout = document.getElementById('layoutMessages');
     },
+    
+    
+    /**
+     *
+     */
+    mousePosition : function(e) {
+      var cellSize = this.zoom.schemes[this.zoom.current].cellSize + 1,
+      position = this.helpers.mousePosition(e);
+      return [Math.ceil(position[0]/cellSize - 1),
+              Math.ceil(position[1]/cellSize - 1)];
+   },
 
 
     /**
@@ -303,23 +299,23 @@ var GOLloadState;
     registerEvents : function() {
 
       // Keyboard Events
-      this.helpers.registerEvent(document.body, 'keyup', this.handlers.keyboard, false);
+      this.helpers.registerEvent(document.body, 'keyup', this.handlers.keyboard);
 
       // Controls
-      this.helpers.registerEvent(document.getElementById('buttonRun'), 'click', this.handlers.buttons.run, false);
-      this.helpers.registerEvent(document.getElementById('buttonStep'), 'click', this.handlers.buttons.step, false);
-      this.helpers.registerEvent(document.getElementById('buttonClear'), 'click', this.handlers.buttons.clear, false);
+      this.helpers.registerEvent(document.getElementById('buttonRun'), 'click', this.handlers.buttons.run);
+      this.helpers.registerEvent(document.getElementById('buttonStep'), 'click', this.handlers.buttons.step);
+      this.helpers.registerEvent(document.getElementById('buttonClear'), 'click', this.handlers.buttons.clear);
 
       // Layout
-      this.helpers.registerEvent(document.getElementById('buttonTrail'), 'click', this.handlers.buttons.trail, false);
-      this.helpers.registerEvent(document.getElementById('buttonGrid'), 'click', this.handlers.buttons.grid, false);
-      this.helpers.registerEvent(document.getElementById('buttonColors'), 'click', this.handlers.buttons.colors, false);
+      this.helpers.registerEvent(document.getElementById('buttonTrail'), 'click', this.handlers.buttons.trail);
+      this.helpers.registerEvent(document.getElementById('buttonGrid'), 'click', this.handlers.buttons.grid);
+      this.helpers.registerEvent(document.getElementById('buttonColors'), 'click', this.handlers.buttons.colors);
 
       // Save / Load
-      this.helpers.registerEvent(document.getElementById('buttonLoad'), 'click', this.handlers.buttons.load, false);
-      this.helpers.registerEvent(document.getElementById('buttonSavePlaintext'), 'click', this.handlers.buttons.savePlaintext, false);
-      this.helpers.registerEvent(document.getElementById('buttonSaveRLE'), 'click', this.handlers.buttons.saveRLE, false);
-      this.helpers.registerEvent(document.getElementById('buttonExport'), 'click', this.handlers.buttons.export_, false);
+      this.helpers.registerEvent(document.getElementById('buttonLoad'), 'click', this.handlers.buttons.load);
+      this.helpers.registerEvent(document.getElementById('buttonSavePlaintext'), 'click', this.handlers.buttons.savePlaintext);
+      this.helpers.registerEvent(document.getElementById('buttonSaveRLE'), 'click', this.handlers.buttons.saveRLE);
+      this.helpers.registerEvent(document.getElementById('buttonExport'), 'click', this.handlers.buttons.export_);
     },
 
 
@@ -419,7 +415,7 @@ var GOLloadState;
        *
        */
       canvasMouseDown : function(event) {
-        var position = GOL.helpers.mousePosition(event);
+        var position = GOL.mousePosition(event);
         GOL.canvas.switchCell(position[0], position[1]);
         GOL.handlers.lastX = position[0];
         GOL.handlers.lastY = position[1];
@@ -440,7 +436,7 @@ var GOLloadState;
        */
       canvasMouseMove : function(event) {
         if (GOL.handlers.mouseDown) {
-          var position = GOL.helpers.mousePosition(event);
+          var position = GOL.mousePosition(event);
           if ((position[0] !== GOL.handlers.lastX) || (position[1] !== GOL.handlers.lastY)) {
             GOL.canvas.switchCell(position[0], position[1]);
             GOL.handlers.lastX = position[0];
@@ -459,12 +455,18 @@ var GOLloadState;
           event = window.event;
         }
       
-        if (event.keyCode === 67) { // Key: C
-          GOL.handlers.buttons.clear();
-        } else if (event.keyCode === 82 ) { // Key: R
-          GOL.handlers.buttons.run();
-        } else if (event.keyCode === 83 ) { // Key: S
-          GOL.handlers.buttons.step();
+        if (!event.ctrlKey) {
+          if (event.keyCode === 67) { // Key: C
+            GOL.handlers.buttons.clear();
+          } else if (event.keyCode === 82 ) { // Key: R
+            GOL.handlers.buttons.run();
+          } else if (event.keyCode === 83 ) { // Key: S
+            GOL.handlers.buttons.step();
+          }
+        }
+        
+        if (event.ctrlKey && event.keyCode === 13) { // Ctrl + Enter
+          GOL.handlers.buttons.load();
         }
       },
 
@@ -603,15 +605,15 @@ var GOLloadState;
           }
           state = [];
 
-          if (text[0].match(/^[!.O]./)) { // plaintext according to http://www.conwaylife.com/wiki/Plaintext
-            while (text.length > 0 && text[0].length > 0 && text[0][0] === '!') {
+          if (text[0].trim().match(/^[!.O]./)) { // plaintext according to http://www.conwaylife.com/wiki/Plaintext
+            while (text.length > 0 && text[0].length > 0 && text[0].trim()[0] === '!') {
               text.shift();
             }
             vsize = text.length;
             for (i = 0; i < vsize; i++) {
               text[i] = text[i].trim().toUpperCase();
               if (!text[i].match(/^[.O]*$/)) {
-                alert('Ошибка - неизвестные символы в строке: ' + text[i]);
+                GOL.helpers.error('Ошибка - неизвестные символы в строке: ' + text[i]);
                 return;
               }
               if (text[i].length > hsize) {
@@ -628,8 +630,10 @@ var GOLloadState;
                 }
               }
             }
+
           } else { // RLE almost according to http://www.conwaylife.com/wiki/RLE (ignoring instructions about rules and so on)
-            while (text.length > 0 && text[0].length > 0 && text[0][0] === '#') {
+
+            while (text.length > 0 && text[0].length > 0 && text[0].trim()[0] === '#') {
               text.shift();
             }
             if (text.length === 0) {
@@ -637,29 +641,29 @@ var GOLloadState;
             }
 
             header = text[0].split(',');
-            bhmsg = 'Ошибка - плохой заголовок RLE: ' + text[0]
+            bhmsg = 'Ошибка - плохой заголовок RLE: ' + text[0];
             if (header.length < 2) {
-              alert(bhmsg);
+              GOL.helpers.error(bhmsg);
               return;
             }
             ph = header[0].split('=');
             if (ph.length !== 2 || ph[0].trim() !== 'x') {
-              alert(bhmsg);
+              GOL.helpers.error(bhmsg);
               return;
             }
             hsize = parseInt(ph[1]);
             if (isNaN(hsize)) {
-              alert(bhmsg);
+              GOL.helpers.error(bhmsg);
               return;
             }
             ph = header[1].split('=');
             if (ph.length !== 2 || ph[0].trim() !== 'y') {
-              alert(bhmsg);
+              GOL.helpers.error(bhmsg);
               return;
             }
             vsize = parseInt(ph[1]);
             if (isNaN(vsize)) {
-              alert(bhmsg);
+              GOL.helpers.error(bhmsg);
               return;
             }
             text.shift();
@@ -669,93 +673,34 @@ var GOLloadState;
             tlx = Math.floor((GOL.columns - hsize) / 2);
             tly = Math.floor((GOL.rows - vsize) / 2);
             j = 0;
-            while ((dpos = text.indexOf('$')) !== -1) {
-              row = text.slice(0, dpos);
-              text = text.slice(dpos + 1);
-              no = Math.max(row.lastIndexOf('o'), row.lastIndexOf('b'));
-              nd = row.slice(no + 1);
-              row = row.slice(0, no + 1);
-              if (nd.length === 0) {
-                nd = 1;
+            i = 0;
+            while (text !== '') {
+              block = text.match(/^\d*[ob$]/)[0];
+              text = text.slice(block.length);
+              if (block.length === 1) {
+                n = 1;
               } else {
-                nd = parseInt(nd);
+                n = parseInt(block.slice(0, -1));
+                block = block.slice(-1);
               }
-              if (row.length > 0) {
-                bsmsg = 'Ошибка - неправильная строка в коде RLE: ' + row;
-                opos = row.indexOf('o');
-                if (row[row.length - 1] === 'b') {
-                  if (opos === -1) {
-                    j += nd;
-                    continue;
-                  }
-                  row = row.slice(0, row.lastIndexOf('o') + 1);
-                }
-                if (opos === -1) {
-                  alert(bsmsg);
-                  return;
-                }
-                block = row.slice(0, opos);
-                bpos = block.indexOf('b');
-                if (bpos === -1) {
-                  bstack = [0];
-                } else {
-                  if (bpos === 0) {
-                    n = 1;
-                  } else {
-                    n = parseInt(block.slice(0, bpos));
-                  }
-                  bstack = [n];
-                  block = block.slice(bpos + 1);
-                }
-                if (block.length === 0) {
-                  ostack = [1];
-                } else {
-                  ostack = [parseInt(block)];
-                }
-                row = row.slice(opos + 1);
-                while (row.length > 0) {
-                  opos = row.indexOf('o');
-                  if (opos === -1) {
-                    alert(bsmsg);
-                    return;
-                  }
-                  block = row.slice(0, opos);
-                  bpos = block.indexOf('b');
-                  if (bpos === -1) {
-                    alert(bsmsg);
-                    return;
-                  }
-                  if (bpos === 0) {
-                    n = 1;
-                  } else {
-                    n = parseInt(block.slice(0, bpos));
-                  }
-                  bstack.push(n);
-                  block = block.slice(bpos + 1);
-                  if (block.length === 0) {
-                    ostack.push(1);
-                  } else {
-                    ostack.push(parseInt(block));
-                  }
-                  row = row.slice(opos + 1);
-                }
-                i = 0;
-                for (k = 0; k < bstack.length; k++) {
-                  i += bstack[k];
-                  while (ostack[k] > 0) {
-                    GOL.listLife.addCell(tlx + i, tly + j, state);
-                    i++;
-                    ostack[k]--;
-                  }
-                }
+              if (block === '$') {
                 if (i > hsize) {
-                  alert('Предупреждение: на строке ' + j + ' число столбцов в коде RLE (' + i + ') больше указанного в строке формата (' + hsize + ')');
+                  GOL.helpers.warning('Предупреждение: на строке ' + (j+1) + ' число столбцов в коде RLE (' + i + ') больше указанного в строке формата (' + hsize + ')');
+                }
+                j += n;
+                i = 0;
+              } else if (block === 'b') {
+                i += n;
+              } else if (block === 'o') {
+                while (n > 0) {
+                  GOL.listLife.addCell(tlx + i, tly + j, state);
+                  i++;
+                  n--;
                 }
               }
-              j += nd;
             }
             if (j !== vsize) {
-              alert('Предупреждение: число строк в коде RLE (' + j + ') не совпадает с указанным в строке формата (' + vsize + ')');
+              GOL.helpers.warning('Предупреждение: число строк в коде RLE (' + j + ') не совпадает с указанным в строке формата (' + vsize + ')');
             }
           }
 
@@ -790,7 +735,7 @@ var GOLloadState;
             }
             x = minx - 1;
             for (i = 1; i < state[j].length; i++) {
-              text = text + (new Array(state[j][i] - x).join('.')) + 'O';
+              text += (new Array(state[j][i] - x).join('.')) + 'O';
               x = state[j][i];
             }
           }
@@ -802,7 +747,7 @@ var GOLloadState;
          * Button Handler - save state in RLE format
          */
         saveRLE : function() {
-          var state, minx, maxx, i, j, x, text, block, no, lim = 69;
+          var state, minx, maxx, i, j, x, header, text, block, no, lim = 69;
 
           state = GOL.listLife.actualState;
 
@@ -827,13 +772,13 @@ var GOLloadState;
               no = state[j][0] - state[j - 1][0];
               block = '';
               if (no !== 1) {
-                block = block + no;
+                block += no;
               }
-              block = block + '$';
+              block += '$';
               if (text.length + block.length - text.lastIndexOf('\n') > lim) {
-                text = text + '\n';
+                text += '\n';
               }
-              text = text + block;
+              text += block;
             }
             x = minx - 1;
             no = 0;
@@ -842,23 +787,23 @@ var GOLloadState;
                 if (no > 0) {
                   block = '';
                   if (no !== 1) {
-                    block = block + no;
+                    block += no;
                   }
-                  block = block + 'o';
+                  block += 'o';
                   if (text.length + block.length - text.lastIndexOf('\n') > lim) {
-                    text = text + '\n';
+                    text += '\n';
                   }
-                  text = text + block;
+                  text += block;
                 }
                 block = '';
                 if (state[j][i] - x - 1 !== 1) {
                   block = block + (state[j][i] - x - 1);
                 }
-                block = block + 'b';
+                block += 'b';
                 if (text.length + block.length - text.lastIndexOf('\n') > lim) {
-                  text = text + '\n';
+                  text += '\n';
                 }
-                text = text + block;
+                text += block;
                 no = 1;
               } else {
                 no += 1;
@@ -867,19 +812,20 @@ var GOLloadState;
             }
             block = '';
             if (no !== 1) {
-              block = block + no;
+              block += no;
             }
-            block = block + 'o';
+            block += 'o';
             if (text.length + block.length - text.lastIndexOf('\n') > lim) {
-              text = text + '\n';
+              text += '\n';
             }
-            text = text + block;
+            text += block;
           }
           text += '!';
 
-          text = 'x = ' + (maxx - minx + 1) + ', y = ' + (state[state.length - 1][0] - state[0][0] + 1) + '\n' + text;
+          header = 'x = ' + (maxx - minx + 1) + ', y = ' + (state[state.length - 1][0] - state[0][0] + 1);
+          header += ', rule = B3/S23'
 
-          document.getElementById('textArea').value = text;
+          document.getElementById('textArea').value = header + '\n' + text;
         }
 
       }
@@ -890,7 +836,7 @@ var GOLloadState;
     /** ****************************************************************************************************************************
      *
      */
-    canvas: {
+    canvas : {
 
       context : null,
       width : null,
@@ -962,8 +908,8 @@ var GOLloadState;
         this.context.fillStyle = GOL.grid.schemes[GOL.grid.current].color;
         this.context.fillRect(0, 0, this.width, this.height);
 
-        for (i = 0 ; i < GOL.columns; i++) {
-          for (j = 0 ; j < GOL.rows; j++) {
+        for (i = 0; i < GOL.columns; i++) {
+          for (j = 0; j < GOL.rows; j++) {
             if (GOL.listLife.isAlive(i, j)) {
               this.drawCell(i, j, true);
             } else {
@@ -1429,14 +1375,6 @@ var GOLloadState;
 
 
       /**
-       * Return a random integer from [min, max]
-       */
-      random : function(min, max) {
-        return min <= max ? min + Math.round(Math.random() * (max - min)) : null;
-      },
-
-
-      /**
        * Get URL Parameters
        */
       getUrlParameter : function(name) {
@@ -1458,13 +1396,41 @@ var GOLloadState;
 
 
       /**
+       * Return a random integer from [min, max]
+       */
+      random : function(min, max) {
+        return min <= max ? min + Math.round(Math.random() * (max - min)) : null;
+      },
+      
+      
+      /**
+       *
+       */
+      warning : function(s) {
+        alert(s);
+      },
+
+
+      /**
+       *
+       */
+      error : function(s) {
+        alert(s);
+      },
+
+
+      /**
        * Register Event
        */
       registerEvent : function (element, event, handler, capture) {
-        if (/msie/i.test(navigator.userAgent)) {
+        // simple cross-browser event adding
+        capture = (capture !== undefined ? capture : false);
+        if (element.addEventListener) {
+          element.addEventListener(event, handler, capture);
+        } else if (element.attachEvent) {
           element.attachEvent('on' + event, handler);
         } else {
-          element.addEventListener(event, handler, capture);
+          element['on' + event] = handler;
         }
       },
 
@@ -1475,8 +1441,7 @@ var GOLloadState;
       mousePosition : function (e) {
         // http://learn.javascript.ru/coordinates
         // http://www.quirksmode.org/js/events_properties.html#position
-        var event, x, y, domObject, posx = 0, posy = 0, top = 0, left = 0,
-        cellSize = GOL.zoom.schemes[GOL.zoom.current].cellSize + 1, box;
+        var event, domObject, posx = 0, posy = 0, top, left, box;
 
         event = e;
         if (!event) {
@@ -1500,10 +1465,7 @@ var GOLloadState;
         left= box.left+ (window.pageXOffset || document.documentElement.scrollLeft|| document.body.scrollLeft)
         - (document.documentElement.clientLeft|| document.body.clientLeft|| 0);
 
-        x = Math.ceil(((posx - left)/cellSize) - 1);
-        y = Math.ceil(((posy - top )/cellSize) - 1);
-
-        return [x, y];
+        return [posx - left, posy - top];
       }
     }
 
@@ -1516,7 +1478,18 @@ var GOLloadState;
   GOL.helpers.registerEvent(window, 'load', function () {
     GOL.init();
   }, false);
-  
-  GOLloadState = function(s) { GOL.loadStateDirectly(s); };
+
+
+  GOLloadState = function(s) {
+    GOL.cleanUp();
+    GOL.loadStateDirectly(s);
+    GOL.prepare();
+  };
+
+  GOLrandom = function() {
+    GOL.cleanUp();
+    GOL.randomState();
+    GOL.prepare();
+  };
 
 }());
