@@ -5,11 +5,15 @@ function Glob(list) {
   this.searches = [];
   this.nodes = [];
   this.hash = [];
+  this.maxw = 1;
 }
 
 Glob.prototype.modifyListItem = function(html, res) {
-  return '<hr width="' + (Math.log(res) * 40) + '" /> ' + res + ': ' + html;
+ var w = Math.log(res) * 100;
+ if (this.maxw < w) this.maxw = w;
+ return '<div style="position: absolute;">' + res + ': ' + html + '</div><div class="bg" style="width: ' + w + 'px; height: 20px; background-color: lightgreen;" >';
 }
+
 
 Glob.prototype.getSearchText = function(text) {
   return text.replace(/^.*: /, '').replace(/,/g, ' ');
@@ -24,6 +28,14 @@ Glob.prototype.searchRequest = function() {
 
 Glob.prototype.onComplete = function() {
   console.log('onComplete:');
+  
+  var bg = document.querySelectorAll("#ranking .bg");
+ 
+  for (var i = 0; i < bg.length; i++) {
+    bg[i].style.width = 730 * bg[i].style.width / this.maxw;
+  }
+
+  
   var q;
   
   with (this) {
