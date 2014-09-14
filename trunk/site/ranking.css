@@ -13,7 +13,7 @@
   border-color: lightgreen;
 }
 
-.post-body #ranking bg {
+.post-body #ranking .bg {
   height: 20px; 
   background-color: lightgreen;
 }
