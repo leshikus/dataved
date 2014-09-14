@@ -104,5 +104,5 @@ google.setOnLoadCallback(function() {
 })
 
 
-$('head').append('<link rel="stylesheet" href="http://dataved.googlecode.com/svn/trunk/site/ranking.css" type="text/css" />');
+$('head').append('<link rel="stylesheet" href="http://dataved.googlecode.com/svn/trunk/site/compare.css" type="text/css" />');
 
