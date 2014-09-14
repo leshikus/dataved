@@ -15,7 +15,7 @@
 
 .post-body #ranking .bg {
   position: absolute;
-  opacity: 0.2;
+  z-index: 0;
   height: 20px; 
   background-color: lightgreen;
 }
