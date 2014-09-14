@@ -15,14 +15,12 @@
 
 .post-body #ranking .bg {
   position: absolute;
-  z-index: 0;
-  height: 20px; 
+  height: 2px; 
   background-color: lightgreen;
 }
 
 .post-body #ranking li {
   clear: right;
-  z-index: 1;
 }
 
 .post-body #ranking li span img {
