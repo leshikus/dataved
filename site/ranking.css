@@ -1,0 +1,37 @@
+/* Ranking
+----------------------------------------------- */
+.post-body ul#ranking {
+  list-style-type: none;
+}
+
+.post-body #ranking hr {
+  position: relative;
+  top: 3px;
+  text-align: left;
+  color: lightgreen;
+  background-color: lightgreen;
+  border-color: lightgreen;
+}
+
+.post-body #ranking bg {
+  background-color: lightgreen;
+}
+
+.post-body #ranking li {
+  clear: right;
+}
+
+.post-body #ranking li span img {
+  padding: 0;
+}
+
+.post-body #ranking li, .post-body #ranking li span {
+  padding: 0;
+  margin: 0;
+  vertical-align: top;
+}
+
+.post-body #ranking li span {
+  float: right;
+}
+
