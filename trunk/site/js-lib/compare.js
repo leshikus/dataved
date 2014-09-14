@@ -29,7 +29,7 @@ Glob.prototype.searchRequest = function() {
 Glob.prototype.onComplete = function() {
   console.log('onComplete: maxw = ' + this.maxw);
   
-  var bg = document.querySelectorAll("#ranking.bg");
+  var bg = document.querySelectorAll("#ranking .bg");
  
   for (var i = 0; i < bg.length; i++) {
     bg[i].style.width = 730 * bg[i].style.width / this.maxw;
