@@ -22,6 +22,7 @@
 
 .post-body #ranking li {
   clear: right;
+  z-index: 1;
 }
 
 .post-body #ranking li span img {
