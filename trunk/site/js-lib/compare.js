@@ -11,7 +11,7 @@ function Glob(list) {
 Glob.prototype.modifyListItem = function(html, res) {
  var w = Math.log(res) * 100;
  if (this.maxw < w) this.maxw = w;
- return '<div style="position: absolute;">' + res + ': ' + html + '</div><div class="bg" style="width: ' + w + 'px; background-color: lightgreen;" >';
+ return '<div class="bg" style="width: ' + w + 'px" ></div>' + res + ': ' + html;
 }
 
 
