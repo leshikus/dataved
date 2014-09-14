@@ -31,9 +31,9 @@ Glob.prototype.onComplete = function() {
   
   var bg = document.querySelectorAll("#ranking .bg");
   
- 
+  this.maxw = 730 / this.maxw;
   for (var i = 0; i < bg.length; i++) {
-    var w = bg[i].style.width.replace('px', '');
+    var w = bg[i].style.width.replace('px', '') * this.maxw;
     bg[i].style.width = w + 'px';
   }
 
