@@ -11,7 +11,7 @@ function Glob(list) {
 Glob.prototype.modifyListItem = function(html, res) {
  var w = Math.log(res) * 100;
  if (this.maxw < w) this.maxw = w;
- return '<div style="position: absolute;">' + res + ': ' + html + '</div><div class="bg" style="width: ' + w + 'px; height: 20px; background-color: lightgreen;" >';
+ return '<div style="position: absolute;">' + res + ': ' + html + '</div><div class="bg" style="width: ' + w + 'px; background-color: lightgreen;" >';
 }
 
 
@@ -102,3 +102,7 @@ google.setOnLoadCallback(function() {
   var e = document.getElementById("ranking");
   if (e) rank(e);
 })
+
+
+$('head').append('<link rel="stylesheet" href="http://dataved.googlecode.com/svn/trunk/site/ranking.css" type="text/css" />');
+
