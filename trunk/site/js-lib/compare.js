@@ -27,7 +27,7 @@ Glob.prototype.searchRequest = function() {
 }
 
 Glob.prototype.onComplete = function() {
-  console.log('onComplete:');
+  console.log('onComplete: maxw = ' + this.maxw);
   
   var bg = document.querySelectorAll("#ranking .bg");
  
