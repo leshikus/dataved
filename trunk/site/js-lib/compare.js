@@ -30,10 +30,11 @@ Glob.prototype.onComplete = function() {
   console.log('onComplete: maxw = ' + this.maxw);
   
   var bg = document.querySelectorAll("#ranking .bg");
-  var t = 'scaleX(' + 730 / this.maxw + ')';
+  
  
   for (var i = 0; i < bg.length; i++) {
-    bg[i].style.transform = t;
+    var w = bg[i].style.width.replace('px', '');
+    bg[i].style.width = w + 'px';
   }
 
   
