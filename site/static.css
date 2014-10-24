@@ -46,15 +46,23 @@ body {
 
 /* Links
 ----------------------------------------------- */
+a {
+  color: lightgray;
+  text-decoration: italic;
+}
+
 a:link, a:visited , a:hover {
   text-decoration: underline;
 }
+
 a:link {
   color: #5588aa;
 }
+
 a:visited {
   color: #555555;
 }
+
 a:hover {
   color: #cc6600;
 }
