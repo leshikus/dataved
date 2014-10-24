@@ -65,7 +65,7 @@
     <script>
       google.load(&quot;search&quot;, &quot;1&quot;);
     </script>
-    <script src='http://dataved.googlecode.com/svn/trunk/site/js-lib/search.js'/>
+    <!--<script src='http://dataved.googlecode.com/svn/trunk/site/js-lib/search.js'/>-->
   </head>
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
     <b:section class='navbar' id='navbar' maxwidgets='1' showaddelement='no'>
