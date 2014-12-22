@@ -38,7 +38,7 @@ table .gs-branding {
   width: 700px;
 }
 
-.header .HTML, .header .Header, .header .CustomSearch, .header .CustomSearch div {
+.sidebar .widget, .header .HTML, .header .Header, .header .CustomSearch, .header .CustomSearch div {
   width: 230px;
 }
 
@@ -50,6 +50,11 @@ table .gs-branding {
 aside {
   width: 286px;
 }
+
+ {
+  width: ;
+}
+
 
 #HTML7 {
   font-size: 100%;
