@@ -79,7 +79,7 @@ function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea) {
       designMode = 'off';
 
 //      console.log("initial = " + this.doc.body.innerHTML);
-      this.doc.body.innerHTML = this.doc.body.innerHTML.replace(/<br>/gi, '</p><p>');
+      this.doc.body.innerHTML = this.doc.body.innerHTML.replace(/<br>|<\/div>\s*<div[^>]*>/gi, '</p><p>');
       this.cleanElement(this.doc.body, false);
       this.viewSource();
       designMode = 'on';
