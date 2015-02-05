@@ -79,7 +79,9 @@ function Cleaner(iframeName, allowedTags, emptyTags, convertTags, resultArea) {
       designMode = 'off';
 
 //      console.log("initial = " + this.doc.body.innerHTML);
-      this.doc.body.innerHTML = this.doc.body.innerHTML.replace(/<br>|<\/div>[\s\n]*<div[^>]*>/gi, '</p><p>');
+      content = content.replace(/[\s\n]+/g, ' ');
+      content = content.replace(/<br>|<\/div>\s*<div[^>]*>/gi, '</p><p>');
+      this.doc.body.innerHTML = content;
       this.cleanElement(this.doc.body, false);
       this.viewSource();
       designMode = 'on';
