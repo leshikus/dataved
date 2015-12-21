@@ -53,10 +53,10 @@
     </noscript>
     <!-- ignore skins -->
     <link href='http://www.blogger.com/dyn-css/authorization.css?targetBlogID=3023871881439413232&amp;zx=947805cc-7f10-4e75-8bb6-d4534b03fa29' rel='stylesheet' type='text/css'/>
-    <link href='http://dataved.googlecode.com/svn/trunk/site/static.css' rel='stylesheet' type='text/css'/>
-    <link href='http://dataved.googlecode.com/svn/trunk/site/site.css' rel='stylesheet' type='text/css'/>
-    <link href='http://dataved.googlecode.com/svn/trunk/site/post.css' rel='stylesheet' type='text/css'/>
-    <link href='http://dataved.googlecode.com/svn/trunk/site/bbn/style.css' rel='stylesheet' type='text/css'/>
+    <link href='http://dataved.github.io/static.css' rel='stylesheet' type='text/css'/>
+    <link href='http://dataved.github.io/site.css' rel='stylesheet' type='text/css'/>
+    <link href='http://dataved.github.io/post.css' rel='stylesheet' type='text/css'/>
+    <link href='http://dataved.github.io/bbn/style.css' rel='stylesheet' type='text/css'/>
     <link href='http://www.blogger.com/favicon-image.g?blogID=3023871881439413232' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
     <meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
@@ -65,7 +65,6 @@
     <script>
       google.load(&quot;search&quot;, &quot;1&quot;);
     </script>
-    <!--<script src='http://dataved.googlecode.com/svn/trunk/site/js-lib/search.js'/>-->
   </head>
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
     <b:section class='navbar' id='navbar' maxwidgets='1' showaddelement='no'>
@@ -86,7 +85,7 @@
         gapi.load(&quot;gapi.iframes:gapi.iframes.style.bubble&quot;, function() {
           if (gapi.iframes &amp;&amp; gapi.iframes.getContext) {
             gapi.iframes.getContext().openChild({
-                url: &#39;https://www.blogger.com/navbar.g?targetBlogID\0753023871881439413232\46blogName\75%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5+%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE+dataved.ru\46publishMode\75PUBLISH_MODE_HOSTED\46navbarType\75LIGHT\46layoutType\75LAYOUTS\46searchRoot\75http://www.dataved.ru/search\46blogLocale\75ru\46v\0752\46homepageUrl\75http://www.dataved.ru/\46blogFollowUrl\75https://plus.google.com/117636762579383086898\46vt\75-7129750591282518043&#39;,
+                url: &#39;https://www.blogger.com/navbar.g?targetBlogID\0753023871881439413232\46blogName\75%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5+%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%BE+dataved.ru\46publishMode\75PUBLISH_MODE_HOSTED\46navbarType\75LIGHT\46layoutType\75LAYOUTS\46searchRoot\75http://www.dataved.ru/search\46blogLocale\75ru\46v\0752\46homepageUrl\75http://www.dataved.ru/\46vt\75-7129750591282518043&#39;,
                 where: document.getElementById(&quot;navbar-iframe-container&quot;),
                 id: &quot;navbar-iframe&quot;
             });
@@ -113,7 +112,7 @@ head.appendChild(script);
     <script type='text/javascript'>
       window.setTimeout(function() {
         document.body.className = document.body.className.replace(&#39;loading&#39;, &#39;&#39;)
-                                                                  $.getScript(&#39;//dataved.googlecode.com/svn/trunk/site/common.js&#39;)
+                                                                  $.getScript(&#39;//dataved.github.io/common.js&#39;)
                                                                   }, 100);
     </script>
   </body>
@@ -271,7 +270,7 @@ head.appendChild(script);
         </script>
       </b:includable>
   </b:widget>
-  <b:widget id='HTML2' locked='false' title='Продукты' type='HTML'>
+  <b:widget id='HTML2' locked='false' mobile='yes' title='Продукты' type='HTML'>
     <b:includable id='main'>
         <!-- only display title if it's non-empty -->
         <b:if cond='data:title != &quot;&quot;'>
@@ -300,65 +299,7 @@ head.appendChild(script);
         <b:include name='quickedit'/>
       </b:includable>
   </b:widget>
-</b:section-contents><b:section-contents id='sidebar-collection'>
-  <b:widget id='Label1' locked='false' title='Темы' type='Label'>
-    <b:includable id='main'>
-        <b:if cond='data:title'>
-          <h2>
-            <data:title/>
-          </h2>
-        </b:if>
-        <div expr:class='&quot;widget-content &quot; + data:display + &quot;-label-widget-content&quot;'>
-          <b:if cond='data:display == &quot;list&quot;'>
-            <ul>
-              <b:loop values='data:labels' var='label'>
-                <li>
-                  <b:if cond='data:blog.url == data:label.url'>
-                    <span expr:dir='data:blog.languageDirection'>
-                      <data:label.name/>
-                    </span>
-                    <b:else/>
-                    <a expr:dir='data:blog.languageDirection' expr:href='data:label.url'>
-                      <data:label.name/>
-                    </a>
-                  </b:if>
-                  <b:if cond='data:showFreqNumbers'>
-                    <span dir='ltr'>
-                      (
-                      <data:label.count/>
-                      )
-                    </span>
-                  </b:if>
-                </li>
-              </b:loop>
-            </ul>
-            <b:else/>
-            <b:loop values='data:labels' var='label'>
-              <span expr:class='&quot;label-size label-size-&quot; + data:label.cssSize'>
-                <b:if cond='data:blog.url == data:label.url'>
-                  <span expr:dir='data:blog.languageDirection'>
-                    <data:label.name/>
-                  </span>
-                  <b:else/>
-                  <a expr:dir='data:blog.languageDirection' expr:href='data:label.url'>
-                    <data:label.name/>
-                  </a>
-                </b:if>
-                <b:if cond='data:showFreqNumbers'>
-                  <span class='label-count' dir='ltr'>
-                    (
-                    <data:label.count/>
-                    )
-                  </span>
-                </b:if>
-              </span>
-            </b:loop>
-          </b:if>
-          <b:include name='quickedit'/>
-        </div>
-      </b:includable>
-  </b:widget>
-</b:section-contents><b:section-contents id='sidebar-bottom'>
+</b:section-contents><b:section-contents id='sidebar-collection'/><b:section-contents id='sidebar-bottom'>
   <b:widget id='PopularPosts2' locked='false' title='Популярные сообщения' type='PopularPosts'>
     <b:includable id='main'>
         <b:if cond='data:title'>
@@ -460,111 +401,6 @@ head.appendChild(script);
           <data:content/>
         </div>
         <b:include name='quickedit'/>
-      </b:includable>
-  </b:widget>
-  <b:widget id='BlogArchive1' locked='false' title='Архив публикаций сайта' type='BlogArchive'>
-    <b:includable id='main'>
-        <b:if cond='data:title'>
-          <h2>
-            <data:title/>
-          </h2>
-        </b:if>
-        <div class='widget-content'>
-          <div id='ArchiveList'>
-            <div expr:id='data:widget.instanceId + &quot;_ArchiveList&quot;'>
-              <b:if cond='data:style == &quot;HIERARCHY&quot;'>
-                <b:include data='data' name='interval'/>
-              </b:if>
-              <b:if cond='data:style == &quot;FLAT&quot;'>
-                <b:include data='data' name='flat'/>
-              </b:if>
-              <b:if cond='data:style == &quot;MENU&quot;'>
-                <b:include data='data' name='menu'/>
-              </b:if>
-            </div>
-          </div>
-          <b:include name='quickedit'/>
-        </div>
-      </b:includable>
-    <b:includable id='flat' var='data'>
-        <ul class='flat'>
-          <b:loop values='data:data' var='i'>
-            <li class='archivedate'>
-              <a expr:href='data:i.url'>
-                <data:i.name/>
-              </a>
-              (
-              <data:i.post-count/>
-              )
-            </li>
-          </b:loop>
-        </ul>
-      </b:includable>
-    <b:includable id='interval' var='intervalData'>
-        <b:loop values='data:intervalData' var='i'>
-          <ul class='hierarchy'>
-            <li expr:class='&quot;archivedate &quot; + data:i.expclass'>
-              <b:include data='i' name='toggle'/>
-              <a class='post-count-link' expr:href='data:i.url'>
-                <data:i.name/>
-              </a>
-              <span class='post-count' dir='ltr'>
-                (
-                <data:i.post-count/>
-                )
-              </span>
-              <b:if cond='data:i.data'>
-                <b:include data='i.data' name='interval'/>
-              </b:if>
-              <b:if cond='data:i.posts'>
-                <b:include data='i.posts' name='posts'/>
-              </b:if>
-            </li>
-          </ul>
-        </b:loop>
-      </b:includable>
-    <b:includable id='menu' var='data'>
-        <select expr:id='data:widget.instanceId + &quot;_ArchiveMenu&quot;'>
-          <option value=''>
-            <data:title/>
-          </option>
-          <b:loop values='data:data' var='i'>
-            <option expr:value='data:i.url'>
-              <data:i.name/>
-              (
-              <data:i.post-count/>
-              )
-            </option>
-          </b:loop>
-        </select>
-      </b:includable>
-    <b:includable id='posts' var='posts'>
-        <ul class='posts'>
-          <b:loop values='data:posts' var='i'>
-            <li>
-              <a expr:href='data:i.url'>
-                <data:i.title/>
-              </a>
-            </li>
-          </b:loop>
-        </ul>
-      </b:includable>
-    <b:includable id='toggle' var='interval'>
-        <b:if cond='data:interval.toggleId'>
-          <b:if cond='data:interval.expclass == &quot;expanded&quot;'>
-            <a class='toggle' href='javascript:void(0)'>
-              <span class='zippy toggle-open'>
-                &#9660;&#160;
-              </span>
-            </a>
-            <b:else/>
-            <a class='toggle' href='javascript:void(0)'>
-              <span class='zippy'>
-                  &#9658;&#160;
-              </span>
-            </a>
-          </b:if>
-        </b:if>
       </b:includable>
   </b:widget>
 </b:section-contents><b:section-contents id='section-main'>
@@ -1000,7 +836,7 @@ head.appendChild(script);
           </div>
         </div>
       </b:includable>
-    <b:includable id='mobile-main' var='top'>
+    <b:includable id='mobile-main' var='post'>
         <!-- posts -->
         <div class='blog-posts hfeed'>
           <b:include data='top' name='status-message'/>
